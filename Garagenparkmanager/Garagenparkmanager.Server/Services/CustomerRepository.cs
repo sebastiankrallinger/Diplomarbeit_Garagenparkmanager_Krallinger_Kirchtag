@@ -20,7 +20,7 @@ namespace Garagenparkmanager.Server.Services
 
         public async Task<Customer> CreateCustomer(Customer consumer)
         {
-            var response = await _container.CreateItemAsync(consumer, new PartitionKey(consumer.Name));
+            var response = await _container.CreateItemAsync(consumer, new PartitionKey(consumer.Lastname));
             return response.Resource;
         }
 
