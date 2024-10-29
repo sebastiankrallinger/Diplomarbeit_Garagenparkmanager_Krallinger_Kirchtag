@@ -1,4 +1,6 @@
 
+using Garagenparkmanager.Server.Services;
+
 namespace Garagenparkmanager.Server
 {
     public class Program
@@ -13,6 +15,13 @@ namespace Garagenparkmanager.Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ICustomerRepository, CustomerRepository>(x
+                => new CustomerRepository(
+                    builder.Configuration.GetConnectionString("CosmosDb"),
+                    builder.Configuration["CosmosConfig:primaryKey"],
+                    builder.Configuration["CosmosConfig:databaseName"],
+                    builder.Configuration["CosmosConfig:cointainerName"]));
 
             var app = builder.Build();
 

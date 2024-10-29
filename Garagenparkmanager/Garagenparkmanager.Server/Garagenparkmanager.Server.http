@@ -1,6 +1,6 @@
 @Garagenparkmanager.Server_HostAddress = http://localhost:5116
 
-GET {{Garagenparkmanager.Server_HostAddress}}/weatherforecast/
+GET {{Garagenparkmanager.Server_HostAddress}}/garagenparkManager/
 Accept: application/json
 
 ###
