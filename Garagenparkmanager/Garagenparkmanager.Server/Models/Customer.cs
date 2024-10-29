@@ -5,7 +5,7 @@ namespace Garagenparkmanager.Server.Models
     public class Customer
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; } = 0;
+        public string Id { get; set; } = string.Empty;
 
         [JsonProperty(PropertyName = "firstname")]
         public string Firstname { get; set; }
