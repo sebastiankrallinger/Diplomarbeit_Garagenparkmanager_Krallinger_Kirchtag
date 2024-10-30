@@ -2,6 +2,7 @@
 
 namespace Garagenparkmanager.Server.Services
 {
+    //Definition der Datenankfunktionen
     public interface ICustomerRepository
     {
         Task<IEnumerable<Customer>> GetAll();

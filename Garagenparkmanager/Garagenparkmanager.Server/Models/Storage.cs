@@ -2,6 +2,7 @@
 
 namespace Garagenparkmanager.Server.Models
 {
+    //Mietobjekt-Modell
     public class Storage
     {
         [JsonProperty(PropertyName = "storageId")]
