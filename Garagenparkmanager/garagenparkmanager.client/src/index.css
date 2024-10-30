@@ -1,0 +1,113 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #383E42;
+    color: #FFFFFF;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 20%;
+    margin: 0 auto 0 auto;
+    border-bottom: solid;
+    border-color: #F9A800;
+}
+
+.header-logo img {
+    height: 50px;
+}
+
+.header-navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.header-navbar a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.header-navbar button {
+    margin-left: 20px;
+    background-color: #F9A800;
+    color: #FFFFFF;
+    border: none;
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 15%;
+    margin: 0 auto 0 auto;
+    margin: 0;
+    border-top: solid;
+    border-color: #F9A800;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-logo img {
+    margin-top: 10px;
+    height: 100px;
+}
+
+.footer-navbar ul {
+    display: flex;
+    margin-right: 30px;
+    list-style: none;
+}
+
+.instagram-icon {
+    text-decoration: none;
+    color: #FFFFFF;
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 50px;
+}
+
+.footer-navbar li {
+    margin-left: 50px;
+    text-decoration: none;
+}
+
+.footer-navbar h3 {
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.footer-navbar a {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 10px;
+    display: block;
+    color: #F9A800;
+}
+
+.footer-text {
+    color: #FFFFFF;
+}
+
+.footer-text p {
+    margin: 5px 0;
+}
+
+.text1 {
+    text-align: left;
+}
+
+.text2 {
+    text-align: right
+}
