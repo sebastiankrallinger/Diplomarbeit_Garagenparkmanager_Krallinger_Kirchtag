@@ -42,6 +42,33 @@ body {
     border: none;
 }
 
+.news h1{
+    text-align: center;
+}
+
+.newsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navBtn {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: #F9A800;
+    cursor: pointer;
+    margin: 0 15px;
+}
+
+.newsContent {
+    text-align: center;
+}
+
+.newsContent p {
+    margin: 0; 
+}
+
 .storageImages {
     display: flex;
     justify-content: space-between;
