@@ -9,6 +9,10 @@ body {
     color: #FFFFFF;
 }
 
+section {
+    margin-bottom: 100px;
+}
+
 .header-container {
     display: flex;
     align-items: center;
@@ -42,8 +46,9 @@ body {
     border: none;
 }
 
-.news h1{
+.news h1 {
     text-align: center;
+    color: #F9A800;
 }
 
 .newsContainer {
@@ -81,6 +86,7 @@ body {
 
 .selfStorage h1 {
     text-align: center;
+    color: #F9A800;
 }
 
 .storageImage {
@@ -100,6 +106,7 @@ body {
 
 .ueberUns h1 {
     text-align: center;
+    color: #F9A800;
 }
 
 .personImage {
