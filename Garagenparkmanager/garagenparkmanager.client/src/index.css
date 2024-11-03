@@ -42,6 +42,67 @@ body {
     border: none;
 }
 
+.storageImages {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.selfStorage {
+    padding: 0 15px;
+}
+
+.selfStorage h1 {
+    text-align: center;
+}
+
+.storageImage {
+    position: relative;
+    max-width: 30%;
+}
+
+.storageImage img {
+    width: 100%;
+}
+
+.personImages {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.ueberUns h1 {
+    text-align: center;
+}
+
+.personImage {
+    position: relative;
+    max-width: 25%;
+}
+
+.text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.role {
+    margin: 2px 0;
+}
+
+.personImage img {
+    width: 100%;
+}
+
 .footer-container {
     display: flex;
     align-items: center;
