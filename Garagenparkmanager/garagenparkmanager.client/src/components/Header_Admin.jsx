@@ -16,9 +16,10 @@ function Header() {
                 </div>
                 <nav className="header-navbar">
                     <ul>
-                        <a onClick={() => handleNavigation('')}>News</a>
-                        <a onClick={() => handleNavigation('')}>Immobilien</a>
-                        <a onClick={() => handleNavigation('')}>Über Uns</a>
+                        <a onClick={() => handleNavigation('/admin/newsmanagement')}>News</a>
+                        <a onClick={() => handleNavigation('/admin/objectmanagement')}>Objektverwaltung</a>
+                        <a onClick={() => handleNavigation('/admin/usermanagement')}>Benutzerverwaltung</a>
+                        <a onClick={() => handleNavigation('/admin/documentmanagement')}>Dokumente</a>
                         <a>sample_username</a>
                         <button>Abmelden</button>
                     </ul>

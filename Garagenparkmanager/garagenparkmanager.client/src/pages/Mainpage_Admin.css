@@ -9,39 +9,6 @@ body {
     color: #FFFFFF;
 }
 
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 20%;
-    margin: 0 auto 0 auto;
-    border-bottom: 1px solid;
-    border-color: #FFFFFF;
-}
-
-.header-logo img {
-    height: 50px;
-}
-
-.header-navbar ul {
-    display: flex;
-    list-style: none;
-}
-
-.header-navbar a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #FFFFFF;
-}
-
-.header-navbar button {
-    margin-left: 20px;
-    background-color: #F9A800;
-    color: #FFFFFF;
-    border: none;
-}
-
 main {
     height: 100%;
     width: 100%;
