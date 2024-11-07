@@ -2,7 +2,7 @@
 
 import React from 'react';
 import './Mainpage_User.css';
-import Header from '../components/Header';
+import Header from '../components/Header_User';
 import Footer from '../components/Footer';
 
 function Mainpage_User() {
