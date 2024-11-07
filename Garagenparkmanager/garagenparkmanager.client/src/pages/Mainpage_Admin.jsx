@@ -1,3 +1,5 @@
+/* Mainpage_Admin-Component */
+
 import { Link } from 'react-router-dom';
 import './Mainpage_Admin.css';
 import Header from '../components/Header_Admin';
