@@ -20,7 +20,7 @@ function Header() {
                     <ul>
                         <a onClick={() => handleNavigation('')}>News</a>
                         <a onClick={() => handleNavigation('')}>Immobilien</a>
-                        <a onClick={() => handleNavigation('')}>Über Uns</a>
+                        <a onClick={() => handleNavigation('')}>&uuml;ber Uns</a>
                         <a>sample_username</a>
                         <button>Abmelden</button>
                     </ul>
