@@ -1,0 +1,108 @@
+/* Styling der Hauptseite*/
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #383E42;
+    color: #FFFFFF;
+}
+
+section {
+    margin-bottom: 100px;
+}
+
+
+
+.news h1 {
+    text-align: center;
+    color: #F9A800;
+}
+
+.newsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navBtn {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: #F9A800;
+    cursor: pointer;
+    margin: 0 15px;
+}
+
+.newsContent {
+    text-align: center;
+}
+
+.newsContent p {
+    margin: 0; 
+}
+
+.storageImages {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.selfStorage {
+    padding: 0 15px;
+}
+
+.selfStorage h1 {
+    text-align: center;
+    color: #F9A800;
+}
+
+.storageImage {
+    position: relative;
+    max-width: 30%;
+}
+
+.storageImage img {
+    width: 100%;
+}
+
+.personImages {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.ueberUns h1 {
+    text-align: center;
+    color: #F9A800;
+}
+
+.personImage {
+    position: relative;
+    max-width: 25%;
+}
+
+.text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.role {
+    margin: 2px 0;
+}
+
+.personImage img {
+    width: 100%;
+}
+
