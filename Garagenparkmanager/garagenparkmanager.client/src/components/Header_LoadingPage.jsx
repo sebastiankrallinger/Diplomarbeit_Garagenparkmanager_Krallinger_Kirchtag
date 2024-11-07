@@ -1,4 +1,4 @@
-/* Header-Component*/
+/* Header_LoadingPage-Component*/
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -20,9 +20,8 @@ function Header() {
                     <ul>
                         <a onClick={() => handleNavigation('')}>News</a>
                         <a onClick={() => handleNavigation('')}>Immobilien</a>
-                        <a onClick={() => handleNavigation('')}>&uuml;ber Uns</a>
-                        <a>sample_username</a>
-                        <button>Abmelden</button>
+                        <a onClick={() => handleNavigation('')}>&Uuml;ber Uns</a>
+                        <button>Anmelden</button>
                     </ul>
                 </nav>
             </div>

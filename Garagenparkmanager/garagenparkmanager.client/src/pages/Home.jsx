@@ -2,7 +2,7 @@
 
 import React from 'react';
 import './Home.css';
-import Header from '../components/Header';
+import Header from '../components/Header_LoadingPage';
 import Footer from '../components/Footer';
 
 function Home() {
