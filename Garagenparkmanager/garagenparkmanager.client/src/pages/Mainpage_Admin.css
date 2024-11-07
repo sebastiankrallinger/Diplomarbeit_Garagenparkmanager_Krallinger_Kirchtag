@@ -1,28 +1,26 @@
 /* Styling der Mainpage_Admin-Component */
 
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-body {
-    background-color: #383E42;
-    color: #FFFFFF;
+.Mainpage_Admin {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
-    height: 100%;
-    width: 100%;
-    margin: 0;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navigation {
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    width: 100%;
-    height: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; 
+    width: 100vw; 
+    height: 100vh;
 }
+
 
 .nav-up {
     width: 100%;

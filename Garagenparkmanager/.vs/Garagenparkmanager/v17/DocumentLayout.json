@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\desktop\\sebastian\\htl_githubdocuments\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\pages\\mainpage_admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\pages\\mainpage_admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\desktop\\sebastian\\htl_githubdocuments\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\pages\\mainpage_admin.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\pages\\mainpage_admin.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\desktop\\sebastian\\htl_githubdocuments\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\pages\\home.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\pages\\home.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\desktop\\sebastian\\htl_githubdocuments\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\pages\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\pages\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\desktop\\sebastian\\htl_githubdocuments\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\pages\\mainpage_user.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\pages\\mainpage_user.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\desktop\\sebastian\\htl_githubdocuments\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\pages\\mainpage_user.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\pages\\mainpage_user.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +26,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Mainpage_User.css",
-              "DocumentMoniker": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Mainpage_User.css",
-              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\pages\\Mainpage_User.css",
-              "ToolTip": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Mainpage_User.css",
-              "RelativeToolTip": "garagenparkmanager.client\\src\\pages\\Mainpage_User.css",
-              "ViewState": "AQIAAFcAAAAAAAAAAAAuwGoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-11-07T15:07:35.949Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Home.css",
               "DocumentMoniker": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Home.css",
               "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\pages\\Home.css",
               "ToolTip": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Home.css",
               "RelativeToolTip": "garagenparkmanager.client\\src\\pages\\Home.css",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-11-07T15:07:28.055Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Home.jsx",
-              "DocumentMoniker": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Home.jsx",
-              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\pages\\Home.jsx",
-              "ToolTip": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Home.jsx",
-              "RelativeToolTip": "garagenparkmanager.client\\src\\pages\\Home.jsx",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-11-07T15:06:09.163Z",
+              "WhenOpened": "2024-11-07T15:35:43.265Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Mainpage_User.jsx",
-              "DocumentMoniker": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Mainpage_User.jsx",
-              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\pages\\Mainpage_User.jsx",
-              "ToolTip": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Mainpage_User.jsx",
-              "RelativeToolTip": "garagenparkmanager.client\\src\\pages\\Mainpage_User.jsx",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAAzAAAA",
+              "Title": "Home.jsx",
+              "DocumentMoniker": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Home.jsx",
+              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\pages\\Home.jsx",
+              "ToolTip": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Home.jsx",
+              "RelativeToolTip": "garagenparkmanager.client\\src\\pages\\Home.jsx",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAwBQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2024-11-07T15:03:50.091Z",
+              "WhenOpened": "2024-11-07T15:34:32.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Mainpage_Admin.jsx",
+              "DocumentMoniker": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Mainpage_Admin.jsx",
+              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\pages\\Mainpage_Admin.jsx",
+              "ToolTip": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Mainpage_Admin.jsx",
+              "RelativeToolTip": "garagenparkmanager.client\\src\\pages\\Mainpage_Admin.jsx",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAIwB4AAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2024-11-07T15:20:41.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Mainpage_Admin.css",
+              "DocumentMoniker": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Mainpage_Admin.css",
+              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\pages\\Mainpage_Admin.css",
+              "ToolTip": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\Mainpage_Admin.css",
+              "RelativeToolTip": "garagenparkmanager.client\\src\\pages\\Mainpage_Admin.css",
+              "ViewState": "AQIAAB0AAADAeZ67PhISwB8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-11-07T15:36:17.591Z",
               "EditorCaption": ""
             }
           ]

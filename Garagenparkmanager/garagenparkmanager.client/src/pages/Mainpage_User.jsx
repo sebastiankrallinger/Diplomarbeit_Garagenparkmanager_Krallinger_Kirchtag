@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 function Mainpage_User() {
   return (
-      <div className="Home">
+      <div className="Mainpage_User">
           <Header />
           <main>
               <section className="news">

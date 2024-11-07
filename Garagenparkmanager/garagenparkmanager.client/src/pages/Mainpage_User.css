@@ -1,13 +1,17 @@
 /* Styling der Mainpage_User-Component */
 
-html, body {
-    height: 100%;
-    margin: 0;
+.Mainpage_User {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-body {
-    background-color: #383E42;
-    color: #FFFFFF;
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 section {
@@ -39,9 +43,9 @@ section {
     text-align: center;
 }
 
-    .newsContent p {
-        margin: 0;
-    }
+.newsContent p {
+    margin: 0;
+}
 
 .storageImages {
     display: flex;
@@ -53,19 +57,19 @@ section {
     padding: 0 15px;
 }
 
-    .selfStorage h1 {
-        text-align: center;
-        color: #F9A800;
-    }
+.selfStorage h1 {
+    text-align: center;
+    color: #F9A800;
+}
 
 .storageImage {
     position: relative;
     max-width: 30%;
 }
 
-    .storageImage img {
-        width: 100%;
-    }
+.storageImage img {
+    width: 100%;
+}
 
 .personImages {
     display: flex;

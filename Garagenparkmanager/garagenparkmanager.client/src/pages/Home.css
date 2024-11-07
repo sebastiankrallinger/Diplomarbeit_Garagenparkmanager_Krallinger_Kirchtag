@@ -1,12 +1,13 @@
 /* Styling der Loadingpage */
 
-html, body {
-    height: 100%;
-    margin: 0;
-}
+.Home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
 
-body {
-    background-color: #383E42;
-    color: #FFFFFF;
+main {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
