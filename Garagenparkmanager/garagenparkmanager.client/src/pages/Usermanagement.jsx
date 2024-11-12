@@ -20,10 +20,10 @@ function Usermanagement() {
                   <UserdataForm />
               </div>
               <div className="object">
-                  <Userobjects />   
+                  <Userobjects />  
+                  <button className="btn-update">Aktualisieren</button>
               </div>
           </div>
-          <button className="btn-update">Aktualisieren</button>
       </div>
   );
 }
