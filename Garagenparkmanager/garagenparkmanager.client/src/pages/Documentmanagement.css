@@ -1,10 +1,30 @@
 /* Styling der Documentmanagement-Component */
-html, body {
-    height: 100%;
-    margin: 0;
+
+.Documentmanagement {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
-body {
-    background-color: #383E42;
-    color: #FFFFFF;
+.body {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    padding: 15% 10%;
+}
+
+.contractslist {
+    flex: 1;
+}
+
+.seperator {
+    width: 2px;
+    height: 100%;
+    background-color: #F9A800;
+    margin: 0 15%;
+}
+
+.documentslist {
+    flex: 1;
+    margin-right: 10%;
 }
