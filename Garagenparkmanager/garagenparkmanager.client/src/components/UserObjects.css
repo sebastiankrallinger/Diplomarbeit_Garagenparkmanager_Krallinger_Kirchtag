@@ -1,0 +1,42 @@
+.UserObjects ul {
+    min-height: 5vh;
+    width: 50%;
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.UserObjects li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.delete-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.dropdown select {
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.btn-add {
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: 5px;
+    background-color: #F9A800;
+    color: #ffff;
+}

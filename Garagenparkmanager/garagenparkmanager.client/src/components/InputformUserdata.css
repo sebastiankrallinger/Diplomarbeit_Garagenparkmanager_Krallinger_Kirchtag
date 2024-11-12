@@ -1,0 +1,50 @@
+.InputformUserdata {
+    display: flex;
+    flex-direction: column; 
+}
+
+.inputForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.inputForm input {
+    margin-top: 10px;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.location,
+.street,
+.company {
+    display: flex;
+}
+
+.location input[placeholder="PLZ"] {
+    width: 20%;
+}
+
+.location input[placeholder="Ort"] {
+    width: 80%; 
+}
+
+.strasse {
+    width: 75%;
+}
+
+.street input[placeholder="HNr."] {
+    width: 15%;
+}
+
+.street input[placeholder="c/o"] {
+    width: 10%;
+}
+
+.company input[placeholder="Firmenname"] {
+    width: 75%;
+}
+
+.company input[placeholder="ATU-Nummer"] {
+    width: 25%;
+}

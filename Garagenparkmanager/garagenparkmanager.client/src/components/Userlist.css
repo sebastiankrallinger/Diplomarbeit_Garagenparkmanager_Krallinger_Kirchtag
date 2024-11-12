@@ -1,0 +1,50 @@
+.Userlist ul {
+    min-height: 50vh;
+    width: 110%;
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.Userlist li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.edit-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.delete-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
