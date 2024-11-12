@@ -18,6 +18,7 @@ function Header() {
                 </div>
                 <nav className="header-navbar">
                     <ul>
+                        <a onClick={() => handleNavigation('/admin')}>Dashboard</a>
                         <a onClick={() => handleNavigation('/admin/newsmanagement')}>News</a>
                         <a onClick={() => handleNavigation('/admin/objectmanagement')}>Objektverwaltung</a>
                         <a onClick={() => handleNavigation('/admin/usermanagement')}>Benutzerverwaltung</a>
