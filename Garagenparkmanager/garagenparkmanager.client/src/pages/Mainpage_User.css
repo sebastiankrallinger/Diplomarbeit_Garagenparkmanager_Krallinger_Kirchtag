@@ -1,8 +1,6 @@
 /* Styling der Mainpage_User-Component */
 
 .Mainpage_User {
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
 }
 
@@ -26,6 +24,7 @@ section {
 
 .newsContainer {
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: center;
 }
@@ -54,6 +53,8 @@ section {
 }
 
 .selfStorage {
+    display: flex;
+    flex: 2;
     padding: 0 15px;
 }
 

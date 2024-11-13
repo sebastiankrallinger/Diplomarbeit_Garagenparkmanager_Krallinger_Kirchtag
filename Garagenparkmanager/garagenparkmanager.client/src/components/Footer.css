@@ -7,30 +7,36 @@
     justify-content: space-between;
     width: 100%;
     height: 15%;
-    margin: 0 auto 0 auto;
     margin: 0;
     border-top: solid;
     border-color: #F9A800;
 }
 
 .footer-logo {
-    flex: 1;
-    align-items: center;
+    display: flex;
     flex-direction: column;
+    align-items: flex-start; 
+    justify-content: flex-start; 
+    flex: 1;
+    padding-left: 10px;
 }
 
 .footer-logo img {
     margin-top: 10px;
-    height: 100px;
+    height: 120px;
 }
 
 .footer-navbar ul {
-    flex:2;
+    display: flex;
+    flex: 2;
     margin-right: 30px;
     list-style: none;
 }
 
 .instagram-icon {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
     text-decoration: none;
     color: #FFFFFF;
     display: inline-block;
@@ -49,7 +55,7 @@
 }
 
 .footer-navbar a {
-    flex: 3;
+    flex: 2;
     font-weight: bold;
     text-decoration: underline;
     margin-top: 10px;
@@ -58,7 +64,10 @@
 }
 
 .footer-text {
+    display: flex;
+    flex: 2;
     color: #FFFFFF;
+    width: 100%;
 }
 
 .footer-text p {
@@ -70,5 +79,8 @@
 }
 
 .text2 {
-    text-align: right
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center; 
+    flex: 1;
 }

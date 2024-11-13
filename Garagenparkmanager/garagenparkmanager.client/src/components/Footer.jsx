@@ -1,7 +1,6 @@
 /* Footer-Component*/
 
 import React from 'react';
-import logo from '../assets/logo_Lagerage.png';
 import './Footer.css';
 
 function Footer() {
