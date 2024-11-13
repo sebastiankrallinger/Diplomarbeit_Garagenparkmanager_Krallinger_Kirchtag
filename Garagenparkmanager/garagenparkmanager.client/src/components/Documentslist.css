@@ -1,0 +1,32 @@
+.documents ul {
+    width: 80%;
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.documnets ul {
+    width: 80%;
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 5px 10px;
+    margin-top: 20%;
+    border-radius: 10px;
+}
+
+.documents li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.download-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}

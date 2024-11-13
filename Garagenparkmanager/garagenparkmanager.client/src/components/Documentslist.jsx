@@ -5,13 +5,13 @@ function Documentslist() {
     return (
       <div className="Documentlist">
             <h2>Allgemeine Dokumente</h2>
-            <div className="contracts">
+            <div className="documents">
                 <ul>
                     <li>
-                        <div className="contract">
+                        <div className="document">
                             <p>Dokument 1</p>
                         </div>
-                        <div className="contract-action">
+                        <div className="document-action">
                             <img src={deleteIcon} className="delete-icon" alt="Delete-Icon"></img>
                         </div>
                     </li>

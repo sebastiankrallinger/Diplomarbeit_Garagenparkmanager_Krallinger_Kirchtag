@@ -12,7 +12,7 @@ function Documentmanagement() {
     return (
         <div className="Documentmanagement">
             <Header />
-            <body>
+            <main>
                 <div className="contractslist">
                     <Contractlist />
                 </div>
@@ -20,7 +20,7 @@ function Documentmanagement() {
                 <div className="documentslist">
                     <Documentlist />
                 </div>
-            </body>
+            </main>
         </div>
   );
 }

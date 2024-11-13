@@ -6,35 +6,46 @@
     height: 100vh;
 }
 
-main {
+.Usermanagement_Admin main {
     flex: 1;
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
+    margin: 10%;
+    padding-bottom: 10%;
 }
 
-.userlist {
-    flex: 1;
-}
-
-.seperator {
-    width: 2px;
-    background-color: #F9A800;
-}
-
-.userdata {
+.Usermanagement_Admin .userlist {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     flex: 1;
     margin-right: 10%;
 }
 
-.object {
-    flex: 1;
-    position: relative;
+.Usermanagement_Admin .seperator {
+    width: 2px;
+    background-color: #F9A800;
+    height: 50%;
 }
 
-.btn-update {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+.Usermanagement_Admin .userdata {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    margin-left: 5%;
+}
+
+.Usermanagement_Admin .object {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    margin-left: 5%;
+}
+
+.Usermanagement_Admin .btn-update {
     background-color: #F9A800;
     width: 150px;
     color: #ffff;
@@ -42,5 +53,5 @@ main {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 10px;
+    margin: 5%;
 }
