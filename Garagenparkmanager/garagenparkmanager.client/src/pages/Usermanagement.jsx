@@ -11,7 +11,7 @@ function Usermanagement() {
   return (
       <div className="Usermanagement_Admin">
           <Header />
-          <div className="body">
+          <main>
               <div className="userlist">
                   <Userlist />
               </div>
@@ -23,7 +23,7 @@ function Usermanagement() {
                   <Userobjects />  
                   <button className="btn-update">Aktualisieren</button>
               </div>
-          </div>
+          </main>
       </div>
   );
 }

@@ -9,7 +9,7 @@ function Mainpage_Admin() {
         <div className="Mainpage_Admin">
             <Header />
             <main>
-                <div class="dashboard">
+                <div className="dashboard">
                     <h2>Dashboard</h2>
                 </div>
             </main>

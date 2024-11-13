@@ -7,14 +7,14 @@ import './Footer.css';
 function Footer() {
   return (
       <footer>
-          <div class="footer-container">
-              <div class="footer-logo">
+          <div className="footer-container">
+              <div className="footer-logo">
                   <img src="src/assets/logo_Lagerage.png" />
-                  <a class="instagram-icon" href="https://www.instagram.com" target="_blank">
-                      <i class="fab fa-instagram"></i>
+                  <a className="instagram-icon" href="https://www.instagram.com" target="_blank">
+                      <i className="fab fa-instagram"></i>
                   </a>
               </div>
-              <nav class="footer-navbar">
+              <nav className="footer-navbar">
                   <ul>
                       <li>
                           <h3>Lagerage</h3>
@@ -43,9 +43,9 @@ function Footer() {
                   </ul>
               </nav>
           </div>
-          <div class="footer-text">
-              <p class="text1">DE Support & Kontakt</p>
-              <p class="text2">SweetPopcorn.Studio&copy;2024</p>
+          <div className="footer-text">
+              <p className="text1">DE Support & Kontakt</p>
+              <p className="text2">SweetPopcorn.Studio&copy;2024</p>
           </div>
       </footer>
   );

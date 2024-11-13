@@ -3,10 +3,9 @@
 .Documentmanagement {
     display: flex;
     flex-direction: column;
-    height: 100vh;
 }
 
-.body {
+body {
     flex: 1;
     display: flex;
     flex-direction: row;

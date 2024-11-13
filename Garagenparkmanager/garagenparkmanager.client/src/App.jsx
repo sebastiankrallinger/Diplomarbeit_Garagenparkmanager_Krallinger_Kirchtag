@@ -8,6 +8,7 @@ import Usermanagement from './pages/Usermanagement';
 import Objectmanagement from './pages/Objectmanagement';
 import Newsmanagement from './pages/Newsmanagement';
 import Documentmanagement from './pages/Documentmanagement';
+import './index.css';
 
 function App() {
     return (
