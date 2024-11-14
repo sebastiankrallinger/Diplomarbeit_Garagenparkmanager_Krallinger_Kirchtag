@@ -5,7 +5,7 @@ import deleteIcon from '../assets/deleteicon.png';
 
 function Userlist() {
     return (
-        <div className="Userlist">
+      <div className="Userlist">
           <h2>Benutzer</h2>
           <ul>
                 <li>

@@ -1,0 +1,39 @@
+.AddNews .title {
+    display: flex;
+    width: 30vh;
+    height: 25px;
+    margin-top: 50px;
+}
+
+.AddNews .content {
+    display: flex;
+    height: 300px;
+    width: 30vh;
+    margin-top: 10px;
+}
+
+.AddNews .add-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+    margin-top: 10px;
+}
+
+.AddNews button {
+    flex: 1;
+}
+
+.AddNews .upload {
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #F9A800;
+    color: #ffff;
+}
+
+.AddNews .publish {
+    margin-left: 100px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: #F9A800;
+    color: #ffff;
+}

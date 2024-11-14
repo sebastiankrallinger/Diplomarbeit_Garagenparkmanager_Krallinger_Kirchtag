@@ -1,11 +1,37 @@
 /* Styling der Newsmanagement-Component */
 
-html, body {
-    height: 100%;
-    margin: 0;
+.Newsmanagement {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
-body {
-    background-color: #383E42;
-    color: #FFFFFF;
+.Newsmanagement main {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10%;
+    padding-bottom: 10%;
+}
+
+.Newsmanagement .newslist {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.Newsmanagement .seperator {
+    width: 2px;
+    background-color: #F9A800;
+    height: 600px;
+    margin-left: 100px;
+}
+
+.Newsmanagement .addnews {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 5%;
 }
