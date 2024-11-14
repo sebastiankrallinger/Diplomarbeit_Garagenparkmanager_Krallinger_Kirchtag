@@ -1,10 +1,29 @@
 /* Styling der Objectmanagement-Component */
-html, body {
-    height: 100%;
-    margin: 0;
+
+.Objectmanagement {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 50px);
 }
 
-body {
-    background-color: #383E42;
-    color: #FFFFFF;
+.Objectmanagement main {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 5%;
+}
+
+.Objectmanagement .objectPlan {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 10%;
+    width: 536px;
+}
+
+.Objectmanagement .rentedObjects {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }

@@ -1,0 +1,112 @@
+.ObjectActions .rentedObjects button {
+    background-color: #F9A800;
+    width: 150px;
+    color: #ffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ObjectActions .objects {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+}
+
+.ObjectActions ul {
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.ObjectActions li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ObjectActions .objects-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.ObjectActions .objects .objectImage {
+    height: 150px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.ObjectActions .objects h2,
+.ObjectActions .objects p {
+    margin: 5px 0;
+}
+
+.ObjectActions .popup-details {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.ObjectActions .popup-details-content {
+    background-color: #383E42;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+.ObjectActions .popup-details-content h2 {
+    margin-top: 0;
+}
+
+.ObjectActions .popup-details-content button {
+    background-color: #F9A800;
+    margin-top: 10px;
+    color: white;
+}
+
+.ObjectActions .popup-add {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.ObjectActions .popup-add-content {
+    background-color: #383E42;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+    .ObjectActions .popup-add-content h2 {
+        margin-top: 0;
+    }
+
+    .ObjectActions .popup-add-content button {
+        background-color: #F9A800;
+        margin-top: 10px;
+        color: white;
+    }

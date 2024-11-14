@@ -1,14 +1,14 @@
 .AddNews .title {
     display: flex;
-    width: 30vh;
+    width: 40vh;
     height: 25px;
     margin-top: 50px;
 }
 
 .AddNews .content {
     display: flex;
-    height: 300px;
-    width: 30vh;
+    height: 200px;
+    width: 40vh;
     margin-top: 10px;
 }
 
