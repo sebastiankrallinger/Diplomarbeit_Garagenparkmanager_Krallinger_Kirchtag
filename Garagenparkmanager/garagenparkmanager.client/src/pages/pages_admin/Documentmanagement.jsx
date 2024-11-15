@@ -3,9 +3,9 @@
 
 import { useEffect, useState } from 'react';
 import './Documentmanagement.css';
-import Header from '../components/Header_Admin';
-import Contractlist from '../components/Contractslist';
-import Documentlist from '../components/Documentslist';
+import Header from '../../components/Header_Admin';
+import Contractlist from '../../components/Contractslist';
+import Documentlist from '../../components/Documentslist';
 
 
 function Documentmanagement() {

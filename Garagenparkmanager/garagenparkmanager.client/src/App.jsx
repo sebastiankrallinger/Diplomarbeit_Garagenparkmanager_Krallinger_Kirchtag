@@ -3,11 +3,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Mainpage_User from './pages/Mainpage_User';
-import Mainpage_Admin from './pages/Mainpage_Admin';
-import Usermanagement from './pages/Usermanagement';
-import Objectmanagement from './pages/Objectmanagement';
-import Newsmanagement from './pages/Newsmanagement';
-import Documentmanagement from './pages/Documentmanagement';
+import Mainpage_Admin from './pages/pages_admin/Mainpage_Admin';
+import Usermanagement from './pages/pages_admin/Usermanagement';
+import Objectmanagement from './pages/pages_admin/Objectmanagement';
+import Newsmanagement from './pages/pages_admin/Newsmanagement';
+import Documentmanagement from './pages/pages_admin/Documentmanagement';
 import './index.css';
 
 function App() {

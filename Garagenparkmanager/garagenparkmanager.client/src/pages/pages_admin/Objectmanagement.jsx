@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import './Objectmanagement.css';
-import Header from '../components/Header_Admin';
-import GaragenparkPlan from '../components/GaragenparkPlan'
-import ObjectActions from '../components/ObjectActions'
+import Header from '../../components/Header_Admin';
+import GaragenparkPlan from '../../components/GaragenparkPlan'
+import ObjectActions from '../../components/ObjectActions'
 
 function Objectmanagement() {
   return (

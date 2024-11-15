@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom';
 import './Mainpage_Admin.css';
-import Header from '../components/Header_Admin';
+import Header from '../../components/Header_Admin';
 
 function Mainpage_Admin() {
     return (
