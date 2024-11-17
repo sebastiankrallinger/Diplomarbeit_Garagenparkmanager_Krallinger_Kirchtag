@@ -10,7 +10,22 @@ function Mainpage_Admin() {
             <Header />
             <main>
                 <div className="dashboard">
-                    <h2>Dashboard</h2>
+                    <div className="heading">
+                        <h2>Dashboard</h2>
+                    </div>
+                    <div className="content">
+                        <div className="leftCol">
+                            <p>Gesamtanzahl Objekte: XX</p>
+                            <p>Vermietete Objekte: XX</p>
+                            <p>Freie Objekte: XX</p>
+                            <p>Aktueller Mietzins: XX</p>
+                        </div>
+                        <div className="rightCol">
+                            <p>Umastz letztes Monat: XX</p>
+                            <p>Registrierte Benutzer: XX</p>
+                            <p>Standorte: 2</p>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
