@@ -70,6 +70,12 @@
     text-align: center;
 }
 
+.ObjectActions .popup-details-content .objectImage {
+    height: 150px;
+    width: auto;
+    margin-right: 10px;
+}
+
 .ObjectActions .popup-details-content h2 {
     margin-top: 0;
 }
@@ -101,12 +107,12 @@
     text-align: center;
 }
 
-    .ObjectActions .popup-add-content h2 {
-        margin-top: 0;
-    }
+.ObjectActions .popup-add-content h2 {
+    margin-top: 0;
+}
 
-    .ObjectActions .popup-add-content button {
-        background-color: #F9A800;
-        margin-top: 10px;
-        color: white;
-    }
+.ObjectActions .popup-add-content button {
+    background-color: #F9A800;
+    margin-top: 10px;
+    color: white;
+}

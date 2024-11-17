@@ -44,7 +44,9 @@ function ObjectActions() {
                 <div className="popup-details">
                     <div className="popup-details-content">
                         <h2>Garage Z4 - Details</h2>
-                        <button onClick={closePopupDetails}>Schlie&szlig;en</button>
+                        <img src={objectImg} className="objectImage" alt="Object-Image"></img>
+                        <p>Mietzins alt / Index alt * <input placeholder="Index neu"></input> = Mietzins neu</p>
+                        <button onClick={closePopupDetails}>&Auml;nderungen Speichern</button>
                     </div>
                 </div>
             )}
