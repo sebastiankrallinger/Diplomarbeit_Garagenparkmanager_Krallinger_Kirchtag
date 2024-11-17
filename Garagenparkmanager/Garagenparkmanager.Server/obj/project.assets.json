@@ -6787,24 +6787,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\skral\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\phili\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\Garagenparkmanager.Server.csproj",
+      "projectUniqueName": "C:\\Users\\phili\\Desktop\\github_projekte\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\Garagenparkmanager.Server.csproj",
       "projectName": "Garagenparkmanager.Server",
-      "projectPath": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\Garagenparkmanager.Server.csproj",
-      "packagesPath": "C:\\Users\\skral\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\obj\\",
+      "projectPath": "C:\\Users\\phili\\Desktop\\github_projekte\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\Garagenparkmanager.Server.csproj",
+      "packagesPath": "C:\\Users\\phili\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\phili\\Desktop\\github_projekte\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\skral\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\phili\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
