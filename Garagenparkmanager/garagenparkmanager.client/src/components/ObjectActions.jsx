@@ -54,7 +54,7 @@ function ObjectActions() {
                                 <div className="actualContract-content">
                                     <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
                                     <button className="btn-download">Abrufen</button>
-                                    <button className="btn-download">neuen Vertag hochladen</button>
+                                    <button className="btn-upload">neuen Vertag hochladen</button>
                                 </div>
                             </div>
                             <div className="renter">
@@ -71,10 +71,45 @@ function ObjectActions() {
             )}
             {showPopupAdd && (
                 <div className="popup-add">
-                    <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={closePopupAdd}></img>
                     <div className="popup-add-content">
-                        <h2>Neues Objekt erstellen</h2>
-                        <button onClick={closePopupAdd}>Schlie&szlig;en</button>
+                        <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={closePopupAdd}></img>
+                        <div className="left-content">
+                            <h2>Objekttypen</h2>
+                            <ul>
+                                <li>
+                                    <p>B&uuml;ro</p>
+                                    <img src={deleteIcon} className="delete-icon-object" alt="Delete-Icon"></img>
+                                </li>
+                                <li>
+                                    <p>Garage</p>
+                                    <img src={deleteIcon} className="delete-icon-object" alt="Delete-Icon"></img>
+                                </li>
+                                <li>
+                                    <p>SampleItem</p>
+                                    <img src={deleteIcon} className="delete-icon-object" alt="Delete-Icon"></img>
+                                </li>
+                            </ul>
+                            <h2 className="newTyp">Neuen Objekttypen definieren</h2>
+                            <div className="new-object-type">
+                                <input placeholder="Objekttyp"></input>
+                                <button className="btn-addTyp">Erstellen</button>
+                            </div>
+                        </div>
+                        <div className="seperator"></div>
+                        <div className="popup-add-textcontent">
+                            <h2>Neues Objekt erstellen</h2>
+                            <input placeholder="Gr&ouml;&szlig;e in m&sup2;"></input>
+                            <input placeholder="Preis nach VPI"></input>
+                            <div className="dropdown">
+                                <select >
+                                    <option value="">Objekt ausw&auml;hlen</option>
+                                    <option value="">Mietobjekt 1</option>
+                                    <option value="">Mietobjekt 2</option>
+                                </select>
+                            </div>
+                            <button className="btn-uploadContract">Vertrag hochladen</button>
+                            <button className="btn-addObject">Objekt hinzuf&uuml;gen</button>
+                        </div>
                     </div>
                 </div>
             )}
