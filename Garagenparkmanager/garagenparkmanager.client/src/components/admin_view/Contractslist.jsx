@@ -1,5 +1,5 @@
 import './Contractslist.css';
-import downloadIcon from '../assets/downloadicon.png';
+import downloadIcon from '../../assets/downloadicon.png';
 
 function Contractslist() {
     return (

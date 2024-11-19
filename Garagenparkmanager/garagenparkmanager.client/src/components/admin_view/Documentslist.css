@@ -1,4 +1,6 @@
-.objects ul {
+/* Styling Documentslist-Component */
+
+.Documentlist .documents ul {
     width: 80%;
     background-color: #ffff;
     color: #000f;
@@ -7,7 +9,7 @@
     border-radius: 10px;
 }
 
-.contracts ul {
+.Documentlist .documnets ul {
     width: 80%;
     background-color: #ffff;
     color: #000f;
@@ -17,16 +19,32 @@
     border-radius: 10px;
 }
 
-.contracts li {
+.Documentlist .documents li {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.download-icon {
+.Documentlist .download-icon {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
+}
+
+.Documentlist .delete-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.Documentlist .btn-add {
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: 5px;
+    background-color: #F9A800;
+    color: #ffff;
 }

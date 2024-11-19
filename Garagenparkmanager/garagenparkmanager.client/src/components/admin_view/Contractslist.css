@@ -1,5 +1,7 @@
-.UserObjects ul {
-    width: 50%;
+/* Styling Contractslist-Component */
+
+.Contractslist .objects ul {
+    width: 80%;
     background-color: #ffff;
     color: #000f;
     list-style-type: none;
@@ -7,19 +9,23 @@
     border-radius: 10px;
 }
 
-.UserObjects li {
+.Contractslist .contracts ul {
+    width: 80%;
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 5px 10px;
+    margin-top: 20%;
+    border-radius: 10px;
+}
+
+.Contractslist .contracts li {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.UserObjects .user-action {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.UserObjects .delete-icon {
+.Contractslist .download-icon {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -27,12 +33,7 @@
     cursor: pointer;
 }
 
-.UserObjects .dropdown select {
-    padding: 5px 10px;
-    border-radius: 10px;
-}
-
-.UserObjects .btn-add {
+.Contractslist .btn-add {
     padding: 5px 10px;
     border-radius: 10px;
     margin-left: 5px;

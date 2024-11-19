@@ -6,7 +6,7 @@
     min-height: 100vh;
 }
 
-main {
+.Mainpage_Admin main {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -14,7 +14,7 @@ main {
     min-height: 100vh;
 }
 
-.dashboard {
+.Mainpage_Admin .dashboard {
     display: flex;
     flex-direction: row;
     width: 90%;
@@ -30,30 +30,28 @@ main {
     margin: 10px;
 }
 
-.heading {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    flex: 0.2;
+.Mainpage_Admin .heading {
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+flex: 0.2;
 }
 
-.content {
+.Mainpage_Admin .content {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     flex: 1;
     width: 100%;
-    align-items: center; 
+    align-items: center;
 }
 
-.leftCol,
-.rightCol {
+.Mainpage_Admin .leftCol, .rightCol {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    width: 45%; 
+    justify-content: center;
+    width: 45%;
 }
 
-.leftCol p,
-.rightCol p {
-    margin: 10px 0; 
-}
+    .Mainpage_Admin .leftCol p,.rightCol p {
+        margin: 10px 0;
+    }

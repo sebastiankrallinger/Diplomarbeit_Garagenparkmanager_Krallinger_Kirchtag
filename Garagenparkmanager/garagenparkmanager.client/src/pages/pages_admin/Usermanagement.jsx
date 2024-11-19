@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import './Usermanagement.css';
-import Header from '../../components/Header_Admin';
-import Userlist from '../../components/Userlist';
-import UserdataForm from '../../components/InputformUserdata';
-import Userobjects from '../../components/UserObjects';
+import Header from '../../components/admin_view/Header_Admin';
+import Userlist from '../../components/admin_view/Userlist';
+import UserdataForm from '../../components/admin_view/InputformUserdata';
+import Userobjects from '../../components/admin_view/UserObjects';
 
 function Usermanagement() {
   return (

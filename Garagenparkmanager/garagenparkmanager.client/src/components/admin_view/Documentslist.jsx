@@ -1,5 +1,5 @@
 import './Documentslist.css';
-import deleteIcon from '../assets/deleteicon.png';
+import deleteIcon from '../../assets/deleteicon.png';
 
 function Documentslist() {
     return (

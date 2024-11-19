@@ -1,3 +1,5 @@
+/* Styling Newslist-Component */
+
 .Newslist ul {
     background-color: #ffff;
     color: #000f;
@@ -34,8 +36,7 @@
     width: auto;
 }
 
-.Newslist .news h2,
-.Newslist .news p {
+.Newslist .news h2, .Newslist .news p {
     margin: 5px 0;
 }
 

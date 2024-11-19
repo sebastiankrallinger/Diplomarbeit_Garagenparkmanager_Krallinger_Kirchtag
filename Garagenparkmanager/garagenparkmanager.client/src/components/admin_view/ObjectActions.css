@@ -1,3 +1,5 @@
+/* Styling ObjectActions-Component */
+
 .ObjectActions .rentedObjects button {
     background-color: #F9A800;
     width: 150px;
@@ -44,8 +46,7 @@
     margin-right: 10px;
 }
 
-.ObjectActions .objects h2,
-.ObjectActions .objects p {
+.ObjectActions .objects h2, .ObjectActions .objects p {
     margin: 5px 0;
 }
 
@@ -73,6 +74,10 @@
 }
 
 .ObjectActions .popup-details-content .delete-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -186,6 +191,10 @@
 }
 
 .ObjectActions .popup-add-content .delete-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
     position: absolute;
     top: 10px;
     right: 10px;

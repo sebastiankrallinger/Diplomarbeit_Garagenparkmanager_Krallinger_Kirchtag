@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ObjectActions.css'
-import objectImg from '../assets/newsPlaceholder.jpg';
-import deleteIcon from '../assets/deleteicon.png';
+import objectImg from '../../assets/newsPlaceholder.jpg';
+import deleteIcon from '../../assets/deleteicon.png';
 
 
 function ObjectActions() {

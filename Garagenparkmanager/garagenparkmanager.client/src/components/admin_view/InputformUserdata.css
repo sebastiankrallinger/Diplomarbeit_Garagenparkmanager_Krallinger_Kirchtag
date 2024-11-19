@@ -1,0 +1,50 @@
+/* Styling InputformUserdata-Component */
+
+.InputformUserdata {
+    display: flex;
+    flex-direction: column; 
+}
+
+.InputformUserdata .inputForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+    .InputformUserdata .inputForm input {
+        margin-top: 10px;
+        padding: 10px 10px;
+        border-radius: 10px;
+    }
+
+.InputformUserdata .location, .street, .company {
+    display: flex;
+}
+
+    .InputformUserdata .location input[placeholder="PLZ"] {
+        width: 20%;
+    }
+
+    .InputformUserdata .location input[placeholder="Ort"] {
+        width: 80%;
+    }
+
+.InputformUserdata .strasse {
+    width: 75%;
+}
+
+.InputformUserdata .street input[placeholder="HNr."] {
+    width: 15%;
+}
+
+.InputformUserdata .street input[placeholder="c/o"] {
+    width: 10%;
+}
+
+.InputformUserdata .company input[placeholder="Firmenname"] {
+    width: 75%;
+}
+
+.InputformUserdata .company input[placeholder="ATU-Nummer"] {
+    width: 25%;
+}

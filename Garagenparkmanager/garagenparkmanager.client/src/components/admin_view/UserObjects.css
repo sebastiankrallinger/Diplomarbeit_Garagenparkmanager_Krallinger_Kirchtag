@@ -1,5 +1,7 @@
-.Userlist ul {
-    width: 110%;
+/* Styling UserObjects-Component */
+
+.UserObjects ul {
+    width: 50%;
     background-color: #ffff;
     color: #000f;
     list-style-type: none;
@@ -7,32 +9,19 @@
     border-radius: 10px;
 }
 
-.Userlist li {
+.UserObjects li {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.user-info {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.user-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.user-action {
+.UserObjects .user-action {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.edit-icon {
+.UserObjects .delete-icon {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -40,10 +29,15 @@
     cursor: pointer;
 }
 
-.delete-icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
+.UserObjects .dropdown select {
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.UserObjects .btn-add {
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: 5px;
+    background-color: #F9A800;
+    color: #ffff;
 }

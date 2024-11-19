@@ -1,5 +1,5 @@
 import './UserObjects.css';
-import deleteIcon from '../assets/deleteicon.png';
+import deleteIcon from '../../assets/deleteicon.png';
 
 function UserObjects() {
     return (

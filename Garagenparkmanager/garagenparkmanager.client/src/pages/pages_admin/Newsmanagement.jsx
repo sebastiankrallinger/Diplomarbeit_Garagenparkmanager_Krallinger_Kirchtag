@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import './Newsmanagement.css';
-import Header from '../../components/Header_Admin';
+import Header from '../../components/admin_view/Header_Admin';
 import './Newsmanagement.css';
-import Newslist from '../../components/Newslist'
-import AddNews from '../../components/AddNews'
+import Newslist from '../../components/admin_view/Newslist'
+import AddNews from '../../components/admin_view/AddNews'
 
 function Newsmanagement() {
   return (

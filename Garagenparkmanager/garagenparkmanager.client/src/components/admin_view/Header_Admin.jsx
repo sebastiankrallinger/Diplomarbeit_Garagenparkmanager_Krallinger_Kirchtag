@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo_Lagerage.png';
-import './Header.css';
+import logo from '../../assets/logo_Lagerage.png';
+import '../Header.css';
 
 function Header() {  
     const navigate = useNavigate(); 
@@ -24,7 +24,7 @@ function Header() {
                         <a onClick={() => handleNavigation('/admin/usermanagement')}>Benutzerverwaltung</a>
                         <a onClick={() => handleNavigation('/admin/documentmanagement')}>Dokumente</a>
                         <a>sample_username</a>
-                        <button>Abmelden</button>
+                        <button onClick={() => handleNavigation('/Home')}>Abmelden</button>
                     </ul>
                 </nav>
             </div>

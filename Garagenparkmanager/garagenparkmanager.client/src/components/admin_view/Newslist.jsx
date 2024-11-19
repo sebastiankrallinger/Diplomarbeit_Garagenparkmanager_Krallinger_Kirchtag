@@ -1,7 +1,7 @@
 import './Newslist.css';
-import editIcon from '../assets/editicon.png';
-import deleteIcon from '../assets/deleteicon.png';
-import newsImg from '../assets/newsPlaceholder.jpg';
+import editIcon from '../../assets/editicon.png';
+import deleteIcon from '../../assets/deleteicon.png';
+import newsImg from '../../assets/newsPlaceholder.jpg';
 
 function Newslist() {
   return (

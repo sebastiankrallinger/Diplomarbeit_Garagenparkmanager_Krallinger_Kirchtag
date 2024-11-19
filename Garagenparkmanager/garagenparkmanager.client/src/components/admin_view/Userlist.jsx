@@ -1,7 +1,7 @@
 import './Userlist.css';
-import userIcon from '../assets/userIconplaceholder.jpg';
-import editIcon from '../assets/editicon.png';
-import deleteIcon from '../assets/deleteicon.png';
+import userIcon from '../../assets/userIconplaceholder.jpg';
+import editIcon from '../../assets/editicon.png';
+import deleteIcon from '../../assets/deleteicon.png';
 
 function Userlist() {
     return (
