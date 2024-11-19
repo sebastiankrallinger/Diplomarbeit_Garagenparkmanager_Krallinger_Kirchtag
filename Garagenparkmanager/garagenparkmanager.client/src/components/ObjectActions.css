@@ -66,24 +66,90 @@
     background-color: #383E42;
     padding: 20px;
     border-radius: 8px;
-    width: 300px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-items: center;
+}
+
+.ObjectActions .popup-details-content .delete-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.ObjectActions .popup-details-content .popup-details-textcontent {
+    display: flex;
+    flex-direction: column; 
+    flex: 1; 
 }
 
 .ObjectActions .popup-details-content .objectImage {
-    height: 150px;
+    height: 200px;
     width: auto;
-    margin-right: 10px;
+    margin-right: 50px;
 }
 
 .ObjectActions .popup-details-content h2 {
     margin-top: 0;
 }
 
+.ObjectActions .actualContract {
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 1px;
+    border-radius: 10px;
+}
+
+.ObjectActions .actualContract-content button{
+    background-color: #F9A800;
+    color: #ffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.ObjectActions .renter {
+    margin-top: 20px;
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 1px;
+    border-radius: 10px;
+}
+
+.ObjectActions .renter-content button {
+    background-color: #F9A800;
+    color: #ffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
 .ObjectActions .popup-details-content button {
     background-color: #F9A800;
     margin-top: 10px;
     color: white;
+    margin-top: 20px;
+    align-self: flex-end;
+}
+
+.ObjectActions .btn-saveChanges {
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 1px;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 10px 10px;
 }
 
 .ObjectActions .popup-add {

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './ObjectActions.css'
 import objectImg from '../assets/newsPlaceholder.jpg';
+import deleteIcon from '../assets/deleteicon.png';
+
 
 function ObjectActions() {
     const [showPopupDetails, setShowPopupDetails] = useState(false);
@@ -43,15 +45,33 @@ function ObjectActions() {
             {showPopupDetails && (
                 <div className="popup-details">
                     <div className="popup-details-content">
-                        <h2>Garage Z4 - Details</h2>
+                        <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={closePopupDetails}></img>
                         <img src={objectImg} className="objectImage" alt="Object-Image"></img>
-                        <p>Mietzins alt / Index alt * <input placeholder="Index neu"></input> = Mietzins neu</p>
-                        <button onClick={closePopupDetails}>&Auml;nderungen Speichern</button>
+                        <div className="popup-details-textcontent">
+                            <h2>Garage Z4 - Details</h2>
+                            <p>Mietzins alt / Index alt * <input placeholder="Index neu"></input> = Mietzins neu</p>
+                            <div className="actualContract">
+                                <div className="actualContract-content">
+                                    <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
+                                    <button className="btn-download">Abrufen</button>
+                                    <button className="btn-download">neuen Vertag hochladen</button>
+                                </div>
+                            </div>
+                            <div className="renter">
+                                <div className="renter-content">
+                                    <h3>Mieter</h3>
+                                    <p>Mieter Infos</p>
+                                    <button className="btn-download">Daten Abrufen</button>
+                                </div>
+                            </div>
+                            <button className="btn-saveChanges" onClick={closePopupDetails}>&Auml;nderungen Speichern</button>
+                        </div>
                     </div>
                 </div>
             )}
             {showPopupAdd && (
                 <div className="popup-add">
+                    <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={closePopupAdd}></img>
                     <div className="popup-add-content">
                         <h2>Neues Objekt erstellen</h2>
                         <button onClick={closePopupAdd}>Schlie&szlig;en</button>
