@@ -34,7 +34,6 @@ namespace Garagenparkmanager.Server
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
 
 
