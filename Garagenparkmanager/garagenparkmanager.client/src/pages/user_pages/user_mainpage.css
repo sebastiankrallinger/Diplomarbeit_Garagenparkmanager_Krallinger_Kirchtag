@@ -1,10 +1,10 @@
-/* Styling der Mainpage_User-Component */
+/* Styling der user_mainpage-Component */
 
-.Mainpage_User {
+.user_mainpage {
     min-height: 100vh;
 }
 
-    .Mainpage_User main {
+    .user_mainpage main {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -12,7 +12,7 @@
         align-items: center;
     }
 
-    .Mainpage_User section {
+    .user_mainpage section {
         margin-bottom: 100px;
     }
 

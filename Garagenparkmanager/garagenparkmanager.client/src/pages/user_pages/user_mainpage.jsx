@@ -1,13 +1,13 @@
 /* Mainpage_User-Component */
 
-import React from 'react';
-import './Mainpage_User.css';
-import Header from '../components/Header_User';
-import Footer from '../components/Footer';
+//import React from 'react';
+import './user_mainpage.css';
+import Header from '../../components/Header_User';
+import Footer from '../../components/Footer';
 
-function Mainpage_User() {
+function user_mainpage() {
     return (
-        <div className="Mainpage_User">
+        <div className="user_mainpage">
             <Header />
             <main>
                 <section className="news">
@@ -73,4 +73,4 @@ function Mainpage_User() {
     );
 }
 
-export default Mainpage_User;
+export default user_mainpage;
