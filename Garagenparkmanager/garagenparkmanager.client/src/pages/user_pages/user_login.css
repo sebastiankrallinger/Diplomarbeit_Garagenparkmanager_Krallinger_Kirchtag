@@ -1,2 +1,158 @@
-body {
+/* Vollbild-Hintergrund */
+.user_login {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
+
+/* Hintergrundbild */
+.backgroundImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../src/assets/moon.jpeg'); /* Pfad zum Hintergrundbild */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+/* Linker Bereich: Grauer Streifen */
+.loginFormContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 33%; /* Ein Drittel der Seite */
+    height: 100%;
+    background-color: rgba(50, 50, 50, 0.9); /* Dunkelgrau mit Transparenz */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+    .loginFormContainer h1 {
+        color: white;
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+/* Formular */
+.loginForm {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .formGroup label {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: white;
+    }
+
+    .formGroup input {
+        padding: 10px;
+        font-size: 16px;
+        background-color: black; /* Schwarzer Hintergrund */
+        color: white; /* Weiﬂer Text */
+        border: 1px solid #f9a800; /* Orange Border */
+        border-radius: 5px;
+        width: 100%;
+    }
+
+/* Checkbox und Passwort vergessen */
+.formOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.checkboxGroup {
+    display: flex;
+    align-items: center;
+}
+
+    .checkboxGroup input {
+        margin-right: 5px;
+    }
+
+.forgotPassword {
+    color: #F9A800;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+    .forgotPassword:hover {
+        text-decoration: underline;
+    }
+
+/* Anmelde-Button */
+.loginButton {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #F9A800; /* Orange Hintergrund */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+    .loginButton:hover {
+        background-color: #e08e00;
+    }
+
+/* Registrieren-Bereich */
+.registerSection {
+    text-align: center;
+}
+
+    .registerSection p {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: white;
+    }
+
+.registerButton {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+    .registerButton:hover {
+        background-color: #555;
+    }
+
+/* Rechtes Bild oben */
+.topRightImage {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px; /* Breite des Bildes */
+    height: auto;
+}
+
+    .topRightImage img {
+        width: 100%;
+        height: auto;
+        border: 2px solid #fff; /* Weiﬂer Rand */
+        border-radius: 5px;
+    }
