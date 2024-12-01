@@ -2,7 +2,7 @@ import './user_freeobjects.css';
 import Header from '../../components/Header_User';
 import Footer from '../../components/Footer';
 
-function user_freeobjects() {
+function UserFreeObjects() {
     return (
         <div className="user_freeobjects">
             <Header />
@@ -12,7 +12,6 @@ function user_freeobjects() {
                     <div className="contentWrapper">
                         {/* Linker Bereich: Bild des Plans */}
                         <div className="planImage">
-                            {/* Füge hier dein Bild ein */}
                             <img src="../../src/assets/plan.png" alt="Plan" />
                         </div>
 
@@ -42,7 +41,6 @@ function user_freeobjects() {
                                     <h2>Objekt 5</h2>
                                     <p>Beschreibung des Objekts 5</p>
                                 </li>
-                                {/* Weitere Objekte können hinzugefügt werden */}
                             </ul>
                         </div>
                     </div>
@@ -53,4 +51,4 @@ function user_freeobjects() {
     );
 }
 
-export default user_freeobjects;
+export default UserFreeObjects;

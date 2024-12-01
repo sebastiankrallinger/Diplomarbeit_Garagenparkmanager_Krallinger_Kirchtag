@@ -1,7 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importiere den useNavigate-Hook
 import './user_login.css';
 
-function user_login() {
+function UserLogin() {
+    const navigate = useNavigate(); // Initialisiere den Navigations-Hook
+
+    const handleLogin = (e) => {
+        e.preventDefault(); // Verhindert Standardformularverhalten
+        navigate('/user'); // Navigiere zur /user-Seite
+    };
+
+    const handleRegister = () => {
+        navigate('/user/register'); // Navigiere zur /user/register-Seite
+    };
+
     return (
         <div className="loginPage">
             {/* Hintergrundbild */}
@@ -26,11 +38,22 @@ function user_login() {
                         </div>
                         <a href="/forgot-password" className="forgotPassword">Passwort vergessen?</a>
                     </div>
-                    <button type="submit" className="loginButton">Anmelden</button>
+                    <button
+                        type="submit"
+                        className="loginButton"
+                        onClick={handleLogin} // Füge Navigation für Anmelden hinzu
+                    >
+                        Anmelden
+                    </button>
                 </form>
                 <div className="registerSection">
                     <p>Du hast noch kein Konto?</p>
-                    <button className="registerButton">Registrieren</button>
+                    <button
+                        className="registerButton"
+                        onClick={handleRegister} // Füge Navigation für Registrieren hinzu
+                    >
+                        Registrieren
+                    </button>
                 </div>
             </div>
 
@@ -42,4 +65,4 @@ function user_login() {
     );
 }
 
-export default user_login;
+export default UserLogin;

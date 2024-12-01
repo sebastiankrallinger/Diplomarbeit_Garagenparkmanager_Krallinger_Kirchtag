@@ -1,7 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Importiere den useNavigate-Hook
 import './user_register.css';
 
 function User_Register() {
+    const navigate = useNavigate(); // Initialisiere den Navigations-Hook
+
+    const handleRegister = (e) => {
+        e.preventDefault(); // Verhindert Standardformularverhalten
+        navigate('/user'); // Navigiere zur /user-Seite
+    };
+
     return (
         <div className="user_register">
             {/* Hintergrundbild */}
@@ -76,7 +84,13 @@ function User_Register() {
                             <label htmlFor="staySignedIn">Angemeldet bleiben</label>
                         </div>
                     </div>
-                    <button type="submit" className="registerButton">Registrieren</button>
+                    <button
+                        type="submit"
+                        className="registerButton"
+                        onClick={handleRegister} // Füge die Navigation zur /user-Seite hinzu
+                    >
+                        Registrieren
+                    </button>
                 </form>
             </div>
 
