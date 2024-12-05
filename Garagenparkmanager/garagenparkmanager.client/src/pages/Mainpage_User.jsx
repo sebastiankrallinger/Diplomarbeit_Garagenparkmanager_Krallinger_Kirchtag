@@ -1,6 +1,6 @@
 /* Mainpage_User-Component */
 
-import React from 'react';
+//import React from 'react';
 import './Mainpage_User.css';
 import Header from '../components/Header_User';
 import Footer from '../components/Footer';
