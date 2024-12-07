@@ -21,22 +21,6 @@ namespace Garagenparkmanager.Server
                     builder.Configuration["CosmosConfig:databaseName"],
                     builder.Configuration["CosmosConfig:cointainerName"]));
 
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = "Cookies";
-                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-            })
-            .AddCookie("Cookies")
-            .AddOpenIdConnect(options =>
-            {
-                options.Authority = "http://localhost:8080";
-                options.RequireHttpsMetadata = false;
-                options.ClientId = "garagenparkmanager-aspnet-client";
-                options.ClientSecret = "QkFloTsOy1zOLjSwu9PsSYtJ8TiBZ1Yw";
-                options.ResponseType = "code";
-                options.SaveTokens = true;
-            });
-
             var app = builder.Build();
 
             app.UseDefaultFiles();

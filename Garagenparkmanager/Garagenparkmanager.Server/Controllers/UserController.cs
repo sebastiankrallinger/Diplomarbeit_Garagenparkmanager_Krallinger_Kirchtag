@@ -34,9 +34,9 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Kunden loeschen
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id, string name)
+        public async Task<IActionResult> Delete(string id)
         {
-            var result = await _customerRepository.DeleteCustomer(id, name);
+            var result = await _customerRepository.DeleteCustomer(id);
             if (result)
             {
                 return NoContent();

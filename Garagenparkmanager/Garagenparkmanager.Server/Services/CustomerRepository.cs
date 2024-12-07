@@ -23,14 +23,14 @@ namespace Garagenparkmanager.Server.Services
         //Kunden erstellen
         public async Task<Customer> CreateCustomer(Customer consumer)
         {
-            var response = await _container.CreateItemAsync(consumer, new PartitionKey(consumer.Lastname));
+            var response = await _container.CreateItemAsync(consumer, new PartitionKey(consumer.Email));
             return response.Resource;
         }
 
         //Kunden loeschen
-        public async Task<bool> DeleteCustomer(string id, string name)
+        public async Task<bool> DeleteCustomer(string id)
         {
-            var response = await _container.DeleteItemAsync<Customer>(id, new PartitionKey(name));
+            var response = await _container.DeleteItemAsync<Customer>(id, new PartitionKey(id));
             if (response != null)
             {
                 return true;
