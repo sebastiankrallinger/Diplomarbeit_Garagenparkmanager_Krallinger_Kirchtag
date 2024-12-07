@@ -2,11 +2,21 @@
 
 namespace Garagenparkmanager.Server.Models
 {
+    public enum Role
+    {
+        superadmin,
+        admin,
+        user
+    }
+
     //Kunden-Modell
     public class User
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; } = string.Empty;
+
+        [JsonProperty(PropertyName = "role")]
+        public Role Role { get; set; }
 
         [JsonProperty(PropertyName = "firstname")]
         public string Firstname { get; set; }

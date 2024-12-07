@@ -7,6 +7,6 @@ namespace Garagenparkmanager.Server.Services
     {
         Task<IEnumerable<User>> GetAll();
         Task<User> CreateCustomer(User customer);
-        Task<bool> DeleteCustomer (string id);
+        Task<bool> DeleteCustomer (string id, Role role);
     }
 }

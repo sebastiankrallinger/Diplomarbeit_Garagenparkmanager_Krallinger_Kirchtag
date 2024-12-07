@@ -26,17 +26,17 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Kunden erstellen
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Customer customer)
+        public async Task<IActionResult> Post([FromBody] User user)
         {
-            var result = await _customerRepository.CreateCustomer(customer);
+            var result = await _customerRepository.CreateCustomer(user);
             return CreatedAtAction(nameof(Get), new { id = result.Id }, result);
         }
 
         //Kunden loeschen
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string id, Role role)
         {
-            var result = await _customerRepository.DeleteCustomer(id);
+            var result = await _customerRepository.DeleteCustomer(id, role);
             if (result)
             {
                 return NoContent();
