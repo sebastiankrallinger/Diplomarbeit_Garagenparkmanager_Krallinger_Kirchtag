@@ -24,13 +24,13 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       
       - name: Restore dependencies
-        run: dotnet restore Garagenparkmanager/Garagenparkmanager.sln
+        run: dotnet restore Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag/Garagenparkmanager/Garagenparkmanager.sln
 
       - name: Build with dotnet
-        run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.sln
+        run: dotnet build -c Release --no-restore Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag/Garagenparkmanager/Garagenparkmanager.sln
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ./out/Garagenparkmanager/Garagenparkmanager.sln
+        run: dotnet publish -c Release -o ./out /Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag/Garagenparkmanager/Garagenparkmanager.sln
 
       - name: Deploy to Azure Web Apps
         uses: azure/webapps-deploy@v2
