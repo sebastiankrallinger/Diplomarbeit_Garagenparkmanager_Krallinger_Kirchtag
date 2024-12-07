@@ -33,9 +33,13 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_WEBAPP_GARAGENPARKMANAGER }}
+
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
           app-name: Garagenparkmanager-Webapp
-          publish-profile: ${{ secrets.AZURE_WEBAPP_GARAGENPARKMANAGER }}
           package: ./out
