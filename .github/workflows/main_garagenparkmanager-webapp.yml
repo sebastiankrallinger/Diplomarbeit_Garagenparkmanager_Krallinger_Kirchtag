@@ -1,32 +1,26 @@
-name: Build and deploy ASP.Net Core app to Azure Web App - Garagenparkmanager-Webapp
+name: Build and Deploy
 
 on:
   push:
     branches:
       - main
-env:
-  DOTNET_VERSION: '8.0.x'
 
 jobs:
   build:
     runs-on: windows-latest
-    environment: Azure
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up .NET Core
+      - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-version: 8.0.x
 
-      - name: Restore dependencies
+      - name: Restore Dependencies
         run: dotnet restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
 
-      - name: Build with dotnet
-        run: dotnet build Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj -c Release --no-restore
-
-      - name: Publish Server
+      - name: Build Server
         run: dotnet publish Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj -c Release -o ./out
 
       - name: Install Client Dependencies
@@ -39,9 +33,9 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Deploy to Azure Web Apps
+      - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
           app-name: Garagenparkmanager
-          publish-profile: ${{ secrets.AZURE_WEBAPP_MYWHEATERFORECAST }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: ./out
