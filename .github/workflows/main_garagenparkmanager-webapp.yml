@@ -33,16 +33,9 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-
-
-      - name: Deploy to Azure
+      - name: Deploy to Azure Web Apps
         uses: azure/webapps-deploy@v2
         with:
-          app-name: Garagenparkmanager-Webapp
-          package: ./out
+          app-name: MyWeatherAPI
+          publish-profile: ${{ secrets.AZURE_WEBAPP_GARAGENPARKMANAGER }}
+          package: ./out      
