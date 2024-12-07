@@ -11,6 +11,20 @@ namespace Garagenparkmanager.Server.Controllers
     {
         private readonly ICustomerRepository _customerRepository;
 
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginAsync([FromBody] LoginData userdata)
+        {
+            var users = await _customerRepository.GetAll();
+            foreach (User u in users)
+            {
+                if (userdata.Email == u.Email && userdata.Password == u.Password)
+                {
+                    return Ok(new { Token = "fake-jwt-token" }); 
+                }
+            }
+            return Unauthorized("Ungültige Anmeldedaten");
+        }
+
         public UserController(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;

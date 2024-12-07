@@ -10,6 +10,10 @@ function Header() {
     const handleNavigation = (route) => {
         navigate(route);
     };
+    const handleLogin = (e) => {
+        e.preventDefault();
+        navigate('/login');
+    };
     return (  
         <header>
             <div className="header-container">
@@ -21,7 +25,7 @@ function Header() {
                         <a onClick={() => handleNavigation('')}>News</a>
                         <a onClick={() => handleNavigation('')}>Immobilien</a>
                         <a onClick={() => handleNavigation('')}>&Uuml;ber Uns</a>
-                        <button>Anmelden</button>
+                        <button onClick={handleLogin}>Anmelden</button>
                     </ul>
                 </nav>
             </div>

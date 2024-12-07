@@ -19,9 +19,24 @@ namespace Garagenparkmanager.Server
                     builder.Configuration.GetConnectionString("CosmosDb"),
                     builder.Configuration["CosmosConfig:primaryKey"],
                     builder.Configuration["CosmosConfig:databaseName"],
-                    builder.Configuration["CosmosConfig:cointainerName"]));
+                    builder.Configuration["CosmosConfig:cointainerName"]
+                )
+            );
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    policy =>
+                    {
+                        policy.WithOrigins("https://localhost:5173") 
+                              .AllowAnyMethod()
+                              .AllowAnyHeader();
+                    });
+            });
 
             var app = builder.Build();
+
+            app.UseCors("AllowFrontend");
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

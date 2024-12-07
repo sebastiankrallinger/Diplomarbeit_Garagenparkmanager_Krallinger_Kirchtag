@@ -1,35 +1,75 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Importiere den useNavigate-Hook
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './user_login.css';
 
 function UserLogin() {
-    const navigate = useNavigate(); // Initialisiere den Navigations-Hook
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleLogin = (e) => {
-        e.preventDefault(); // Verhindert Standardformularverhalten
-        navigate('/user'); // Navigiere zur /user-Seite
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        const loginData = {
+            email,
+            password,
+        };
+
+        try {
+            const response = await fetch('https://localhost:7186/User/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Login erfolgreich:', data);
+                navigate('/user');
+            } else {
+                const error = await response.text();
+                console.error('Fehler beim Login:', error);
+                alert('Login fehlgeschlagen: ' + error);
+            }
+        } catch (error) {
+            console.error('Netzwerkfehler:', error);
+        }
     };
 
     const handleRegister = () => {
-        navigate('/user/register'); // Navigiere zur /user/register-Seite
+        navigate('/register');
     };
 
     return (
         <div className="loginPage">
-            {/* Hintergrundbild */}
             <div className="backgroundImage"></div>
 
-            {/* Grauer Bereich im linken Drittel */}
             <div className="loginFormContainer">
                 <h1>Bei Ihrem Konto anmelden</h1>
                 <form className="loginForm">
                     <div className="formGroup">
                         <label htmlFor="email">E-Mail</label>
-                        <input type="email" id="email" name="email" placeholder="E-Mail eingeben" />
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="E-Mail eingeben"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
                     <div className="formGroup">
                         <label htmlFor="password">Passwort</label>
-                        <input type="password" id="password" name="password" placeholder="Passwort eingeben" />
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Passwort eingeben"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </div>
                     <div className="formOptions">
                         <div className="checkboxGroup">
@@ -41,7 +81,7 @@ function UserLogin() {
                     <button
                         type="submit"
                         className="loginButton"
-                        onClick={handleLogin} // Füge Navigation für Anmelden hinzu
+                        onClick={handleLogin}
                     >
                         Anmelden
                     </button>
@@ -50,14 +90,13 @@ function UserLogin() {
                     <p>Du hast noch kein Konto?</p>
                     <button
                         className="registerButton"
-                        onClick={handleRegister} // Füge Navigation für Registrieren hinzu
+                        onClick={handleRegister}
                     >
                         Registrieren
                     </button>
                 </div>
             </div>
 
-            {/* Rechtes Bild oben */}
             <div className="topRightImage">
                 <img src="../../src/assets/logo_Lagerage.png" alt="Rechteckiges Bild" />
             </div>
