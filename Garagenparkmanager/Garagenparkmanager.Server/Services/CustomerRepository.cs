@@ -21,7 +21,7 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //Kunden erstellen
-        public async Task<Customer> CreateCustomer(Customer consumer)
+        public async Task<Models.User> CreateCustomer(Models.User consumer)
         {
             var response = await _container.CreateItemAsync(consumer, new PartitionKey(consumer.Email));
             return response.Resource;
@@ -30,7 +30,7 @@ namespace Garagenparkmanager.Server.Services
         //Kunden loeschen
         public async Task<bool> DeleteCustomer(string id)
         {
-            var response = await _container.DeleteItemAsync<Customer>(id, new PartitionKey(id));
+            var response = await _container.DeleteItemAsync<Models.User>(id, new PartitionKey(id));
             if (response != null)
             {
                 return true;
@@ -39,11 +39,11 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //alle Kunden laden
-        public async Task<IEnumerable<Customer>> GetAll()
+        public async Task<IEnumerable<Models.User>> GetAll()
         {
-            var query = _container.GetItemQueryIterator<Customer>(new QueryDefinition("SELECT * FROM c"));
+            var query = _container.GetItemQueryIterator<Models.User>(new QueryDefinition("SELECT * FROM c"));
 
-            var results = new List<Customer>();
+            var results = new List<Models.User>();
             while (query.HasMoreResults)
             {
                 var response = await query.ReadNextAsync();

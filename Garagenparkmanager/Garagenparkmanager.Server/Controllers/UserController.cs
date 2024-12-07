@@ -7,11 +7,11 @@ namespace Garagenparkmanager.Server.Controllers
     //Verwaltung Kunden
     [ApiController]
     [Route("[controller]")]
-    public class CustomerController : Controller
+    public class UserController : Controller
     {
         private readonly ICustomerRepository _customerRepository;
 
-        public CustomerController(ICustomerRepository customerRepository)
+        public UserController(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
