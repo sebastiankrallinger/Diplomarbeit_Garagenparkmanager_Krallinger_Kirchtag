@@ -7,11 +7,13 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-
+env:
+    DOTNET_VERSION: '8.0.x'
+    
 jobs:
   build:
     runs-on: windows-latest
+    environment: Azure
 
     steps:
       - uses: actions/checkout@v4
@@ -19,38 +21,20 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      
+      - name: Restore dependencies
+        run: dotnet restore Garagenparkmanager/Garagenparkmanager.sln
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.sln
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish -c Release -o ./out/Garagenparkmanager/Garagenparkmanager.sln
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
+      - name: Deploy to Azure Web Apps
+        uses: azure/webapps-deploy@v2
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
-
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: .net-app
-      
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'Garagenparkmanager-Webapp'
-          slot-name: 'Production'
-          package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_66E38EDAAD08443F88CF3FA2B3873622 }}
+          app-name: Garagenparkmanager
+          publish-profile: ${{ secrets.AZURE_WEBAPP_GARAGENPARKMANAGER }}
+          package: ./out
