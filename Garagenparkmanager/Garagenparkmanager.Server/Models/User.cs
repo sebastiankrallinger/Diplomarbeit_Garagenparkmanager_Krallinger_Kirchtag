@@ -53,6 +53,8 @@ namespace Garagenparkmanager.Server.Models
 
         [JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
+        [JsonProperty(PropertyName = "salt")]
+        public string Salt { get; set; }
 
         [JsonProperty(PropertyName = "storages")]
         public List<Storage> Storages { get; set; }

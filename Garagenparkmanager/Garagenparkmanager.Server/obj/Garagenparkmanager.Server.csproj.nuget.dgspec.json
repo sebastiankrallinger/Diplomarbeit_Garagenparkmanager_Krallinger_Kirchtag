@@ -54,9 +54,9 @@
               "target": "Package",
               "version": "[1.44.1, )"
             },
-            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+            "Microsoft.AspNetCore.Cryptography.KeyDerivation": {
               "target": "Package",
-              "version": "[8.0.11, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.AspNetCore.SpaProxy": {
               "target": "Package",

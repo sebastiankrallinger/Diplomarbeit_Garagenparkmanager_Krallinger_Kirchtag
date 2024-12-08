@@ -1,5 +1,4 @@
 using Garagenparkmanager.Server.Services;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
 namespace Garagenparkmanager.Server
 {
