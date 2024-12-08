@@ -25,22 +25,22 @@ namespace Garagenparkmanager.Server.Models
         public string Lastname { get; set; }
 
         [JsonProperty(PropertyName = "birthdate")]
-        public DateTime birthdate { get; set; }
+        public DateTime Birthdate { get; set; }
 
         [JsonProperty(PropertyName = "plz")]
-        public string plz { get; set; }
+        public string Plz { get; set; }
 
         [JsonProperty(PropertyName = "location")]
-        public string location { get; set; }
+        public string Location { get; set; }
 
         [JsonProperty(PropertyName = "street")]
-        public string street { get; set; }
+        public string Street { get; set; }
 
         [JsonProperty(PropertyName = "housenumber")]
-        public int housenumber { get; set; }
+        public int Housenumber { get; set; }
 
         [JsonProperty(PropertyName = "housenumberAddition")]
-        public string housenumberAddition { get; set; }
+        public string HousenumberAddition { get; set; }
 
         [JsonProperty(PropertyName = "email")]
         public string Email { get; set; }

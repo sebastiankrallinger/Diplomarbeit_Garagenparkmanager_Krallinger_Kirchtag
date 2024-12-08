@@ -2,11 +2,12 @@
 using Garagenparkmanager.Server.Services;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Cosmos;
 using System.Security.Cryptography;
 
 namespace Garagenparkmanager.Server.Controllers
 {
-    //Verwaltung Kunden
+    //Verwaltung User
     [ApiController]
     [Route("[controller]")]
     public class UserController : Controller
@@ -28,11 +29,8 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Kunden erstellen
         [HttpPost]
-        public async Task<IActionResult> AddNewUser([FromBody] User user)
+        private async Task<IActionResult> AddNewUser(Models.User user)
         {
-            var (passwordHash, salt) = HashPassword(user.Password);
-            user.Password = passwordHash;
-            user.Salt = salt;
             var result = await _customerRepository.CreateCustomer(user);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
         }
@@ -53,7 +51,7 @@ namespace Garagenparkmanager.Server.Controllers
         public async Task<IActionResult> LoginAsync([FromBody] LoginData userdata)
         {
             var users = await _customerRepository.GetAll();
-            foreach (User u in users)
+            foreach (Models.User u in users)
             {
                 if (userdata.Email == u.Email)
                 {
@@ -64,6 +62,41 @@ namespace Garagenparkmanager.Server.Controllers
                 }
             }
             return Unauthorized("Ungültige Anmeldedaten");
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterAsync([FromBody] RegisterData userdata)
+        {
+            //GetByEmail implementieren
+            var (passwordHash, salt) = HashPassword(userdata.Password);
+
+            var newUser = new Models.User
+            {
+                Id = Guid.NewGuid().ToString(),
+                Role = Role.user,
+                Firstname = userdata.Firstname,
+                Lastname = userdata.Lastname,
+                Birthdate = Convert.ToDateTime(userdata.Birthdate),
+                Plz = userdata.Plz,
+                Location = userdata.Location,
+                Street = userdata.Street,
+                Housenumber = Convert.ToInt32(userdata.Housenumber),
+                HousenumberAddition = userdata.HousenumberAddition,
+                Email = userdata.Email,
+                CompanyName = userdata.CompanyName,
+                AtuNumber = userdata.AtuNumber,
+                Password = passwordHash,
+                Salt = salt,
+                Storages = new List<Storage>(),
+                Contracts = new List<Contract>()
+            };
+            var response = await AddNewUser(newUser);
+            if (response == null)
+            {
+                return BadRequest("Fehler bei der Benutzerregistrierung");
+            }
+
+            return Ok(response);
         }
 
         private (string hashedPassword, string salt) HashPassword(string enteredPassword)

@@ -1,82 +1,235 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Importiere den useNavigate-Hook
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; 
+import { AuthContext } from '../../AuthContext';
 import './user_register.css';
 
 function User_Register() {
-    const navigate = useNavigate(); // Initialisiere den Navigations-Hook
+    const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+    const [formData, setFormData] = useState({
+        firstname: '',
+        lastname: '',
+        birthdate: '',
+        zipcode: '',
+        city: '',
+        street: '',
+        housenumber: '',
+        co: '',
+        email: '',
+        companyName: '',
+        atuNumber: '',
+        password: '',
+        confirmPassword: '',
+    });
+    const [error, setError] = useState(null);
 
-    const handleRegister = (e) => {
-        e.preventDefault(); // Verhindert Standardformularverhalten
-        navigate('/user'); // Navigiere zur /user-Seite
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwörter stimmen nicht überein!');
+            return;
+        }
+
+        const data = {
+            firstname: formData.firstname,
+            lastname: formData.lastname,
+            birthdate: formData.birthdate,
+            plz: formData.zipcode,
+            location: formData.city,
+            street: formData.street,
+            housenumber: formData.housenumber,
+            housenumberAddition: formData.co || "",
+            email: formData.email,
+            companyName: formData.companyName || "",
+            atuNumber: formData.atuNumber || "",
+            password: formData.password
+        };
+
+        try {
+            const response = await fetch('https://localhost:7186/User/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const userData = { email: formData.email };
+                login(userData);
+                console.log('Login erfolgreich:', data);
+                navigate('/user');
+            } else {
+                const error = await response.text();
+                console.error('Fehler beim Registrieren:', error);
+                alert('Registrierung fehlgeschlagen: ' + error);
+            }
+        } catch (error) {
+            console.error('Netzwerkfehler:', error);
+        }
     };
 
     return (
         <div className="user_register">
-            {/* Hintergrundbild */}
             <div
                 className="backgroundImage"
                 style={{
-                    backgroundImage: `url('../../src/assets/moon.jpeg')`, // Pfad zum Hintergrundbild
+                    backgroundImage: `url('../../src/assets/moon.jpeg')`, 
                 }}
             ></div>
 
-            {/* Linker Bereich: Grauer Streifen */}
             <div className="registerFormContainer">
                 <h1>Registrieren</h1>
                 <form className="registerForm">
                     <div className="formGroup">
                         <label htmlFor="firstname">Vorname</label>
-                        <input type="text" id="firstname" name="firstname" placeholder="Vorname" />
+                        <input
+                            type="text"
+                            id="firstname"
+                            name="firstname"
+                            placeholder="Vorname"
+                            value={formData.firstname}
+                            onChange={handleInputChange}
+                        />
                     </div>
                     <div className="formGroup">
                         <label htmlFor="lastname">Nachname</label>
-                        <input type="text" id="lastname" name="lastname" placeholder="Nachname" />
+                        <input
+                            type="text"
+                            id="lastname"
+                            name="lastname"
+                            placeholder="Nachname"
+                            value={formData.lastname}
+                            onChange={handleInputChange}
+                        />
                     </div>
-                    <div className="formRow">
-                        <div className="formGroup">
-                            <label htmlFor="zipcode">PLZ</label>
-                            <input type="text" id="zipcode" name="zipcode" placeholder="PLZ" />
-                        </div>
-                        <div className="formGroup">
-                            <label htmlFor="city">Ort</label>
-                            <input type="text" id="city" name="city" placeholder="Ort" />
-                        </div>
+                    <div className="formGroup">
+                        <label htmlFor="birthdate">Geburtstag</label>
+                        <input
+                            type="date"
+                            id="birthdate"
+                            name="birthdate"
+                            placeholder="Geburtstag"
+                            value={formData.birthdate}
+                            onChange={handleInputChange}
+                        />
                     </div>
-                    <div className="formRow">
-                        <div className="formGroup">
-                            <label htmlFor="street">Straße</label>
-                            <input type="text" id="street" name="street" placeholder="Straße" />
-                        </div>
-                        <div className="formGroup">
-                            <label htmlFor="houseNumber">HNr.</label>
-                            <input type="text" id="houseNumber" name="houseNumber" placeholder="HNr." />
-                        </div>
-                        <div className="formGroup">
-                            <label htmlFor="co">c/o</label>
-                            <input type="text" id="co" name="co" placeholder="c/o" />
-                        </div>
+                    <div className="formGroup">
+                        <label htmlFor="zipcode">PLZ</label>
+                        <input
+                            type="text"
+                            id="zipcode"
+                            name="zipcode"
+                            placeholder="PLZ"
+                            value={formData.zipcode}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="formGroup">
+                        <label htmlFor="city">Ort</label>
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Ort"
+                            value={formData.city}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="formGroup">
+                        <label htmlFor="street">Straße</label>
+                        <input
+                            type="text"
+                            id="street"
+                            name="street"
+                            placeholder="Straße"
+                            value={formData.street}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="formGroup">
+                        <label htmlFor="housenumber">HNr.</label>
+                        <input
+                            type="text"
+                            id="housenumber"
+                            name="housenumber"
+                            placeholder="HNr."
+                            value={formData.housenumber}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="formGroup">
+                        <label htmlFor="co">c/o</label>
+                        <input
+                            type="text"
+                            id="co"
+                            name="co"
+                            placeholder="c/o"
+                            value={formData.co}
+                            onChange={handleInputChange}
+                        />
                     </div>
                     <div className="formGroup">
                         <label htmlFor="email">E-Mail</label>
-                        <input type="email" id="email" name="email" placeholder="E-Mail" />
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="E-Mail"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                        />
                     </div>
-                    <div className="formRow">
-                        <div className="formGroup">
-                            <label htmlFor="companyName">Firmenname</label>
-                            <input type="text" id="companyName" name="companyName" placeholder="Firmenname" />
-                        </div>
-                        <div className="formGroup">
-                            <label htmlFor="atuNumber">ATU-Nummer</label>
-                            <input type="text" id="atuNumber" name="atuNumber" placeholder="ATU-Nummer" />
-                        </div>
+                    <div className="formGroup">
+                        <label htmlFor="companyName">Firmenname</label>
+                        <input
+                            type="text"
+                            id="companyName"
+                            name="companyName"
+                            placeholder="Firmenname"
+                            value={formData.companyName}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                    <div className="formGroup">
+                        <label htmlFor="atuNumber">ATU-Nummer</label>
+                        <input
+                            type="text"
+                            id="atuNumber"
+                            name="atuNumber"
+                            placeholder="ATU-Nummer"
+                            value={formData.atuNumber}
+                            onChange={handleInputChange}
+                        />
                     </div>
                     <div className="formGroup">
                         <label htmlFor="password">Passwort</label>
-                        <input type="password" id="password" name="password" placeholder="Passwort" />
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Passwort"
+                            value={formData.password}
+                            onChange={handleInputChange}
+                        />
                     </div>
                     <div className="formGroup">
                         <label htmlFor="confirmPassword">Passwort bestätigen</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Passwort bestätigen" />
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Passwort bestätigen"
+                            value={formData.confirmPassword}
+                            onChange={handleInputChange}
+                        />
                     </div>
                     <div className="formOptions">
                         <div className="checkboxGroup">
@@ -87,14 +240,13 @@ function User_Register() {
                     <button
                         type="submit"
                         className="registerButton"
-                        onClick={handleRegister} // Füge die Navigation zur /user-Seite hinzu
+                        onClick={handleRegister} 
                     >
                         Registrieren
                     </button>
                 </form>
             </div>
 
-            {/* Bild in der oberen rechten Ecke */}
             <div className="topRightImage">
                 <img src="../../src/assets/logo_Lagerage.png" alt="Rechteckiges Bild" />
             </div>

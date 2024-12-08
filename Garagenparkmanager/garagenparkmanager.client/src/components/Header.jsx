@@ -1,6 +1,6 @@
 /* Header_LoadingPage-Component*/
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo_Lagerage.png';
 import './Header.css';

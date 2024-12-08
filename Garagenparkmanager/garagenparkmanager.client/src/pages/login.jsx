@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './user_login.css';
+import { AuthContext } from '../AuthContext';
+
+import './login.css';
 
 function UserLogin() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { login } = useContext(AuthContext);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -26,6 +29,7 @@ function UserLogin() {
 
             if (response.ok) {
                 const data = await response.json();
+                login({ email });
                 console.log('Login erfolgreich:', data);
                 navigate('/user');
             } else {
