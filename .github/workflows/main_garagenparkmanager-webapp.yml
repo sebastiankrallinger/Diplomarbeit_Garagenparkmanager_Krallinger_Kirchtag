@@ -1,49 +1,49 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 env:
     DOTNET_VERSION: '8.0.x'
 
 jobs:
-  build:
-    runs-on: windows-latest
-    environment: Azure
+   build:
+      runs-on: windows-latest
+      environment: Azure
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      steps:
+          - name: Checkout Code
+            uses: actions/checkout@v4
 
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          - name: Set up .NET
+            uses: actions/setup-dotnet@v4
+            with:
+              dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Restore Dependencies
-        run: dotnet restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
+          - name: Restore Dependencies
+            run: dotnet restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
 
-      - name: Build Server
-        run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
+          - name: Build Server
+            run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
 
-      - name: Publish Server
-        run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
+          - name: Publish Server
+            run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
 
-      - name: Install Client Dependencies
-        run: npm install
-        working-directory: Garagenparkmanager/garagenparkmanager.client
+          - name: Install Client Dependencies
+            run: npm install
+            working-directory: Garagenparkmanager/garagenparkmanager.client
 
-      - name: Build Client
-        run: npm run build
-        working-directory: Garagenparkmanager/garagenparkmanager.client
-        env:
-          NODE_ENV: production
+          - name: Build Client
+            run: npm run build
+            working-directory: Garagenparkmanager/garagenparkmanager.client
+            env:
+              NODE_ENV: production
 
-      - name: Deploy to Azure Web Apps
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: Garagenparkmanager-Webapp
-          publish-profile: ${{ secrets.AZURE_WEBAPP_GARAGENPARKMANAGER }}
-          package: ./out   
+          - name: Deploy to Azure Web Apps
+            uses: azure/webapps-deploy@v2
+            with:
+              app-name: Garagenparkmanager-Webapp
+              publish-profile: ${{ secrets.AZURE_WEBAPP_GARAGENPARKMANAGER }}
+              package: ./out   
