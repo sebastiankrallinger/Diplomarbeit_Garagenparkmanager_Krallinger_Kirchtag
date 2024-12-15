@@ -14,18 +14,22 @@ jobs:
     environment: Azure
 
     steps:
+      - name: Checkout Code
       - uses: actions/checkout@v4
 
       - name: Set up .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore Dependencies
         run: dotnet restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
 
       - name: Build Server
-        run: dotnet publish Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj -c Release -o ./out
+        run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
+
+      - name: Publish Server
+        run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
 
       - name: Install Client Dependencies
         run: npm install
