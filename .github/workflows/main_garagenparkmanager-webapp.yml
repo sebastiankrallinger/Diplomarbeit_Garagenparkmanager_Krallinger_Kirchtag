@@ -28,8 +28,21 @@ jobs:
           - name: Build Server
             run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.sln
 
+          - name: Install frontend dependencies
+            run: |
+             cd Garagenparkmanager/garagenparkmanager.client
+             npm install
+          - name: Build frontend
+            run: |
+             cd Garagenparkmanager/garagenparkmanager.client
+             npm run build
+
           - name: Publish Server
             run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.sln
+
+          - name: Copy Frontend Assets
+            run: |
+             xcopy /s /y Garagenparkmanager/garagenparkmanager.client/dist ./out/wwwroot
     
           - name: Deploy to Azure Web Apps
             uses: azure/webapps-deploy@v2
