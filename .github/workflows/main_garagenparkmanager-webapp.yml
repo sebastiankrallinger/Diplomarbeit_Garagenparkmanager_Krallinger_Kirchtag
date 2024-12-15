@@ -33,13 +33,13 @@ jobs:
 
       - name: Build React app with Vite
         run: |
-          cd garagenparkmanager.client
+          cd ./Garagenparkmanager/garagenparkmanager.client
           npm install
           npm run build
 
       - name: Copy React build to wwwroot
         run: |
-          xcopy /s /y garagenparkmanager.client/dist ./out/wwwroot
+          xcopy /s /y ./Garagenparkmanager/garagenparkmanager.client/dist ./out/wwwroot
 
       - name: Deploy to Azure Web Apps
         uses: azure/webapps-deploy@v2
