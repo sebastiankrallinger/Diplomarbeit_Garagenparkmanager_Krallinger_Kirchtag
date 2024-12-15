@@ -52,7 +52,7 @@ function User_Register() {
         };
 
         try {
-            const response = await fetch('https://localhost:7186/User/register', {
+            const response = await fetch('https://localhost:7186/Account/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

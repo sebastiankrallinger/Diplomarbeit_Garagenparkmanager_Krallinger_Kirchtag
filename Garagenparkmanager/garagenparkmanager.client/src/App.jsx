@@ -14,6 +14,7 @@ import User_Mainpage from './pages/user_pages/user_mainpage';
 //import User_ObjectInfo from './pages/user_pages/user_objectinfo';
 import User_Register from './pages/user_pages/user_register';
 import './index.css';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
     return (
@@ -30,7 +31,14 @@ function App() {
                     <Route path="/admin/documentmanagement" element={<Documentmanagement />} />
                     <Route path="/user/freeobjects" element={<User_Freeobjects />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/user" element={<User_Mainpage />} />
+                    <Route
+                        path="/user"
+                        element={
+                            <PrivateRoute>
+                                <User_Mainpage />
+                            </PrivateRoute>
+                        }
+                    />
                     {/*<Route path="/user/objectinfo" element={<User_ObjectInfo />} />*/}
                     <Route path="/register" element={<User_Register />} />
                 </Routes>

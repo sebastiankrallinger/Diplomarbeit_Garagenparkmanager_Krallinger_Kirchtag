@@ -1,22 +1,30 @@
 ﻿using Garagenparkmanager.Server.Models;
 using Garagenparkmanager.Server.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Garagenparkmanager.Server.Controllers
 {
     //Verwaltung User
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserController : Controller
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly IConfiguration _configuration;
 
-        public UserController(ICustomerRepository customerRepository)
+        public UserController(ICustomerRepository customerRepository, IConfiguration configuration)
         {
             _customerRepository = customerRepository;
+            _configuration = configuration;
         }
 
         //alle Kunden laden
@@ -47,28 +55,12 @@ namespace Garagenparkmanager.Server.Controllers
             return BadRequest();
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync([FromBody] LoginData userdata)
-        {
-            var users = await _customerRepository.GetAll();
-            foreach (Models.User u in users)
-            {
-                if (userdata.Email == u.Email)
-                {
-                    if (ValidatePassword(userdata.Password, u.Password, u.Salt))
-                    {
-                        return Ok(new { Token = "fake-jwt-token" });
-                    }
-                }
-            }
-            return Unauthorized("Ungültige Anmeldedaten");
-        }
-
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterData userdata)
         {
             //GetByEmail implementieren
-            var (passwordHash, salt) = HashPassword(userdata.Password);
+            var passwordHandler = new Services.PasswordHandler();
+            var (passwordHash, salt) = passwordHandler.HashPassword(userdata.Password);
 
             var newUser = new Models.User
             {
@@ -97,34 +89,6 @@ namespace Garagenparkmanager.Server.Controllers
             }
 
             return Ok(response);
-        }
-
-        private (string hashedPassword, string salt) HashPassword(string enteredPassword)
-        {
-            byte[] salt = RandomNumberGenerator.GetBytes(16);
-
-            string passwordHashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: enteredPassword,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 10000,
-                numBytesRequested: 32));
-
-            return (passwordHashed, Convert.ToBase64String(salt));
-        }
-
-        private bool ValidatePassword(string enteredPassword, string storedHash, string storedSalt)
-        {
-            byte[] salt = Convert.FromBase64String(storedSalt);
-
-            string enteredHash = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: enteredPassword,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 10000,
-                numBytesRequested: 32));
-
-            return storedHash == enteredHash;
         }
     }
 }

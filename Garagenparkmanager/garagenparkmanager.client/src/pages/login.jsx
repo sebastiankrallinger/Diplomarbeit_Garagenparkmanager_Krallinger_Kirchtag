@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
-
 import './login.css';
 
 function UserLogin() {
@@ -19,7 +18,7 @@ function UserLogin() {
         };
 
         try {
-            const response = await fetch('https://localhost:7186/User/login', {
+            const response = await fetch('https://localhost:7186/Account/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -29,12 +28,16 @@ function UserLogin() {
 
             if (response.ok) {
                 const data = await response.json();
-                login({ email });
-                console.log('Login erfolgreich:', data);
-                navigate('/user');
+
+                if (data) {
+                    login(data.accesstoken, data.email);
+                    console.log('Login erfolgreich');
+                    navigate('/user');
+                } else {
+                    alert('Login fehlgeschlagen: Kein gültiges Token erhalten');
+                }
             } else {
                 const error = await response.text();
-                console.error('Fehler beim Login:', error);
                 alert('Login fehlgeschlagen: ' + error);
             }
         } catch (error) {
@@ -99,10 +102,6 @@ function UserLogin() {
                         Registrieren
                     </button>
                 </div>
-            </div>
-
-            <div className="topRightImage">
-                <img src="../../src/assets/logo_Lagerage.png" alt="Rechteckiges Bild" />
             </div>
         </div>
     );
