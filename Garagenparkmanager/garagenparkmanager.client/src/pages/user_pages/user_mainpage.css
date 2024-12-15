@@ -1,0 +1,60 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Abstand zwischen den Sektionen */
+    width: 100%;
+    margin: 0 auto; /* Zentrierung bei Bedarf */
+}
+
+.storageImages {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.selfStorage h1 {
+    text-align: center;
+    color: #F9A800;
+}
+
+.storageImage {
+    max-width: 30%;
+    text-align: center;
+}
+
+    .storageImage img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+/* News-Sektion */
+.news h1 {
+    text-align: center;
+    color: #F9A800;
+}
+
+.newsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.personImages {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.personImage {
+    max-width: 22%;
+    text-align: center;
+}
+
+    .personImage img {
+        width: 100%;
+        border-radius: 10px;
+    }

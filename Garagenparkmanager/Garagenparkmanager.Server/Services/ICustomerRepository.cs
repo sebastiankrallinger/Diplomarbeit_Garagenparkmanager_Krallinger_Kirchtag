@@ -5,8 +5,8 @@ namespace Garagenparkmanager.Server.Services
     //Definition der Datenankfunktionen
     public interface ICustomerRepository
     {
-        Task<IEnumerable<Customer>> GetAll();
-        Task<Customer> CreateCustomer(Customer customer);
-        Task<bool> DeleteCustomer (string id, string name);
+        Task<IEnumerable<User>> GetAll();
+        Task<User> CreateCustomer(User customer);
+        Task<bool> DeleteCustomer (string id, Role role);
     }
 }

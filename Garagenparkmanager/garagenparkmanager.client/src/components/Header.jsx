@@ -1,6 +1,6 @@
 /* Header_LoadingPage-Component*/
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo_Lagerage.png';
 import './Header.css';
@@ -9,6 +9,10 @@ function Header() {
     const navigate = useNavigate(); 
     const handleNavigation = (route) => {
         navigate(route);
+    };
+    const handleLogin = (e) => {
+        e.preventDefault();
+        navigate('/login');
     };
     return (  
         <header>
@@ -21,7 +25,7 @@ function Header() {
                         <a onClick={() => handleNavigation('')}>News</a>
                         <a onClick={() => handleNavigation('')}>Immobilien</a>
                         <a onClick={() => handleNavigation('')}>&Uuml;ber Uns</a>
-                        <button>Anmelden</button>
+                        <button onClick={handleLogin}>Anmelden</button>
                     </ul>
                 </nav>
             </div>
