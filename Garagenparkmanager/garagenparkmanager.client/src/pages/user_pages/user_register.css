@@ -24,9 +24,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 33%; /* Ein Drittel der Seite */
+    width: 33%; 
     height: 100%;
-    background-color: rgba(50, 50, 50, 0.9); /* Dunkelgrau mit Transparenz */
+    background-color: rgba(50, 50, 50, 0.9); 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,12 +34,12 @@
     padding: 30px;
 }
 
-    .registerFormContainer h1 {
-        color: white;
-        font-size: 24px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
+.registerFormContainer h1 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
 /* Formular */
 .registerForm {
@@ -55,32 +55,30 @@
     flex-direction: column;
 }
 
-    .formGroup label {
-        font-size: 14px;
-        margin-bottom: 5px;
-        color: white;
-    }
-
-    .formGroup input {
-        padding: 10px;
-        font-size: 16px;
-        background-color: black; /* Schwarzer Hintergrund */
-        color: white; /* Weißer Text */
-        border: 1px solid #f9a800; /* Orange Border */
-        border-radius: 5px;
-        width: 100%;
-    }
-
-/* Formular-Zeilen */
-.formRow {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px; /* Abstand zwischen Eingabeboxen */
+.formGroup label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: white;
 }
 
-    .formRow .formGroup {
-        flex: 1; /* Sorgt dafür, dass alle Boxen gleichmäßig den verfügbaren Platz nutzen */
-    }
+.formGroup input {
+    padding: 10px;
+    font-size: 16px;
+    background-color: black; 
+    color: white; 
+    border: 1px solid #f9a800; 
+    border-radius: 5px;
+    width: 100%;
+}
+
+.formRow {
+    display: flex;
+    gap: 40px; 
+}
+
+.formRow .formGroup {
+    flex: 1; 
+}
 
 /* Checkbox */
 .formOptions {
@@ -92,10 +90,10 @@
     align-items: center;
 }
 
-    .checkboxGroup input {
-        margin-right: 5px;
-        accent-color: #f9a800;
-    }
+.checkboxGroup input {
+    margin-right: 5px;
+    accent-color: #f9a800;
+}
 
 /* Registrieren-Button */
 .registerButton {
@@ -109,9 +107,9 @@
     width: 100%;
 }
 
-    .registerButton:hover {
-        background-color: #e08e00;
-    }
+.registerButton:hover {
+    background-color: #e08e00;
+}
 
 /* Bild in der oberen rechten Ecke */
 .topRightImage {
@@ -122,8 +120,8 @@
     height: auto;
 }
 
-    .topRightImage img {
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 5px;
-    }
+.topRightImage img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+}
