@@ -94,7 +94,7 @@ function User_Register() {
                             type="text"
                             id="firstname"
                             name="firstname"
-                            placeholder="Vorname"
+                            placeholder="Vorname*"
                             value={formData.firstname}
                             onChange={handleInputChange}
                         />
@@ -105,7 +105,7 @@ function User_Register() {
                             type="text"
                             id="lastname"
                             name="lastname"
-                            placeholder="Nachname"
+                            placeholder="Nachname*"
                             value={formData.lastname}
                             onChange={handleInputChange}
                         />
@@ -116,65 +116,68 @@ function User_Register() {
                             type="date"
                             id="birthdate"
                             name="birthdate"
-                            placeholder="Geburtstag"
                             value={formData.birthdate}
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="formGroup">
-                        <label htmlFor="zipcode">PLZ</label>
-                        <input
-                            type="text"
-                            id="zipcode"
-                            name="zipcode"
-                            placeholder="PLZ"
-                            value={formData.zipcode}
-                            onChange={handleInputChange}
-                        />
+                    <div className="formRow">
+                        <div className="formGroup" style={{ width: "30%" }}>
+                            <label htmlFor="zipcode" >PLZ</label>
+                            <input
+                                type="text"
+                                id="zipcode"
+                                name="zipcode"
+                                placeholder="PLZ*"
+                                value={formData.zipcode}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="formGroup" style={{ width: "70%" }}>
+                            <label htmlFor="city">Ort</label>
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                placeholder="Ort*"
+                                value={formData.city}
+                                onChange={handleInputChange}
+                            />
+                        </div>
                     </div>
-                    <div className="formGroup">
-                        <label htmlFor="city">Ort</label>
-                        <input
-                            type="text"
-                            id="city"
-                            name="city"
-                            placeholder="Ort"
-                            value={formData.city}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="formGroup">
-                        <label htmlFor="street">Straﬂe</label>
-                        <input
-                            type="text"
-                            id="street"
-                            name="street"
-                            placeholder="Straﬂe"
-                            value={formData.street}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="formGroup">
-                        <label htmlFor="housenumber">HNr.</label>
-                        <input
-                            type="text"
-                            id="housenumber"
-                            name="housenumber"
-                            placeholder="HNr."
-                            value={formData.housenumber}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="formGroup">
-                        <label htmlFor="co">c/o</label>
-                        <input
-                            type="text"
-                            id="co"
-                            name="co"
-                            placeholder="c/o"
-                            value={formData.co}
-                            onChange={handleInputChange}
-                        />
+                    <div className="formRow">
+                        <div className="formGroup" style={{ width: "60%" }}>
+                            <label htmlFor="street">Stra&szlig;e</label>
+                            <input
+                                type="text"
+                                id="street"
+                                name="street"
+                                placeholder="Stra&szlig;e*"
+                                value={formData.street}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="formGroup" style={{ width: "20%" }}>
+                            <label htmlFor="housenumber">HNr.</label>
+                            <input
+                                type="text"
+                                id="housenumber"
+                                name="housenumber"
+                                placeholder="HNr.*"
+                                value={formData.housenumber}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="formGroup" style={{ width: "20%" }}>
+                            <label htmlFor="co">c/o</label>
+                            <input
+                                type="text"
+                                id="co"
+                                name="co"
+                                placeholder="c/o"
+                                value={formData.co}
+                                onChange={handleInputChange}
+                            />
+                        </div>
                     </div>
                     <div className="formGroup">
                         <label htmlFor="email">E-Mail</label>
@@ -182,32 +185,34 @@ function User_Register() {
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="E-Mail"
+                            placeholder="E-Mail*"
                             value={formData.email}
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div className="formGroup">
-                        <label htmlFor="companyName">Firmenname</label>
-                        <input
-                            type="text"
-                            id="companyName"
-                            name="companyName"
-                            placeholder="Firmenname"
-                            value={formData.companyName}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="formGroup">
-                        <label htmlFor="atuNumber">ATU-Nummer</label>
-                        <input
-                            type="text"
-                            id="atuNumber"
-                            name="atuNumber"
-                            placeholder="ATU-Nummer"
-                            value={formData.atuNumber}
-                            onChange={handleInputChange}
-                        />
+                    <div className="formRow">
+                        <div className="formGroup" style={{ width: "70%" }}>
+                            <label htmlFor="companyName">Firmenname</label>
+                            <input
+                                type="text"
+                                id="companyName"
+                                name="companyName"
+                                placeholder="Firmenname"
+                                value={formData.companyName}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="formGroup" style={{ width: "30%" }}>
+                            <label htmlFor="atuNumber">ATU-Nummer</label>
+                            <input
+                                type="text"
+                                id="atuNumber"
+                                name="atuNumber"
+                                placeholder="ATU-Nummer"
+                                value={formData.atuNumber}
+                                onChange={handleInputChange}
+                            />
+                        </div>
                     </div>
                     <div className="formGroup">
                         <label htmlFor="password">Passwort</label>
@@ -215,18 +220,18 @@ function User_Register() {
                             type="password"
                             id="password"
                             name="password"
-                            placeholder="Passwort"
+                            placeholder="Passwort*"
                             value={formData.password}
                             onChange={handleInputChange}
                         />
                     </div>
                     <div className="formGroup">
-                        <label htmlFor="confirmPassword">Passwort best‰tigen</label>
+                        <label htmlFor="confirmPassword">Passwort best&auml;tigen</label>
                         <input
                             type="password"
                             id="confirmPassword"
                             name="confirmPassword"
-                            placeholder="Passwort best‰tigen"
+                            placeholder="Passwort best&auml;tigen*"
                             value={formData.confirmPassword}
                             onChange={handleInputChange}
                         />
