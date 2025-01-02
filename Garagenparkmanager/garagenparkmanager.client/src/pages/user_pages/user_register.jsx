@@ -78,12 +78,7 @@ function User_Register() {
 
     return (
         <div className="user_register">
-            <div
-                className="backgroundImage"
-                style={{
-                    backgroundImage: `url('../../src/assets/moon.jpeg')`, 
-                }}
-            ></div>
+            <div className="backgroundImage"></div>
 
             <div className="registerFormContainer">
                 <h1>Registrieren</h1>
