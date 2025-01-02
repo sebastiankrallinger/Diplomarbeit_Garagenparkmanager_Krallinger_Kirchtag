@@ -28,17 +28,17 @@ jobs:
       - name: Build Server
         run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
 
+      - name: Trust HTTPS certificate
+        run: |
+          dotnet dev-certs https --clean
+          dotnet dev-certs https --trust
+
       - name: Publish Server
         run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
 
       - name: Install Client Dependencies
         run: npm install
         working-directory: Garagenparkmanager/garagenparkmanager.client
-
-      - name: Trust HTTPS certificate
-        run: |
-          dotnet dev-certs https --clean
-          dotnet dev-certs https --trust
 
       - name: Build Client
         run: npm run build
