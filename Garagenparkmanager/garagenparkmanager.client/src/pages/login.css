@@ -13,10 +13,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../../src/assets/moon.jpeg'); /* Pfad zum Hintergrundbild */
+    background-image: url('../../src/assets/moon.jpg'); /* Pfad zum Hintergrundbild */
     background-size: cover;
     background-position: center;
-    z-index: -1;
+    z-index: 0;
 }
 
 /* Linker Bereich: Grauer Streifen */
