@@ -1,8 +1,8 @@
 /* Vollbild-Hintergrund */
 .user_register {
     position: relative;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100%;
+    overflow: auto;
     font-family: Arial, sans-serif;
 }
 
@@ -16,7 +16,7 @@
     background-image: url('../../src/assets/moon.jpeg'); /* Pfad zum Hintergrundbild */
     background-size: cover;
     background-position: center;
-    z-index: -1;
+    z-index: 0;
 }
 
 /* Linker Bereich: Grauer Streifen */

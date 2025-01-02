@@ -1,8 +1,8 @@
 /* Vollbild-Hintergrund */
-.user_login {
+.loginPage {
     position: relative;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100%;
+    overflow-y: auto;
     font-family: Arial, sans-serif;
 }
 
@@ -16,7 +16,7 @@
     background-image: url('../../src/assets/moon.jpeg'); /* Pfad zum Hintergrundbild */
     background-size: cover;
     background-position: center;
-    z-index: -1;
+    z-index: 0;
 }
 
 /* Linker Bereich: Grauer Streifen */
@@ -34,12 +34,12 @@
     padding: 30px;
 }
 
-    .loginFormContainer h1 {
-        color: white;
-        font-size: 24px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
+.loginFormContainer h1 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
 /* Formular */
 .loginForm {
@@ -150,9 +150,9 @@
     height: auto;
 }
 
-    .topRightImage img {
-        width: 100%;
-        height: auto;
-        border: 2px solid #fff; /* Weiﬂer Rand */
-        border-radius: 5px;
-    }
+.topRightImage img {
+    width: 100%;
+    height: auto;
+    border: 2px solid #fff; /* Weiﬂer Rand */
+    border-radius: 5px;
+}
