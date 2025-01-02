@@ -24,7 +24,7 @@
     top: 0;
     left: 0;
     width: 33%; /* Ein Drittel der Seite */
-    height: 95.3%;
+    height: 100%;
     background-color: rgba(50, 50, 50, 0.9); /* Dunkelgrau mit Transparenz */
     display: flex;
     flex-direction: column;
