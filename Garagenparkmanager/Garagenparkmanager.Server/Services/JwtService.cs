@@ -60,6 +60,7 @@ namespace Garagenparkmanager.Server.Services
                         {
                             Accesstoken = accessToken,
                             Email = request.Email,
+                            Role = u.Role,
                             ExpiresIn = (int)tokenExpiryTimeStamp.Subtract(DateTime.UtcNow).TotalSeconds
                         };
                     }

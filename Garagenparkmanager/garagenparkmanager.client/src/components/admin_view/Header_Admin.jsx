@@ -1,12 +1,14 @@
 /* Header_Admin-Component*/
-
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../AuthContext';
 import logo from '../../assets/logo_Lagerage.png';
 import '../Header.css';
 
 function Header() {  
     const navigate = useNavigate(); 
+    const { user, logout } = useContext(AuthContext);
+
     const handleNavigation = (route) => {
         navigate(route);
     };
@@ -23,7 +25,9 @@ function Header() {
                         <a onClick={() => handleNavigation('/admin/objectmanagement')}>Objektverwaltung</a>
                         <a onClick={() => handleNavigation('/admin/usermanagement')}>Benutzerverwaltung</a>
                         <a onClick={() => handleNavigation('/admin/documentmanagement')}>Dokumente</a>
-                        <a>sample_username</a>
+                        {user && (
+                            <a>{user.email}</a>
+                        ) }
                         <button onClick={() => handleNavigation('/Home')}>Abmelden</button>
                     </ul>
                 </nav>

@@ -78,5 +78,42 @@ namespace Garagenparkmanager.Server.Controllers
                 return result;
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("registerAdmin")]
+        public async Task<ActionResult<LoginResponse>> RegisterAdminAsync([FromBody] AdminData adminData)
+        {
+            var passwordHandler = new Services.PasswordHandler();
+            var (passwordHash, salt) = passwordHandler.HashPassword(adminData.Password);
+
+            var newUser = new Models.User
+            {
+                Id = Guid.NewGuid().ToString(),
+                Role = Role.admin,
+                Firstname = adminData.Firstname,
+                Lastname = adminData.Lastname,
+                Email = adminData.Email,
+                Password = passwordHash,
+                Salt = salt
+            };
+            var response = await _userController.AddNewUser(newUser);
+            if (response == null)
+            {
+                return BadRequest("Fehler bei der Benutzerregistrierung");
+            }
+            else
+            {
+                LoginData data = new();
+                data.Email = adminData.Email;
+                data.Password = adminData.Password;
+                var result = await _jwtService.Authenticate(data);
+                if (result is null)
+                {
+                    return Unauthorized("Ungültige Anmeldedaten");
+                }
+
+                return result;
+            }
+        }
     }
 }
