@@ -47,15 +47,15 @@ function UserLogin() {
                 console.log(data);
 
                 if (data) {
-                    if (data.role == 1) {
-                        login(data.accesstoken, data.email);
+                    if (data.role == 1 || data.role == 0) {
+                        login(data.accesstoken, data.email, data.role);
                         console.log('Login erfolgreich');
                         navigate('/admin');
                     } else {
                         if (staySignedIn) {
                             Cookies.set('auth_token', data.accesstoken, { expires: 4, secure: true, sameSite: 'Strict' });
                         }
-                        login(data.accesstoken, data.email);
+                        login(data.accesstoken, data.email, data.role);
                         console.log('Login erfolgreich');
                         navigate('/user');
                     }

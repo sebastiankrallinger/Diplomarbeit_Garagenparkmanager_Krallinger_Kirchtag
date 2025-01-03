@@ -13,11 +13,12 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    const login = (accesstoken, email) => {
+    const login = (accesstoken, email, role) => {
         localStorage.setItem('accesstoken', accesstoken);
         localStorage.setItem('email', email);
+        localStorage.setItem('role', role);
         setIsAuthenticated(true);
-        setUser({ email }); 
+        setUser({ email, role }); 
     };
 
     const logout = () => {
