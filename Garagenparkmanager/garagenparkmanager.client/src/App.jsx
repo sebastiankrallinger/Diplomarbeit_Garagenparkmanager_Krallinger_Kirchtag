@@ -4,6 +4,7 @@ import { AuthProvider } from './AuthContext';
 import Home from './pages/Home';
 import Mainpage_Admin from './pages/pages_admin/Mainpage_Admin';
 import Usermanagement from './pages/pages_admin/Usermanagement';
+import Adminmanagement from './pages/pages_admin/Adminmanagement';
 import Objectmanagement from './pages/pages_admin/Objectmanagement';
 import Newsmanagement from './pages/pages_admin/Newsmanagement';
 import Documentmanagement from './pages/pages_admin/Documentmanagement';
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/admin" element={<Mainpage_Admin />} />
                     {/*<Route path="/user" element={<Mainpage_User />} />*/}
                     <Route path="/admin/usermanagement" element={<Usermanagement />} />
+                    <Route path="/admin/adminmanagement" element={<Adminmanagement />} />
                     <Route path="/admin/objectmanagement" element={<Objectmanagement />} />
                     <Route path="/admin/newsmanagement" element={<Newsmanagement />} />
                     <Route path="/admin/documentmanagement" element={<Documentmanagement />} />

@@ -1,0 +1,50 @@
+/* Styling der Adminmanagement-Component */
+
+.Adminmanagement_Admin {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 50px);
+    overflow-x: hidden;
+}
+
+.Adminmanagement_Admin main {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 5% 5% 0% 5%;
+}
+
+.Adminmanagement_Admin .adminlist {
+    display: flex;
+    width: 20%;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.Adminmanagement_Admin .seperator {
+    width: 2px;
+    background-color: #F9A800;
+    height: 600px;
+}
+
+.Adminmanagement_Admin .admindata {
+    display: flex;
+    width: 20%;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 5%;
+}
+
+.Adminmanagement_Admin .btn-update {
+    background-color: #F9A800;
+    width: 150px;
+    color: #ffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}

@@ -1,0 +1,51 @@
+/* Styling Adminlist-Component */
+
+.Adminlist ul {
+    width: 110%;
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.Adminlist li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Adminlist .admin-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.Adminlist .user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Adminlist .admin-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.Adminlist .edit-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.Adminlist .delete-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}

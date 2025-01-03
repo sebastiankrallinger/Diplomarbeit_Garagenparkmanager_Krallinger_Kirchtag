@@ -1,0 +1,18 @@
+/* Styling InputformAdmindata-Component */
+
+.InputformAdmindata {
+    display: flex;
+    flex-direction: column;
+}
+
+.InputformAdmindata .inputForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.InputformAdmindata .inputForm input {
+    margin-top: 10px;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
