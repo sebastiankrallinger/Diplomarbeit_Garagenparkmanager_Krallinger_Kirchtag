@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { AuthContext } from '../../AuthContext';
+import Cookies from 'js-cookie';
 import './user_register.css';
 
 function User_Register() {
@@ -36,6 +37,7 @@ function User_Register() {
             return;
         }
 
+        const staySignedIn = document.getElementById('staySignedIn').checked;
         const data = {
             firstname: formData.firstname,
             lastname: formData.lastname,
@@ -63,7 +65,10 @@ function User_Register() {
             if (response.ok) {
                 const data = await response.json();
                 const userData = { email: formData.email };
-                login(userData);
+                if (staySignedIn) {
+                    Cookies.set('auth_token', data.accesstoken, { expires: 7, secure: true });
+                }
+                login(userData, data.email);
                 console.log('Login erfolgreich:', data);
                 navigate('/user');
             } else {

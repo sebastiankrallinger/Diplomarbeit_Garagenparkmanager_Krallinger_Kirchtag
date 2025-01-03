@@ -1,12 +1,13 @@
 /* Header_LoadingPage-Component*/
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo_Lagerage.png';
 import './Header.css';
 
 function Header() {  
     const navigate = useNavigate(); 
+
     const handleNavigation = (route) => {
         navigate(route);
     };
@@ -14,6 +15,7 @@ function Header() {
         e.preventDefault();
         navigate('/login');
     };
+
     return (  
         <header>
             <div className="header-container">

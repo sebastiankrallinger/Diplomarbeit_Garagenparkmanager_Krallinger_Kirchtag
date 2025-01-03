@@ -1,6 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode'
 import './login.css';
 
 function UserLogin() {
@@ -9,9 +11,21 @@ function UserLogin() {
     const [password, setPassword] = useState('');
     const { login } = useContext(AuthContext);
 
+    useEffect(() => {
+        const token = Cookies.get('auth_token');
+        console.log('Token:', token); 
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            console.log('Decoded Token:', decodedToken);
+            login(token, decodedToken.name);
+            navigate('/user');
+        }
+    }, [navigate]);
+
     const handleLogin = async (e) => {
         e.preventDefault();
 
+        const staySignedIn = document.getElementById('staySignedIn').checked;
         const loginData = {
             email,
             password,
@@ -30,6 +44,9 @@ function UserLogin() {
                 const data = await response.json();
 
                 if (data) {
+                    if (staySignedIn) {
+                        Cookies.set('auth_token', data.accesstoken, { expires: 7, secure: true });
+                    }
                     login(data.accesstoken, data.email);
                     console.log('Login erfolgreich');
                     navigate('/user');
@@ -80,7 +97,7 @@ function UserLogin() {
                     </div>
                     <div className="formOptions">
                         <div className="checkboxGroup">
-                            <input type="checkbox" id="staySignedIn" />
+                            <input type="checkbox" id="staySignedIn"/>
                             <label htmlFor="staySignedIn">Angemeldet bleiben</label>
                         </div>
                         <a href="/forgot-password" className="forgotPassword">Passwort vergessen?</a>
