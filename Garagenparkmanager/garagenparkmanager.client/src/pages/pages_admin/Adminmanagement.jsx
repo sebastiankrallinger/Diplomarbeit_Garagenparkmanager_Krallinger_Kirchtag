@@ -18,6 +18,7 @@ function Adminmanagement() {
               <div className="admindata">
                   <AdmindataForm />
                   <button className="btn-update">Aktualisieren</button>
+                  <button className="btn-addnew">Erstellen</button>
               </div>
           </main>
       </div>
