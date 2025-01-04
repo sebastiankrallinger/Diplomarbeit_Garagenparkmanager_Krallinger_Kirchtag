@@ -1,13 +1,14 @@
 ﻿using Garagenparkmanager.Server.Models;
 using Microsoft.Azure.Cosmos;
 using Microsoft.VisualBasic;
+using System.ComponentModel;
 
 namespace Garagenparkmanager.Server.Services
 {
     //Verwaltung Datenbankzugriffe
     public class CustomerRepository : ICustomerRepository
     {
-        private readonly Container _container;
+        private readonly Microsoft.Azure.Cosmos.Container _container;
 
         //Verbindung zu CosmosDB
         public CustomerRepository(
@@ -21,9 +22,9 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //Kunden erstellen
-        public async Task<Models.User> CreateCustomer(Models.User consumer)
+        public async Task<Models.User> CreateCustomer(Models.User customer)
         {
-            var response = await _container.CreateItemAsync(consumer, new PartitionKey((double)(consumer.Role)));
+            var response = await _container.CreateItemAsync(customer, new PartitionKey((double)(customer.Role)));
             return response.Resource;
         }
 
@@ -34,8 +35,15 @@ namespace Garagenparkmanager.Server.Services
             return response.Resource;
         }
 
+        //Kunden bearbeiten
+        public async Task<Models.User> EditCustomer(Models.User customer)
+        {
+            var response = await _container.ReplaceItemAsync(customer, customer.Id, new PartitionKey((double)customer.Role));
+            return response.Resource;
+        }
+
         //Kunden loeschen
-        public async Task<bool> DeleteCustomer(string id, Role role)
+        public async Task<bool> DeleteUser(string id, Role role)
         {
             var response = await _container.DeleteItemAsync<Models.User>(id, new PartitionKey((double)role));
             if (response != null)
@@ -62,19 +70,22 @@ namespace Garagenparkmanager.Server.Services
         //einen Benutzer laden
         public async Task<Models.User> GetUser(string id)
         {
-            var results = await GetAll();
-            foreach (var r in results)
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
+                .WithParameter("@id", id);
+
+            var iterator = _container.GetItemQueryIterator<Models.User>(query);
+
+            if (iterator.HasMoreResults)
             {
-                if (r.Id == id)
-                {
-                    return r;
-                }
+                var response = await iterator.ReadNextAsync();
+                return response.FirstOrDefault();
             }
+
             return null;
         }
 
-        //alle Kunden laden
-        public async Task<IEnumerable<Models.User>> GetAllCustomers()
+            //alle Kunden laden
+            public async Task<IEnumerable<Models.User>> GetAllCustomers()
         {
             var query = _container.GetItemQueryIterator<Models.User>(new QueryDefinition("SELECT * FROM c"));
 

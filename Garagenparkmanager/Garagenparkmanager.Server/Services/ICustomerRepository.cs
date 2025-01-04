@@ -11,6 +11,7 @@ namespace Garagenparkmanager.Server.Services
         Task<IEnumerable<User>> GetAllAdmins();
         Task<User> CreateCustomer(User customer);
         Task<AdminData> CreateAdmin(AdminData admin);
-        Task<bool> DeleteCustomer (string id, Role role);
+        Task<bool> DeleteUser(string id, Role role);
+        Task<Models.User> EditCustomer(Models.User customer);
     }
 }

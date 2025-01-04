@@ -23,8 +23,8 @@ function Adminlist({ admins, refreshAdmins }) {
         <div className="Adminlist">
             <h2>Admins</h2>
             {admins.map((admin, index) => (
-                <ul>
-                    <li key={index}>
+                <ul key={admin.id}>
+                    <li key={admin.id}>
                         <div className="admin-info">
                             <img src={userIcon} className="user-icon" alt="Benutzer-Icon" />
                             <p>{admin.email}</p>
