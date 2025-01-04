@@ -1,6 +1,7 @@
 ﻿using Garagenparkmanager.Server.Models;
 using Garagenparkmanager.Server.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
 
@@ -37,45 +38,59 @@ namespace Garagenparkmanager.Server.Controllers
         {
             //GetByEmail implementieren
             var passwordHandler = new Services.PasswordHandler();
-            var (passwordHash, salt) = passwordHandler.HashPassword(userdata.Password);
+            if (userdata.Password != "")
+            {
+                var (passwordHash, salt) = passwordHandler.HashPassword(userdata.Password);
+            
+                if (userdata.Firstname != "" && userdata.Lastname != "" && userdata.Birthdate != "" && userdata.Plz != "" && userdata.Location != "" && userdata.Street != "" && userdata.Housenumber != "" && userdata.Email != "")
+                {
+                    var newUser = new Models.User
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Role = Role.user,
+                        Firstname = userdata.Firstname,
+                        Lastname = userdata.Lastname,
+                        Birthdate = Convert.ToDateTime(userdata.Birthdate),
+                        Plz = userdata.Plz,
+                        Location = userdata.Location,
+                        Street = userdata.Street,
+                        Housenumber = Convert.ToInt32(userdata.Housenumber),
+                        HousenumberAddition = userdata.HousenumberAddition,
+                        Email = userdata.Email,
+                        CompanyName = userdata.CompanyName,
+                        AtuNumber = userdata.AtuNumber,
+                        Password = passwordHash,
+                        Salt = salt,
+                        Storages = new List<Storage>(),
+                        Contracts = new List<Contract>()
+                    };
+                    var response = await _userController.AddNewUser(newUser);
+                    if (response == null)
+                    {
+                        return BadRequest("Fehlerhafte Benutzerdaten");
+                    }
+                    else
+                    {
+                        LoginData data = new();
+                        data.Email = userdata.Email;
+                        data.Password = userdata.Password;
+                        var result = await _jwtService.Authenticate(data);
+                        if (result is null)
+                        {
+                            return Unauthorized("Ungültige Anmeldedaten");
+                        }
 
-            var newUser = new Models.User
-            {
-                Id = Guid.NewGuid().ToString(),
-                Role = Role.user,
-                Firstname = userdata.Firstname,
-                Lastname = userdata.Lastname,
-                Birthdate = Convert.ToDateTime(userdata.Birthdate),
-                Plz = userdata.Plz,
-                Location = userdata.Location,
-                Street = userdata.Street,
-                Housenumber = Convert.ToInt32(userdata.Housenumber),
-                HousenumberAddition = userdata.HousenumberAddition,
-                Email = userdata.Email,
-                CompanyName = userdata.CompanyName,
-                AtuNumber = userdata.AtuNumber,
-                Password = passwordHash,
-                Salt = salt,
-                Storages = new List<Storage>(),
-                Contracts = new List<Contract>()
-            };
-            var response = await _userController.AddNewUser(newUser);
-            if (response == null)
-            {
-                return BadRequest("Fehler bei der Benutzerregistrierung");
+                        return result;
+                    }
+                }
+                else
+                {
+                    return BadRequest("Fehlerhafte Benutzerdaten");
+                }
             }
             else
             {
-                LoginData data = new();
-                data.Email = userdata.Email;
-                data.Password = userdata.Password;
-                var result = await _jwtService.Authenticate(data);
-                if (result is null)
-                {
-                    return Unauthorized("Ungültige Anmeldedaten");
-                }
-
-                return result;
+                return Unauthorized("Ungültiges Passwort");
             }
         }
 

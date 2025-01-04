@@ -27,11 +27,27 @@ namespace Garagenparkmanager.Server.Controllers
             _configuration = configuration;
         }
 
-        //alle Kunden laden
-        [HttpGet]
+        //alle Benutzer laden
+        [HttpGet("users")]
         public async Task<IActionResult> GetAllUser()
         {
             var results = await _customerRepository.GetAll();
+            return Ok(results);
+        }
+
+        //alle Kunden laden
+        [HttpGet("customers")]
+        public async Task<IActionResult> GetAllCustomer()
+        {
+            var results = await _customerRepository.GetAllCustomers();
+            return Ok(results);
+        }
+
+        //alle Admins laden
+        [HttpGet("admins")]
+        public async Task<IActionResult> GetAllAdmins()
+        {
+            var results = await _customerRepository.GetAllAdmins();
             return Ok(results);
         }
 
@@ -45,9 +61,10 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Kunden loeschen
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(string id, Role role)
+        public async Task<IActionResult> DeleteUser(string id)
         {
-            var result = await _customerRepository.DeleteCustomer(id, role);
+            var user = _customerRepository.GetUser(id);
+            var result = await _customerRepository.DeleteCustomer(user.Result.Id, user.Result.Role);
             if (result)
             {
                 return NoContent();

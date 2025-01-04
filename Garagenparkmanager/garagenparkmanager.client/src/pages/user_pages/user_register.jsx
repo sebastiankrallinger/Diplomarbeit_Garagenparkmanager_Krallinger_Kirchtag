@@ -74,8 +74,8 @@ function User_Register() {
                 navigate('/user');
             } else {
                 const error = await response.text();
-                console.error('Fehler beim Registrieren:', error);
-                alert('Registrierung fehlgeschlagen: ' + error);
+                const errorlbl = document.getElementById('errorlbl');
+                errorlbl.innerText = 'Registrierung fehlgeschlagen: ' + error;
             }
         } catch (error) {
             console.error('Netzwerkfehler:', error);
@@ -273,7 +273,10 @@ function User_Register() {
                     </div>
                     <div className="formOptions">
                         <div className="checkboxGroup">
-
+                            <br />
+                            <label id="errorlbl"></label>
+                            <br />
+                            <br />
                             <input type="checkbox" id="staySignedIn" />
                             <label htmlFor="staySignedIn">Angemeldet bleiben</label>
 

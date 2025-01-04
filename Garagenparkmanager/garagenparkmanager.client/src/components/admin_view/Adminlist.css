@@ -1,7 +1,7 @@
 /* Styling Adminlist-Component */
 
 .Adminlist ul {
-    width: 110%;
+    min-width: 140%;
     background-color: #ffff;
     color: #000f;
     list-style-type: none;

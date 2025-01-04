@@ -38,7 +38,7 @@ namespace Garagenparkmanager.Server.Services
             return false;
         }
 
-        //alle Kunden laden
+        //alle Benutzer laden
         public async Task<IEnumerable<Models.User>> GetAll()
         {
             var query = _container.GetItemQueryIterator<Models.User>(new QueryDefinition("SELECT * FROM c"));
@@ -48,6 +48,62 @@ namespace Garagenparkmanager.Server.Services
             {
                 var response = await query.ReadNextAsync();
                 results.AddRange(response.ToList());
+            }
+            return results;
+        }
+
+        //einen Benutzer laden
+        public async Task<Models.User> GetUser(string id)
+        {
+            var results = await GetAll();
+            foreach (var r in results)
+            {
+                if (r.Id == id)
+                {
+                    return r;
+                }
+            }
+            return null;
+        }
+
+        //alle Kunden laden
+        public async Task<IEnumerable<Models.User>> GetAllCustomers()
+        {
+            var query = _container.GetItemQueryIterator<Models.User>(new QueryDefinition("SELECT * FROM c"));
+
+            var results = new List<Models.User>();
+            while (query.HasMoreResults)
+            {
+                var response = await query.ReadNextAsync();
+                foreach (var r in response)
+                {
+                    if (r.Role == Role.user)
+                    {
+                        results.Add(r);
+                    }
+
+                }
+            }
+            return results;
+        }
+
+        //alle Admins laden
+        public async Task<IEnumerable<Models.User>> GetAllAdmins()
+        {
+            var query = _container.GetItemQueryIterator<Models.User>(new QueryDefinition("SELECT * FROM c"));
+
+            var results = new List<Models.User>();
+            while (query.HasMoreResults)
+            {
+                var response = await query.ReadNextAsync();
+                foreach (var r in response)
+                {
+                    if (r.Role == Role.admin)
+                    {
+                        results.Add(r);
+                    }
+
+                }
             }
             return results;
         }

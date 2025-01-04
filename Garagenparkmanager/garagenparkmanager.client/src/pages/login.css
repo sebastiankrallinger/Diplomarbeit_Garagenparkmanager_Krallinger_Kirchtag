@@ -146,3 +146,7 @@
     border: 2px solid #fff;
     border-radius: 5px;
 }
+
+#errorlbl {
+    color: #f9a800;
+}

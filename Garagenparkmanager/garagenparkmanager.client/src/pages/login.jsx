@@ -2,8 +2,9 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 import Cookies from 'js-cookie';
-import jwtDecode from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 import './login.css';
+import { popupWindowError } from '../../../../../../../node_modules/@azure/msal-browser/dist/error/BrowserAuthErrorCodes';
 
 function UserLogin() {
     const navigate = useNavigate();
@@ -64,7 +65,8 @@ function UserLogin() {
                 }
             } else {
                 const error = await response.text();
-                alert('Login fehlgeschlagen: ' + error);
+                const errorlbl = document.getElementById('errorlbl');
+                errorlbl.innerText = 'Login fehlgeschlagen: ' + error;
             }
         } catch (error) {
             console.error('Netzwerkfehler:', error);
@@ -112,6 +114,8 @@ function UserLogin() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                        <br />
+                        <label id="errorlbl"></label>
 
                     </div>
                     <div className="formOptions">
