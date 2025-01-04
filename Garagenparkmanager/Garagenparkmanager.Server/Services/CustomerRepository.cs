@@ -27,6 +27,13 @@ namespace Garagenparkmanager.Server.Services
             return response.Resource;
         }
 
+        //Admin erstellen
+        public async Task<Models.AdminData> CreateAdmin(Models.AdminData admin)
+        {
+            var response = await _container.CreateItemAsync(admin, new PartitionKey((double)(admin.Role)));
+            return response.Resource;
+        }
+
         //Kunden loeschen
         public async Task<bool> DeleteCustomer(string id, Role role)
         {

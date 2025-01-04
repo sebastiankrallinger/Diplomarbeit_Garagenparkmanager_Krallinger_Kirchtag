@@ -55,7 +55,7 @@ function User_Register() {
         };
 
         try {
-            const response = await fetch('https://localhost:7186/Account/register', {
+            const response = await fetch('https://localhost:7186/Account/registerCustomer', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

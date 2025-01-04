@@ -52,10 +52,18 @@ namespace Garagenparkmanager.Server.Controllers
         }
 
         //Kunden erstellen
-        [HttpPost]
+        [HttpPost("customer")]
         public async Task<IActionResult> AddNewUser(Models.User user)
         {
             var result = await _customerRepository.CreateCustomer(user);
+            return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
+        }
+
+        //Admin erstellen
+        [HttpPost("admin")]
+        public async Task<IActionResult> AddNewAdmin(Models.AdminData adminData)
+        {
+            var result = await _customerRepository.CreateAdmin(adminData);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
         }
 

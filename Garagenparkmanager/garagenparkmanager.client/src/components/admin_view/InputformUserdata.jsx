@@ -6,7 +6,7 @@ function InputformUserdata() {
             <h2>Userdaten</h2>
             <div className="inputForm">
                 <input placeholder="Vorname"></input>
-                <input placeholder="Vorname"></input>
+                <input placeholder="Nachname"></input>
                 <div className="location">
                     <input placeholder="PLZ"></input>
                     <input placeholder="Ort"></input>

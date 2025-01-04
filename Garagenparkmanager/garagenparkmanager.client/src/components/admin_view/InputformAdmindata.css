@@ -16,3 +16,14 @@
     padding: 10px 10px;
     border-radius: 10px;
 }
+
+.InputformAdmindata .btn-addnew {
+    background-color: #F9A800;
+    width: 150px;
+    color: #ffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}

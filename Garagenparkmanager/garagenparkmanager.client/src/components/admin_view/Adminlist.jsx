@@ -4,27 +4,7 @@ import userIcon from '../../assets/userIconplaceholder.jpg';
 import editIcon from '../../assets/editicon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
-function Adminlist() {
-    const [admins, setAdmins] = useState([]);
-
-    useEffect(() => {
-        fetchAdmins();
-    }, []);
-
-    async function fetchAdmins() {
-        try {
-            const response = await fetch('https://localhost:7186/User/admins', {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
-                },
-            });
-            const data = await response.json();
-            setAdmins(data);
-        } catch (error) {
-            console.error('Fehler beim Abrufen der Admin-Liste:', error);
-        }
-    }
-
+function Adminlist({ admins, refreshAdmins }) {
     async function deleteAdmin(id) {
         try {
             const response = await fetch(`https://localhost:7186/User/${id}`, {
@@ -33,7 +13,7 @@ function Adminlist() {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
                 },
             });
-            await fetchAdmins();
+            refreshAdmins();
         } catch (error) {
             console.error('Fehler beim Löschen de Benutzers:', error);
         }
@@ -55,7 +35,7 @@ function Adminlist() {
                         </div>
                     </li>
                 </ul>
-            ))}
+            ))}      
         </div>
     );
 }
