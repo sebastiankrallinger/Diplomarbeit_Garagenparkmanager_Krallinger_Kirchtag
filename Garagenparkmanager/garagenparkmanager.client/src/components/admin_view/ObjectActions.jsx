@@ -7,9 +7,11 @@ import deleteIcon from '../../assets/deleteicon.png';
 function ObjectActions() {
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
+    const [vpi, setVpi] = useState(null);
 
     const handleButtonDetailsClick = () => {
         setShowPopupDetails(true);
+        loadVPI();
     };
 
     const handleButtonAddClick = () => {
@@ -23,6 +25,20 @@ function ObjectActions() {
     const closePopupAdd = () => {
         setShowPopupAdd(false);
     };
+
+    async function loadVPI() {
+        try {
+            const response = await fetch('/data/data/OGD_vpi10_VPI_2010_1.csv');
+            const data = await response.text();
+            const rows = data.trim().split("\n");
+            const lastVPI = rows[rows.length - 1];
+            const splitRow = lastVPI.split(";");
+            const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
+            setVpi(vpiValue);
+        } catch (error) {
+            console.error('Fehler beim Abrufen des VPI:', error);
+        }
+    }
 
     return (
         <div className="ObjectActions">
@@ -49,7 +65,7 @@ function ObjectActions() {
                         <img src={objectImg} className="objectImage" alt="Object-Image"></img>
                         <div className="popup-details-textcontent">
                             <h2>Garage Z4 - Details</h2>
-                            <p>Mietzins alt / Index alt * <input placeholder="Index neu"></input> = Mietzins neu</p>
+                            <p>Mietzins alt / Index alt * {`${vpi}`} = Mietzins neu</p>
                             <div className="actualContract">
                                 <div className="actualContract-content">
                                     <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
@@ -69,7 +85,7 @@ function ObjectActions() {
                     </div>
                 </div>
             )}
-            {showPopupAdd && (
+            {showPopupAdd &&(
                 <div className="popup-add">
                     <div className="popup-add-content">
                         <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={closePopupAdd}></img>

@@ -17,6 +17,9 @@ namespace Garagenparkmanager.Server.Models
         [JsonProperty(PropertyName = "extraCosts")]
         public double ExtraCosts { get; set; }
 
+        [JsonProperty(PropertyName = "vpi")]
+        public double Vpi { get; set; }
+
         [JsonProperty(PropertyName = "status")]
         public bool Status { get; set; }
     }

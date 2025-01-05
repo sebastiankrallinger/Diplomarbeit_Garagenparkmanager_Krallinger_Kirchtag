@@ -46,6 +46,11 @@ export default defineConfig({
             '^/home': {
                 target: 'https://localhost:7186',
                 secure: false
+            },
+            '/data': {
+                target: 'https://data.statistik.gv.at',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/data/, ''),
             }
         },
         port: 5173,
