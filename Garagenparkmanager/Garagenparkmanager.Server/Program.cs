@@ -39,12 +39,12 @@ namespace Garagenparkmanager.Server
                 });
             });
 
-            builder.Services.AddScoped<ICustomerRepository, CustomerRepository>(x
-                => new CustomerRepository(
+            builder.Services.AddScoped<IUserRepository, UserRepository>(x
+                => new UserRepository(
                     builder.Configuration.GetConnectionString("CosmosDb"),
                     builder.Configuration["CosmosConfig:primaryKey"],
                     builder.Configuration["CosmosConfig:databaseName"],
-                    builder.Configuration["CosmosConfig:cointainerName"]
+                    builder.Configuration["CosmosConfig:containerUserName"]
                 )
             );
 
