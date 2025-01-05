@@ -4,7 +4,9 @@ import userIcon from '../../assets/userIconplaceholder.jpg';
 import editIcon from '../../assets/editicon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
+/* Adminlist-Component */
 function Adminlist({ admins, refreshAdmins, editAdmin }) {
+    /* Admin löschen */
     async function deleteAdmin(id) {
         try {
             const response = await fetch(`https://localhost:7186/User/${id}`, {

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+//Datenmodell Admin
 namespace Garagenparkmanager.Server.Models
 {
     public class AdminData

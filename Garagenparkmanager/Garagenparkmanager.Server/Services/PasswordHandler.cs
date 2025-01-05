@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
 
+//Passwortüberprüfung
 namespace Garagenparkmanager.Server.Services
 {
     public class PasswordHandler
     {
+        //Passwort verschlüsseln
         public (string hashedPassword, string salt) HashPassword(string enteredPassword)
         {
             byte[] salt = RandomNumberGenerator.GetBytes(16);
@@ -19,6 +21,7 @@ namespace Garagenparkmanager.Server.Services
             return (passwordHashed, Convert.ToBase64String(salt));
         }
 
+        //Passwort vergleichen
         public bool ValidatePassword(string enteredPassword, string storedHash, string storedSalt)
         {
             byte[] salt = Convert.FromBase64String(storedSalt);

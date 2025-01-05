@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
 
+//Registrierung und Login verwalten
 namespace Garagenparkmanager.Server.Controllers
 {
     [Route("[controller]")]
@@ -19,6 +20,7 @@ namespace Garagenparkmanager.Server.Controllers
             _userController = new UserController(customerRepository, configuration);
         }
 
+        //Authentifizierung für den Login
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<LoginResponse>> LoginAsync([FromBody] LoginData userdata)
@@ -32,11 +34,11 @@ namespace Garagenparkmanager.Server.Controllers
             return result;
         }
 
+        //Regiestrierung Kunden
         [AllowAnonymous]
         [HttpPost("registerCustomer")]
         public async Task<ActionResult<LoginResponse>> RegisterAsync([FromBody] RegisterDataCustomer userdata)
         {
-            //GetByEmail implementieren
             var passwordHandler = new Services.PasswordHandler();
             if (userdata.Password != "")
             {
@@ -44,7 +46,7 @@ namespace Garagenparkmanager.Server.Controllers
             
                 if (userdata.Firstname != "" && userdata.Lastname != "" && userdata.Birthdate != "" && userdata.Plz != "" && userdata.Location != "" && userdata.Street != "" && userdata.Housenumber != "" && userdata.Email != "")
                 {
-                    var newUser = new Models.User
+                    var newUser = new Models.Customer
                     {
                         Id = Guid.NewGuid().ToString(),
                         Role = Role.user,
@@ -94,6 +96,7 @@ namespace Garagenparkmanager.Server.Controllers
             }
         }
 
+        //Registrierung Admins
         [AllowAnonymous]
         [HttpPost("registerAdmin")]
         public async Task<ActionResult<LoginResponse>> RegisterAdminAsync([FromBody] RegisterDataAdmin adminData)

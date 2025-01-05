@@ -4,7 +4,9 @@ import userIcon from '../../assets/userIconplaceholder.jpg';
 import editIcon from '../../assets/editicon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
+/* Userlist-Component*/
 function Userlist({ customers, refreshCustomers, editCustomer }) {
+    //Kunden löschen
     async function deleteCustomer(id) {
         try {
             const response = await fetch(`https://localhost:7186/User/${id}`, {

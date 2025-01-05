@@ -1,6 +1,7 @@
 import './Contractslist.css';
 import downloadIcon from '../../assets/downloadicon.png';
 
+/* Contractslist-Component */
 function Contractslist() {
     return (
         <div className="Contractslist">

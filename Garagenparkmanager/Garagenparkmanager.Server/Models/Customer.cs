@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+//Datenmodell Kunde
 namespace Garagenparkmanager.Server.Models
 {
     public enum Role
@@ -10,7 +11,7 @@ namespace Garagenparkmanager.Server.Models
     }
 
     //Kunden-Modell
-    public class User
+    public class Customer
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; } = string.Empty;

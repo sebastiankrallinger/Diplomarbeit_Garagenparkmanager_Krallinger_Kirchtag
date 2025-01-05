@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+//Datenmodell Kundenregistrierung
 namespace Garagenparkmanager.Server.Models
 {
     public class RegisterDataCustomer

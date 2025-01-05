@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import './InputformAdmindata.css';
 
+/* InputformAdmindata-Component*/
 function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
     const [formData, setFormData] = useState({
         firstname: '',
@@ -10,6 +11,7 @@ function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
     });
     const [error, setError] = useState(null);
 
+    //Input erfassen
     useEffect(() => {
         if (admin) {
             setFormData({

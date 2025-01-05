@@ -1,5 +1,7 @@
 import './Garagenparkplan.css'
 import ParkPlan from '../../assets/garagenparkplan.jpg'
+
+/* GaragenparkPlan-Component */
 function GaragenparkPlan() {
     return (
         <div className="GaragenparkPlan">

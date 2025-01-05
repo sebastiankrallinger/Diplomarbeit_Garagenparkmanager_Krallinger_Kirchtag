@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
+//Datenmodell der Mietobjekte
 namespace Garagenparkmanager.Server.Models
 {
-    //Mietobjekt-Modell
     public class Storage
     {
         [JsonProperty(PropertyName = "storageId")]

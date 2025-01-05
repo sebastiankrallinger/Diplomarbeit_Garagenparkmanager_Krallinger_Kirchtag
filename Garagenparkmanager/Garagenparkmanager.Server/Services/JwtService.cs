@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+//Token-Authentifizierung
 namespace Garagenparkmanager.Server.Services
 {
     public class JwtService
@@ -18,6 +19,7 @@ namespace Garagenparkmanager.Server.Services
             _configuration = configuration;
         }
 
+        //Token erstellen und Login authentifizieren
         public async Task<LoginResponse?> Authenticate(LoginData request)
         {
             if (request.Email is null || request.Password is null)
@@ -27,7 +29,7 @@ namespace Garagenparkmanager.Server.Services
 
             var users = await _customerRepository.GetAll();
             var passwordHandler = new Services.PasswordHandler();
-            foreach (Models.User u in users)
+            foreach (Models.Customer u in users)
             {
                 if (request.Email == u.Email)
                 {

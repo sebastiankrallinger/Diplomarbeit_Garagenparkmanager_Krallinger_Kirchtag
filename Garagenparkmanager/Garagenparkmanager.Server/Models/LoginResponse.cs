@@ -1,4 +1,5 @@
-﻿namespace Garagenparkmanager.Server.Models
+﻿//Datenmodell nach erfolgreichem Login
+namespace Garagenparkmanager.Server.Models
 {
     public class LoginResponse
     {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './InputformUserdata.css';
 
+/* InputformUserdata-Component*/
 function InputformUserdata({ user, handleFormChange }) {
     const [formData, setFormData] = useState({
         firstname: '',
@@ -17,6 +18,7 @@ function InputformUserdata({ user, handleFormChange }) {
         password: '',
     });
 
+    //Input erfassen
     useEffect(() => {
         if (user) {
             setFormData({

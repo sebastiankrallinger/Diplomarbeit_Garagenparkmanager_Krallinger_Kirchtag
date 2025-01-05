@@ -1,10 +1,10 @@
-/* Header_Admin-Component*/
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext';
 import logo from '../../assets/logo_Lagerage.png';
 import '../Header.css';
 
+/* Header_Admin-Component*/
 function Header() {  
     const navigate = useNavigate(); 
     const { user, logout } = useContext(AuthContext);

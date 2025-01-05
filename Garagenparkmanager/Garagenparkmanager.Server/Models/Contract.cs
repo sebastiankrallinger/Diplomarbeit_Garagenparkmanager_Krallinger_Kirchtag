@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
+//Datenmodell Mietvertrag
 namespace Garagenparkmanager.Server.Models
 {
-    //Mietvertarg-Modell
     public class Contract
     {
         [JsonProperty(PropertyName = "startDate")]

@@ -3,9 +3,9 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.VisualBasic;
 using System.ComponentModel;
 
+//Verwaltung Datenbankzugriffe User
 namespace Garagenparkmanager.Server.Services
 {
-    //Verwaltung Datenbankzugriffe
     public class UserRepository : IUserRepository
     {
         private readonly Microsoft.Azure.Cosmos.Container _container;
@@ -22,7 +22,7 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //Kunden erstellen
-        public async Task<Models.User> CreateCustomer(Models.User customer)
+        public async Task<Models.Customer> CreateCustomer(Models.Customer customer)
         {
             var response = await _container.CreateItemAsync(customer, new PartitionKey((double)(customer.Role)));
             return response.Resource;
@@ -36,7 +36,7 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //Kunden bearbeiten
-        public async Task<Models.User> EditCustomer(Models.User customer)
+        public async Task<Models.Customer> EditCustomer(Models.Customer customer)
         {
             var response = await _container.ReplaceItemAsync(customer, customer.Id, new PartitionKey((double)customer.Role));
             return response.Resource;
@@ -52,7 +52,7 @@ namespace Garagenparkmanager.Server.Services
         //User loeschen
         public async Task<bool> DeleteUser(string id, Role role)
         {
-            var response = await _container.DeleteItemAsync<Models.User>(id, new PartitionKey((double)role));
+            var response = await _container.DeleteItemAsync<Models.Customer>(id, new PartitionKey((double)role));
             if (response != null)
             {
                 return true;
@@ -61,11 +61,11 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //alle Benutzer laden
-        public async Task<IEnumerable<Models.User>> GetAll()
+        public async Task<IEnumerable<Models.Customer>> GetAll()
         {
-            var query = _container.GetItemQueryIterator<Models.User>(new QueryDefinition("SELECT * FROM c"));
+            var query = _container.GetItemQueryIterator<Models.Customer>(new QueryDefinition("SELECT * FROM c"));
 
-            var results = new List<Models.User>();
+            var results = new List<Models.Customer>();
             while (query.HasMoreResults)
             {
                 var response = await query.ReadNextAsync();
@@ -75,12 +75,12 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //einen Kunden laden
-        public async Task<Models.User> GetCustomer(string id)
+        public async Task<Models.Customer> GetCustomer(string id)
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
                 .WithParameter("@id", id);
 
-            var iterator = _container.GetItemQueryIterator<Models.User>(query);
+            var iterator = _container.GetItemQueryIterator<Models.Customer>(query);
 
             if (iterator.HasMoreResults)
             {
@@ -109,11 +109,11 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //alle Kunden laden
-        public async Task<IEnumerable<Models.User>> GetAllCustomers()
+        public async Task<IEnumerable<Models.Customer>> GetAllCustomers()
         {
-            var query = _container.GetItemQueryIterator<Models.User>(new QueryDefinition("SELECT * FROM c"));
+            var query = _container.GetItemQueryIterator<Models.Customer>(new QueryDefinition("SELECT * FROM c"));
 
-            var results = new List<Models.User>();
+            var results = new List<Models.Customer>();
             while (query.HasMoreResults)
             {
                 var response = await query.ReadNextAsync();
@@ -130,11 +130,11 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //alle Admins laden
-        public async Task<IEnumerable<Models.User>> GetAllAdmins()
+        public async Task<IEnumerable<Models.Customer>> GetAllAdmins()
         {
-            var query = _container.GetItemQueryIterator<Models.User>(new QueryDefinition("SELECT * FROM c"));
+            var query = _container.GetItemQueryIterator<Models.Customer>(new QueryDefinition("SELECT * FROM c"));
 
-            var results = new List<Models.User>();
+            var results = new List<Models.Customer>();
             while (query.HasMoreResults)
             {
                 var response = await query.ReadNextAsync();

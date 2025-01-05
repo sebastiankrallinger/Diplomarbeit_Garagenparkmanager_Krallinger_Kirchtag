@@ -5,6 +5,7 @@ html, body {
     margin: 0;
     background-color: #383E42;
     color: #FFFFFF;
+    overflow-x: hidden;
 }
 
 #root {

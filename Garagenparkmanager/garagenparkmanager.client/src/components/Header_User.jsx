@@ -14,6 +14,7 @@ function Header() {
         navigate(route);
     };
 
+    //Token entfernen
     const handleLogout = () => {
         Cookies.remove('auth_token');
         logout();

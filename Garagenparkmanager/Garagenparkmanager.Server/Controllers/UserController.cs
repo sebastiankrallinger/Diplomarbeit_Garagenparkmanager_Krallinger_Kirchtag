@@ -10,9 +10,9 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
+//Verwaltung User
 namespace Garagenparkmanager.Server.Controllers
 {
-    //Verwaltung User
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -70,7 +70,7 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Kunden erstellen
         [HttpPost("customer")]
-        public async Task<IActionResult> AddNewUser(Models.User customer)
+        public async Task<IActionResult> AddNewUser(Models.Customer customer)
         {
             var result = await _customerRepository.CreateCustomer(customer);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
@@ -86,7 +86,7 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Kunden bearbeiten
         [HttpPut("updateCustomer")]
-        public async Task<IActionResult> UpdateCustomer(Models.User customer)
+        public async Task<IActionResult> UpdateCustomer(Models.Customer customer)
         {
             var result = await _customerRepository.EditCustomer(customer);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);

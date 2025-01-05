@@ -3,12 +3,13 @@ import './ObjectActions.css'
 import objectImg from '../../assets/newsPlaceholder.jpg';
 import deleteIcon from '../../assets/deleteicon.png';
 
-
+/* ObjectActions-Component*/
 function ObjectActions() {
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
     const [vpi, setVpi] = useState(null);
 
+    //Pop-Ups öffnen/schliessen
     const handleButtonDetailsClick = () => {
         setShowPopupDetails(true);
         loadVPI();
@@ -26,6 +27,7 @@ function ObjectActions() {
         setShowPopupAdd(false);
     };
 
+    //aktuellen VPI laden
     async function loadVPI() {
         try {
             const response = await fetch('/data/data/OGD_vpi10_VPI_2010_1.csv');
