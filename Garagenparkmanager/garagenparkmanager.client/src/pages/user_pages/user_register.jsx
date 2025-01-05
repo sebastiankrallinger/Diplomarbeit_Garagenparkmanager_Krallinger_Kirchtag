@@ -70,7 +70,7 @@ function User_Register() {
                     Cookies.set('auth_token', data.accesstoken, { expires: 7, secure: true, sameSite: 'Strict' });
                 }
                 login(userData, data.email);
-                console.log('Login erfolgreich:', data);
+                {/*console.log('Login erfolgreich:', data);*/ }
                 navigate('/user');
             } else {
                 const error = await response.text();
