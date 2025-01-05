@@ -4,7 +4,6 @@ import { AuthContext } from '../AuthContext';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode'
 import './login.css';
-import { popupWindowError } from '../../../../../../../node_modules/@azure/msal-browser/dist/error/BrowserAuthErrorCodes';
 
 function UserLogin() {
     const navigate = useNavigate();
