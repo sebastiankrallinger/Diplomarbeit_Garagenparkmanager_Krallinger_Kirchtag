@@ -1,24 +1,41 @@
+import React, { useEffect, useState, useContext } from 'react';
 import './Userlist.css';
 import userIcon from '../../assets/userIconplaceholder.jpg';
 import editIcon from '../../assets/editicon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
-function Userlist() {
+function Userlist({ customers, refreshCustomers, editCustomer }) {
+    async function deleteCustomer(id) {
+        try {
+            const response = await fetch(`https://localhost:7186/User/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            refreshCustomers();
+        } catch (error) {
+            console.error('Fehler beim Löschen de Benutzers:', error);
+        }
+    }
+
     return (
       <div className="Userlist">
-          <h2>Benutzer</h2>
-          <ul>
-                <li>
-                    <div className="user-info">
-                        <img src={userIcon} className="user-icon" alt="Benutzer-Icon"></img>
-                        <p>Username</p>
-                    </div>
-                    <div className="user-action">
-                        <img src={editIcon} className="edit-icon" alt="Edit-Icon"></img>
-                        <img src={deleteIcon} className="delete-icon" alt="Delete-Icon"></img>
-                    </div>
-                </li>
-          </ul>
+            <h2>Benutzer</h2>
+            {customers.map((customer, index) => (
+              <ul key={customer.id}>
+                    <li key={customer.id}>
+                        <div className="user-info">
+                            <img src={userIcon} className="user-icon" alt="Benutzer-Icon"></img>
+                            <p>{customer.email}</p>
+                        </div>
+                        <div className="user-action">
+                            <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => editCustomer(customer.id)}></img>
+                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => deleteCustomer(customer.id)}></img>
+                        </div>
+                    </li>
+              </ul>
+            ))}
       </div>
   );
 }
