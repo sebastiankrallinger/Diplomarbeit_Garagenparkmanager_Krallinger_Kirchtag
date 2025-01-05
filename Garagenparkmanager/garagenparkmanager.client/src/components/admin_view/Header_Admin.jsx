@@ -24,7 +24,7 @@ function Header() {
                         <a onClick={() => handleNavigation('/admin')}>Dashboard</a>
                         <a onClick={() => handleNavigation('/admin/newsmanagement')}>News</a>
                         <a onClick={() => handleNavigation('/admin/objectmanagement')}>Objektverwaltung</a>
-                        {console.log(user)}
+                        {/* {console.log(user)} */}
                         {user.role === 0 && (
                             <a onClick={() => handleNavigation('/admin/adminmanagement')}>Adminverwaltung</a>
                         )}

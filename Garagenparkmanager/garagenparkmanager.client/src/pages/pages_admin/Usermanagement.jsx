@@ -31,7 +31,7 @@ function Usermanagement() {
 
     async function editData(id) {
         try {
-            const response = await fetch(`https://localhost:7186/User/getUser/${id}`, {
+            const response = await fetch(`https://localhost:7186/User/getCustomer/${id}`, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
                 },

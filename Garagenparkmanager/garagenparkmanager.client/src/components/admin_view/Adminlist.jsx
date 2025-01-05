@@ -4,7 +4,7 @@ import userIcon from '../../assets/userIconplaceholder.jpg';
 import editIcon from '../../assets/editicon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
-function Adminlist({ admins, refreshAdmins }) {
+function Adminlist({ admins, refreshAdmins, editAdmin }) {
     async function deleteAdmin(id) {
         try {
             const response = await fetch(`https://localhost:7186/User/${id}`, {
@@ -30,7 +30,7 @@ function Adminlist({ admins, refreshAdmins }) {
                             <p>{admin.email}</p>
                         </div>
                         <div className="admin-action">
-                            <img src={editIcon} className="edit-icon" alt="Edit-Icon" />
+                            <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => editAdmin(admin.id)} />
                             <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => deleteAdmin(admin.id)} />
                         </div>
                     </li>

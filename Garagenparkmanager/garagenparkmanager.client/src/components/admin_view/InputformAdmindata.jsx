@@ -1,29 +1,47 @@
 import { useEffect, useState, useContext } from 'react';
 import './InputformAdmindata.css';
 
-function InputformAdmindata({ refreshAdmins }) {
+function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
         email: '',
         password: '',
-        confirmPassword: '',
     });
     const [error, setError] = useState(null);
 
+    useEffect(() => {
+        if (admin) {
+            setFormData({
+                firstname: admin.firstname,
+                lastname: admin.lastname,
+                email: admin.email,
+                password: admin.password,
+            });
+        } else if (!admin) {
+            setFormData({
+                firstname: '',
+                lastname: '',
+                email: '',
+                password: '',
+            });
+        }
+    }, [admin]);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const updatedData = {
+            ...formData,
+            [name]: value,
+        };
+        setFormData(updatedData);
+
+        handleFormChange(updatedData);
     };
 
     //Admin erstellen
     const handleRegister = async (e) => {
         e.preventDefault();
-
-        if (formData.password !== formData.confirmPassword) {
-            setError('Passwörter stimmen nicht überein!');
-            return;
-        }
 
         const data = {
             firstname: formData.firstname,
@@ -47,7 +65,6 @@ function InputformAdmindata({ refreshAdmins }) {
                     lastname: '',
                     email: '',
                     password: '',
-                    confirmPassword: '',
                 });
                 const errorlbl = document.getElementById('errorlbl');
                 errorlbl.innerText = '';
@@ -72,7 +89,6 @@ function InputformAdmindata({ refreshAdmins }) {
                 <input type="text" name="lastname" placeholder="Nachname" value={formData.lastname} onChange={handleInputChange}></input>
                 <input type="text" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange}></input>
                 <input type="password" name="password" placeholder="Passwort" value={formData.password} onChange={handleInputChange}></input>
-                <input type="password" name="confirmPassword" placeholder="Passwort Best&auml;tigen" value={formData.confirmPassword} onChange={handleInputChange}></input>
             </div>
             <br />
             <label id="errorlbl"></label>

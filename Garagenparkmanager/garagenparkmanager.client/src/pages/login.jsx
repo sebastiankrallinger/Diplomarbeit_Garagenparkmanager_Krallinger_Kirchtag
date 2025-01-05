@@ -15,10 +15,8 @@ function UserLogin() {
     //Token beim Laden prüfen
     useEffect(() => {
         const token = Cookies.get('auth_token');
-        console.log('Token:', token); 
         if (token) {
             const decodedToken = jwtDecode(token);
-            console.log('Decoded Token:', decodedToken);
             login(token, decodedToken.name);
             navigate('/user');
         }
@@ -50,14 +48,14 @@ function UserLogin() {
                 if (data) {
                     if (data.role == 1 || data.role == 0) {
                         login(data.accesstoken, data.email, data.role);
-                        console.log('Login erfolgreich');
+                        {/*console.log('Login erfolgreich');*/ }
                         navigate('/admin');
                     } else {
                         if (staySignedIn) {
                             Cookies.set('auth_token', data.accesstoken, { expires: 4, secure: true, sameSite: 'Strict' });
                         }
                         login(data.accesstoken, data.email, data.role);
-                        console.log('Login erfolgreich');
+                        {/*console.log('Login erfolgreich');*/ }
                         navigate('/user');
                     }
                 } else {

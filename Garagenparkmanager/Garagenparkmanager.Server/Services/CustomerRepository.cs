@@ -42,6 +42,13 @@ namespace Garagenparkmanager.Server.Services
             return response.Resource;
         }
 
+        //Admin bearbeiten
+        public async Task<Models.AdminData> EditAdmin(Models.AdminData admin)
+        {
+            var response = await _container.ReplaceItemAsync(admin, admin.Id, new PartitionKey((double)admin.Role));
+            return response.Resource;
+        }
+
         //Kunden loeschen
         public async Task<bool> DeleteUser(string id, Role role)
         {
@@ -67,8 +74,8 @@ namespace Garagenparkmanager.Server.Services
             return results;
         }
 
-        //einen Benutzer laden
-        public async Task<Models.User> GetUser(string id)
+        //einen Kunden laden
+        public async Task<Models.User> GetCustomer(string id)
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
                 .WithParameter("@id", id);
@@ -84,8 +91,25 @@ namespace Garagenparkmanager.Server.Services
             return null;
         }
 
-            //alle Kunden laden
-            public async Task<IEnumerable<Models.User>> GetAllCustomers()
+        //einen Admin laden
+        public async Task<Models.AdminData> GetAdmin(string id)
+        {
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
+                .WithParameter("@id", id);
+
+            var iterator = _container.GetItemQueryIterator<Models.AdminData>(query);
+
+            if (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                return response.FirstOrDefault();
+            }
+
+            return null;
+        }
+
+        //alle Kunden laden
+        public async Task<IEnumerable<Models.User>> GetAllCustomers()
         {
             var query = _container.GetItemQueryIterator<Models.User>(new QueryDefinition("SELECT * FROM c"));
 
