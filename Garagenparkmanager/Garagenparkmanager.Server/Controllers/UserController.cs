@@ -18,10 +18,10 @@ namespace Garagenparkmanager.Server.Controllers
     [Route("[controller]")]
     public class UserController : Controller
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IUserRepository _customerRepository;
         private readonly IConfiguration _configuration;
 
-        public UserController(ICustomerRepository customerRepository, IConfiguration configuration)
+        public UserController(IUserRepository customerRepository, IConfiguration configuration)
         {
             _customerRepository = customerRepository;
             _configuration = configuration;

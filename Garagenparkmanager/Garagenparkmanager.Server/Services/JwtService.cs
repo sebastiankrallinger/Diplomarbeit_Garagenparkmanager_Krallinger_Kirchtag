@@ -9,10 +9,10 @@ namespace Garagenparkmanager.Server.Services
 {
     public class JwtService
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IUserRepository _customerRepository;
         private readonly IConfiguration _configuration;
 
-        public JwtService(ICustomerRepository customerRepository, IConfiguration configuration)
+        public JwtService(IUserRepository customerRepository, IConfiguration configuration)
         {
             _customerRepository = customerRepository;
             _configuration = configuration;

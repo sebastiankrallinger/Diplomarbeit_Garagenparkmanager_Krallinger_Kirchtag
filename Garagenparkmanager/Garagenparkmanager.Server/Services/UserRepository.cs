@@ -5,19 +5,19 @@ using Microsoft.VisualBasic;
 namespace Garagenparkmanager.Server.Services
 {
     //Verwaltung Datenbankzugriffe
-    public class CustomerRepository : ICustomerRepository
+    public class UserRepository : IUserRepository
     {
         private readonly Container _container;
 
         //Verbindung zu CosmosDB
-        public CustomerRepository(
+        public UserRepository(
             string conn,
             string key,
             string databaseName,
-            string containerName)
+            string containerUserName)
         {
             var cosmosClient = new CosmosClient(conn, key, new CosmosClientOptions() { });
-            _container = cosmosClient.GetContainer(databaseName, containerName);
+            _container = cosmosClient.GetContainer(databaseName, containerUserName);
         }
 
         //Kunden erstellen

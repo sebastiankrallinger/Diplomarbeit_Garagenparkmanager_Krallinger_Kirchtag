@@ -5,8 +5,8 @@ namespace Garagenparkmanager.Server.Models
     //Mietobjekt-Modell
     public class Storage
     {
-        [JsonProperty(PropertyName = "storageId")]
-        public int StorageId { get; set; } = 0;
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; } = string.Empty;
 
         [JsonProperty(PropertyName = "roomSize")]
         public double RoomSize { get; set; }

@@ -12,7 +12,7 @@ namespace Garagenparkmanager.Server.Controllers
     {
         private readonly JwtService _jwtService;
         private readonly UserController _userController;
-        public AccountController(JwtService jwtService, ICustomerRepository customerRepository, IConfiguration configuration)
+        public AccountController(JwtService jwtService, IUserRepository customerRepository, IConfiguration configuration)
         {
             _jwtService = jwtService;
             _userController = new UserController(customerRepository, configuration);
