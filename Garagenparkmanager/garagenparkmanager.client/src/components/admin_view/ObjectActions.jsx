@@ -8,6 +8,7 @@ function ObjectActions() {
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
     const [vpi, setVpi] = useState(null);
+    const [oldvpi, setOldVpi] = useState(null);
 
     //Pop-Ups öffnen/schliessen
     const handleButtonDetailsClick = () => {
@@ -37,6 +38,7 @@ function ObjectActions() {
             const splitRow = lastVPI.split(";");
             const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
             setVpi(vpiValue);
+            setOldVpi(vpiValue);
         } catch (error) {
             console.error('Fehler beim Abrufen des VPI:', error);
         }
@@ -67,7 +69,7 @@ function ObjectActions() {
                         <img src={objectImg} className="objectImage" alt="Object-Image"></img>
                         <div className="popup-details-textcontent">
                             <h2>Garage Z4 - Details</h2>
-                            <p>Mietzins alt / Index alt * {`${vpi}`} = Mietzins neu</p>
+                            <p>Mietzins alt /  {`${oldvpi}`} * {`${vpi}`} = Mietzins neu</p>
                             <div className="actualContract">
                                 <div className="actualContract-content">
                                     <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>

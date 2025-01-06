@@ -15,7 +15,7 @@ namespace Garagenparkmanager.Server.Models
         public double Price { get; set; }
 
         [JsonProperty(PropertyName = "activeContract")]
-        public Contract ActiveContract { get; set; }
+        public List<Contract> ActiveContract { get; set; }
 
         [JsonProperty(PropertyName = "booked")]
         public bool Booked { get; set; }
