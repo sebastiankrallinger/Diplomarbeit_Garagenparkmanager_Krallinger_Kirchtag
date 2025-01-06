@@ -10,6 +10,7 @@ function ObjectActions() {
     const [vpi, setVpi] = useState(null);
     const [storages, setStorages] = useState([]);
     const [selectedStorage, setSelectedStorage] = useState(null);
+    const [oldvpi, setOldVpi] = useState(null);
 
 
     const [storageData, setStorageData] = useState({
@@ -107,6 +108,7 @@ function ObjectActions() {
             const splitRow = lastVPI.split(";");
             const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
             setVpi(vpiValue);
+            setOldVpi(vpiValue);
         } catch (error) {
             console.error('Fehler beim Abrufen des VPI:', error);
         }
