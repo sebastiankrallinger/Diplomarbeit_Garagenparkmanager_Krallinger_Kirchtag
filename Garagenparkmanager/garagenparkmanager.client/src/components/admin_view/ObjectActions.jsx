@@ -8,6 +8,8 @@ function ObjectActions() {
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
     const [vpi, setVpi] = useState(null);
+    const [storages, setStorages] = useState([]);
+    const [selectedStorage, setSelectedStorage] = useState(null);
 
 
     const [storageData, setStorageData] = useState({
@@ -17,9 +19,9 @@ function ObjectActions() {
         name: ''
     });
 
-    //Pop-Ups �ffnen/schliessen
-    const handleButtonDetailsClick = () => {
+    const handleButtonDetailsClick = (storage) => {
         setShowPopupDetails(true);
+        setSelectedStorage(storage);
         loadVPI();
     };
 
@@ -39,7 +41,7 @@ function ObjectActions() {
         const { name, value } = e.target;
         const updatedData = {
             ...storageData,
-            [name]: value,
+            [name]: value || '', 
         };
         setStorageData(updatedData);
     };
@@ -69,9 +71,29 @@ function ObjectActions() {
                     price: '',
                     storagetype: '',
                 });
+                fetchStorages();
             }
         } catch (error) {
             console.error('Netzwerkfehler:', error);
+        }
+    }
+
+    useEffect(() => {
+        fetchStorages();
+    }, []);
+
+    async function fetchStorages() {
+        try {
+            const response = await fetch('https://localhost:7186/Storage/allobjects', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.json();
+            setStorages(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Admin-Liste:', error);
         }
     }
 
@@ -95,18 +117,20 @@ function ObjectActions() {
             <div className="rentedObjects">
                 <button onClick={handleButtonAddClick}>Objekt hinzuf&uuml;gen</button>
                 <h2>Vermietete Objekte</h2>
-                <ul>
-                    <li>
-                        <div className="objects">
-                            <img src={objectImg} className="objectImage" alt="Object-Image"></img>
-                            <div className="objects-content">
-                                <h2>Garage Z4</h2>
-                                <p>Gr&ouml;&szlig;e Preis Mieter</p>
-                                <button className="btn-details" onClick={handleButtonDetailsClick}>N&auml;here Infos</button>
+                {storages.map((storage, index) => (
+                    <ul key={storage.id}>
+                        <li key={storage.id}>
+                            <div className="objects">
+                                <img src={objectImg} className="objectImage" alt="Object-Image"></img>
+                                <div className="objects-content">
+                                    <h2>{storage.name}</h2>
+                                    <p>{storage.roomSize} m&sup2; {storage.price} &euro; {storage.storagetype === 0 ? "Garage" : (storage.storagetype === "1" ? "Kleinlager" : (storage.storagetype === "3" ? "B&uuml;ro" : storage.storagetype))} </p>
+                                    <button className="btn-details" onClick={() => handleButtonDetailsClick(storage)}>N&auml;here Infos</button>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                ))}
             </div>
             {showPopupDetails && (
                 <div className="popup-details">
@@ -114,22 +138,38 @@ function ObjectActions() {
                         <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={closePopupDetails}></img>
                         <img src={objectImg} className="objectImage" alt="Object-Image"></img>
                         <div className="popup-details-textcontent">
-                            <h2>Garage Z4 - Details</h2>
-                            <p>Mietzins alt / Index alt * {`${vpi}`} = Mietzins neu</p>
-                            <div className="actualContract">
-                                <div className="actualContract-content">
-                                    <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
-                                    <button className="btn-download">Abrufen</button>
-                                    <button className="btn-upload">neuen Vertag hochladen</button>
+                            <h2>{selectedStorage.name}</h2>
+                            <p>{selectedStorage.price} / {`${vpi}`} * {`${vpi}`} = {selectedStorage.price / parseFloat(vpi) * parseFloat(vpi)} &euro;</p>
+                            {selectedStorage.activeContract === null ? (
+                                <div className="actualContract">
+                                    <div className="actualContract-content">
+                                        <h3>kein Vertrag vorhanden</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="renter">
-                                <div className="renter-content">
-                                    <h3>Mieter</h3>
-                                    <p>Mieter Infos</p>
-                                    <button className="btn-download">Daten Abrufen</button>
+                            ) : (
+                                    <div className="actualContract">
+                                        <div className="actualContract-content">
+                                            <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
+                                            <button className="btn-download">Abrufen</button>
+                                            <button className="btn-upload">neuen Vertag hochladen</button>
+                                        </div>
+                                    </div>
+                            )}
+                            {selectedStorage.booked === false ? (
+                                <div className="renter">
+                                    <div className="renter-content">
+                                        <h3>kein Mieter vorhanden</h3>
+                                    </div>
                                 </div>
-                            </div>
+                            ) : (
+                                    <div className="renter">
+                                        <div className="renter-content">
+                                            <h3>Mieter</h3>
+                                            <p>Mieter Infos</p>
+                                            <button className="btn-download">Daten Abrufen</button>
+                                        </div>
+                                    </div>
+                            )}   
                             <button className="btn-saveChanges" onClick={closePopupDetails}>&Auml;nderungen Speichern</button>
                         </div>
                     </div>
