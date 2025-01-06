@@ -5,10 +5,18 @@ import './Mainpage_Admin.css';
 import Header from '../../components/admin_view/Header_Admin';
 
 function Mainpage_Admin() {
+    const [allObjects, setAllObjects] = useState(null);
+    const [bookedObjects, setBookedObjects] = useState(null);
+    const [freeObjects, setFreeObjects] = useState(null);
     const [vpi, setVpi] = useState(null);
+    const [earnings, setEarnings] = useState(null);
+    const [user, setUser] = useState(null); 
 
     useEffect(() => {
         loadVPI();
+        //loadObjects();
+        //loadEarnings();
+        loadUser();
     }, []);
 
     async function loadVPI() {
@@ -25,6 +33,50 @@ function Mainpage_Admin() {
         }
     }
 
+    async function loadObjects() {
+        try {
+            const response = await fetch('https://localhost:7186/Storage/allobjects', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
+                }
+            });
+            const data = await response.json();
+            const objects = data.length;
+            setAllObjects(objects);
+            const bookedObjects = data.filter(obj => obj.booked === true).length;
+            setBookedObjects(booked);
+            const freeObjects = data.filter(obj => obj.booked === false).length;
+            setFreeObjects(freeObjects);
+            
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Lagerräume:', error);
+        }
+    }
+
+    async function loadEarnings() {
+        try {
+            //const response = await fetch('');
+
+        } catch (error) {
+            console.error('Fehler beim Abrufen des Umsatzes:', error);
+        }
+    }
+
+    async function loadUser() {
+        try {
+            const response = await fetch('https://localhost:7186/User/users', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
+                }
+            });
+            const data = await response.json();
+            const user = data.filter(u => u.role === 2).length;
+            setUser(user);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Benutzer:', error);
+        }
+    }
+
 
     return (
         <div className="Mainpage_Admin">
@@ -36,14 +88,14 @@ function Mainpage_Admin() {
                     </div>
                     <div className="content">
                         <div className="leftCol">
-                            <p>Gesamtanzahl Objekte: XX</p>
-                            <p>Vermietete Objekte: XX</p>
-                            <p>Freie Objekte: XX</p>
+                            <p>Gesamtanzahl Objekte: {allObjects ? `${allObjects}` : '...'}</p>
+                            <p>Vermietete Objekte: {bookedObjects ? `${bookedObjects}` : '...'}</p>
+                            <p>Freie Objekte: {freeObjects ? `${freeObjects}` : '...'}</p>
                             <p>Aktueller Mietzins: {vpi ? `${vpi} \u20AC` : '...'}</p>
                         </div>
                         <div className="rightCol">
-                            <p>Umastz letztes Monat: XX</p>
-                            <p>Registrierte Benutzer: XX</p>
+                            <p>Umastz letztes Monat: {earnings ? `${earnings} \u20AC` : '...'}</p>
+                            <p>Registrierte Benutzer: {user ? `${user}` : '...'}</p>
                             <p>Standorte: 2</p>
                         </div>
                     </div>

@@ -17,7 +17,7 @@
 .Mainpage_Admin .dashboard {
     display: flex;
     flex-direction: row;
-    width: 90%;
+    width: 70%;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -52,6 +52,7 @@ flex: 0.2;
     width: 45%;
 }
 
-    .Mainpage_Admin .leftCol p,.rightCol p {
-        margin: 10px 0;
-    }
+.Mainpage_Admin .leftCol p, .rightCol p {
+    margin: 10px 0;
+    font-size: 22px;
+}
