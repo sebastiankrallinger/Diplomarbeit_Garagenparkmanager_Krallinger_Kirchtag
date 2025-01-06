@@ -1,17 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-//Datenmodell der Mietobjekte
 namespace Garagenparkmanager.Server.Models
 {
-    public enum StorageType{
-        garage,
-        kleinlager,
-        buero
-    }
-    public class Storage
+    public class NewStorage
     {
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; } = string.Empty;
 
         [JsonProperty(PropertyName = "roomSize")]
         public double RoomSize { get; set; }
@@ -24,8 +16,5 @@ namespace Garagenparkmanager.Server.Models
 
         [JsonProperty(PropertyName = "storagetype")]
         public StorageType Storagetype { get; set; }
-
-        [JsonProperty(PropertyName = "activeContract")]
-        public Contract activeContract { get; set; }
     }
 }

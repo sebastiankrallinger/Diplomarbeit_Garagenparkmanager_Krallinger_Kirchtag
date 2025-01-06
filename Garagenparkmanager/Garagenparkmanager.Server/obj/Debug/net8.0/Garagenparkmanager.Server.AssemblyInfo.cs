@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Garagenparkmanager.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9cc3806a4c4c21bc3c38411726015ca80a338df6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c80ef8a77dfcfe4bdb1991c34d9aff79d4978ff3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Garagenparkmanager.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Garagenparkmanager.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

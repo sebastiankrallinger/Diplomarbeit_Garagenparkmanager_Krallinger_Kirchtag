@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Garagenparkmanager.Server.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Garagenparkmanager.Server.Controllers
 {
@@ -29,10 +30,26 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Kunden erstellen
         [HttpPost("addobject")]
-        public async Task<IActionResult> AddNewStorage(Storage storage)
+        public async Task<IActionResult> AddNewStorage([FromBody]NewStorage storage)
         {
-            var result = await _storageRepository.CreateStorage(storage);
-            return CreatedAtAction(nameof(GetAllStorages), new { id = result.Id }, result);
+            if (storage.RoomSize != null && storage.Price != null && storage.Booked != null && storage.Storagetype != null)
+            {
+                var newStorage = new Models.Storage
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    RoomSize = storage.RoomSize,
+                    Price = storage.Price,
+                    Booked = storage.Booked,
+                    Storagetype = storage.Storagetype,
+                    activeContract = null
+                };
+                var result = await _storageRepository.CreateStorage(newStorage);
+                return CreatedAtAction(nameof(GetAllStorages), new { id = result.Id }, result);
+            }
+            else
+            {
+                return BadRequest("Fehler bei Objekterstellung");
+            }
         }
     }
 }
