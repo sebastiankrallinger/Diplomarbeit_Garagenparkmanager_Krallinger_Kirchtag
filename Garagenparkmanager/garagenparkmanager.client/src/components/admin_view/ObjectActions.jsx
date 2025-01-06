@@ -57,7 +57,7 @@ function ObjectActions() {
         };
         try {
             const response = await fetch('https://localhost:7186/Storage/addobject', {
-                method: 'PUT',
+                method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${ localStorage.getItem('accesstoken') }`,
                     'Content-Type': 'application/json',
