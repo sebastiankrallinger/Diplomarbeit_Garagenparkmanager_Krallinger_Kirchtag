@@ -8,10 +8,14 @@ namespace Garagenparkmanager.Server.Models
         kleinlager,
         buero
     }
+
     public class Storage
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; } = string.Empty;
+
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
 
         [JsonProperty(PropertyName = "roomSize")]
         public double RoomSize { get; set; }

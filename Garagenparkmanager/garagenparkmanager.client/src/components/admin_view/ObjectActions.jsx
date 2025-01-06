@@ -13,7 +13,8 @@ function ObjectActions() {
     const [storageData, setStorageData] = useState({
         roomSize: '',
         price: '',
-        storagetype:'',
+        storagetype: '',
+        name: ''
     });
 
     //Pop-Ups �ffnen/schliessen
@@ -43,20 +44,14 @@ function ObjectActions() {
         setStorageData(updatedData);
     };
 
-
-    useEffect(() => {
-        loadVPI();
-    }, []);
-
     async function addobject() {
         const data = {
-            roomSize: storageData.roomSize,
-            price: storageData.price,
+            name: storageData.name,
+            roomSize: parseFloat(storageData.roomSize),
+            price: parseFloat(storageData.price),
             booked: false,
             storagetype: storageData.storagetype,
-            
         };
-        console.log(data);
         try {
             const response = await fetch('https://localhost:7186/Storage/addobject', {
                 method: 'POST',
@@ -69,6 +64,11 @@ function ObjectActions() {
 
             if (response.ok) {
                 console.log("Erfolgreich hinzugefügt!");
+                setStorageData({
+                    roomSize: '',
+                    price: '',
+                    storagetype: '',
+                });
             }
         } catch (error) {
             console.error('Netzwerkfehler:', error);
@@ -164,6 +164,14 @@ function ObjectActions() {
                         <div className="seperator"></div>
                         <div className="popup-add-textcontent">
                             <h2>Neues Objekt erstellen</h2>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Name"
+                                value={storageData.name}
+                                onChange={handleInputChangeStorage}
+                            />
                             <input 
                                 type="number"
                                 id="roomSize"
@@ -180,7 +188,6 @@ function ObjectActions() {
                                 value={storageData.price}
                                 onChange={handleInputChangeStorage}
                             />
-                            <label>{`${vpi}`}</label>
                             <div className="dropdown">
                                 <select value={storageData.storagetype} onChange={handleInputChangeStorage} name="storagetype">
                                     <option value="">Objekttyp ausw&auml;hlen</option>
