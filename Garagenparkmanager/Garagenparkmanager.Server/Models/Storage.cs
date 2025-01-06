@@ -30,6 +30,6 @@ namespace Garagenparkmanager.Server.Models
         public StorageType Storagetype { get; set; }
 
         [JsonProperty(PropertyName = "activeContract")]
-        public Contract activeContract { get; set; }
+        public Contract? activeContract { get; set; }
     }
 }

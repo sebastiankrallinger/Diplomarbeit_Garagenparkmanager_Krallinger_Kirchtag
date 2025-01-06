@@ -38,5 +38,27 @@ namespace Garagenparkmanager.Server.Services
             }
             return results;
         }
+
+        public async Task<Models.Storage> GetStorage(string id)
+        {
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
+                .WithParameter("@id", id);
+
+            var iterator = _container.GetItemQueryIterator<Models.Storage>(query);
+
+            if (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                return response.FirstOrDefault();
+            }
+
+            return null;
+        }
+
+        public async Task<Models.Storage> UpdateStatus(Storage storage)
+        {
+            var response = await _container.ReplaceItemAsync(storage, storage.Id, new PartitionKey(storage.Id));
+            return response.Resource;
+        }
     }
 }

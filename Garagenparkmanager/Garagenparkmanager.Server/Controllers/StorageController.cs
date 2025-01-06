@@ -20,7 +20,7 @@ namespace Garagenparkmanager.Server.Controllers
             _storageRepository = storageRepository;
             _configuration = configuration;
         }
-        //alle Kunden laden
+        //alle Lager laden
         [HttpGet("allobjects")]
         public async Task<IActionResult> GetAllStorages()
         {
@@ -28,7 +28,24 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
-        //Kunden erstellen
+        //einen Storage laden
+        [HttpGet("storage/{id}")]
+        public async Task<IActionResult> GetStorage(string id)
+        {
+            var results = await _storageRepository.GetStorage(id);
+            return Ok(results);
+        }
+
+        //Buchungsstatus ändern
+        [HttpPut("updateStatus")]
+        public async Task<IActionResult> UpdateStatus([FromBody]Storage storage)
+        {
+            storage.Booked = true;
+            var results = await _storageRepository.UpdateStatus(storage);
+            return Ok(results);
+        }
+
+        //Lager erstellen
         [HttpPost("addobject")]
         public async Task<IActionResult> AddNewStorage([FromBody]NewStorage storage)
         {

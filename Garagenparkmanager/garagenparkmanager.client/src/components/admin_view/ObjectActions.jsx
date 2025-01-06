@@ -56,7 +56,7 @@ function ObjectActions() {
         };
         try {
             const response = await fetch('https://localhost:7186/Storage/addobject', {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${ localStorage.getItem('accesstoken') }`,
                     'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ function ObjectActions() {
         <div className="ObjectActions">
             <div className="rentedObjects">
                 <button onClick={handleButtonAddClick}>Objekt hinzuf&uuml;gen</button>
-                <h2>Vermietete Objekte</h2>
+                <h2>Verf&uuml;gbare Lager</h2>
                 {storages.map((storage, index) => (
                     <ul key={storage.id}>
                         <li key={storage.id}>

@@ -149,5 +149,26 @@ namespace Garagenparkmanager.Server.Services
             }
             return results;
         }
+
+        //Gemietete Objekte laden
+        public async Task<IEnumerable<Models.Storage>> GetStorages(string id)
+        {
+            var query = _container.GetItemQueryIterator<Models.Customer>(new QueryDefinition("SELECT * FROM c"));
+
+            var results = new List<Models.Storage>();
+            while (query.HasMoreResults)
+            {
+                var response = await query.ReadNextAsync();
+                foreach (var r in response)
+                {
+                    if (r.Id == id)
+                    {
+                        results = r.Storages;
+                    }
+
+                }
+            }
+            return results;
+        }
     }
 }

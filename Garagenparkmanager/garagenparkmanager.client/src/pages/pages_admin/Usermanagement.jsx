@@ -10,6 +10,7 @@ function Usermanagement() {
     const [customers, setCustomers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [oldUserData, setoldUserData] = useState(null);
+    const [bookedStorages, setBookedtorages] = useState([]);
 
     useEffect(() => {
         fetchCustomers();
@@ -24,6 +25,20 @@ function Usermanagement() {
             });
             const data = await response.json();
             setCustomers(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Kunden-Liste:', error);
+        }
+    }
+
+    async function fetchStorages(id) {
+        try {
+            const response = await fetch(`https://localhost:7186/User/getStorages/${id}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.json();
+            setBookedtorages(data);
         } catch (error) {
             console.error('Fehler beim Abrufen der Kunden-Liste:', error);
         }
@@ -92,7 +107,7 @@ function Usermanagement() {
           <Header />
           <main>
               <div className="userlist">
-                  <Userlist customers={customers} refreshCustomers={fetchCustomers} editCustomer={editData} />
+                  <Userlist customers={customers} refreshCustomers={fetchCustomers} editCustomer={editData} loadStorages={fetchStorages} />
               </div>
               <div className="seperator"></div>
               <div className="userdata">
@@ -100,7 +115,7 @@ function Usermanagement() {
                   <button className="btn-update" onClick={() => updateCustomer(selectedUser)}>Aktualisieren</button>
               </div>
               <div className="object">
-                  <Userobjects />
+                  <Userobjects selectedUser={selectedUser} bookedStorages={bookedStorages} loadStorages={fetchStorages} />
               </div>
           </main>
       </div>

@@ -5,7 +5,7 @@ import editIcon from '../../assets/editicon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
 /* Userlist-Component*/
-function Userlist({ customers, refreshCustomers, editCustomer }) {
+function Userlist({ customers, refreshCustomers, editCustomer, loadStorages }) {
     //Kunden löschen
     async function deleteCustomer(id) {
         try {
@@ -32,7 +32,7 @@ function Userlist({ customers, refreshCustomers, editCustomer }) {
                             <p>{customer.email}</p>
                         </div>
                         <div className="user-action">
-                            <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => editCustomer(customer.id)}></img>
+                            <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => { editCustomer(customer.id); loadStorages(customer.id);}}></img>
                             <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => deleteCustomer(customer.id)}></img>
                         </div>
                     </li>

@@ -68,6 +68,15 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
+
+        //Gemietete Objekte laden
+        [HttpGet("getStorages/{id}")]
+        public async Task<IActionResult> GetStorages(string id)
+        {
+            var results = await _customerRepository.GetStorages(id);
+            return Ok(results);
+        }
+
         //Kunden erstellen
         [HttpPost("customer")]
         public async Task<IActionResult> AddNewUser(Models.Customer customer)
@@ -88,6 +97,17 @@ namespace Garagenparkmanager.Server.Controllers
         [HttpPut("updateCustomer")]
         public async Task<IActionResult> UpdateCustomer(Models.Customer customer)
         {
+            var result = await _customerRepository.EditCustomer(customer);
+            return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
+        }
+
+        //Storage hinzufuegen
+        [HttpPut("addStorage/{id}")]
+        public async Task<IActionResult> addStorage(string id, [FromBody] Models.Storage storage)
+        {
+            Customer customer = await _customerRepository.GetCustomer(id);
+            storage.Booked = true;
+            customer.Storages.Add(storage);
             var result = await _customerRepository.EditCustomer(customer);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
         }
