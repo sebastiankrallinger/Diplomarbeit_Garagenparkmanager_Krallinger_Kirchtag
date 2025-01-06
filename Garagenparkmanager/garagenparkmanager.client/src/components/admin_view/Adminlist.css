@@ -1,7 +1,7 @@
-/* Styling Userlist-Component */
+/* Styling Adminlist-Component */
 
-.Userlist ul {
-    min-width: 130%;
+.Adminlist ul {
+    min-width: 140%;
     background-color: #ffff;
     color: #000f;
     list-style-type: none;
@@ -9,32 +9,32 @@
     border-radius: 10px;
 }
 
-.Userlist li {
+.Adminlist li {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.Userlist .user-info {
+.Adminlist .admin-info {
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-.Userlist .user-icon {
+.Adminlist .user-icon {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.Userlist .user-action {
+.Adminlist .admin-action {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.Userlist .edit-icon {
+.Adminlist .edit-icon {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -42,7 +42,7 @@
     cursor: pointer;
 }
 
-.Userlist .delete-icon {
+.Adminlist .delete-icon {
     width: 20px;
     height: 20px;
     border-radius: 50%;

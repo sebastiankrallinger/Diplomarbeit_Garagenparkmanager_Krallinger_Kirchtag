@@ -1,6 +1,7 @@
 import './Documentslist.css';
 import deleteIcon from '../../assets/deleteicon.png';
 
+/* Documentslist-Component */
 function Documentslist() {
     return (
       <div className="Documentlist">

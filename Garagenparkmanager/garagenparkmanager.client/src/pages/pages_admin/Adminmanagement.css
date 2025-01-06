@@ -1,52 +1,44 @@
-/* Styling der Usermanagement-Component */
+/* Styling der Adminmanagement-Component */
 
-.Usermanagement_Admin {
+.Adminmanagement_Admin {
     display: flex;
     flex-direction: column;
     height: calc(100% - 50px);
+    overflow-x: hidden;
 }
 
-.Usermanagement_Admin main {
-    flex: 1;
+.Adminmanagement_Admin main {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    margin: 5%;
-    padding-bottom: 10%;
+    margin: 5% 5% 0% 5%;
 }
 
-.Usermanagement_Admin .userlist {
+.Adminmanagement_Admin .adminlist {
     display: flex;
+    width: 20%;
     flex-direction: column;
     justify-content: flex-start;
-    flex: 1;
     margin-right: 10%;
+    margin-left: 10%;
 }
 
-.Usermanagement_Admin .seperator {
+.Adminmanagement_Admin .seperator {
     width: 2px;
     background-color: #F9A800;
     height: 600px;
 }
 
-.Usermanagement_Admin .userdata {
+.Adminmanagement_Admin .admindata {
     display: flex;
+    width: 20%;
     flex-direction: column;
     justify-content: flex-start;
-    flex: 1;
     margin-left: 5%;
 }
 
-.Usermanagement_Admin .object {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex: 1;
-    margin-left: 5%;
-}
-
-.Usermanagement_Admin .btn-update {
-    margin-top: 10px;
+.Adminmanagement_Admin .btn-update {
     background-color: #F9A800;
     width: 150px;
     color: #ffff;
@@ -54,4 +46,5 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 15px;
 }

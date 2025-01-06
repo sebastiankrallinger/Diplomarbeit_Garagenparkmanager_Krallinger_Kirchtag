@@ -1,6 +1,7 @@
 import './UserObjects.css';
 import deleteIcon from '../../assets/deleteicon.png';
 
+/* UserObjects-Component*/
 function UserObjects() {
     return (
       <div className="UserObjects">

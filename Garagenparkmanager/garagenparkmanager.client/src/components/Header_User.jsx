@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 import logo from '../assets/logo_Lagerage.png';
+import Cookies from 'js-cookie';
 import './Header.css';
 
 function Header() {  
@@ -13,7 +14,9 @@ function Header() {
         navigate(route);
     };
 
+    //Token entfernen
     const handleLogout = () => {
+        Cookies.remove('auth_token');
         logout();
         navigate('/home'); 
     };

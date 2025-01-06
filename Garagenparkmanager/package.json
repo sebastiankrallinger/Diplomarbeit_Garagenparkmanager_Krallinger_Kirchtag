@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "keycloak-js": "^26.0.6",
+    "js-cookie": "^3.0.5",
+    "jwt-cookie": "^1.0.1",
+    "jwt-decode": "^3.0.0",
     "react-router-dom": "^7.0.1"
   }
 }

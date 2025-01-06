@@ -1,5 +1,4 @@
 /* Usermanagement-Component */
-
 import { useEffect, useState } from 'react';
 import './Usermanagement.css';
 import Header from '../../components/admin_view/Header_Admin';
@@ -8,20 +7,100 @@ import UserdataForm from '../../components/admin_view/InputformUserdata';
 import Userobjects from '../../components/admin_view/UserObjects';
 
 function Usermanagement() {
+    const [customers, setCustomers] = useState([]);
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [oldUserData, setoldUserData] = useState(null);
+
+    useEffect(() => {
+        fetchCustomers();
+    }, []);
+
+    async function fetchCustomers() {
+        try {
+            const response = await fetch('https://localhost:7186/User/customers', {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.json();
+            setCustomers(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Kunden-Liste:', error);
+        }
+    }
+
+    async function editData(id) {
+        try {
+            const response = await fetch(`https://localhost:7186/User/getCustomer/${id}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.json();
+            setoldUserData(data);
+            setSelectedUser(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Kunden-Liste:', error);
+        }
+    }
+
+    async function updateCustomer(customerData) {
+        try {
+            const response = await fetch(`https://localhost:7186/User/updateCustomer`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+                body: JSON.stringify({
+                    id: oldUserData.id,
+                    role: oldUserData.role,
+                    firstname: customerData.firstname,
+                    lastname: customerData.lastname,
+                    birthdate: customerData.birthdate,
+                    plz: customerData.plz,
+                    location: customerData.location,
+                    street: customerData.street,
+                    housenumber: customerData.housenumber,
+                    housenumberAddition: customerData.housenumberAddition,
+                    email: customerData.email,
+                    companyName: customerData.companyName,
+                    atuNumber: customerData.atuNumber,
+                    password: customerData.password,  
+                    salt: oldUserData.salt,          
+                    storages: oldUserData.storages,
+                    contracts: oldUserData.contracts,
+                }),
+            });
+            if (response.ok) {
+                fetchCustomers();
+                setSelectedUser(null);
+            } else {
+                console.error('Fehler beim Aktualisieren des Benutzers');
+            }
+        } catch (error) {
+            console.error('Fehler beim Senden der Update-Anfrage:', error);
+        }
+    }
+
+    const handleFormChange = (updatedUserData) => {
+        setSelectedUser(updatedUserData);
+    };
+
   return (
       <div className="Usermanagement_Admin">
           <Header />
           <main>
               <div className="userlist">
-                  <Userlist />
+                  <Userlist customers={customers} refreshCustomers={fetchCustomers} editCustomer={editData} />
               </div>
               <div className="seperator"></div>
               <div className="userdata">
-                  <UserdataForm />
+                  <UserdataForm refreshCustomers={fetchCustomers} user={selectedUser} handleFormChange={handleFormChange} />
+                  <button className="btn-update" onClick={() => updateCustomer(selectedUser)}>Aktualisieren</button>
               </div>
               <div className="object">
-                  <Userobjects />  
-                  <button className="btn-update">Aktualisieren</button>
+                  <Userobjects />
               </div>
           </main>
       </div>

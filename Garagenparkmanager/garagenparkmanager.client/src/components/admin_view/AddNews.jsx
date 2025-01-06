@@ -1,5 +1,6 @@
 import './AddNews.css';
 
+/* AddNews-Component */
 function AddNews() {
   return (
       <div className="AddNews">

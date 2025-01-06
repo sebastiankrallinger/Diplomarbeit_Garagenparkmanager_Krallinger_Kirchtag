@@ -3,6 +3,7 @@ import editIcon from '../../assets/editicon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 import newsImg from '../../assets/newsPlaceholder.jpg';
 
+/* Newslist-Component*/
 function Newslist() {
   return (
       <div className="Newslist">

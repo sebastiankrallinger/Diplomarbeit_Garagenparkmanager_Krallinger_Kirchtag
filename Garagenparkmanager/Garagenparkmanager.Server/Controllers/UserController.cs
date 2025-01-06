@@ -10,9 +10,9 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
+//Verwaltung User
 namespace Garagenparkmanager.Server.Controllers
 {
-    //Verwaltung User
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -27,27 +27,85 @@ namespace Garagenparkmanager.Server.Controllers
             _configuration = configuration;
         }
 
-        //alle Kunden laden
-        [HttpGet]
+        //alle Benutzer laden
+        [HttpGet("users")]
         public async Task<IActionResult> GetAllUser()
         {
             var results = await _customerRepository.GetAll();
             return Ok(results);
         }
 
-        //Kunden erstellen
-        [HttpPost]
-        public async Task<IActionResult> AddNewUser(Models.User user)
+        //alle Kunden laden
+        [HttpGet("customers")]
+        public async Task<IActionResult> GetAllCustomer()
         {
-            var result = await _customerRepository.CreateCustomer(user);
+            var results = await _customerRepository.GetAllCustomers();
+            return Ok(results);
+        }
+
+        //alle Admins laden
+        [HttpGet("admins")]
+        public async Task<IActionResult> GetAllAdmins()
+        {
+            var results = await _customerRepository.GetAllAdmins();
+            return Ok(results);
+        }
+
+        //einen Kunden laden
+        [HttpGet("getCustomer/{id}")]
+        public async Task<IActionResult> GetCustomer(string id)
+        {
+            var results = await _customerRepository.GetCustomer(id);
+            return Ok(results);
+        }
+
+
+        //einen Admin laden
+        [HttpGet("getAdmin/{id}")]
+        public async Task<IActionResult> GetAdmin(string id)
+        {
+            var results = await _customerRepository.GetAdmin(id);
+            return Ok(results);
+        }
+
+        //Kunden erstellen
+        [HttpPost("customer")]
+        public async Task<IActionResult> AddNewUser(Models.Customer customer)
+        {
+            var result = await _customerRepository.CreateCustomer(customer);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
         }
 
-        //Kunden loeschen
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(string id, Role role)
+        //Admin erstellen
+        [HttpPost("admin")]
+        public async Task<IActionResult> AddNewAdmin(Models.AdminData admin)
         {
-            var result = await _customerRepository.DeleteCustomer(id, role);
+            var result = await _customerRepository.CreateAdmin(admin);
+            return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
+        }
+
+        //Kunden bearbeiten
+        [HttpPut("updateCustomer")]
+        public async Task<IActionResult> UpdateCustomer(Models.Customer customer)
+        {
+            var result = await _customerRepository.EditCustomer(customer);
+            return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
+        }
+
+        //Admin bearbeiten
+        [HttpPut("updateAdmin")]
+        public async Task<IActionResult> UpdateAdmin(Models.AdminData admin)
+        {
+            var result = await _customerRepository.EditAdmin(admin);
+            return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
+        }
+
+        //User loeschen
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = _customerRepository.GetCustomer(id);
+            var result = await _customerRepository.DeleteUser(user.Result.Id, user.Result.Role);
             if (result)
             {
                 return NoContent();
