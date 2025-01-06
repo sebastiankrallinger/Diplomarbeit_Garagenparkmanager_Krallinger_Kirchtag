@@ -25,7 +25,7 @@ namespace Garagenparkmanager.Server.Services
             return response.Resource;
         }
 
-        //alle Kunden laden
+        //alle Storages laden
         public async Task<IEnumerable<Storage>> GetAll()
         {
             var query = _container.GetItemQueryIterator<Storage>(new QueryDefinition("SELECT * FROM c"));
