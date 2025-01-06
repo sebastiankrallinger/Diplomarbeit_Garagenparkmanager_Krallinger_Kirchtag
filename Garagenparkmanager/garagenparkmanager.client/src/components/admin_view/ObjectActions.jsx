@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ObjectActions.css'
 import objectImg from '../../assets/newsPlaceholder.jpg';
 import deleteIcon from '../../assets/deleteicon.png';
@@ -7,6 +7,10 @@ import deleteIcon from '../../assets/deleteicon.png';
 function ObjectActions() {
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
+    const [groesse, setGroesse] = useState('');
+    const [mietpreis, setMietpreis] = useState('');
+    const [extrakosten, setExtrakosten] = useState('');
+    const [vpi, setVpi] = useState(null);
 
     const handleButtonDetailsClick = () => {
         setShowPopupDetails(true);
@@ -23,6 +27,58 @@ function ObjectActions() {
     const closePopupAdd = () => {
         setShowPopupAdd(false);
     };
+
+    useEffect(() => {
+        loadVPI();
+    }, []);
+
+    async function addobject() {
+        const storageData = {
+            groesse,
+            extrakosten,
+            mietpreis,
+        };
+        try {
+            const response = await fetch('https://localhost:7186/Storage/addobject', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+
+                if (data) {
+                    login(data.accesstoken, data.email);
+                    console.log('Login erfolgreich');
+                    navigate('/user');
+                } else {
+                    alert('Login fehlgeschlagen: Kein gültiges Token erhalten');
+                }
+            } else {
+                const error = await response.text();
+                alert('Login fehlgeschlagen: ' + error);
+            }
+        } catch (error) {
+            console.error('Netzwerkfehler:', error);
+        }
+    }
+
+    async function loadVPI() {
+        try {
+            const response = await fetch('/data/data/OGD_vpi10_VPI_2010_1.csv');
+            const data = await response.text();
+            const rows = data.trim().split("\n");
+            const lastVPI = rows[rows.length - 1];
+            const splitRow = lastVPI.split(";");
+            const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
+            setVpi(vpiValue);
+        } catch (error) {
+            console.error('Fehler beim Abrufen des VPI:', error);
+        }
+    }
 
     return (
         <div className="ObjectActions">
@@ -98,8 +154,31 @@ function ObjectActions() {
                         <div className="seperator"></div>
                         <div className="popup-add-textcontent">
                             <h2>Neues Objekt erstellen</h2>
-                            <input placeholder="Gr&ouml;&szlig;e in m&sup2;"></input>
-                            <input placeholder="Preis nach VPI"></input>
+                            <input 
+                                type="groesse"
+                                id="groesse"
+                                name="groesse"
+                                placeholder="Gr&ouml;&szlig;e in m&sup2;"
+                                value={groesse}
+                                onChange={(e) => setGroesse(e.target.value)}
+                            />
+                            <input
+                                type="mietpreis"
+                                id="mietpreis"
+                                name="mietpreis"
+                                placeholder="Mietpreis"
+                                value={mietpreis}
+                                onChange={(e) => setMietpreis(e.target.value)}
+                            />
+                            <input
+                                type="extrakosten"
+                                id="extrakosten"
+                                name="extrakosten"
+                                placeholder="Extrakosten"
+                                value={extrakosten}
+                                onChange={(e) => setExtrakosten(e.target.value)}
+                            />
+                            <label>{`${vpi}`}</label>
                             <div className="dropdown">
                                 <select >
                                     <option value="">Objekt ausw&auml;hlen</option>
@@ -108,7 +187,7 @@ function ObjectActions() {
                                 </select>
                             </div>
                             <button className="btn-uploadContract">Vertrag hochladen</button>
-                            <button className="btn-addObject">Objekt hinzuf&uuml;gen</button>
+                            <button className="btn-addObject" onClick={addobject}>Objekt hinzuf&uuml;gen</button>
                         </div>
                     </div>
                 </div>

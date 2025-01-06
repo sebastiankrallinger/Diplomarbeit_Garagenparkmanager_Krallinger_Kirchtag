@@ -20,7 +20,7 @@ namespace Garagenparkmanager.Server.Controllers
             _configuration = configuration;
         }
         //alle Kunden laden
-        [HttpGet]
+        [HttpGet("allobjects")]
         public async Task<IActionResult> GetAllStorages()
         {
             var results = await _storageRepository.GetAll();
