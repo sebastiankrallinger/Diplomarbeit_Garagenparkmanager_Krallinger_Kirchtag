@@ -3,7 +3,7 @@
 //Datenmodell Admin
 namespace Garagenparkmanager.Server.Models
 {
-    public class AdminData
+    public class Admin
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; } = string.Empty;

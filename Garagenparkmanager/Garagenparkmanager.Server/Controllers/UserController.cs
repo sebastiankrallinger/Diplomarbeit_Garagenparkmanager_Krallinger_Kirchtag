@@ -87,7 +87,7 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Admin erstellen
         [HttpPost("admin")]
-        public async Task<IActionResult> AddNewAdmin(Models.AdminData admin)
+        public async Task<IActionResult> AddNewAdmin(Models.Admin admin)
         {
             var result = await _customerRepository.CreateAdmin(admin);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
@@ -114,7 +114,7 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Admin bearbeiten
         [HttpPut("updateAdmin")]
-        public async Task<IActionResult> UpdateAdmin(Models.AdminData admin)
+        public async Task<IActionResult> UpdateAdmin(Models.Admin admin)
         {
             var result = await _customerRepository.EditAdmin(admin);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);

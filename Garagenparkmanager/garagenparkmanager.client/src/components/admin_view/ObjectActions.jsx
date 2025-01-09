@@ -103,6 +103,7 @@ function ObjectActions() {
         try {
             const response = await fetch('/data/data/OGD_vpi10_VPI_2010_1.csv');
             const data = await response.text();
+            console.log(data);
             const rows = data.trim().split("\n");
             const lastVPI = rows[rows.length - 1];
             const splitRow = lastVPI.split(";");

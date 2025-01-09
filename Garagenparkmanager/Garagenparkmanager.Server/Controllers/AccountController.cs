@@ -106,7 +106,7 @@ namespace Garagenparkmanager.Server.Controllers
 
             if (adminData.Firstname != "" && adminData.Lastname != "" && adminData.Email != "" && adminData.Password != "")
             {
-                var newAdmin = new Models.AdminData
+                var newAdmin = new Models.Admin
                 {
                     Id = Guid.NewGuid().ToString(),
                     Role = Role.admin,

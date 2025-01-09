@@ -29,7 +29,7 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //Admin erstellen
-        public async Task<Models.AdminData> CreateAdmin(Models.AdminData admin)
+        public async Task<Models.Admin> CreateAdmin(Models.Admin admin)
         {
             var response = await _container.CreateItemAsync(admin, new PartitionKey((double)(admin.Role)));
             return response.Resource;
@@ -43,7 +43,7 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //Admin bearbeiten
-        public async Task<Models.AdminData> EditAdmin(Models.AdminData admin)
+        public async Task<Models.Admin> EditAdmin(Models.Admin admin)
         {
             var response = await _container.ReplaceItemAsync(admin, admin.Id, new PartitionKey((double)admin.Role));
             return response.Resource;
@@ -92,12 +92,12 @@ namespace Garagenparkmanager.Server.Services
         }
 
         //einen Admin laden
-        public async Task<Models.AdminData> GetAdmin(string id)
+        public async Task<Models.Admin> GetAdmin(string id)
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
                 .WithParameter("@id", id);
 
-            var iterator = _container.GetItemQueryIterator<Models.AdminData>(query);
+            var iterator = _container.GetItemQueryIterator<Models.Admin>(query);
 
             if (iterator.HasMoreResults)
             {
