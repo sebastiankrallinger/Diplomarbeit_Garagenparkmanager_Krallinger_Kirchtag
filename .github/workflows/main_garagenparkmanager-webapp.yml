@@ -31,14 +31,6 @@ jobs:
       - name: Publish Server
         run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
 
-      - name: Create HTTPS Directory
-        run: mkdir $HOME\.aspnet\https
-
-      - name: Export HTTPS Developer Certificate
-        run: |
-          dotnet dev-certs https -ep $HOME\.aspnet\https\aspnetcore-dev-cert.pfx -p ${{ secrets.CERT_PASSWORD }}
-          dotnet dev-certs https --trust
-
       - name: Install Client Dependencies
         run: npm install
         working-directory: Garagenparkmanager/garagenparkmanager.client
