@@ -40,7 +40,6 @@ export default defineConfig({
         rollupOptions: {
             external: [],
             }
-        }
     },
     server: {
         open: true,
