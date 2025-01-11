@@ -32,7 +32,7 @@ jobs:
       - name: Build React app
         run: |
           cd Garagenparkmanager/garagenparkmanager.client
-          NODE_ENV=production npm run build
+          NODE_ENV=production npm run build -- --rollupOptions.external=js-cookie
 
       - name: Publish ASP.NET app
         run: |
