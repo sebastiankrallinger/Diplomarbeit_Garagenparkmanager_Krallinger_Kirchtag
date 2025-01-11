@@ -45,7 +45,8 @@ export default defineConfig({
                     'jwt-decode': 'jwt_decode'
                 }
             }
-        },
+        }
+    },
     server: {
         open: true,
         https: httpsOptions,
