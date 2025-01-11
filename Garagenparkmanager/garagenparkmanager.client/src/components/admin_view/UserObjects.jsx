@@ -4,6 +4,8 @@ import deleteIcon from '../../assets/deleteicon.png';
 
 /* UserObjects-Component*/
 function UserObjects({ selectedUser, bookedStorages, loadStorages }) {
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [freeStorages, setFreeStorages] = useState([]);
     const [selectedStorage, setSelectedStorage] = useState([]);
 
@@ -13,7 +15,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages }) {
 
     async function fetchFreeStorages() {
         try {
-            const response = await fetch('https://localhost:7186/Storage/allobjects', {
+            const response = await fetch(url + 'Storage/allobjects', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),

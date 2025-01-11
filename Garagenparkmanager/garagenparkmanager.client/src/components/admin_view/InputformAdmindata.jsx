@@ -3,6 +3,8 @@ import './InputformAdmindata.css';
 
 /* InputformAdmindata-Component*/
 function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
@@ -53,7 +55,7 @@ function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
         };
 
         try {
-            const response = await fetch('https://localhost:7186/Account/registerAdmin', {
+            const response = await fetch(url + 'Account/registerAdmin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

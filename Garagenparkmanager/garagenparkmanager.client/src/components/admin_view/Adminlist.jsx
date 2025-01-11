@@ -6,10 +6,13 @@ import deleteIcon from '../../assets/deleteicon.png';
 
 /* Adminlist-Component */
 function Adminlist({ admins, refreshAdmins, editAdmin }) {
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
+
     /* Admin löschen */
     async function deleteAdmin(id) {
         try {
-            const response = await fetch(`https://localhost:7186/User/${id}`, {
+            const response = await fetch(url + `User/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),

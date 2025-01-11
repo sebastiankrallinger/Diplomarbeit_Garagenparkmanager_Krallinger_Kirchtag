@@ -6,10 +6,12 @@ import deleteIcon from '../../assets/deleteicon.png';
 
 /* Userlist-Component*/
 function Userlist({ customers, refreshCustomers, editCustomer, loadStorages }) {
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     //Kunden löschen
     async function deleteCustomer(id) {
         try {
-            const response = await fetch(`https://localhost:7186/User/${id}`, {
+            const response = await fetch(url + `User/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),

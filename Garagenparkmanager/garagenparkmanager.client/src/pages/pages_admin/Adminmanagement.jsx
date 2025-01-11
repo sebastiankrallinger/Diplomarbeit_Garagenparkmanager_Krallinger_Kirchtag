@@ -6,6 +6,8 @@ import AdminList from '../../components/admin_view/Adminlist';
 import AdmindataForm from '../../components/admin_view/InputformAdmindata';
 
 function Adminmanagement() {
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [admins, setAdmins] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [oldUserData, setoldUserData] = useState(null);
@@ -16,7 +18,7 @@ function Adminmanagement() {
 
     async function fetchAdmins() {
         try {
-            const response = await fetch('https://localhost:7186/User/admins', {
+            const response = await fetch(url + 'User/admins', {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
                 },
@@ -30,7 +32,7 @@ function Adminmanagement() {
 
     async function editData(id) {
         try {
-            const response = await fetch(`https://localhost:7186/User/getAdmin/${id}`, {
+            const response = await fetch(url + `User/getAdmin/${id}`, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
                 },
@@ -45,7 +47,7 @@ function Adminmanagement() {
 
     async function updateAdmin(adminData) {
         try {
-            const response = await fetch(`https://localhost:7186/User/updateAdmin`, {
+            const response = await fetch(url + `User/updateAdmin`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

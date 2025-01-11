@@ -5,6 +5,8 @@ import './Mainpage_Admin.css';
 import Header from '../../components/admin_view/Header_Admin';
 
 function Mainpage_Admin() {
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [allObjects, setAllObjects] = useState(null);
     const [bookedObjects, setBookedObjects] = useState(null);
     const [freeObjects, setFreeObjects] = useState(null);
@@ -35,7 +37,7 @@ function Mainpage_Admin() {
 
     async function loadObjects() {
         try {
-            const response = await fetch('https://localhost:7186/Storage/allobjects', {
+            const response = await fetch(url + 'Storage/allobjects', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
                 }
@@ -64,7 +66,7 @@ function Mainpage_Admin() {
 
     async function loadUser() {
         try {
-            const response = await fetch('https://localhost:7186/User/users', {
+            const response = await fetch(url + 'User/users', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
                 }

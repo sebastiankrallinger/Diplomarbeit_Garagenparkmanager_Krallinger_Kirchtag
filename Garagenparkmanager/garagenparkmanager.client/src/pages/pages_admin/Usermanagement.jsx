@@ -7,6 +7,8 @@ import UserdataForm from '../../components/admin_view/InputformUserdata';
 import Userobjects from '../../components/admin_view/UserObjects';
 
 function Usermanagement() {
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [customers, setCustomers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [oldUserData, setoldUserData] = useState(null);
@@ -18,7 +20,7 @@ function Usermanagement() {
 
     async function fetchCustomers() {
         try {
-            const response = await fetch('https://localhost:7186/User/customers', {
+            const response = await fetch(url + 'User/customers', {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
                 },
@@ -32,7 +34,7 @@ function Usermanagement() {
 
     async function fetchStorages(id) {
         try {
-            const response = await fetch(`https://localhost:7186/User/getStorages/${id}`, {
+            const response = await fetch(url + `User/getStorages/${id}`, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
                 },
@@ -46,7 +48,7 @@ function Usermanagement() {
 
     async function editData(id) {
         try {
-            const response = await fetch(`https://localhost:7186/User/getCustomer/${id}`, {
+            const response = await fetch(url + `User/getCustomer/${id}`, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
                 },
@@ -61,7 +63,7 @@ function Usermanagement() {
 
     async function updateCustomer(customerData) {
         try {
-            const response = await fetch(`https://localhost:7186/User/updateCustomer`, {
+            const response = await fetch(url + `User/updateCustomer`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

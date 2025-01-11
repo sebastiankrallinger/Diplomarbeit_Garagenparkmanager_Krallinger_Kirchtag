@@ -6,6 +6,8 @@ import jwtDecode from 'jwt-decode';
 import './login.css';
 
 function UserLogin() {
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -32,7 +34,7 @@ function UserLogin() {
         };
 
         try {
-            const response = await fetch('https://localhost:7186/Account/login', {
+            const response = await fetch(url + 'Account/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

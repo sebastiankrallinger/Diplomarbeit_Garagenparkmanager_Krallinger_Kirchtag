@@ -5,6 +5,8 @@ import deleteIcon from '../../assets/deleteicon.png';
 
 /* ObjectActions-Component*/
 function ObjectActions() {
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
     const [vpi, setVpi] = useState(null);
@@ -56,7 +58,7 @@ function ObjectActions() {
             storagetype: storageData.storagetype,
         };
         try {
-            const response = await fetch('https://localhost:7186/Storage/addobject', {
+            const response = await fetch(url + 'Storage/addobject', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${ localStorage.getItem('accesstoken') }`,
@@ -85,7 +87,7 @@ function ObjectActions() {
 
     async function fetchStorages() {
         try {
-            const response = await fetch('https://localhost:7186/Storage/allobjects', {
+            const response = await fetch(url + 'Storage/allobjects', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
