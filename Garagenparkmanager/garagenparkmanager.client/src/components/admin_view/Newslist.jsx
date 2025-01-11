@@ -1,5 +1,5 @@
 import './Newslist.css';
-import editIcon from '../../assets/editicon.png';
+import editIcon from '../../assets/editIcon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 import newsImg from '../../assets/newsPlaceholder.jpg';
 

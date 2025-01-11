@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './Adminlist.css';
 import userIcon from '../../assets/userIconplaceholder.jpg';
-import editIcon from '../../assets/editicon.png';
+import editIcon from '../../assets/editIcon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
 /* Adminlist-Component */
