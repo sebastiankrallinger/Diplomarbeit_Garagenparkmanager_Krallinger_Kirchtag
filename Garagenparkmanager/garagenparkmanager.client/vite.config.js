@@ -35,7 +35,8 @@ export default defineConfig({
     },
     build: {
         rollupOptions: {
-            external: ['js-cookie']
+            external: ['js-cookie'],
+            external: ['jwt-decode']
         }
     },
     server: {
