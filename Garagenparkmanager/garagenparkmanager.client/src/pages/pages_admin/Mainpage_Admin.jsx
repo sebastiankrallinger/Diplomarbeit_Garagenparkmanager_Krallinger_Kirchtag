@@ -23,7 +23,7 @@ function Mainpage_Admin() {
 
     async function loadVPI() {
         try {
-            const response = await fetch('/data/data/OGD_vpi10_VPI_2010_1.csv');
+            const response = await fetch('https://data.statistik.gv.at/data/OGD_vpi10_VPI_2010_1.csv');
             const data = await response.text();
             const rows = data.trim().split("\n");
             const lastVPI = rows[rows.length - 1]; 
