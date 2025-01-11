@@ -41,6 +41,11 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
     },
+    build: {
+        rollupOptions: {
+            external: ['js-cookie']
+        }
+    },
     server: {
         open: true,
         proxy: {
@@ -55,9 +60,9 @@ export default defineConfig({
             }
         },
         port: 5173,
-        https: isDevelopment ? {
+        https: {
             key: fs.readFileSync(keyFilePath),
             cert: fs.readFileSync(certFilePath),
-        } : false
+        }
     }
 });
