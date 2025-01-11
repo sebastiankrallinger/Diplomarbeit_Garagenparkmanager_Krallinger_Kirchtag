@@ -88,5 +88,15 @@ namespace Garagenparkmanager.Server.Controllers
                 return BadRequest("Fehler bei Objekterstellung");
             }
         }
+
+        //Vpi als CSV laden
+        [HttpGet("vpi")]
+        public async Task<IActionResult> GetVpiData()
+        {
+            var url = "https://data.statistik.gv.at/data/OGD_vpi10_VPI_2010_1.csv";
+            var client = new HttpClient();
+            var data = await client.GetStringAsync(url);
+            return Ok(data);
+        }
     }
 }
