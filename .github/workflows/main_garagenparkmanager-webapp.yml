@@ -33,7 +33,11 @@ jobs:
         run: |
           cd Garagenparkmanager/garagenparkmanager.client
           NODE_ENV=production npm run build
-          
+
+      - name: Restore NuGet packages
+        run: |
+          dotnet restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
+
       - name: Build Server
         run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
 
