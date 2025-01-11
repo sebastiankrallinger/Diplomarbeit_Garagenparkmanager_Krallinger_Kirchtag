@@ -29,14 +29,17 @@ if (isDevelopment && fs.existsSync(certFilePath) && fs.existsSync(keyFilePath)) 
 export default defineConfig({
     plugins: [plugin()],
     resolve: {
-        alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url))
+        resolve: {
+            alias: {
+                '@': fileURLToPath(new URL('./src', import.meta.url))
+            }
         }
+
     },
     build: {
         rollupOptions: {
-            external: ['js-cookie', 'jwt-decode'],
-        }
+            external: [],
+        },
     },
     server: {
         open: true,
