@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
 import Cookies from 'js-cookie';
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
 import './login.css';
 
 function UserLogin() {
