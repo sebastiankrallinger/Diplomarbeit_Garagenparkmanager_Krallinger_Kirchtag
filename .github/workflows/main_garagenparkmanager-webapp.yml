@@ -44,6 +44,9 @@ jobs:
     needs: build
 
     steps:
+      - name: List files in dist directory
+        run: ls -R ./Garagenparkmanager/garagenparkmanager.client/dist
+
       - name: Deploy to Azure Web Apps
         uses: azure/webapps-deploy@v2
         with:
