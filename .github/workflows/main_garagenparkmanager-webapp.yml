@@ -33,15 +33,16 @@ jobs:
         run: |
           cd Garagenparkmanager/garagenparkmanager.client
           NODE_ENV=production npm run build
-
-      - name: Copy React build to out folder
-        run: |
-          cp -r Garagenparkmanager/garagenparkmanager.client/dist/* ./out
+          
       - name: Build Server
         run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
 
       - name: Publish ASP.NET app
         run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
+      
+      - name: Copy React build to out folder
+        run: |
+          cp -r Garagenparkmanager/garagenparkmanager.client/dist/* ./out
 
       - name: Deploy to Azure Web Apps (Frontend and Backend)
         uses: azure/webapps-deploy@v2
