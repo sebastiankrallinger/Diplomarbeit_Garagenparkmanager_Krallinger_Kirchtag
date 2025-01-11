@@ -17,22 +17,14 @@ const certificateName = "garagenparkmanager.client";
 const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
 const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
 
-if (isDevelopment && (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath))) {
-    if (0 !== child_process.spawnSync('dotnet', [
-        'dev-certs',
-        'https',
-        '--export-path',
-        certFilePath,
-        '--format',
-        'Pem',
-        '--no-password',
-    ], { stdio: 'inherit', }).status) {
-        throw new Error("Could not create certificate.");
-    }
+// Nur im Entwicklungsmodus die Zertifikate verwenden
+let httpsOptions = {};
+if (isDevelopment && fs.existsSync(certFilePath) && fs.existsSync(keyFilePath)) {
+    httpsOptions = {
+        key: fs.readFileSync(keyFilePath),
+        cert: fs.readFileSync(certFilePath),
+    };
 }
-
-const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
-    env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:7186';
 
 export default defineConfig({
     plugins: [plugin()],
@@ -48,6 +40,7 @@ export default defineConfig({
     },
     server: {
         open: true,
+        https: httpsOptions,
         proxy: {
             '^/home': {
                 target: 'https://localhost:7186',
@@ -60,9 +53,5 @@ export default defineConfig({
             }
         },
         port: 5173,
-        https: {
-            key: fs.readFileSync(keyFilePath),
-            cert: fs.readFileSync(certFilePath),
-        }
     }
 });
