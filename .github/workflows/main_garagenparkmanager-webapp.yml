@@ -44,18 +44,9 @@ jobs:
     needs: build
 
     steps:
-      - name: Deploy React app to Azure
+      - name: Deploy to Azure Web Apps
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'Garagenparkmanager-Webapp'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: ./Garagenparkmanager/garagenparkmanager.client/dist
-
-      - name: Deploy ASP.NET app to Azure
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'Garagenparkmanager-Backend'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: ./Garagenparkmanager/Garagenparkmanager.Server/publish_output
+          app-name: Garagenparkmanager-Webapp
+          publish-profile: ${{ secrets.AZURE_WEBAPP_GARAGENPARKMANAGER }}
+          package: ./out
