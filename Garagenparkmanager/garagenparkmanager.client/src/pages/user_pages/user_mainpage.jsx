@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './user_mainpage.css';
 import './popup.css';
 import Header from '../../components/Header_User';
 import Footer from '../../components/Footer';
 
 function UserMainpage() {
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
+    const [id, setId] = useState(null);
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [selectedObject, setSelectedObject] = useState(null);
+    const [bookedStorages, setBookedtorages] = useState([]);
 
     const handleOpenPopup = (object) => {
         setSelectedObject(object);
@@ -18,11 +22,45 @@ function UserMainpage() {
         setSelectedObject(null);
     };
 
-    const mockObjects = [
-        { id: 1, title: 'Objekt Nr. 1', size: '50m²', price: '500€', rentedSince: '01.01.2023', img: 'src/assets/floorplan1.jpg' },
-        { id: 2, title: 'Objekt Nr. 2', size: '70m²', price: '700€', rentedSince: '01.06.2022', img: 'src/assets/floorplan2.jpg' },
-        { id: 3, title: 'Objekt Nr. 3', size: '40m²', price: '400€', rentedSince: '01.12.2021', img: 'src/assets/floorplan3.jpg' },
-    ];
+    useEffect(() => {
+        fetchId();
+    }, []);
+
+    useEffect(() => {
+        if (id) {
+            fetchStorages();
+        }
+    }, [id]);
+
+    async function fetchId() {
+        try {
+            const email = localStorage.getItem('email');
+            const response = await fetch(url + `User/getCustomerId/${email}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.text();
+            setId(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Kunden-Liste:', error);
+        }
+    }
+
+    async function fetchStorages() {
+        try {
+            const response = await fetch(url + `User/getStorages/${id}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.json();
+            setBookedtorages(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Storages:', error);
+        }
+    }
 
     return (
         <div className="user_mainpage">
@@ -44,17 +82,21 @@ function UserMainpage() {
                 <section className="selfStorage">
                     <h1>SelfStorage/Immobilien</h1>
                     <div className="storageImages">
-                        {mockObjects.map((object) => (
-                            <div
-                                key={object.id}
-                                className="storageImage"
-                                onClick={() => handleOpenPopup(object)}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                <img src="src/assets/houseplaceholder.jpg" alt={object.title} />
-                                <p>{object.title}</p>
-                            </div>
-                        ))}
+                        {bookedStorages.length > 0 ? (
+                            bookedStorages.map((object) => (
+                                <div
+                                    key={object.id}
+                                    className="storageImage"
+                                    onClick={() => handleOpenPopup(object)}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <img src={object.img || "src/assets/houseplaceholder.jpg"} alt={object.name} />
+                                    <p>{object.name}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p>Keine SelfStorage/Immobilien verf&uuml;gbar.</p>
+                        )}
                     </div>
                 </section>
 
@@ -111,9 +153,11 @@ function UserMainpage() {
                             <img src={selectedObject.img} alt="Grundriss" className="floorplan" />
                             <div className="verticalLine"></div>
                             <div className="details">
-                                <p>Größe: {selectedObject.size}</p>
-                                <p>Preis: {selectedObject.price}</p>
-                                <p>Gemietet seit: {selectedObject.rentedSince}</p>
+                                <p>{selectedObject.name}</p>
+                                <p>Objetktyp: {selectedObject.storagetype === 0 ? "Garage" : (selectedObject.storagetype === "1" ? "Kleinlager" : (selectedObject.storagetype === "3" ? "B&uuml;ro" : selectedObject.storagetype))}</p>
+                                <p>Gr&ouml;&szlig;e: {selectedObject.roomSize} m&sup2; </p>
+                                <p>Preis: {selectedObject.price} &euro;</p>
+                                <p>Zusatzkosten: {selectedObject.activeContract.extraCosts} &euro;</p>
                                 <h3>Meine Dokumente:</h3>
                                 <ul>
                                     <li>Vertrag</li>

@@ -129,6 +129,23 @@ namespace Garagenparkmanager.Server.Services
             return results;
         }
 
+        public async Task<string> GetCustomerId(string email)
+        {
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.email = @email")
+                .WithParameter("@email", email);
+
+            var iterator = _container.GetItemQueryIterator<dynamic>(query);
+
+            if (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                return response.FirstOrDefault()?["id"];
+            }
+
+            return null;
+        }
+
+
         //alle Admins laden
         public async Task<IEnumerable<Models.Customer>> GetAllAdmins()
         {

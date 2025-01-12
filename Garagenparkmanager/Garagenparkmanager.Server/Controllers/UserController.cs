@@ -61,6 +61,13 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
+        [HttpGet("getCustomerId/{email}")]
+        public async Task<string> GetCustomerId(string email)
+        {
+            var results = await _customerRepository.GetCustomerId(email);
+            return results;
+        }
+
 
         //einen Admin laden
         [HttpGet("getAdmin/{id}")]

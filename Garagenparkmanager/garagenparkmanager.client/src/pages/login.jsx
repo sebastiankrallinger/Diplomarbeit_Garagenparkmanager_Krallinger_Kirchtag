@@ -45,7 +45,7 @@ function UserLogin() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
+                //console.log(data);
 
                 if (data) {
                     if (data.role == 1 || data.role == 0) {

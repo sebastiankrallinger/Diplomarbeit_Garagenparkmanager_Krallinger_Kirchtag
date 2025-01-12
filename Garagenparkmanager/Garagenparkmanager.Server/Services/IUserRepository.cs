@@ -8,6 +8,7 @@ namespace Garagenparkmanager.Server.Services
     {
         Task<IEnumerable<Customer>> GetAll();
         Task<Customer> GetCustomer(string id);
+        Task<string> GetCustomerId(string email);
         Task<Admin> GetAdmin(string id);
         Task<IEnumerable<Customer>> GetAllCustomers();
         Task<IEnumerable<Customer>> GetAllAdmins();
