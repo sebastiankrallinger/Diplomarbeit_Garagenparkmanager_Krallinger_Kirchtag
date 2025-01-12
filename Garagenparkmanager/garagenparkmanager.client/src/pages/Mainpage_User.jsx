@@ -4,6 +4,8 @@
 import './Mainpage_User.css';
 import Header from '../components/Header_User';
 import Footer from '../components/Footer';
+import personplaceholder from '../../src/assets/personplaceholder.jpg'
+import houseplaceholder from '../../src/assets/houseplaceholder.jpg'
 
 function Mainpage_User() {
   return (
@@ -24,13 +26,13 @@ function Mainpage_User() {
                   <h1>SelfStorage/Immobilien</h1>
                   <div className="storageImages">
                       <div className="storageImage">
-                          <img src="src/assets/houseplaceholder.jpg" alt="Storage1" />
+                          <img src={houseplaceholder} alt="Storage1" />
                       </div>
                       <div className="storageImage">
-                          <img src="src/assets/houseplaceholder.jpg" alt="Storage2" />
+                          <img src={houseplaceholder} alt="Storage2" />
                       </div>
                       <div className="storageImage">
-                          <img src="src/assets/houseplaceholder.jpg" alt="Storage3" />
+                          <img src={houseplaceholder} alt="Storage3" />
                       </div>
                   </div>
               </section>
@@ -38,28 +40,28 @@ function Mainpage_User() {
                   <h1>Unser Team</h1>
                   <div className="personImages">
                       <div className="personImage">
-                          <img src="src/assets/personplaceholder.jpg" alt="Person1" />
+                          <img src={personplaceholder} alt="Person1" />
                           <div className="text">
                               <p className="name">Person1</p>
                               <p className="role">Funktion</p>
                           </div>
                       </div>
                       <div className="personImage">
-                          <img src="src/assets/personplaceholder.jpg" alt="Person2" />
+                          <img src={personplaceholder} alt="Person2" />
                           <div className="text">
                               <p className="name">Person2</p>
                               <p className="role">Funktion</p>
                           </div>
                       </div>
                       <div className="personImage">
-                          <img src="src/assets/personplaceholder.jpg" alt="Person3" />
+                          <img src={personplaceholder} alt="Person3" />
                           <div className="text">
                               <p className="name">Person3</p>
                               <p className="role">Funktion</p>
                           </div>
                       </div>
                       <div className="personImage">
-                          <img src="src/assets/personplaceholder.jpg" alt="Person4" />
+                          <img src={personplaceholder} alt="Person4" />
                           <div className="text">
                               <p className="name">Person4</p>
                               <p className="role">Funktion</p>

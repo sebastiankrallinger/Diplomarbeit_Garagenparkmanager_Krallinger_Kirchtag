@@ -2,13 +2,15 @@
 
 import React from 'react';
 import './Footer.css';
+import Logo from '../../src/assets/logo_Lagerage.png'
+
 
 function Footer() {
   return (
       <footer>
           <div className="footer-container">
               <div className="footer-logo">
-                  <img src="src/assets/logo_Lagerage.png" />
+                  <img src={Logo} />
                   <a className="instagram-icon" href="https://www.instagram.com" target="_blank">
                       <i className="fab fa-instagram"></i>
                   </a>

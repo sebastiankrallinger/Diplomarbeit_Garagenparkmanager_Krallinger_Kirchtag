@@ -4,6 +4,7 @@ import { AuthContext } from '../AuthContext';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import './login.css';
+import Logo from '../../src/assets/logo_Lagerage.png'
 
 function UserLogin() {
     const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
@@ -147,7 +148,7 @@ function UserLogin() {
             </div>
 
             <div className="topRightImage">
-                <img src="../../src/assets/logo_Lagerage.png" alt="Lagerage-Logo" />
+                <img src={Logo} alt="Lagerage-Logo" />
             </div>
 
         </div>
