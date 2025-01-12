@@ -10,6 +10,10 @@ function ObjectActions() {
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
     const [vpi, setVpi] = useState(null);
+    const [customerFirstname, setcustomerFirstname] = useState();
+    const [customerLastname, setcustomerLastname] = useState();
+    const [customerEmail, setcustomerEmail] = useState();
+    const [customerCompany, setcustomerCompany] = useState();
     const [storages, setStorages] = useState([]);
     const [selectedStorage, setSelectedStorage] = useState(null);
     const [oldvpi, setOldVpi] = useState(null);
@@ -24,6 +28,7 @@ function ObjectActions() {
 
     const handleButtonDetailsClick = (storage) => {
         setShowPopupDetails(true);
+        getCustomerDetails(storage);
         setSelectedStorage(storage);
         loadVPI();
     };
@@ -34,6 +39,10 @@ function ObjectActions() {
 
     const closePopupDetails = () => {
         setShowPopupDetails(false);
+        setcustomerFirstname();
+        setcustomerLastname();
+        setcustomerEmail();
+        setcustomerCompany();
     };
 
     const closePopupAdd = () => {
@@ -125,6 +134,39 @@ function ObjectActions() {
         }
     }
 
+    //Kundendetails laden
+    async function getCustomerDetails(storage) {
+        try {
+            const response = await fetch(url + 'User/customers', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Fehler beim Abrufen des VPI');
+            }
+
+            const data = await response.json();
+
+            const customer = data.find(customer =>
+                customer.storages.some(storageObj => storageObj.id === storage.id)
+            );
+
+            if (customer) {
+                setcustomerFirstname(customer.firstname);
+                setcustomerLastname(customer.lastname);
+                setcustomerEmail(customer.email);
+                setcustomerCompany(customer.companyName)
+            } else {
+                console.log('Kein Kunde gefunden, der diese Storage-ID hat.');
+            }
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Kunden:', error);
+        }
+    }
+
     return (
         <div className="ObjectActions">
             <div className="rentedObjects">
@@ -178,8 +220,9 @@ function ObjectActions() {
                                     <div className="renter">
                                         <div className="renter-content">
                                             <h3>Mieter</h3>
-                                            <p>Mieter Infos</p>
-                                            <button className="btn-download">Daten Abrufen</button>
+                                            <p>{customerFirstname} {customerLastname}</p>
+                                            <p>{customerEmail}</p>
+                                            <p>{customerCompany}</p>
                                         </div>
                                     </div>
                             )}   

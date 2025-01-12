@@ -20,11 +20,13 @@ namespace Garagenparkmanager.Server.Controllers
     {
         private readonly IUserRepository _customerRepository;
         private readonly IConfiguration _configuration;
+        private readonly StorageController _storageController;
 
-        public UserController(IUserRepository customerRepository, IConfiguration configuration)
+        public UserController(IUserRepository customerRepository, IConfiguration configuration, IStorageRepository _storageRepository)
         {
             _customerRepository = customerRepository;
             _configuration = configuration;
+            _storageController = new StorageController(_storageRepository, configuration);
         }
 
         //alle Benutzer laden
@@ -125,6 +127,14 @@ namespace Garagenparkmanager.Server.Controllers
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = _customerRepository.GetCustomer(id);
+            if (user.Result.Storages != null)
+            {
+                var storages = user.Result.Storages;
+                foreach (Storage s in storages)
+                {
+                    var response = await _storageController.UpdateStatus(s);
+                }
+            }
             var result = await _customerRepository.DeleteUser(user.Result.Id, user.Result.Role);
             if (result)
             {

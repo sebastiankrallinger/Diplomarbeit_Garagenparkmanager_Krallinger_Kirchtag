@@ -8,7 +8,7 @@ function Mainpage_Admin() {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
     const [allObjects, setAllObjects] = useState(null);
-    const [bookedObjects, setBookedObjects] = useState(null);
+    const [bookedObjects, setBookedObjects] = useState([]);
     const [freeObjects, setFreeObjects] = useState(null);
     const [vpi, setVpi] = useState(null);
     const [earnings, setEarnings] = useState(null);
@@ -16,10 +16,15 @@ function Mainpage_Admin() {
 
     useEffect(() => {
         loadVPI();
-        //loadObjects();
-        //loadEarnings();
+        loadObjects();
         loadUser();
     }, []);
+
+    useEffect(() => {
+        if (bookedObjects.length > 0) {
+            loadEarnings();
+        }
+    }, [bookedObjects]);
 
     async function loadVPI() {
         try {
@@ -53,19 +58,22 @@ function Mainpage_Admin() {
             const data = await response.json();
             const objects = data.length;
             setAllObjects(objects);
-            const bookedObjects = data.filter(obj => obj.booked === true).length;
-            setBookedObjects(booked);
+            const bookedObjects = data.filter(obj => obj.booked === true);
+            setBookedObjects(bookedObjects);
             const freeObjects = data.filter(obj => obj.booked === false).length;
             setFreeObjects(freeObjects);
             
         } catch (error) {
-            console.error('Fehler beim Abrufen der Lagerräume:', error);
+            console.error('Fehler beim Abrufen der Lagerraeume:', error);
         }
     }
 
     async function loadEarnings() {
         try {
-            //const response = await fetch('');
+            const earnings = bookedObjects.reduce((sum, obj) => {
+                return sum + obj.price + obj.activeContract.extraCosts;
+            }, 0);
+            setEarnings(earnings);
 
         } catch (error) {
             console.error('Fehler beim Abrufen des Umsatzes:', error);
@@ -99,7 +107,7 @@ function Mainpage_Admin() {
                     <div className="content">
                         <div className="leftCol">
                             <p>Gesamtanzahl Objekte: {allObjects ? `${allObjects}` : '...'}</p>
-                            <p>Vermietete Objekte: {bookedObjects ? `${bookedObjects}` : '...'}</p>
+                            <p>Vermietete Objekte: {bookedObjects ? `${bookedObjects.length}` : '...'}</p>
                             <p>Freie Objekte: {freeObjects ? `${freeObjects}` : '...'}</p>
                             <p>Aktueller Mietzins: {vpi ? `${vpi} \u20AC` : '...'}</p>
                         </div>

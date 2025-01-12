@@ -40,7 +40,13 @@ namespace Garagenparkmanager.Server.Controllers
         [HttpPut("updateStatus")]
         public async Task<IActionResult> UpdateStatus([FromBody]Storage storage)
         {
-            storage.Booked = true;
+            if (storage.Booked == false)
+            {
+                storage.Booked = true;
+            }else if (storage.Booked == true)
+            {
+                storage.Booked = false;
+            }
             var results = await _storageRepository.UpdateStatus(storage);
             return Ok(results);
         }

@@ -101,7 +101,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages }) {
     return (
       <div className="UserObjects">
             <h2>Mietobjekte</h2>
-            {bookedStorages.map((storage, index) => (
+            {bookedStorages && bookedStorages.length > 0 && bookedStorages.map((storage, index) => (
                 <ul key={storage.id} >
                     <li key={storage.id} >
                         <p>{storage.name}</p>

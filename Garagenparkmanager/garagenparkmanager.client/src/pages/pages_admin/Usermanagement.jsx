@@ -84,14 +84,15 @@ function Usermanagement() {
                     companyName: customerData.companyName,
                     atuNumber: customerData.atuNumber,
                     password: customerData.password,  
-                    salt: oldUserData.salt,          
-                    storages: oldUserData.storages,
+                    salt: oldUserData.salt,
+                    storages: bookedStorages,
                     contracts: oldUserData.contracts,
                 }),
             });
             if (response.ok) {
                 fetchCustomers();
                 setSelectedUser(null);
+                setBookedtorages(null);
             } else {
                 console.error('Fehler beim Aktualisieren des Benutzers');
             }
