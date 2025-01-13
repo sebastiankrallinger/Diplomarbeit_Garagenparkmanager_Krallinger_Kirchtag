@@ -107,7 +107,7 @@ function UserMainpage() {
                     <h1>Unser Team</h1>
                     <div className="personImages">
                         <div className="personImage">
-                            <img src="src/assets/personplaceholder.jpg" alt="Person1" />
+                            <img src={personplaceholder} alt="Person1" />
                             <div className="text">
                                 <p className="name">Person1</p>
                                 <p className="role">Funktion</p>
