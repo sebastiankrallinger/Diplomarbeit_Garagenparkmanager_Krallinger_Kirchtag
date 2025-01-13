@@ -5,7 +5,7 @@ import Header from '../../components/Header_User';
 import Footer from '../../components/Footer';
 
 function UserMainpage() {
-    /const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     //const url = "https://localhost:7186/";
     const [id, setId] = useState(null);
     const [isPopupOpen, setPopupOpen] = useState(false);
