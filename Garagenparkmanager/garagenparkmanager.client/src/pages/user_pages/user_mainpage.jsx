@@ -3,6 +3,8 @@ import './user_mainpage.css';
 import './popup.css';
 import Header from '../../components/Header_User';
 import Footer from '../../components/Footer';
+import houseplaceholder from '../../../src/assets/houseplaceholder.jpg'
+import personplaceholder from '../../../src/assets/personplaceholder.jpg'
 
 function UserMainpage() {
     const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
@@ -90,7 +92,7 @@ function UserMainpage() {
                                     onClick={() => handleOpenPopup(object)}
                                     style={{ cursor: 'pointer' }}
                                 >
-                                    <img src={object.img || "src/assets/houseplaceholder.jpg"} alt={object.name} />
+                                    <img src={object.img || houseplaceholder} alt={object.name} />
                                     <p>{object.name}</p>
                                 </div>
                             ))
@@ -112,21 +114,21 @@ function UserMainpage() {
                             </div>
                         </div>
                         <div className="personImage">
-                            <img src="src/assets/personplaceholder.jpg" alt="Person2" />
+                            <img src={personplaceholder} alt="Person2" />
                             <div className="text">
                                 <p className="name">Person2</p>
                                 <p className="role">Funktion</p>
                             </div>
                         </div>
                         <div className="personImage">
-                            <img src="src/assets/personplaceholder.jpg" alt="Person3" />
+                            <img src={personplaceholder} alt="Person3" />
                             <div className="text">
                                 <p className="name">Person3</p>
                                 <p className="role">Funktion</p>
                             </div>
                         </div>
                         <div className="personImage">
-                            <img src="src/assets/personplaceholder.jpg" alt="Person4" />
+                            <img src={personplaceholder} alt="Person4" />
                             <div className="text">
                                 <p className="name">Person4</p>
                                 <p className="role">Funktion</p>
