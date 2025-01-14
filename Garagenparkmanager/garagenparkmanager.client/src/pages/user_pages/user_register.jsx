@@ -292,7 +292,7 @@ function User_Register() {
 
             <div className="topRightImage">
 
-                <img src= alt="Lagerage-Logo" />
+                <img src={logo} alt="Lagerage-Logo" />
 
             </div>
         </div>
