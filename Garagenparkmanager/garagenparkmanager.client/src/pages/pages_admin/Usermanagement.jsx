@@ -13,6 +13,7 @@ function Usermanagement() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [oldUserData, setoldUserData] = useState(null);
     const [bookedStorages, setBookedtorages] = useState([]);
+    const [contract, setcontract] = useState([]);
 
     useEffect(() => {
         fetchCustomers();
@@ -86,13 +87,15 @@ function Usermanagement() {
                     password: customerData.password,  
                     salt: oldUserData.salt,
                     storages: bookedStorages,
-                    contracts: oldUserData.contracts,
+                    contracts: [...oldUserData.contracts, contract],
                 }),
             });
             if (response.ok) {
+                setcontract(null);
                 fetchCustomers();
                 setSelectedUser(null);
                 setBookedtorages(null);
+                setcontract(null);
             } else {
                 console.error('Fehler beim Aktualisieren des Benutzers');
             }
@@ -118,7 +121,7 @@ function Usermanagement() {
                   <button className="btn-update" onClick={() => updateCustomer(selectedUser)}>Aktualisieren</button>
               </div>
               <div className="object">
-                  <Userobjects selectedUser={selectedUser} bookedStorages={bookedStorages} loadStorages={fetchStorages} />
+                  <Userobjects selectedUser={selectedUser} bookedStorages={bookedStorages} loadStorages={fetchStorages} contract={setcontract} />
               </div>
           </main>
       </div>

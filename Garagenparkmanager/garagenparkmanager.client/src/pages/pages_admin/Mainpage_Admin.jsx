@@ -7,12 +7,12 @@ import Header from '../../components/admin_view/Header_Admin';
 function Mainpage_Admin() {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
-    const [allObjects, setAllObjects] = useState(null);
+    const [allObjects, setAllObjects] = useState();
     const [bookedObjects, setBookedObjects] = useState([]);
-    const [freeObjects, setFreeObjects] = useState(null);
-    const [vpi, setVpi] = useState(null);
-    const [earnings, setEarnings] = useState(null);
-    const [user, setUser] = useState(null); 
+    const [freeObjects, setFreeObjects] = useState();
+    const [vpi, setVpi] = useState();
+    const [earnings, setEarnings] = useState();
+    const [user, setUser] = useState(); 
 
     useEffect(() => {
         loadVPI();
@@ -39,7 +39,7 @@ function Mainpage_Admin() {
             }
             const data = await response.text();
             const rows = data.trim().split("\n");
-            const lastVPI = rows[rows.length - 1]; 
+            const lastVPI = rows[rows.length - 13];
             const splitRow = lastVPI.split(";");
             const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
             setVpi(vpiValue);
@@ -106,14 +106,14 @@ function Mainpage_Admin() {
                     </div>
                     <div className="content">
                         <div className="leftCol">
-                            <p>Gesamtanzahl Objekte: {allObjects ? `${allObjects}` : '...'}</p>
-                            <p>Vermietete Objekte: {bookedObjects ? `${bookedObjects.length}` : '...'}</p>
-                            <p>Freie Objekte: {freeObjects ? `${freeObjects}` : '...'}</p>
-                            <p>Aktueller Mietzins: {vpi ? `${vpi} \u20AC` : '...'}</p>
+                            <p>Gesamtanzahl Objekte: {allObjects ? `${allObjects}` : '0'}</p>
+                            <p>Vermietete Objekte: {bookedObjects ? `${bookedObjects.length}` : '0'}</p>
+                            <p>Freie Objekte: {freeObjects ? `${freeObjects}` : '0'}</p>
+                            <p>Aktueller Mietzins: {vpi ? `${vpi}` : '0'}</p>
                         </div>
                         <div className="rightCol">
-                            <p>Umastz letztes Monat: {earnings ? `${earnings} \u20AC` : '...'}</p>
-                            <p>Registrierte Benutzer: {user ? `${user}` : '...'}</p>
+                            <p>Umastz letztes Monat: {earnings ? `${earnings} \u20AC` : '0'}</p>
+                            <p>Registrierte Benutzer: {user ? `${user}` : '0'}</p>
                             <p>Standorte: 2</p>
                         </div>
                     </div>

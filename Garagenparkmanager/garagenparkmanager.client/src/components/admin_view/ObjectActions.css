@@ -265,3 +265,7 @@
 .ObjectActions .popup-add-textcontent input {
     width: fit-content;
 }
+
+.ObjectActions .gray-background {
+    background-color: lightgray;
+}

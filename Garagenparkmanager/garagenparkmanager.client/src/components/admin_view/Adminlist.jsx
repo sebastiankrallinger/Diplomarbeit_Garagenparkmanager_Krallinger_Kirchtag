@@ -12,7 +12,7 @@ function Adminlist({ admins, refreshAdmins, editAdmin }) {
     /* Admin löschen */
     async function deleteAdmin(id) {
         try {
-            const response = await fetch(url + `User/${id}`, {
+            const response = await fetch(url + `User/deleteUser/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),

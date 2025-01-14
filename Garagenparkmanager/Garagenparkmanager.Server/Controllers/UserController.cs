@@ -117,6 +117,8 @@ namespace Garagenparkmanager.Server.Controllers
             Customer customer = await _customerRepository.GetCustomer(id);
             storage.Booked = true;
             customer.Storages.Add(storage);
+            customer.Contracts.Add(storage.activeContract);
+            await _storageController.addContract(storage.Id, storage.activeContract);
             var result = await _customerRepository.EditCustomer(customer);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
         }
@@ -130,7 +132,7 @@ namespace Garagenparkmanager.Server.Controllers
         }
 
         //User loeschen
-        [HttpDelete("{id}")]
+        [HttpDelete("deleteUser/{id}")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = _customerRepository.GetCustomer(id);
@@ -148,6 +150,27 @@ namespace Garagenparkmanager.Server.Controllers
                 return NoContent();
             }
             return BadRequest();
+        }
+
+        //Storage loeschen
+        [HttpPut("deleteStorage/{id}")]
+        public async Task<IActionResult> DeleteStorage(string id, [FromBody] Models.Storage storage)
+        {
+            Customer customer = await _customerRepository.GetCustomer(id);
+            if (customer.Storages != null)
+            {
+                var storages = customer.Storages;
+                foreach (Storage s in storages)
+                {
+                    if (s.Id == storage.Id)
+                    {
+                        var response = await _storageController.UpdateStatus(s);
+                        customer.Storages.Remove(s);
+                    }
+                }
+            }
+            var result = await _customerRepository.EditCustomer(customer);
+            return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
         }
     }
 }

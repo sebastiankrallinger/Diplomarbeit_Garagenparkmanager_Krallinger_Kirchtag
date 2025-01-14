@@ -11,7 +11,7 @@ function Userlist({ customers, refreshCustomers, refreshStorages, editCustomer, 
     //Kunden löschen
     async function deleteCustomer(id) {
         try {
-            const response = await fetch(url + `User/${id}`, {
+            const response = await fetch(url + `User/deleteUser/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),

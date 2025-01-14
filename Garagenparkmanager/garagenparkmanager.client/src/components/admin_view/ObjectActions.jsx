@@ -53,7 +53,7 @@ function ObjectActions() {
         const { name, value } = e.target;
         const updatedData = {
             ...storageData,
-            [name]: value || '', 
+            [name]: value !== undefined && value !== null ? value : ''
         };
         setStorageData(updatedData);
     };
@@ -65,6 +65,8 @@ function ObjectActions() {
             price: parseFloat(storageData.price),
             booked: false,
             storagetype: storageData.storagetype,
+            activeContract: null,
+            imageUrl: null
         };
         try {
             const response = await fetch(url + 'Storage/addobject', {
@@ -124,7 +126,7 @@ function ObjectActions() {
 
             const data = await response.text();
             const rows = data.trim().split("\n");
-            const lastVPI = rows[rows.length - 1];
+            const lastVPI = rows[rows.length - 13];
             const splitRow = lastVPI.split(";");
             const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
             setVpi(vpiValue);
@@ -160,7 +162,7 @@ function ObjectActions() {
                 setcustomerEmail(customer.email);
                 setcustomerCompany(customer.companyName)
             } else {
-                console.log('Kein Kunde gefunden, der diese Storage-ID hat.');
+                //console.log('Kein Kunde gefunden, der diese Storage-ID hat.');
             }
         } catch (error) {
             console.error('Fehler beim Abrufen der Kunden:', error);
@@ -171,15 +173,18 @@ function ObjectActions() {
         <div className="ObjectActions">
             <div className="rentedObjects">
                 <button onClick={handleButtonAddClick}>Objekt hinzuf&uuml;gen</button>
-                <h2>Verf&uuml;gbare Lager</h2>
+                <h2>Alle Lager/Immobilien</h2>
                 {storages.map((storage, index) => (
-                    <ul key={storage.id}>
+                    <ul className={`${storage.booked === true ? 'gray-background' : ''}`} key={storage.id}>
                         <li key={storage.id}>
                             <div className="objects">
                                 <img src={objectImg} className="objectImage" alt="Object-Image"></img>
                                 <div className="objects-content">
                                     <h2>{storage.name}</h2>
-                                    <p>{storage.roomSize} m&sup2; {storage.price} &euro; {storage.storagetype === 0 ? "Garage" : (storage.storagetype === "1" ? "Kleinlager" : (storage.storagetype === "3" ? "B&uuml;ro" : storage.storagetype))} </p>
+                                    <p>{storage.roomSize} m&sup2; {storage.price} &euro; {storage.storagetype} </p>
+                                    {storage.activeContract !== null ? (
+                                        <p>Gemietet bis: {new Date(storage.activeContract.endDate).toLocaleDateString('de-DE')}</p>
+                                    ) : null}
                                     <button className="btn-details" onClick={() => handleButtonDetailsClick(storage)}>N&auml;here Infos</button>
                                 </div>
                             </div>
@@ -194,7 +199,6 @@ function ObjectActions() {
                         <img src={objectImg} className="objectImage" alt="Object-Image"></img>
                         <div className="popup-details-textcontent">
                             <h2>{selectedStorage.name}</h2>
-                            <p>{selectedStorage.price} / {`${vpi}`} * {`${vpi}`} = {selectedStorage.price / parseFloat(vpi) * parseFloat(vpi)} &euro;</p>
                             {selectedStorage.booked === false ? (
                                 <div className="actualContract">
                                     <div className="actualContract-content">
@@ -202,13 +206,16 @@ function ObjectActions() {
                                     </div>
                                 </div>
                             ) : (
-                                    <div className="actualContract">
-                                        <div className="actualContract-content">
-                                            <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
-                                            <button className="btn-download">Abrufen</button>
-                                            <button className="btn-upload">neuen Vertag hochladen</button>
+                                    <>
+                                        <p>{selectedStorage.price} / {`${selectedStorage.activeContract.vpIold.toFixed(2)}`} * {`${vpi}`} = {(selectedStorage.price / parseFloat(selectedStorage.activeContract.vpIold) * parseFloat(vpi)).toFixed(2)} &euro;</p>
+                                        <div className="actualContract">
+                                            <div className="actualContract-content">
+                                                <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
+                                                <button className="btn-download">Abrufen</button>
+                                                <button className="btn-upload">neuen Vertag hochladen</button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </>
                             )}
                             {selectedStorage.booked === false ? (
                                 <div className="renter">
@@ -285,11 +292,11 @@ function ObjectActions() {
                                 onChange={handleInputChangeStorage}
                             />
                             <div className="dropdown">
-                                <select value={storageData.storagetype} onChange={handleInputChangeStorage} name="storagetype">
+                                <select value={storageData.storagetype || ''} onChange={handleInputChangeStorage} name="storagetype">
                                     <option value="">Objekttyp ausw&auml;hlen</option>
-                                    <option value="buero">Büro</option>
-                                    <option value="garage">Garage</option>
-                                    <option value="kleinlager">Kleinlager</option>
+                                    <option value="Büro">Büro</option>
+                                    <option value="Garage">Garage</option>
+                                    <option value="Kleinlager">Kleinlager</option>
                                 </select>
                             </div>
                             <button className="btn-addObject" onClick={addobject}>Objekt hinzuf&uuml;gen</button>

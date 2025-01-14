@@ -55,7 +55,7 @@ namespace Garagenparkmanager.Server.Services
             return null;
         }
 
-        public async Task<Models.Storage> UpdateStatus(Storage storage)
+        public async Task<Models.Storage> UpdateStorage(Storage storage)
         {
             var response = await _container.ReplaceItemAsync(storage, storage.Id, new PartitionKey(storage.Id));
             return response.Resource;

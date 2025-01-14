@@ -47,47 +47,19 @@ namespace Garagenparkmanager.Server.Controllers
             {
                 storage.Booked = false;
             }
-            var results = await _storageRepository.UpdateStatus(storage);
+            var results = await _storageRepository.UpdateStorage(storage);
             return Ok(results);
         }
 
         //Lager erstellen
         [HttpPost("addobject")]
-        public async Task<IActionResult> AddNewStorage([FromBody]NewStorage storage)
+        public async Task<IActionResult> AddNewStorage([FromBody]Storage storage)
         {
-            if (storage.Storagetype != "")
+            if (storage.RoomSize > 1 && storage.Price > 1 && storage.Name != "" && storage.Storagetype != "")
             {
-                StorageType type = StorageType.buero;
-                if (storage.Storagetype != null)
-                {
-                    if (storage.Storagetype == "garage")
-                    {
-                        type = StorageType.garage;
-                    }
-                    else if (storage.Storagetype == "kleinlager")
-                    {
-                        type = StorageType.kleinlager;
-                    }
-                }
-                if (storage.RoomSize > 1 && storage.Price > 1 && storage.Name != "")
-                {
-                    var newStorage = new Models.Storage
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        Name = storage.Name,
-                        RoomSize = storage.RoomSize,
-                        Price = storage.Price,
-                        Booked = storage.Booked,
-                        Storagetype = type,
-                        activeContract = null
-                    };
-                    var result = await _storageRepository.CreateStorage(newStorage);
-                    return CreatedAtAction(nameof(GetAllStorages), new { id = result.Id }, result);
-                }
-                else
-                {
-                    return BadRequest("Fehler bei Objekterstellung");
-                }
+                storage.Id = Guid.NewGuid().ToString();
+                var result = await _storageRepository.CreateStorage(storage);
+                return CreatedAtAction(nameof(GetAllStorages), new { id = result.Id }, result);
             }
             else
             {
@@ -103,6 +75,16 @@ namespace Garagenparkmanager.Server.Controllers
             var client = new HttpClient();
             var data = await client.GetStringAsync(url);
             return Ok(data);
+        }
+
+        //aktiven Vertrag hinzufuegen
+        [HttpGet("addActiveContract/{id}")]
+        public async Task<IActionResult> addContract(string id, Contract activeContract)
+        {
+            Storage storage = await _storageRepository.GetStorage(id);
+            storage.activeContract = activeContract;
+            var result = await _storageRepository.UpdateStorage(storage);
+            return CreatedAtAction(nameof(GetAllStorages), new { id = result.Id }, result);
         }
     }
 }

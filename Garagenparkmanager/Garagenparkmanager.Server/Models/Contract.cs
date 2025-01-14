@@ -7,12 +7,23 @@ namespace Garagenparkmanager.Server.Models
     {
 
         [JsonProperty(PropertyName = "extraCosts")]
-        public double ExtraCosts { get; set; }
+        public double? ExtraCosts { get; set; }
 
         [JsonProperty(PropertyName = "VPIold")]
-        public double VPIold { get; set; }
+        public double? VPIold { get; set; }
 
         [JsonProperty(PropertyName = "status")]
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
+
+        [JsonProperty(PropertyName = "startDate")]
+        public DateTime? StartDate { get; set; }
+
+        [JsonProperty(PropertyName = "endDate")]
+        public DateTime? EndDate { get; set; }
+
+        [JsonProperty(PropertyName = "duration")]
+        public int? Duration { get; set; }
+
     }
 }
+

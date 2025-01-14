@@ -3,11 +3,6 @@
 //Datenmodell der Mietobjekte
 namespace Garagenparkmanager.Server.Models
 {
-    public enum StorageType{
-        garage,
-        kleinlager,
-        buero
-    }
 
     public class Storage
     {
@@ -27,9 +22,12 @@ namespace Garagenparkmanager.Server.Models
         public bool Booked { get; set; }
 
         [JsonProperty(PropertyName = "storagetype")]
-        public StorageType Storagetype { get; set; }
+        public string Storagetype { get; set; }
 
         [JsonProperty(PropertyName = "activeContract")]
         public Contract? activeContract { get; set; }
+
+        [JsonProperty(PropertyName = "imageUrl")]
+        public string? ImageUrl { get; set; } = string.Empty;
     }
 }
