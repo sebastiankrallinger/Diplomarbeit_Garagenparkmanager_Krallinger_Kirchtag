@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext';
 import Cookies from 'js-cookie';
 import './user_register.css';
-import logo from '../../../src/assets/logo_Lagerage.png'
+import logo from '../../assets/logo_Lagerage.png'
 
 function User_Register() {
     const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
