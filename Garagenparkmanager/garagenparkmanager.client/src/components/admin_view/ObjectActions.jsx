@@ -195,7 +195,7 @@ function ObjectActions() {
                         <div className="popup-details-textcontent">
                             <h2>{selectedStorage.name}</h2>
                             <p>{selectedStorage.price} / {`${vpi}`} * {`${vpi}`} = {selectedStorage.price / parseFloat(vpi) * parseFloat(vpi)} &euro;</p>
-                            {selectedStorage.activeContract === null ? (
+                            {selectedStorage.booked === false ? (
                                 <div className="actualContract">
                                     <div className="actualContract-content">
                                         <h3>kein Vertrag vorhanden</h3>
