@@ -110,7 +110,7 @@ function Usermanagement() {
           <Header />
           <main>
               <div className="userlist">
-                  <Userlist customers={customers} refreshCustomers={fetchCustomers} editCustomer={editData} loadStorages={fetchStorages} />
+                  <Userlist customers={customers} refreshCustomers={fetchCustomers} refreshStorages={fetchStorages} editCustomer={editData} loadStorages={fetchStorages} />
               </div>
               <div className="seperator"></div>
               <div className="userdata">

@@ -88,7 +88,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages }) {
                     name: data.name,
                     roomSize: data.roomSize,
                     price: data.price,
-                    booked: true,
+                    booked: false,
                     storagetype: data.storagetype,
                     activeContract: {}
                 }),

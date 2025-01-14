@@ -5,7 +5,7 @@ import editIcon from '../../assets/editIcon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
 /* Userlist-Component*/
-function Userlist({ customers, refreshCustomers, editCustomer, loadStorages }) {
+function Userlist({ customers, refreshCustomers, refreshStorages, editCustomer, loadStorages }) {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
     //Kunden löschen
@@ -18,6 +18,7 @@ function Userlist({ customers, refreshCustomers, editCustomer, loadStorages }) {
                 },
             });
             refreshCustomers();
+            refreshStorages();
         } catch (error) {
             console.error('Fehler beim Löschen de Benutzers:', error);
         }
