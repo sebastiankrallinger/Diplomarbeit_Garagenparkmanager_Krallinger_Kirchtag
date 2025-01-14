@@ -7,8 +7,8 @@ import houseplaceholder from '../../../src/assets/houseplaceholder.jpg'
 import personplaceholder from '../../../src/assets/personplaceholder.jpg'
 
 function UserMainpage() {
-    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    //const url = "https://localhost:7186/";
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
     const [id, setId] = useState(null);
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [selectedObject, setSelectedObject] = useState(null);

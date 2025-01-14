@@ -3,8 +3,8 @@ import './InputformAdmindata.css';
 
 /* InputformAdmindata-Component*/
 function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
-    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    //const url = "https://localhost:7186/";
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
