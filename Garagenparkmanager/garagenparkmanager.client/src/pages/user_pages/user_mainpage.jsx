@@ -4,7 +4,11 @@ import './popup.css';
 import Header from '../../components/Header_User';
 import Footer from '../../components/Footer';
 import houseplaceholder from '../../../src/assets/houseplaceholder.jpg'
-import personplaceholder from '../../../src/assets/personplaceholder.jpg'
+//import personplaceholder from '../../../src/assets/personplaceholder.jpg'
+import aboutUs1 from '../../../src/assets/aboutUs1.jpg'
+import aboutUs2 from '../../../src/assets/aboutUs2.png'
+import aboutUs3 from '../../../src/assets/aboutUs3.png'
+import ParkPlan from '../../../src/assets/garagenparkplan.jpg'
 
 function UserMainpage() {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
@@ -102,36 +106,36 @@ function UserMainpage() {
                     </div>
                 </section>
 
+                <section className="garageparkPlan">
+                    <div className="plan">
+                        <h1>Garagenpark - &Uuml;bersicht</h1>
+                        <img src={ParkPlan} alt="Garagenpark" />
+                    </div>
+                </section>
+
                 {/* Unser Team an dritter Stelle */}
                 <section className="ueberUns">
                     <h1>Unser Team</h1>
                     <div className="personImages">
                         <div className="personImage">
-                            <img src={personplaceholder} alt="Person1" />
+                            <img src={aboutUs1} alt="Person1" />
                             <div className="text">
-                                <p className="name">Person1</p>
-                                <p className="role">Funktion</p>
+                                <p className="name">Julija</p>
+                                <p className="role">Assistentin der Gesch&auml;ftsleitung/Marketing</p>
                             </div>
                         </div>
                         <div className="personImage">
-                            <img src={personplaceholder} alt="Person2" />
+                            <img src={aboutUs2} alt="Person2" />
                             <div className="text">
-                                <p className="name">Person2</p>
-                                <p className="role">Funktion</p>
+                                <p className="name">Alex</p>
+                                <p className="role">Gesch&auml;ftsf&uuml;hrer</p>
                             </div>
                         </div>
                         <div className="personImage">
-                            <img src={personplaceholder} alt="Person3" />
+                            <img src={aboutUs3} alt="Person3" />
                             <div className="text">
-                                <p className="name">Person3</p>
-                                <p className="role">Funktion</p>
-                            </div>
-                        </div>
-                        <div className="personImage">
-                            <img src={personplaceholder} alt="Person4" />
-                            <div className="text">
-                                <p className="name">Person4</p>
-                                <p className="role">Funktion</p>
+                                <p className="name">Glemens</p>
+                                <p className="role">Gr&uuml;nder</p>
                             </div>
                         </div>
                     </div>

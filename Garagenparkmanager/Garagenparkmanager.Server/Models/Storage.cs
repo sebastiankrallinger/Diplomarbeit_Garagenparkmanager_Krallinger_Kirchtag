@@ -3,7 +3,6 @@
 //Datenmodell der Mietobjekte
 namespace Garagenparkmanager.Server.Models
 {
-
     public class Storage
     {
         [JsonProperty(PropertyName = "id")]

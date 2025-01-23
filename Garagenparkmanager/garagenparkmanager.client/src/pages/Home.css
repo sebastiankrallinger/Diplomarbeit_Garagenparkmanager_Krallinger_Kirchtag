@@ -8,7 +8,6 @@
 .Home main {
     display: flex;
     flex-direction: column;
-    align-items: center; 
     width: 100%;
     margin: 10px;
 }
@@ -16,4 +15,86 @@
 .Home main h2, .Home main h3, .Home main p {
     width: 100%; 
     text-align: center;
+}
+
+.personImages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10%;
+}
+
+.personImage {
+    max-width: 22%;
+    height: auto;
+    text-align: center;
+}
+
+.personImage img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.Home .ueberUns {
+    text-align: center;
+}
+
+.plan {
+    height: fit-content;
+    text-align: center;
+}
+
+.garageparkPlan img {
+    height: 50em;
+    transform-origin: center;
+    transform: rotate(90deg);
+}
+
+.section1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px; 
+    padding: 20px; 
+}
+
+.section1 img {
+    height: 25em;
+}
+
+.section1 .text-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 50%; 
+    text-align: right;
+}
+
+.section2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.section2 img {
+    flex: 1;
+    height: 30em;
+    object-fit: cover;
+    max-width: 50%;
+}
+
+.section2 .text-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    max-width: 50%;
+    text-align: left;
 }
