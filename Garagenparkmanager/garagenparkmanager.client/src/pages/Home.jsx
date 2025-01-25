@@ -4,7 +4,7 @@ import React from 'react';
 import './Home.css';
 import Header from '../components/Header'
 import Footer from '../components/Footer';
-import aboutUs1 from '../../src/assets/aboutUs1.jpg'
+import aboutUs1 from '../../src/assets/aboutUs1.png'
 import aboutUs2 from '../../src/assets/aboutUs2.png'
 import aboutUs3 from '../../src/assets/aboutUs3.png'
 import ParkPlan from '../../src/assets/garagenparkplan.jpg'
