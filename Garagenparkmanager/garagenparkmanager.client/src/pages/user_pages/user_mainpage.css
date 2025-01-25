@@ -74,3 +74,7 @@ main {
     transform-origin: center;
     transform: rotate(90deg);
 }
+
+.popupContent img {
+    height: 15em;
+}

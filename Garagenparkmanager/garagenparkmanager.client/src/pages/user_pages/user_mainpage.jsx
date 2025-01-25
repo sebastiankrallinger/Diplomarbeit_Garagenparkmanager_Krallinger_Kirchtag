@@ -96,7 +96,11 @@ function UserMainpage() {
                                     onClick={() => handleOpenPopup(object)}
                                     style={{ cursor: 'pointer' }}
                                 >
-                                    <img src={object.img || houseplaceholder} alt={object.name} />
+                                    <img
+                                        src={object.imageUrl ? object.imageUrl : houseplaceholder}
+                                        className="objectImage"
+                                        alt="Object-Image"
+                                    />
                                     <p>{object.name}</p>
                                 </div>
                             ))
@@ -156,8 +160,11 @@ function UserMainpage() {
 
                         <h2>{selectedObject.title}</h2>
                         <div className="popupContent">
-                            <img src={selectedObject.img} alt="Grundriss" className="floorplan" />
-                            <div className="verticalLine"></div>
+                            <img
+                                src={selectedObject.imageUrl ? selectedObject.imageUrl : houseplaceholder}
+                                className="objectImage"
+                                alt="Object-Image"
+                            />                            <div className="verticalLine"></div>
                             <div className="details">
                                 <p>{selectedObject.name}</p>
                                 <p>Objetktyp: {selectedObject.storagetype === 0 ? "Garage" : (selectedObject.storagetype === "1" ? "Kleinlager" : (selectedObject.storagetype === "3" ? "B&uuml;ro" : selectedObject.storagetype))}</p>

@@ -55,7 +55,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
                     booked: true,
                     storagetype: selectedStorage.storagetype,
                     activeContract: updateContract,
-                    imageUrl: "",
+                    imageUrl: selectedStorage.imageUrl,
                 }),
             });
             const data = await response.json();

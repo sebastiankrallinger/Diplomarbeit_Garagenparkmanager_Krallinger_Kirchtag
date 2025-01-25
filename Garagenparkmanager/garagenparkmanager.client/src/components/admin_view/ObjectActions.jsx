@@ -17,13 +17,15 @@ function ObjectActions() {
     const [storages, setStorages] = useState([]);
     const [selectedStorage, setSelectedStorage] = useState(null);
     const [oldvpi, setOldVpi] = useState(null);
+    const [image, setImage] = useState(null);
 
 
     const [storageData, setStorageData] = useState({
         roomSize: '',
         price: '',
         storagetype: '',
-        name: ''
+        name: '',
+        imageUrl: ''
     });
 
     const handleButtonDetailsClick = (storage) => {
@@ -50,29 +52,44 @@ function ObjectActions() {
     };
 
     const handleInputChangeStorage = (e) => {
-        const { name, value } = e.target;
-        const updatedData = {
-            ...storageData,
-            [name]: value !== undefined && value !== null ? value : ''
-        };
-        setStorageData(updatedData);
+        const { name, value, files } = e.target;
+
+        if (name === "image" && files.length > 0) {
+            const file = files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                setStorageData(prevData => ({
+                    ...prevData,
+                    imageUrl: reader.result 
+                }));
+            };
+
+            reader.readAsDataURL(file); 
+        } else {
+            const updatedData = {
+                ...storageData,
+                [name]: value !== undefined && value !== null ? value : ''
+            };
+            setStorageData(updatedData);
+        }
     };
+
 
     async function addobject() {
         const data = {
             name: storageData.name,
             roomSize: parseFloat(storageData.roomSize),
             price: parseFloat(storageData.price),
-            booked: false,
             storagetype: storageData.storagetype,
-            activeContract: null,
-            imageUrl: null
+            imageUrl: storageData.imageUrl,
         };
+
         try {
             const response = await fetch(url + 'Storage/addobject', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${ localStorage.getItem('accesstoken') }`,
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
@@ -84,13 +101,18 @@ function ObjectActions() {
                     roomSize: '',
                     price: '',
                     storagetype: '',
+                    imageUrl: ''
                 });
                 fetchStorages();
+                closePopupAdd();
+            } else {
+                console.error("Fehler beim Hinzufügen des Objekts.");
             }
         } catch (error) {
             console.error('Netzwerkfehler:', error);
         }
     }
+
 
     useEffect(() => {
         fetchStorages();
@@ -178,7 +200,11 @@ function ObjectActions() {
                     <ul className={`${storage.booked === true ? 'gray-background' : ''}`} key={storage.id}>
                         <li key={storage.id}>
                             <div className="objects">
-                                <img src={objectImg} className="objectImage" alt="Object-Image"></img>
+                                <img
+                                    src={storage.imageUrl ? storage.imageUrl : objectImg }
+                                    className="objectImage"
+                                    alt="Object-Image"
+                                />
                                 <div className="objects-content">
                                     <h2>{storage.name}</h2>
                                     <p>{storage.roomSize} m&sup2; {storage.price} &euro; {storage.storagetype} </p>
@@ -196,7 +222,11 @@ function ObjectActions() {
                 <div className="popup-details">
                     <div className="popup-details-content">
                         <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={closePopupDetails}></img>
-                        <img src={objectImg} className="objectImage" alt="Object-Image"></img>
+                        <img
+                            src={selectedStorage.imageUrl ? selectedStorage.imageUrl : objectImg}
+                            className="objectImage"
+                            alt="Object-Image"
+                        />
                         <div className="popup-details-textcontent">
                             <h2>{selectedStorage.name}</h2>
                             {selectedStorage.booked === false ? (
@@ -299,6 +329,13 @@ function ObjectActions() {
                                     <option value="Kleinlager">Kleinlager</option>
                                 </select>
                             </div>
+                            <input
+                                type="file"
+                                id="image"
+                                name="image"
+                                accept="image/*"
+                                onChange={handleInputChangeStorage}
+                            />
                             <button className="btn-addObject" onClick={addobject}>Objekt hinzuf&uuml;gen</button>
                         </div>
                     </div>

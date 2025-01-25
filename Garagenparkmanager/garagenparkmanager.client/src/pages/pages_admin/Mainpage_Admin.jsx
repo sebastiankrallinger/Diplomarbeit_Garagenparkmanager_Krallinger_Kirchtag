@@ -7,11 +7,12 @@ import Header from '../../components/admin_view/Header_Admin';
 function Mainpage_Admin() {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
-    const [allObjects, setAllObjects] = useState();
+    const [allObjects, setAllObjects] = useState([]);
     const [bookedObjects, setBookedObjects] = useState([]);
-    const [freeObjects, setFreeObjects] = useState();
+    const [freeObjects, setFreeObjects] = useState([]);
     const [vpi, setVpi] = useState();
     const [earnings, setEarnings] = useState();
+    const [possibleEarnings, setPossibleEarnings] = useState();
     const [user, setUser] = useState(); 
 
     useEffect(() => {
@@ -25,6 +26,12 @@ function Mainpage_Admin() {
             loadEarnings();
         }
     }, [bookedObjects]);
+
+    useEffect(() => {
+        if (freeObjects.length > 0) {
+            loadPossibleEarnings();
+        }
+    }, [freeObjects]);
 
     async function loadVPI() {
         try {
@@ -60,7 +67,7 @@ function Mainpage_Admin() {
             setAllObjects(objects);
             const bookedObjects = data.filter(obj => obj.booked === true);
             setBookedObjects(bookedObjects);
-            const freeObjects = data.filter(obj => obj.booked === false).length;
+            const freeObjects = data.filter(obj => obj.booked === false);
             setFreeObjects(freeObjects);
             
         } catch (error) {
@@ -77,6 +84,19 @@ function Mainpage_Admin() {
 
         } catch (error) {
             console.error('Fehler beim Abrufen des Umsatzes:', error);
+        }
+    }
+
+    async function loadPossibleEarnings() {
+        try {
+            const possibleEarnings = freeObjects.reduce((sum, obj) => {
+                return sum + obj.price;
+            }, 0);
+            const sum = possibleEarnings + earnings;
+            setPossibleEarnings(sum);
+
+        } catch (error) {
+            console.error('Fehler beim Abrufen des möglichen Umsatzes:', error);
         }
     }
 
@@ -108,13 +128,13 @@ function Mainpage_Admin() {
                         <div className="leftCol">
                             <p>Gesamtanzahl Objekte: {allObjects ? `${allObjects}` : '0'}</p>
                             <p>Vermietete Objekte: {bookedObjects ? `${bookedObjects.length}` : '0'}</p>
-                            <p>Freie Objekte: {freeObjects ? `${freeObjects}` : '0'}</p>
+                            <p>Freie Objekte: {freeObjects ? `${freeObjects.length}` : '0'}</p>
                             <p>Aktueller Mietzins: {vpi ? `${vpi}` : '0'}</p>
                         </div>
                         <div className="rightCol">
                             <p>Umastz letztes Monat: {earnings ? `${earnings} \u20AC` : '0'}</p>
+                            <p>M&ouml;glicher Umsatz letztes Monat: {possibleEarnings ? `${possibleEarnings} \u20AC` : '0'}</p>
                             <p>Registrierte Benutzer: {user ? `${user}` : '0'}</p>
-                            <p>Standorte: 2</p>
                         </div>
                     </div>
                 </div>
