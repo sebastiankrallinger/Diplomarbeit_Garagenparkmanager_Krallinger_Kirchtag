@@ -10,6 +10,7 @@ import aboutUs3 from '../../src/assets/aboutUs3.png'
 import ParkPlan from '../../src/assets/garagenparkplan.jpg'
 import img1 from '../../src/assets/img1.jpg'
 import img2 from '../../src/assets/img2.jpg'
+import movie from '../../src/assets/video.mp4'
 
 function Home() {
     return (
@@ -17,6 +18,9 @@ function Home() {
             <Header /> 
             <main>
                 <section className="section1">
+                    <video autoPlay loop muted>
+                        <source src={movie} type="video/mp4"/>
+                    </video>
                     <img src={img1} alt="Immobilie" />
                     <div className="text-content">
                         <h2>Suchst du einen Raum zur Miete?</h2>
