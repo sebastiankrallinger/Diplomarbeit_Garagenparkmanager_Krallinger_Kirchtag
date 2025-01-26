@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './UserObjects.css';
 import deleteIcon from '../../assets/deleteicon.png';
 
@@ -33,6 +34,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
     async function addStorage() {
         try {
             const updateContract = {
+                id: uuidv4(),
                 extraCosts: 0,
                 VPIold: vpi,
                 status: true,
@@ -111,8 +113,10 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
         }
     }
 
-    /*async function deleteStorage(id, storage) {
+    async function deleteStorage(id, storage) {
         try {
+            const c = storage.activeContract;
+            c.status = false;
             const response = await fetch(url + `User/deleteStorage/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -121,10 +125,15 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
                 },
                 body: JSON.stringify(storage),
             });
+            if (response.ok) {
+                contract(c);
+                loadStorages(selectedUser.id);
+                fetchFreeStorages();
+            }
         } catch (error) {
             console.error('Fehler beim Löschen des Storages:', error);
         }
-    }*/
+    }
 
     async function loadVPI() {
         try {
@@ -156,7 +165,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
                     <li key={storage.id} >
                         <p>{storage.name}</p>
                         <div className="object-action">
-                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" /*onClick={() => deleteStorage(selectedUser.id, storage)}*/ ></img>
+                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => deleteStorage(selectedUser.id, storage)} ></img>
                         </div>
                     </li>
                 </ul>

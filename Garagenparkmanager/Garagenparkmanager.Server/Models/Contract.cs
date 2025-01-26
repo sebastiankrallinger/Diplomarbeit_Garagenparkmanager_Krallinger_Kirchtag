@@ -5,6 +5,8 @@ namespace Garagenparkmanager.Server.Models
 {
     public class Contract
     {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; } = string.Empty;
 
         [JsonProperty(PropertyName = "extraCosts")]
         public double? ExtraCosts { get; set; }

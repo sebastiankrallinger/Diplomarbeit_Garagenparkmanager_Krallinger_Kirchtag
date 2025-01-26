@@ -46,6 +46,7 @@ namespace Garagenparkmanager.Server.Controllers
             }else if (storage.Booked == true)
             {
                 storage.Booked = false;
+                storage.activeContract = null;
             }
             var results = await _storageRepository.UpdateStorage(storage);
             return Ok(results);

@@ -64,6 +64,22 @@ function Usermanagement() {
 
     async function updateCustomer(customerData) {
         try {
+            let foundContract = false;
+            const updatedContracts = oldUserData.contracts.map((existingContract) => {
+                if (existingContract.id === contract.id) {
+                    foundContract = true;
+                    return {
+                        ...existingContract,
+                        ...contract,
+                    };
+                }
+                return existingContract; 
+            });
+
+            if (!foundContract) {
+                updatedContracts.push(contract);
+            }
+
             const response = await fetch(url + `User/updateCustomer`, {
                 method: 'PUT',
                 headers: {
@@ -87,7 +103,7 @@ function Usermanagement() {
                     password: customerData.password,  
                     salt: oldUserData.salt,
                     storages: bookedStorages,
-                    contracts: [...oldUserData.contracts, contract],
+                    contracts: [...updatedContracts],
                 }),
             });
             if (response.ok) {

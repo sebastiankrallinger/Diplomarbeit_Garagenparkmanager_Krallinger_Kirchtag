@@ -165,7 +165,15 @@ namespace Garagenparkmanager.Server.Controllers
                     if (s.Id == storage.Id)
                     {
                         var response = await _storageController.UpdateStatus(s);
+                        foreach(Contract c in customer.Contracts)
+                        {
+                            if (c.Id == storage.activeContract.Id)
+                            {
+                                c.Status = false;
+                            }
+                        }
                         customer.Storages.Remove(s);
+                        break;
                     }
                 }
             }

@@ -11,8 +11,8 @@ function Mainpage_Admin() {
     const [bookedObjects, setBookedObjects] = useState([]);
     const [freeObjects, setFreeObjects] = useState([]);
     const [vpi, setVpi] = useState();
-    const [earnings, setEarnings] = useState();
-    const [possibleEarnings, setPossibleEarnings] = useState();
+    const [earnings, setEarnings] = useState(0);
+    const [possibleEarnings, setPossibleEarnings] = useState(0);
     const [user, setUser] = useState(); 
 
     useEffect(() => {
