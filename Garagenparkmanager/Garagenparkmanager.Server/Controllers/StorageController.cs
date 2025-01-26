@@ -13,11 +13,13 @@ namespace Garagenparkmanager.Server.Controllers
     public class StorageController : Controller
     {
         private readonly IStorageRepository _storageRepository;
+        private readonly IStorageTypeRepository _storageTypeRepository;
         private readonly IConfiguration _configuration;
 
-        public StorageController(IStorageRepository storageRepository, IConfiguration configuration)
+        public StorageController(IStorageRepository storageRepository, IStorageTypeRepository storageTypeRepository, IConfiguration configuration)
         {
             _storageRepository = storageRepository;
+            _storageTypeRepository = storageTypeRepository;
             _configuration = configuration;
         }
         //alle Lager laden
@@ -86,6 +88,31 @@ namespace Garagenparkmanager.Server.Controllers
             storage.activeContract = activeContract;
             var result = await _storageRepository.UpdateStorage(storage);
             return CreatedAtAction(nameof(GetAllStorages), new { id = result.Id }, result);
+        }
+
+        [HttpGet("alltypes")]
+        public async Task<IActionResult> GetAllTypes()
+        {
+            var results = await _storageTypeRepository.GetAll();
+            return Ok(results);
+        }
+
+        [HttpPost("addType")]
+        public async Task<bool> AddType([FromBody] string type)
+        {
+            var result = await _storageTypeRepository.CreateStorageType(type);
+            return true;
+        }
+
+        [HttpDelete("deleteStorage/{type}")]
+        public async Task<IActionResult> DeleteUser(string type)
+        {
+            var result = await _storageTypeRepository.Delete(type);
+            if (result != "")
+            {
+                return NoContent();
+            }
+            return BadRequest();
         }
     }
 }

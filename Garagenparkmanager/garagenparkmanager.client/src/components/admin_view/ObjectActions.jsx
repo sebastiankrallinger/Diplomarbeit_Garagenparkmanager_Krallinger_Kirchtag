@@ -15,7 +15,8 @@ function ObjectActions() {
     const [customerEmail, setcustomerEmail] = useState();
     const [customerCompany, setcustomerCompany] = useState();
     const [storages, setStorages] = useState([]);
-    const [selectedStorage, setSelectedStorage] = useState(null);
+    const [storageTypes, setStorageTypes] = useState([]);
+    const [type, setType] = useState('');
     const [oldvpi, setOldVpi] = useState(null);
     const [image, setImage] = useState(null);
 
@@ -36,6 +37,7 @@ function ObjectActions() {
     };
 
     const handleButtonAddClick = () => {
+        getTypes();
         setShowPopupAdd(true);
     };
 
@@ -49,6 +51,7 @@ function ObjectActions() {
 
     const closePopupAdd = () => {
         setShowPopupAdd(false);
+        setStorageTypes([]);
     };
 
     const handleInputChangeStorage = (e) => {
@@ -191,6 +194,67 @@ function ObjectActions() {
         }
     }
 
+    async function getTypes() {
+        try {
+            const response = await fetch(url + 'Storage/alltypes', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Fehler beim Abrufen des VPI');
+            }
+
+            const data = await response.json();
+            setStorageTypes(data);
+
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Typen:', error);
+        }
+    }
+
+    async function addType(type) {
+        try {
+            const response = await fetch(url + 'Storage/addType', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`,
+                    'Content-Type': 'application/json', 
+                },
+                body: JSON.stringify(type)
+            });
+
+            setType();
+            getTypes();
+
+        } catch (error) {
+            console.error('Fehler beim Erstellen des Typs:', error);
+        }
+    }
+
+    /*async function DeleteType() {
+        try {
+            const response = await fetch(url + 'Storage/deleteStorage/${type}', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Fehler beim Abrufen des VPI');
+            }
+
+            const data = await response.json();
+            setStorageTypes(data);
+
+        } catch (error) {
+            console.error('Fehler beim Löschen des Typs:', error);
+        }
+    }*/
+
     return (
         <div className="ObjectActions">
             <div className="rentedObjects">
@@ -274,24 +338,23 @@ function ObjectActions() {
                         <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={closePopupAdd}></img>
                         <div className="left-content">
                             <h2>Objekttypen</h2>
-                            <ul>
-                                <li>
-                                    <p>B&uuml;ro</p>
-                                    <img src={deleteIcon} className="delete-icon-object" alt="Delete-Icon"></img>
-                                </li>
-                                <li>
-                                    <p>Garage</p>
-                                    <img src={deleteIcon} className="delete-icon-object" alt="Delete-Icon"></img>
-                                </li>
-                                <li>
-                                    <p>SampleItem</p>
-                                    <img src={deleteIcon} className="delete-icon-object" alt="Delete-Icon"></img>
-                                </li>
-                            </ul>
+                            {storageTypes.map((storageType, index) => (
+                                <ul key={index}>
+                                    <li key={index}> 
+                                        <p>{storageType}</p>
+                                        <img src={deleteIcon} className="delete-icon-object" alt="Delete-Icon"></img>
+                                    </li>
+                                </ul>
+                            ))}
                             <h2 className="newTyp">Neuen Objekttypen definieren</h2>
                             <div className="new-object-type">
-                                <input placeholder="Objekttyp"></input>
-                                <button className="btn-addTyp">Erstellen</button>
+                                <input
+                                    className="type"
+                                    placeholder="Objekttyp"
+                                    value={type || ''} 
+                                    onChange={(e) => setType(e.target.value)}
+                                />
+                                <button className="btn-addTyp" onClick={() => addType(type)}>Erstellen</button>
                             </div>
                         </div>
                         <div className="seperator"></div>
@@ -323,10 +386,10 @@ function ObjectActions() {
                             />
                             <div className="dropdown">
                                 <select value={storageData.storagetype || ''} onChange={handleInputChangeStorage} name="storagetype">
-                                    <option value="">Objekttyp ausw&auml;hlen</option>
-                                    <option value="Büro">Büro</option>
-                                    <option value="Garage">Garage</option>
-                                    <option value="Kleinlager">Kleinlager</option>
+                                    <option value="">Objekttyp auswählen</option>
+                                    {storageTypes.map((storageType) => (
+                                        <option key={storageType} value={storageType}>{storageType}</option>
+                                    ))}
                                 </select>
                             </div>
                             <input
