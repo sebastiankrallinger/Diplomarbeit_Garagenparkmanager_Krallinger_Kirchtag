@@ -5,8 +5,8 @@ import deleteIcon from '../../assets/deleteicon.png';
 
 /* ObjectActions-Component*/
 function ObjectActions() {
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    const url = "https://localhost:7186/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
     const [vpi, setVpi] = useState(null);

@@ -6,8 +6,8 @@ import './user_register.css';
 import logo from '../../assets/logo_Lagerage.png'
 
 function User_Register() {
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    const url = "https://localhost:7186/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
     const [formData, setFormData] = useState({
