@@ -104,7 +104,7 @@ namespace Garagenparkmanager.Server.Controllers
             return true;
         }
 
-        [HttpDelete("deleteStorage/{type}")]
+        [HttpDelete("deleteStorageType/{type}")]
         public async Task<IActionResult> DeleteUser(string type)
         {
             var result = await _storageTypeRepository.Delete(type);

@@ -234,26 +234,20 @@ function ObjectActions() {
         }
     }
 
-    /*async function DeleteType() {
+    async function deleteType(type) {
         try {
-            const response = await fetch(url + 'Storage/deleteStorage/${type}', {
-                method: 'GET',
+            const response = await fetch(url + `Storage/deleteStorageType/${type}`, {
+                method: 'DELETE',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
-                }
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
             });
 
-            if (!response.ok) {
-                throw new Error('Fehler beim Abrufen des VPI');
-            }
-
-            const data = await response.json();
-            setStorageTypes(data);
-
+            getTypes();
         } catch (error) {
             console.error('Fehler beim Löschen des Typs:', error);
         }
-    }*/
+    }
 
     return (
         <div className="ObjectActions">
@@ -342,7 +336,7 @@ function ObjectActions() {
                                 <ul key={index}>
                                     <li key={index}> 
                                         <p>{storageType}</p>
-                                        <img src={deleteIcon} className="delete-icon-object" alt="Delete-Icon"></img>
+                                        <img src={deleteIcon} onClick={() => deleteType(storageType)} className="delete-icon-object" alt="Delete-Icon"></img>
                                     </li>
                                 </ul>
                             ))}

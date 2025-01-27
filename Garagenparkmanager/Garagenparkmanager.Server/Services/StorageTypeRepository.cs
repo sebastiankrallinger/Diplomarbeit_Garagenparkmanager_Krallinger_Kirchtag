@@ -45,23 +45,21 @@ namespace Garagenparkmanager.Server.Services
 
         public async Task<string> Delete(string type)
         {
-            var query = _container.GetItemQueryIterator<dynamic>(
-                new QueryDefinition("SELECT c.id, c.storagetype FROM c WHERE c.storagetype = @type")
-                .WithParameter("@type", type));
+            var query = _container.GetItemQueryIterator<dynamic>(new QueryDefinition("SELECT * FROM c"));
 
-            var results = new List<dynamic>();
             while (query.HasMoreResults)
             {
                 var response = await query.ReadNextAsync();
                 foreach (var item in response)
                 {
-                    results.Add(item);
+                    if (item.storagetype == type)
+                    {
+                        var id = item.id.ToString();
+                        await _container.DeleteItemAsync<dynamic>(id, new PartitionKey(type));
+                    }
                 }
             }
-            var itemToDelete = results.First();
-            var id = itemToDelete.id.ToString();
 
-            await _container.DeleteItemAsync<dynamic>(id, new PartitionKey(type));
             return "Erfolgreich gelöscht.";
         }
     }
