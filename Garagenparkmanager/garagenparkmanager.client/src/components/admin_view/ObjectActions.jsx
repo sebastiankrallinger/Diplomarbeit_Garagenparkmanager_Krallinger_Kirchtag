@@ -16,6 +16,7 @@ function ObjectActions() {
     const [customerCompany, setcustomerCompany] = useState();
     const [storages, setStorages] = useState([]);
     const [storageTypes, setStorageTypes] = useState([]);
+    const [selectedStorage, setSelectedStorage] = useState([]);
     const [type, setType] = useState('');
     const [oldvpi, setOldVpi] = useState(null);
     const [image, setImage] = useState(null);
