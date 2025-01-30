@@ -20,7 +20,7 @@ namespace Garagenparkmanager.Server.Controllers
         }
 
         //alle Dokumente laden
-        [HttpGet("users")]
+        [HttpGet("documents")]
         public async Task<IActionResult> GetAllDocuments()
         {
             var results = await _documentRepository.GetAll();
@@ -28,7 +28,7 @@ namespace Garagenparkmanager.Server.Controllers
         }
 
         //Dokument erstellen
-        [HttpPost("addocument")]
+        [HttpPost("adddocument")]
         public async Task<IActionResult> AddNewDocument([FromBody] Document document)
         {
             document.Id = Guid.NewGuid().ToString();

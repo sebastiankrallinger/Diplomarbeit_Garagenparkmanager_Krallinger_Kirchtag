@@ -9,6 +9,27 @@ import Documentlist from '../../components/admin_view/Documentslist';
 
 
 function Documentmanagement() {
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
+    const [setDocuments] = useState([]);
+
+    useEffect(() => {
+        fetchDocuments();
+    }, []);
+
+    async function fetchDocuments() {
+        try {
+            const response = await fetch(url + 'Document/documents', {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.json();
+            setDocuments(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Dokument-Liste:', error);
+        }
+    }
     return (
         <div className="Documentmanagement">
             <Header />
@@ -18,7 +39,7 @@ function Documentmanagement() {
                 </div>
                 <div className="seperator"></div>
                 <div className="documentslist">
-                    <Documentlist />
+                    <Documentlist refreshAdmins={fetchDocuments} handleFormChange={handleFormChange} />
                 </div>
             </main>
         </div>
