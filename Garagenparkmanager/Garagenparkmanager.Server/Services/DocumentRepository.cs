@@ -17,10 +17,10 @@ namespace Garagenparkmanager.Server.Services
             _container = cosmosClient.GetContainer(databaseName, containerDocumentName);
         }
 
-        public async Task<string> CreateDocument(string type)
+        public async Task<string> CreateDocument(string document)
         {
-            var item = new { id = Guid.NewGuid().ToString(), storagetype = type };
-            var response = await _container.CreateItemAsync(item, new PartitionKey(type));
+            var item = new { id = Guid.NewGuid().ToString(), document};
+            var response = await _container.CreateItemAsync(item, new PartitionKey(item.id));
             return response.ToString();
         }
 
@@ -34,7 +34,7 @@ namespace Garagenparkmanager.Server.Services
                 var response = await query.ReadNextAsync();
                 foreach (var item in response)
                 {
-                    results.Add(item.storagetype.ToString());
+                    results.Add(item.document.ToString());
                 }
             }
             return results;
@@ -49,7 +49,7 @@ namespace Garagenparkmanager.Server.Services
                 var response = await query.ReadNextAsync();
                 foreach (var item in response)
                 {
-                    if (item.storagetype == type)
+                    if (item.document == type)
                     {
                         var id = item.id.ToString();
                         await _container.DeleteItemAsync<dynamic>(id, new PartitionKey(type));
@@ -58,6 +58,22 @@ namespace Garagenparkmanager.Server.Services
             }
 
             return "Erfolgreich gelöscht.";
+        }
+
+        public async Task<Models.Storage> GetDocument(string id)
+        {
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
+                .WithParameter("@id", id);
+
+            var iterator = _container.GetItemQueryIterator<Models.Storage>(query);
+
+            if (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                return response.FirstOrDefault();
+            }
+
+            return null;
         }
     }
 }
