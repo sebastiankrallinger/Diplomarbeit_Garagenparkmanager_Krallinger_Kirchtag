@@ -34,6 +34,7 @@
 .Newslist .news .newsimage {
     height: 150px;
     width: auto;
+    margin-right: 10px;
 }
 
 .Newslist .news h2, .Newslist .news p {

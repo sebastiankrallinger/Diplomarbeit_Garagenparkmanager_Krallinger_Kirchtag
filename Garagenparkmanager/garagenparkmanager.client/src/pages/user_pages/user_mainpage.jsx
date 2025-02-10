@@ -17,6 +17,16 @@ function UserMainpage() {
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [selectedObject, setSelectedObject] = useState(null);
     const [bookedStorages, setBookedtorages] = useState([]);
+    const [news, setNews] = useState([]);
+    const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
+
+    const handlePrevNews = () => {
+        setCurrentNewsIndex((prevIndex) => (prevIndex === 0 ? news.length - 1 : prevIndex - 1));
+    };
+
+    const handleNextNews = () => {
+        setCurrentNewsIndex((prevIndex) => (prevIndex === news.length - 1 ? 0 : prevIndex + 1));
+    };
 
     const handleOpenPopup = (object) => {
         setSelectedObject(object);
@@ -35,6 +45,7 @@ function UserMainpage() {
     useEffect(() => {
         if (id) {
             fetchStorages();
+            fetchNews();
         }
     }, [id]);
 
@@ -67,6 +78,19 @@ function UserMainpage() {
             console.error('Fehler beim Abrufen der Storages:', error);
         }
     }
+    async function fetchNews() {
+        try {
+            const response = await fetch(url + `News/allNews`, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.json();
+            setNews(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der News:', error);
+        }
+    }
 
     return (
         <div className="user_mainpage">
@@ -76,11 +100,18 @@ function UserMainpage() {
                 <section className="news">
                     <h1>News</h1>
                     <div className="newsContainer">
-                        <button className="navBtn">&#10094;</button>
+                        <button className="navBtn" onClick={handlePrevNews}>&#10094;</button>
                         <div className="newsContent">
-                            <p id="newsText">Lorem ipsum dolor sit amet...</p>
+                            {news.length > 0 ? (
+                                <div>
+                                    <h2>{news[currentNewsIndex].title}</h2>
+                                    <p>{news[currentNewsIndex].content}</p>
+                                </div>
+                            ) : (
+                                <p>Keine News verfügbar.</p>
+                            )}
                         </div>
-                        <button className="navBtn">&#10095;</button>
+                        <button className="navBtn" onClick={handleNextNews}>&#10095;</button>
                     </div>
                 </section>
 
