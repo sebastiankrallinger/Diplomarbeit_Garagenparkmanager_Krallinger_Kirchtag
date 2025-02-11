@@ -62,7 +62,15 @@ namespace Garagenparkmanager.Server
                    builder.Configuration["CosmosConfig:databaseName"],
                    builder.Configuration["CosmosConfig:containerStorageTypeName"]
                )
-           );
+            );
+            builder.Services.AddScoped<INewsRepository, NewsRepository>(x
+               => new NewsRepository(
+                   builder.Configuration.GetConnectionString("CosmosDb"),
+                   builder.Configuration["CosmosConfig:primaryKey"],
+                   builder.Configuration["CosmosConfig:databaseName"],
+                   builder.Configuration["CosmosConfig:containerNews"]
+               )
+            );
 
             builder.Services.AddCors(options =>
             {

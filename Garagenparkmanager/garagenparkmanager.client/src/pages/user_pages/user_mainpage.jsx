@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './user_mainpage.css';
 import './popup.css';
 import Header from '../../components/Header_User';
@@ -17,6 +18,26 @@ function UserMainpage() {
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [selectedObject, setSelectedObject] = useState(null);
     const [bookedStorages, setBookedtorages] = useState([]);
+    const [news, setNews] = useState([]);
+    const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
+
+    const handlePrevNews = () => {
+        setCurrentNewsIndex((prevIndex) => (prevIndex === 0 ? news.length - 1 : prevIndex - 1));
+    };
+
+    const handleNextNews = () => {
+        setCurrentNewsIndex((prevIndex) => (prevIndex === news.length - 1 ? 0 : prevIndex + 1));
+    };
+
+    useEffect(() => {
+        if (news.length > 1) {
+            const interval = setInterval(() => {
+                setCurrentNewsIndex((prevIndex) => (prevIndex + 1) % news.length);
+            }, 10000);
+
+            return () => clearInterval(interval);
+        }
+    }, [news]);
 
     const handleOpenPopup = (object) => {
         setSelectedObject(object);
@@ -35,6 +56,7 @@ function UserMainpage() {
     useEffect(() => {
         if (id) {
             fetchStorages();
+            fetchNews();
         }
     }, [id]);
 
@@ -67,6 +89,19 @@ function UserMainpage() {
             console.error('Fehler beim Abrufen der Storages:', error);
         }
     }
+    async function fetchNews() {
+        try {
+            const response = await fetch(url + `News/allNews`, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.json();
+            setNews(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der News:', error);
+        }
+    }
 
     return (
         <div className="user_mainpage">
@@ -76,13 +111,31 @@ function UserMainpage() {
                 <section className="news">
                     <h1>News</h1>
                     <div className="newsContainer">
-                        <button className="navBtn">&#10094;</button>
-                        <div className="newsContent">
-                            <p id="newsText">Lorem ipsum dolor sit amet...</p>
+                        <button className="navBtn" onClick={handlePrevNews}>&#10094;</button>
+                        <div className="newsWrapper">
+                            <AnimatePresence mode="wait">
+                                {news.length > 0 && (
+                                    <motion.div
+                                        key={news[currentNewsIndex]?.id || currentNewsIndex}
+                                        initial={{ opacity: 0, x: 100 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -100 }}
+                                        transition={{ duration: 0.5 }}
+                                        className="newsContent"
+                                    >
+                                        <img src={news[currentNewsIndex].imageUrl} className="newsImage" alt="News" />
+                                        <div>
+                                            <h2>{news[currentNewsIndex].title}</h2>
+                                            <p>{news[currentNewsIndex].content}</p>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
-                        <button className="navBtn">&#10095;</button>
+                        <button className="navBtn" onClick={handleNextNews}>&#10095;</button>
                     </div>
                 </section>
+
 
                 {/* SelfStorage/Immobilien an zweiter Stelle */}
                 <section className="selfStorage">

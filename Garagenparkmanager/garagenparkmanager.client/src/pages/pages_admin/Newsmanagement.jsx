@@ -8,16 +8,45 @@ import Newslist from '../../components/admin_view/Newslist'
 import AddNews from '../../components/admin_view/AddNews'
 
 function Newsmanagement() {
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
+
+    const [news, setNews] = useState([]);
+    const [selectedNews, setSelectedNews] = useState(null);
+    const [edit, setEdit] = useState(false);
+
+    useEffect(() => {
+        fetchNews();
+    }, []);
+
+    async function fetchNews() {
+        try {
+            const response = await fetch(url + 'News/allNews', {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            const data = await response.json();
+            setNews(data);
+        } catch (error) {
+            console.error('Fehler beim Abrufen der News-Liste:', error);
+        }
+    }
+
+    const handleFormChange = (updatedNews) => {
+        setSelectedNews(updatedNews);
+    };
+
   return (
       <div className="Newsmanagement">
           <Header />
           <main>
               <div className="newslist">
-                  <Newslist />
+                  <Newslist news={news} refreshNews={fetchNews} setEdit={setEdit} updateNews={setSelectedNews} />
               </div>
               <div className="seperator"></div>
               <div className="addnews">
-                  <AddNews />
+                  <AddNews refreshNews={fetchNews} news={selectedNews} updatedNews={setSelectedNews} handleFormChange={handleFormChange} edit={edit} setEdit={setEdit} />
               </div>
           </main>
       </div>  );
