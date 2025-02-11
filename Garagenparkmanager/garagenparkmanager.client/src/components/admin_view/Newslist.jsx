@@ -4,9 +4,14 @@ import deleteIcon from '../../assets/deleteicon.png';
 import newsImg from '../../assets/newsPlaceholder.jpg';
 
 /* Newslist-Component*/
-function Newslist({ news, refreshNews }) {
+function Newslist({ news, refreshNews, setEdit, updateNews }) {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
+
+    function editNews(oneNews) {
+        updateNews(oneNews);
+        setEdit(true);
+    }
 
     /* News löschen */
     async function deleteNews(id) {
@@ -22,6 +27,7 @@ function Newslist({ news, refreshNews }) {
             console.error('Fehler beim Löschen de Benutzers:', error);
         }
     }
+
     return (
         <div className="Newslist">
             <h2>Aktuelle News</h2>
@@ -36,7 +42,7 @@ function Newslist({ news, refreshNews }) {
                             </div>
                         </div>
                         <div className="edit-delete-icons">
-                            <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => editNews(oneNews.id)} />
+                            <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => editNews(oneNews)} />
                             <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => deleteNews(oneNews.id)} />
                         </div>
                     </li>

@@ -13,7 +13,7 @@ function Newsmanagement() {
 
     const [news, setNews] = useState([]);
     const [selectedNews, setSelectedNews] = useState(null);
-    const [oldNewsData, setoldNewsData] = useState(null);
+    const [edit, setEdit] = useState(false);
 
     useEffect(() => {
         fetchNews();
@@ -42,11 +42,11 @@ function Newsmanagement() {
           <Header />
           <main>
               <div className="newslist">
-                  <Newslist news={news} refreshNews={fetchNews} />
+                  <Newslist news={news} refreshNews={fetchNews} setEdit={setEdit} updateNews={setSelectedNews} />
               </div>
               <div className="seperator"></div>
               <div className="addnews">
-                  <AddNews refreshNews={fetchNews} news={selectedNews} handleFormChange={handleFormChange} />
+                  <AddNews refreshNews={fetchNews} news={selectedNews} updatedNews={setSelectedNews} handleFormChange={handleFormChange} edit={edit} setEdit={setEdit} />
               </div>
           </main>
       </div>  );
