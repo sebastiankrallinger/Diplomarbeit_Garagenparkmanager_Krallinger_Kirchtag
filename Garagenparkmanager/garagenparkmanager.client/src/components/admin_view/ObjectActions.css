@@ -1,6 +1,11 @@
 /* Styling ObjectActions-Component */
+.ObjectActions .rentedObjects {
+    max-height: 50em;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
 
-.ObjectActions .rentedObjects button {
+.ObjectActions button {
     background-color: #F9A800;
     width: 150px;
     color: #ffff;

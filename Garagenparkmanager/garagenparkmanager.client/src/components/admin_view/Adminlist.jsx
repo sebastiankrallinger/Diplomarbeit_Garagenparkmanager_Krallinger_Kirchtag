@@ -25,8 +25,8 @@ function Adminlist({ admins, refreshAdmins, editAdmin }) {
     }
 
     return (
+        <><h2>Admins</h2>
         <div className="Adminlist">
-            <h2>Admins</h2>
             {admins.map((admin, index) => (
                 <ul key={admin.id}>
                     <li key={admin.id}>
@@ -40,8 +40,8 @@ function Adminlist({ admins, refreshAdmins, editAdmin }) {
                         </div>
                     </li>
                 </ul>
-            ))}      
-        </div>
+            ))}
+        </div></>
     );
 }
 

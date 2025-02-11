@@ -29,8 +29,8 @@ function Newslist({ news, refreshNews, setEdit, updateNews }) {
     }
 
     return (
+        <><h2>Aktuelle News</h2>
         <div className="Newslist">
-            <h2>Aktuelle News</h2>
             {news.map((oneNews, index) => (
                 <ul key={oneNews.id}>
                     <li>
@@ -38,6 +38,7 @@ function Newslist({ news, refreshNews, setEdit, updateNews }) {
                             <img src={oneNews.imageUrl} className="newsimage" alt="News-Image" />
                             <div className="news-content">
                                 <h2>{oneNews.title}</h2>
+                                <p>{new Date(oneNews.timestamp).toLocaleString('de-DE')}</p>
                                 <p>{oneNews.content}</p>
                             </div>
                         </div>
@@ -48,7 +49,7 @@ function Newslist({ news, refreshNews, setEdit, updateNews }) {
                     </li>
                 </ul>
             ))}
-        </div>
+        </div></>
     );
 }
 

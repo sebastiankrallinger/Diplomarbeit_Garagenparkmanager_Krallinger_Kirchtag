@@ -17,7 +17,6 @@
 
 .Adminmanagement_Admin .adminlist {
     display: flex;
-    width: 20%;
     flex-direction: column;
     justify-content: flex-start;
     margin-right: 10%;

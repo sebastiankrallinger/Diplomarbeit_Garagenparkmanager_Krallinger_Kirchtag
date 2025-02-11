@@ -127,6 +127,7 @@ function UserMainpage() {
                                         <div>
                                             <h2>{news[currentNewsIndex].title}</h2>
                                             <p>{news[currentNewsIndex].content}</p>
+                                            <p>{new Date(news[currentNewsIndex].timestamp).toLocaleDateString('de-DE')}</p>
                                         </div>
                                     </motion.div>
                                 )}

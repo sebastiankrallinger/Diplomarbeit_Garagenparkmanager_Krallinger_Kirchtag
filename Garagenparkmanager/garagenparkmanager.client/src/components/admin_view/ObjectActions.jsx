@@ -252,9 +252,9 @@ function ObjectActions() {
 
     return (
         <div className="ObjectActions">
+            <h2>Alle Lager/Immobilien</h2>
+            <button onClick={handleButtonAddClick}>Objekt hinzuf&uuml;gen</button>
             <div className="rentedObjects">
-                <button onClick={handleButtonAddClick}>Objekt hinzuf&uuml;gen</button>
-                <h2>Alle Lager/Immobilien</h2>
                 {storages.map((storage, index) => (
                     <ul className={`${storage.booked === true ? 'gray-background' : ''}`} key={storage.id}>
                         <li key={storage.id}>

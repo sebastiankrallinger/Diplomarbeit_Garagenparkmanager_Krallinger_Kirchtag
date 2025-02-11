@@ -1,3 +1,13 @@
+.Newslist html, body {
+    overflow: hidden;
+}
+
+.Newslist {
+    max-height: 50em;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
 .Newslist ul {
     background-color: #ffff;
     color: #000f;
@@ -37,6 +47,7 @@
     height: 150px;
     width: auto;
     margin-right: 10px;
+    transform: translateY(20%);
 }
 
 .Newslist .edit-delete-icons {
