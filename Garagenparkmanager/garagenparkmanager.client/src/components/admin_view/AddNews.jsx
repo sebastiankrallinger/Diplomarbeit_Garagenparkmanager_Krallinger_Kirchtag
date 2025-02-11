@@ -94,7 +94,7 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
             });
 
             if (response.ok) {
-                console.log("Erfolgreich hinzugefügt!");
+                //console.log("Erfolgreich hinzugefügt!");
                 setFormData({
                     title: '',
                     content: '',

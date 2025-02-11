@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\dokumente\\github\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\addnews.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\components\\admin_view\\addnews.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\dokumente\\github\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\newslist.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\components\\admin_view\\newslist.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\dokumente\\github\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\pages\\pages_admin\\newsmanagement.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\pages\\pages_admin\\newsmanagement.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B7A89A50-8D88-4F85-B2D6-AC9AA3DCB484}|Garagenparkmanager.Server\\Garagenparkmanager.Server.csproj|c:\\users\\skral\\dokumente\\github\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.server\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B7A89A50-8D88-4F85-B2D6-AC9AA3DCB484}|Garagenparkmanager.Server\\Garagenparkmanager.Server.csproj|solutionrelative:garagenparkmanager.server\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B7A89A50-8D88-4F85-B2D6-AC9AA3DCB484}|Garagenparkmanager.Server\\Garagenparkmanager.Server.csproj|c:\\users\\skral\\dokumente\\github\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.server\\services\\newsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B7A89A50-8D88-4F85-B2D6-AC9AA3DCB484}|Garagenparkmanager.Server\\Garagenparkmanager.Server.csproj|solutionrelative:garagenparkmanager.server\\services\\newsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -39,71 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NewsRepository.cs",
-              "DocumentMoniker": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\Services\\NewsRepository.cs",
-              "RelativeDocumentMoniker": "Garagenparkmanager.Server\\Services\\NewsRepository.cs",
-              "ToolTip": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\Services\\NewsRepository.cs",
-              "RelativeToolTip": "Garagenparkmanager.Server\\Services\\NewsRepository.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBcAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T11:23:19.907Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Newsmanagement.jsx",
-              "DocumentMoniker": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\pages_admin\\Newsmanagement.jsx",
-              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\pages\\pages_admin\\Newsmanagement.jsx",
-              "ToolTip": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\pages\\pages_admin\\Newsmanagement.jsx",
-              "RelativeToolTip": "garagenparkmanager.client\\src\\pages\\pages_admin\\Newsmanagement.jsx",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwDYAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-02-10T10:45:31.466Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Newslist.jsx",
-              "DocumentMoniker": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\Newslist.jsx",
-              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\components\\admin_view\\Newslist.jsx",
-              "ToolTip": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\Newslist.jsx",
-              "RelativeToolTip": "garagenparkmanager.client\\src\\components\\admin_view\\Newslist.jsx",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAxwDYAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-02-10T11:04:02.412Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddNews.jsx",
-              "DocumentMoniker": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
-              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
-              "ToolTip": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
-              "RelativeToolTip": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
-              "ViewState": "AgIAACkAAAAAAAAAAAAQwDUAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-02-10T11:24:33.196Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NewsController.cs",
-              "DocumentMoniker": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\Controllers\\NewsController.cs",
-              "RelativeDocumentMoniker": "Garagenparkmanager.Server\\Controllers\\NewsController.cs",
-              "ToolTip": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\Controllers\\NewsController.cs",
-              "RelativeToolTip": "Garagenparkmanager.Server\\Controllers\\NewsController.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAuwDEAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T10:51:00.816Z",
-              "EditorCaption": ""
             }
           ]
         }
