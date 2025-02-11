@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './user_mainpage.css';
 import './popup.css';
 import Header from '../../components/Header_User';
@@ -27,6 +28,16 @@ function UserMainpage() {
     const handleNextNews = () => {
         setCurrentNewsIndex((prevIndex) => (prevIndex === news.length - 1 ? 0 : prevIndex + 1));
     };
+
+    useEffect(() => {
+        if (news.length > 1) {
+            const interval = setInterval(() => {
+                setCurrentNewsIndex((prevIndex) => (prevIndex + 1) % news.length);
+            }, 10000);
+
+            return () => clearInterval(interval);
+        }
+    }, [news]);
 
     const handleOpenPopup = (object) => {
         setSelectedObject(object);
@@ -101,19 +112,30 @@ function UserMainpage() {
                     <h1>News</h1>
                     <div className="newsContainer">
                         <button className="navBtn" onClick={handlePrevNews}>&#10094;</button>
-                        <div className="newsContent">
-                            {news.length > 0 ? (
-                                <div>
-                                    <h2>{news[currentNewsIndex].title}</h2>
-                                    <p>{news[currentNewsIndex].content}</p>
-                                </div>
-                            ) : (
-                                <p>Keine News verfügbar.</p>
-                            )}
+                        <div className="newsWrapper">
+                            <AnimatePresence mode="wait">
+                                {news.length > 0 && (
+                                    <motion.div
+                                        key={news[currentNewsIndex]?.id || currentNewsIndex}
+                                        initial={{ opacity: 0, x: 100 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -100 }}
+                                        transition={{ duration: 0.5 }}
+                                        className="newsContent"
+                                    >
+                                        <img src={news[currentNewsIndex].imageUrl} className="newsImage" alt="News" />
+                                        <div>
+                                            <h2>{news[currentNewsIndex].title}</h2>
+                                            <p>{news[currentNewsIndex].content}</p>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                         <button className="navBtn" onClick={handleNextNews}>&#10095;</button>
                     </div>
                 </section>
+
 
                 {/* SelfStorage/Immobilien an zweiter Stelle */}
                 <section className="selfStorage">

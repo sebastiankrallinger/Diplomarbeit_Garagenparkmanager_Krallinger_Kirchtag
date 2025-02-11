@@ -22,28 +22,28 @@ function Newslist({ news, refreshNews }) {
             console.error('Fehler beim Löschen de Benutzers:', error);
         }
     }
-  return (
-      <div className="Newslist">
-          <h2>Aktuelle News</h2>
-          {news.map((oneNews, index) => (
-              <ul key={oneNews.id}>
-                  <li key={oneNews.id}>
-                      <div className="news">
-                          <img src={oneNews.imageUrl} className="newsimage" alt="News-Image"></img>
-                          <div className="news-content">
-                              <h2>{oneNews.title}</h2>
-                              <p>{oneNews.content}</p>
-                              <div>
-                                  <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => editNews(oneNews.id)}></img>
-                                  <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => deleteNews(oneNews.id)}></img>
-                              </div>
-                          </div>
-                      </div>
-                  </li>
-              </ul>
-          ))}
-      </div>
-  );
+    return (
+        <div className="Newslist">
+            <h2>Aktuelle News</h2>
+            {news.map((oneNews, index) => (
+                <ul key={oneNews.id}>
+                    <li>
+                        <div className="news">
+                            <img src={oneNews.imageUrl} className="newsimage" alt="News-Image" />
+                            <div className="news-content">
+                                <h2>{oneNews.title}</h2>
+                                <p>{oneNews.content}</p>
+                            </div>
+                        </div>
+                        <div className="edit-delete-icons">
+                            <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => editNews(oneNews.id)} />
+                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => deleteNews(oneNews.id)} />
+                        </div>
+                    </li>
+                </ul>
+            ))}
+        </div>
+    );
 }
 
 export default Newslist;
