@@ -1,12 +1,13 @@
-/* Register-Page */
 .user_register {
     position: relative;
     height: 100%;
     font-family: Arial, sans-serif;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
 }
 
-/* Hintergrundbild */
-.backgroundImage {
+.user_register .backgroundImage {
     position: absolute;
     top: 0;
     left: 0;
@@ -18,8 +19,7 @@
     z-index: 0;
 }
 
-/* Register-Formular-Container */
-.registerFormContainer {
+.user_register .registerFormContainer {
     position: absolute;
     top: 0;
     left: 0;
@@ -34,87 +34,75 @@
     padding-left: 30px;
 }
 
-/* Register-Formular Heading */
-.registerFormContainer h1 {
+.user_register .registerFormContainer h1 {
     color: white;
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-/* Register-Formular */
-.registerForm {
+.user_register .registerForm {
     width: 100%;
     max-width: 400px;
     display: flex;
     flex-direction: column;
 }
 
-/* Formular-Abschnitte */
-.formGroup {
+.user_register .formGroup {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
 
-/* Formular-Labels */
-.formGroup label {
+.user_register .formGroup label {
     font-size: 14px;
     margin-bottom: 5px;
     color: white;
 }
 
-/* Formular-Inputfelder */
-.formGroup input {
+.user_register .formGroup input {
     padding: 10px;
     font-size: 16px;
-    background-color: black; 
-    color: white; 
-    border: 1px solid #f9a800; 
+    background-color: black;
+    color: white;
+    border: 1px solid #f9a800;
     border-radius: 5px;
     width: 100%;
 }
 
-/* Formular-Inputfelder-Reihe */
-.formRow {
+.user_register .formRow {
     display: flex;
-    gap: 40px; 
+    gap: 40px;
 }
 
-/* Formular-Inputfelder-Reihe */
-.formRow .formGroup {
-    flex: 1; 
+.user_register .formRow .formGroup {
+    flex: 1;
 }
 
-/* Checkbox-StaySingedIn */
-.formOptions {
+.user_register .formOptions {
     margin-bottom: 20px;
 }
 
-/* Checkbox-StaySingedIn-Text */
-.checkboxGroup input {
+.user_register .checkboxGroup input {
     margin-right: 5px;
 }
 
-/* Registrieren-Button */
-.registerButton {
+.user_register .registerButton {
     padding: 10px;
     font-size: 16px;
-    background-color: #F9A800; 
+    background-color: #F9A800;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
 }
-    
-/* Hover-Effekt */
-.registerButton:hover {
+
+.user_register .registerButton:hover {
     background-color: #e08e00;
 }
 
-/* Lagerage-Logo */
-.topRightImage {
+.user_register .topRightImage {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -122,8 +110,7 @@
     height: auto;
 }
 
-/* Lagerage-Logo-Umrandung */
-.topRightImage img {
+.user_register .topRightImage img {
     max-width: 100%;
     max-height: 100%;
     border-radius: 5px;

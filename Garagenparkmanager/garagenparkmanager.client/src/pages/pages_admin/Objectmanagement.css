@@ -4,6 +4,9 @@
     display: flex;
     flex-direction: column;
     height: calc(100% - 50px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
 }
 
 .Objectmanagement main {

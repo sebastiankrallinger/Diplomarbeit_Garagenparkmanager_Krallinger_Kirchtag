@@ -17,7 +17,7 @@ function Home() {
         <div className="Home">
             <Header /> 
             <main>
-                <section className="section1">
+                <section className="section1" id="content">
                     <video autoPlay loop muted>
                         <source src={movie} type="video/mp4"/>
                     </video>
@@ -45,7 +45,7 @@ function Home() {
                 </section>
 
                
-                <section className="garageparkPlan">
+                <section className="garageparkPlan" id="plan">
                     <div className="plan">
                         <h1>Garagenpark - &Uuml;bersicht</h1>
                         <img src={ParkPlan} alt="Garagenpark" />
@@ -53,7 +53,7 @@ function Home() {
                 </section>
 
                 {/* Unser Team an dritter Stelle */}
-                <section className="ueberUns">
+                <section className="ueberUns" id="ueberUns">
                     <h1>Unser Team</h1>
                     <div className="personImages">
                         <div className="personImage">

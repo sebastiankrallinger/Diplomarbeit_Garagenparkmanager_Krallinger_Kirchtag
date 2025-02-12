@@ -10,8 +10,11 @@ function Header() {
     const navigate = useNavigate(); 
     const { user, logout } = useContext(AuthContext);
 
-    const handleNavigation = (route) => {
-        navigate(route);
+    const handleNavigation = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     //Token entfernen
@@ -29,9 +32,9 @@ function Header() {
                 </div>
                 <nav className="header-navbar">
                     <ul>
-                        <a onClick={() => handleNavigation('')}>News</a>
-                        <a onClick={() => handleNavigation('')}>Immobilien</a>
-                        <a onClick={() => handleNavigation('')}>&Uuml;ber Uns</a>
+                        <a onClick={() => handleNavigation('news')}>News</a>
+                        <a onClick={() => handleNavigation('storages')}>Immobilien</a>
+                        <a onClick={() => handleNavigation('ueberUns')}>&Uuml;ber Uns</a>
                         {user && (
                             <a>{user.email}</a>
                         )}

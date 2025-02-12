@@ -11,23 +11,23 @@
     gap: 15px;
 }
 
-    .InputformUserdata .inputForm input {
-        margin-top: 10px;
-        padding: 10px 10px;
-        border-radius: 10px;
-    }
+.InputformUserdata .inputForm input {
+    margin-top: 10px;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
 
 .InputformUserdata .location, .street, .company {
     display: flex;
 }
 
-    .InputformUserdata .location input[placeholder="PLZ"] {
-        width: 20%;
-    }
+.InputformUserdata .location input[placeholder="PLZ"] {
+    width: 20%;
+}
 
-    .InputformUserdata .location input[placeholder="Ort"] {
-        width: 80%;
-    }
+.InputformUserdata .location input[placeholder="Ort"] {
+    width: 80%;
+}
 
 .InputformUserdata .strasse {
     width: 75%;

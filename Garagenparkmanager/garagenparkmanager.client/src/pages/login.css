@@ -3,10 +3,12 @@
     position: relative;
     height: 100%;
     font-family: Arial, sans-serif;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
 }
 
-/* Hintergrundbild */
-.backgroundImage {
+.loginPage .backgroundImage {
     position: absolute;
     top: 0;
     left: 0;
@@ -18,8 +20,7 @@
     z-index: 0;
 }
 
-/* Login-Formular-Container */
-.loginFormContainer {
+.loginPage .loginFormContainer {
     position: absolute;
     top: 0;
     left: 0;
@@ -34,57 +35,50 @@
     padding-left: 30px;
 }
 
-/* Login-Formular Heading */
-.loginFormContainer h1 {
+.loginPage .loginFormContainer h1 {
     color: white;
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-/* Login-Formular */
-.loginForm {
+.loginPage .loginForm {
     width: 100%;
     max-width: 400px;
     display: flex;
     flex-direction: column;
 }
 
-/* Formular-Abschnitte */
-.formGroup {
+.loginPage .formGroup {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
 
-/* Formular-Labels */
-.formGroup label {
+.loginPage .formGroup label {
     font-size: 14px;
     margin-bottom: 5px;
     color: white;
 }
 
-/* Formular-Inputfelder */
-.formGroup input {
+.loginPage .formGroup input {
     padding: 10px;
     font-size: 16px;
-    background-color: black; 
-    color: white; 
-    border: 1px solid #f9a800; 
+    background-color: black;
+    color: white;
+    border: 1px solid #f9a800;
     border-radius: 5px;
     width: 100%;
 }
 
-/* Checkbox-StaySingedIn */
-.formOptions {
+.loginPage .formOptions {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
 
-/* Login-Button */
-.loginButton {
+.loginPage .loginButton {
     padding: 10px;
     font-size: 16px;
     background-color: #F9A800;
@@ -96,25 +90,21 @@
     margin-bottom: 20px;
 }
 
-/* Hover-Effekt */
-.loginButton:hover {
+.loginPage .loginButton:hover {
     background-color: #e08e00;
 }
 
-/* Registrieren-Bereich */
-.registerSection {
+.loginPage .registerSection {
     text-align: center;
 }
 
-/* Registrieren-Bereich-Heading */
-.registerSection p {
+.loginPage .registerSection p {
     font-size: 14px;
     margin-bottom: 10px;
     color: white;
 }
 
-/* Registrieren-Button */
-.registerButton {
+.loginPage .registerButton {
     padding: 10px;
     font-size: 16px;
     background-color: #333;
@@ -125,13 +115,11 @@
     width: 100%;
 }
 
-/* Hover-Effekt */
-.registerButton:hover {
+.loginPage .registerButton:hover {
     background-color: #555;
 }
 
-/* Lagerage-Logo */
-.topRightImage {
+.loginPage .topRightImage {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -139,14 +127,13 @@
     height: auto;
 }
 
-/* Lagerage-Logo-Umrandung */
-.topRightImage img {
+.loginPage .topRightImage img {
     width: 100%;
     height: auto;
     border: 2px solid #fff;
     border-radius: 5px;
 }
 
-#errorlbl {
+.loginPage #errorlbl {
     color: #f9a800;
 }

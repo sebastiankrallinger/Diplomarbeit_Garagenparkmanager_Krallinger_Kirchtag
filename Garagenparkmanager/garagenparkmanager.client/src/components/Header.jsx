@@ -8,8 +8,11 @@ import './Header.css';
 function Header() {  
     const navigate = useNavigate(); 
 
-    const handleNavigation = (route) => {
-        navigate(route);
+    const handleNavigation = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
     };
     const handleLogin = (e) => {
         e.preventDefault();
@@ -24,9 +27,9 @@ function Header() {
                 </div>
                 <nav className="header-navbar">
                     <ul>
-                        <a onClick={() => handleNavigation('')}>News</a>
-                        <a onClick={() => handleNavigation('')}>Immobilien</a>
-                        <a onClick={() => handleNavigation('')}>&Uuml;ber Uns</a>
+                        <a onClick={() => handleNavigation('content')}>Immobilien</a>
+                        <a onClick={() => handleNavigation('plan')}>Garagenpark</a>
+                        <a onClick={() => handleNavigation('ueberUns')}>&Uuml;ber Uns</a>
                         <button onClick={handleLogin}>Anmelden</button>
                     </ul>
                 </nav>

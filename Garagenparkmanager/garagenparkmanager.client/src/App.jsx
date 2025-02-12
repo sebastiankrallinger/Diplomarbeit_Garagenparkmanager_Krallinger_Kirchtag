@@ -8,11 +8,9 @@ import Adminmanagement from './pages/pages_admin/Adminmanagement';
 import Objectmanagement from './pages/pages_admin/Objectmanagement';
 import Newsmanagement from './pages/pages_admin/Newsmanagement';
 import Documentmanagement from './pages/pages_admin/Documentmanagement';
-//import Mainpage_User from './pages/Mainpage_User';
 import User_Freeobjects from './pages/user_pages/user_freeobjects';
 import Login from './pages/login';
 import User_Mainpage from './pages/user_pages/user_mainpage';
-//import User_ObjectInfo from './pages/user_pages/user_objectinfo';
 import User_Register from './pages/user_pages/user_register';
 import './index.css';
 import PrivateRoute from './components/PrivateRoute';
@@ -25,7 +23,6 @@ function App() {
                     <Route path="/" element={<Navigate to="/home" replace />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/admin" element={<Mainpage_Admin />} />
-                    {/*<Route path="/user" element={<Mainpage_User />} />*/}
                     <Route path="/admin/usermanagement" element={<Usermanagement />} />
                     <Route path="/admin/adminmanagement" element={<Adminmanagement />} />
                     <Route path="/admin/objectmanagement" element={<Objectmanagement />} />
@@ -33,15 +30,7 @@ function App() {
                     <Route path="/admin/documentmanagement" element={<Documentmanagement />} />
                     <Route path="/user/freeobjects" element={<User_Freeobjects />} />
                     <Route path="/login" element={<Login />} />
-                    <Route
-                        path="/user"
-                        element={
-                            <PrivateRoute>
-                                <User_Mainpage />
-                            </PrivateRoute>
-                        }
-                    />
-                    {/*<Route path="/user/objectinfo" element={<User_ObjectInfo />} />*/}
+                    <Route path="/user" element={<PrivateRoute><User_Mainpage /></PrivateRoute>} />
                     <Route path="/register" element={<User_Register />} />
                 </Routes>
             </BrowserRouter>

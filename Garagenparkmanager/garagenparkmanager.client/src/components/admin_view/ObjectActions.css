@@ -1,8 +1,6 @@
 /* Styling ObjectActions-Component */
 .ObjectActions .rentedObjects {
     max-height: 50em;
-    overflow-y: scroll;
-    scrollbar-width: none;
 }
 
 .ObjectActions button {

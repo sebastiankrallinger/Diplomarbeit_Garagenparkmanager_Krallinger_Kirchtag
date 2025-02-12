@@ -5,7 +5,6 @@ import './popup.css';
 import Header from '../../components/Header_User';
 import Footer from '../../components/Footer';
 import houseplaceholder from '../../../src/assets/houseplaceholder.jpg'
-//import personplaceholder from '../../../src/assets/personplaceholder.jpg'
 import aboutUs1 from '../../../src/assets/aboutUs1.png'
 import aboutUs2 from '../../../src/assets/aboutUs2.png'
 import aboutUs3 from '../../../src/assets/aboutUs3.png'
@@ -108,7 +107,7 @@ function UserMainpage() {
             <Header />
             <main>
                 {/* News an erster Stelle */}
-                <section className="news">
+                <section className="news" id="news">
                     <h1>News</h1>
                     <div className="newsContainer">
                         <button className="navBtn" onClick={handlePrevNews}>&#10094;</button>
@@ -139,7 +138,7 @@ function UserMainpage() {
 
 
                 {/* SelfStorage/Immobilien an zweiter Stelle */}
-                <section className="selfStorage">
+                <section className="selfStorage" id="storages">
                     <h1>SelfStorage/Immobilien</h1>
                     <div className="storageImages">
                         {bookedStorages.length > 0 ? (
@@ -172,7 +171,7 @@ function UserMainpage() {
                 </section>
 
                 {/* Unser Team an dritter Stelle */}
-                <section className="ueberUns">
+                <section className="ueberUns" id="ueberUns">
                     <h1>Unser Team</h1>
                     <div className="personImages">
                         <div className="personImage">

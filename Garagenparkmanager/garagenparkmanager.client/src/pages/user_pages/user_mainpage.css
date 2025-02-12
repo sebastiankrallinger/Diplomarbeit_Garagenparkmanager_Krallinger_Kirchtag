@@ -1,10 +1,15 @@
-main {
+.user_mainpage html, body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+.user_mainpage main {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-
-.storageImages {
+.user_mainpage .storageImages {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -12,17 +17,17 @@ main {
     width: 100%;
 }
 
-.selfStorage h1 {
+.user_mainpage .selfStorage h1 {
     text-align: center;
-    color: #F9A800;
+    color: white;
 }
 
-.storageImage {
+.user_mainpage .storageImage {
     max-width: 30%;
     text-align: center;
 }
 
-.storageImage img {
+.user_mainpage .storageImage img {
     width: 100%;
     border-radius: 10px;
 }
@@ -32,7 +37,7 @@ main {
     color: white;
 }
 
-.newsContainer {
+.user_mainpage .newsContainer {
     display: flex;
     gap: 20px;
     position: relative;
@@ -41,7 +46,7 @@ main {
     margin: 0 auto;
 }
 
-.navBtn {
+.user_mainpage .navBtn {
     background: rgba(0, 0, 0, 0.5);
     border: none;
     font-size: 24px;
@@ -58,15 +63,15 @@ main {
     display: flex;
 }
 
-.navBtn:first-of-type {
+.user_mainpage .navBtn:first-of-type {
     left: 0;
 }
 
-.navBtn:last-of-type {
+.user_mainpage .navBtn:last-of-type {
     right: 0;
 }
 
-.newsContent {
+.user_mainpage .newsContent {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -76,19 +81,19 @@ main {
     justify-content: center;
 }
 
-.newsImage {
+.user_mainpage .newsImage {
     width: 40%;
     height: auto;
     object-fit: cover;
     margin-left: 50px;
 }
 
-.newsContent div {
+.user_mainpage .newsContent div {
     width: 50%;
     text-align: left;
 }
 
-.personImages {
+.user_mainpage .personImages {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,17 +118,17 @@ main {
     text-align: center;
 }
 
-.plan {
+.user_mainpage .plan {
     height: fit-content;
     text-align: center;
 }
 
-.garageparkPlan img {
+.user_mainpage .garageparkPlan img {
     height: 50em;
     transform-origin: center;
     transform: rotate(90deg);
 }
 
-.popupContent img {
+.user_mainpage .popupContent img {
     height: 15em;
 }
