@@ -120,22 +120,37 @@ function Mainpage_Admin() {
         <div className="Mainpage_Admin">
             <Header />
             <main>
+                <div className="heading">
+                    <h2>Dashboard</h2>
+                </div>
                 <div className="dashboard">
-                    <div className="heading">
-                        <h2>Dashboard</h2>
+                    <div className="card">
+                        <h3>Gesamtanzahl Objekte</h3>
+                        <p>{allObjects || '0'}</p>
                     </div>
-                    <div className="content">
-                        <div className="leftCol">
-                            <p>Gesamtanzahl Objekte: {allObjects ? `${allObjects}` : '0'}</p>
-                            <p>Vermietete Objekte: {bookedObjects ? `${bookedObjects.length}` : '0'}</p>
-                            <p>Freie Objekte: {freeObjects ? `${freeObjects.length}` : '0'}</p>
-                            <p>Aktueller Mietzins: {vpi ? `${vpi}` : '0'}</p>
-                        </div>
-                        <div className="rightCol">
-                            <p>Umastz letztes Monat: {earnings ? `${earnings} \u20AC` : '0'}</p>
-                            <p>M&ouml;glicher Umsatz letztes Monat: {possibleEarnings ? `${possibleEarnings} \u20AC` : '0'}</p>
-                            <p>Registrierte Benutzer: {user ? `${user}` : '0'}</p>
-                        </div>
+                    <div className="card">
+                        <h3>Vermietete Objekte</h3>
+                        <p>{bookedObjects ? bookedObjects.length : '0'}</p>
+                    </div>
+                    <div className="card">
+                        <h3>Freie Objekte</h3>
+                        <p>{freeObjects ? freeObjects.length : '0'}</p>
+                    </div>
+                    <div className="card">
+                        <h3>Umsatz letztes Monat</h3>
+                        <p>{earnings ? `${earnings} \u20AC` : `0 \u20AC`}</p>
+                    </div>
+                    <div className="card">
+                        <h3>M&ouml;glicher Umsatz</h3>
+                        <p>{possibleEarnings ? `${possibleEarnings} \u20AC` : `0 \u20AC`}</p>
+                    </div>
+                    <div className="card">
+                        <h3>Registrierte Benutzer</h3>
+                        <p>{user || '0'}</p>
+                    </div>
+                    <div className="card">
+                        <h3>Aktueller Mietzins</h3>
+                        <p>{vpi || '0'}</p>
                     </div>
                 </div>
             </main>

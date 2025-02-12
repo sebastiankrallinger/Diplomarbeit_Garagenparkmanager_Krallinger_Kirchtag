@@ -1,5 +1,4 @@
 /* Styling der Mainpage_Admin-Component */
-
 .Mainpage_Admin {
     display: flex;
     flex-direction: column;
@@ -7,55 +6,52 @@
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: none;
+    background-color: #383E42;
+    color: #f8fafc;
 }
 
-.Mainpage_Admin main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+
+.Mainpage_Admin .heading {
+    text-align: center;
+    padding: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 10vh;
 }
 
 .Mainpage_Admin .dashboard {
-    display: flex;
-    flex-direction: row;
-    width: 70%;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.Mainpage_Admin .dashboard .card:last-child {
+    grid-column: 2 / 3;
+}
+
+.Mainpage_Admin .card {
+    background: #4A5257;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
     transition: transform 0.2s;
-    background-color: white;
-    color: black;
-    height: 50vh;
-    padding: 50px;
-    margin: 10px;
 }
 
-.Mainpage_Admin .heading {
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-flex: 0.2;
+.Mainpage_Admin .card:hover {
+    transform: translateY(-5px);
 }
 
-.Mainpage_Admin .content {
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
-    width: 100%;
-    align-items: center;
+.Mainpage_Admin .card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #F9A800;
 }
 
-.Mainpage_Admin .leftCol, .rightCol {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 45%;
-}
-
-.Mainpage_Admin .leftCol p, .rightCol p {
-    margin: 10px 0;
-    font-size: 22px;
+.Mainpage_Admin .card p {
+    font-size: 24px;
+    font-weight: bold;
 }
