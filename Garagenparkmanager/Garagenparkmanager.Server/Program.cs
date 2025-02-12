@@ -17,6 +17,7 @@ namespace Garagenparkmanager.Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(options =>
             {
+                //Authentifizierung fuer Swagger konfigurieren
                 var jwtSecurityScheme = new OpenApiSecurityScheme
                 {
                     BearerFormat = "JWT",
@@ -39,6 +40,7 @@ namespace Garagenparkmanager.Server
                 });
             });
 
+            //Repositories registrieren
             builder.Services.AddScoped<IUserRepository, UserRepository>(x
                 => new UserRepository(
                     builder.Configuration.GetConnectionString("CosmosDb"),
@@ -72,6 +74,7 @@ namespace Garagenparkmanager.Server
                )
             );
 
+            //Ressourcen fuer Domain freigeben
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowFrontend",
@@ -83,6 +86,7 @@ namespace Garagenparkmanager.Server
                     });
             });
 
+            //Authentifiziereung registrieren
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

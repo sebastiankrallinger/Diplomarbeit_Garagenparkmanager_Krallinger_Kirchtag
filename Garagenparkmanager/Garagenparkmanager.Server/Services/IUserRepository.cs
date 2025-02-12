@@ -1,6 +1,6 @@
 ﻿using Garagenparkmanager.Server.Models;
 
-//Datenankfunktionen Userfunktionen
+//Interface des User-Repository
 
 namespace Garagenparkmanager.Server.Services
 {

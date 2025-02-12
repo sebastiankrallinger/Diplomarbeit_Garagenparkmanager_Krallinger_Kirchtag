@@ -3,7 +3,7 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.VisualBasic;
 using System.ComponentModel;
 
-//Verwaltung Datenbankzugriffe User
+//User-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public class UserRepository : IUserRepository
@@ -129,6 +129,7 @@ namespace Garagenparkmanager.Server.Services
             return results;
         }
 
+        //Id eines Benutzers laden
         public async Task<string> GetCustomerId(string email)
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.email = @email")

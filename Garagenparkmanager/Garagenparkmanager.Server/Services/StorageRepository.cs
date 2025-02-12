@@ -1,6 +1,7 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Garagenparkmanager.Server.Models;
 
+//Storage-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public class StorageRepository : IStorageRepository
@@ -39,6 +40,7 @@ namespace Garagenparkmanager.Server.Services
             return results;
         }
 
+        //einen Storage laden
         public async Task<Models.Storage> GetStorage(string id)
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
@@ -55,6 +57,7 @@ namespace Garagenparkmanager.Server.Services
             return null;
         }
 
+        //Storage aendern
         public async Task<Models.Storage> UpdateStorage(Storage storage)
         {
             var response = await _container.ReplaceItemAsync(storage, storage.Id, new PartitionKey(storage.Id));

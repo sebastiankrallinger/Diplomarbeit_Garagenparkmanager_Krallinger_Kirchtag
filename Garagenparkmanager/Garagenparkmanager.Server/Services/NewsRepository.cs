@@ -1,6 +1,7 @@
 ﻿using Garagenparkmanager.Server.Models;
 using Microsoft.Azure.Cosmos;
 
+//News-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public class NewsRepository : INewsRepository
@@ -39,6 +40,7 @@ namespace Garagenparkmanager.Server.Services
             return results;
         }
 
+        //eine News laden
         public async Task<News> GetNews(string id)
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
@@ -55,12 +57,14 @@ namespace Garagenparkmanager.Server.Services
             return null;
         }
 
+        //eine News aendern
         public async Task<News> UpdateNews(News news)
         {
             var response = await _container.ReplaceItemAsync(news, news.Id, new PartitionKey(news.Id));
             return response.Resource;
         }
 
+        //eine News loeschen
         public async Task<bool> DeleteNews(string id)
         {
             var response = await _container.DeleteItemAsync<News>(id, new PartitionKey(id));

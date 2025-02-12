@@ -3,6 +3,7 @@ using Garagenparkmanager.Server.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+//Verwaltung News
 namespace Garagenparkmanager.Server.Controllers
 {
     [Authorize]
@@ -27,7 +28,7 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
-        //einen News laden
+        //eine News laden
         [HttpGet("news/{id}")]
         public async Task<IActionResult> GetNews(string id)
         {
@@ -35,6 +36,7 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
+        //eine News bearbeiten
         [HttpPut("updateNews")]
         public async Task<IActionResult> UpdateNews([FromBody] News news)
         {
@@ -42,6 +44,7 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
+        //eine News hinzufuegen
         [HttpPost("addnews")]
         public async Task<IActionResult> AddNewNews([FromBody] News news)
         {
@@ -57,7 +60,7 @@ namespace Garagenparkmanager.Server.Controllers
             }
         }
 
-        //News loeschen
+        //eine News loeschen
         [HttpDelete("deleteNews/{id}")]
         public async Task<IActionResult> DeltetNews(string id)
         {

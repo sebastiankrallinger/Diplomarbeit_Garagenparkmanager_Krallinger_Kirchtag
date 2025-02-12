@@ -1,5 +1,6 @@
 ﻿using Garagenparkmanager.Server.Models;
 
+//Interface des Storage-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public interface IStorageRepository

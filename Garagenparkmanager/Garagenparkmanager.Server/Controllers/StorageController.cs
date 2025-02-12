@@ -90,6 +90,7 @@ namespace Garagenparkmanager.Server.Controllers
             return CreatedAtAction(nameof(GetAllStorages), new { id = result.Id }, result);
         }
 
+        //Objekttypen laden
         [HttpGet("alltypes")]
         public async Task<IActionResult> GetAllTypes()
         {
@@ -97,6 +98,7 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
+        //Objekttyp hinzufuegen
         [HttpPost("addType")]
         public async Task<bool> AddType([FromBody] string type)
         {
@@ -104,6 +106,7 @@ namespace Garagenparkmanager.Server.Controllers
             return true;
         }
 
+        //Objekttyp loeschen
         [HttpDelete("deleteStorageType/{type}")]
         public async Task<IActionResult> DeleteUser(string type)
         {

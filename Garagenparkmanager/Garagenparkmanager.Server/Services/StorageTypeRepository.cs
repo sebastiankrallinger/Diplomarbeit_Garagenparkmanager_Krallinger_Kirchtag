@@ -3,6 +3,7 @@ using Microsoft.Azure.Cosmos;
 using System.ComponentModel;
 using System.Data;
 
+//StorageType-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public class StorageTypeRepository : IStorageTypeRepository
@@ -20,6 +21,7 @@ namespace Garagenparkmanager.Server.Services
             _container = cosmosClient.GetContainer(databaseName, containerStorageName);
         }
 
+        //einen Objekttypen erstellen
         public async Task<string> CreateStorageType(string type)
         {
             var item = new { id = Guid.NewGuid().ToString(), storagetype = type };
@@ -27,6 +29,7 @@ namespace Garagenparkmanager.Server.Services
             return response.ToString();
         }
 
+        //alle Objekttypen laden
         public async Task<IEnumerable<string>> GetAll()
         {
             var query = _container.GetItemQueryIterator<dynamic>(new QueryDefinition("SELECT c.storagetype FROM c"));
@@ -43,6 +46,7 @@ namespace Garagenparkmanager.Server.Services
             return results;
         }
 
+        //einen Objekttypen loeschen
         public async Task<string> Delete(string type)
         {
             var query = _container.GetItemQueryIterator<dynamic>(new QueryDefinition("SELECT * FROM c"));

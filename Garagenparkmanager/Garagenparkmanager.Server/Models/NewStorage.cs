@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+//Datenmodell fuer die Erstellung eines Mietobjekts
 namespace Garagenparkmanager.Server.Models
 {
     public class NewStorage
