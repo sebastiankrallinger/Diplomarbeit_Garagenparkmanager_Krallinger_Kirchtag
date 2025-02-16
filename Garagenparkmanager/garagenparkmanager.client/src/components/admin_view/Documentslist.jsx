@@ -40,13 +40,13 @@ function Documentslist() {
 
         const reader = new FileReader();
         reader.onloadend = async () => {
-            console.log(reader.result);
-            const base64File = reader.result.split(',')[1]; // Entferne den Data-URL-Teil
+            const base64File = reader.result.split(',')[1];
 
             try {
-                const response = await fetch("http://localhost:5000/api/files/upload", {
+                const response = await fetch(url + "Document/upload", {
                     method: "POST",
                     headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({ file: base64File, fileName: file.name }),
@@ -57,12 +57,14 @@ function Documentslist() {
                 }
 
                 const data = await response.json();
-                console.log("Datei URL:", data.FileUrl);
             } catch (error) {
                 console.error("Fehler beim Hochladen:", error);
             }
-        }
-    }
+        };
+
+        reader.readAsDataURL(file);
+    };
+
 
     return (
         <div className="Documentlist">
