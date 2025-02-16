@@ -1,4 +1,5 @@
 ﻿using Microsoft.Azure.Cosmos;
+using Garagenparkmanager.Server.Models;
 
 namespace Garagenparkmanager.Server.Services
 {
@@ -74,6 +75,11 @@ namespace Garagenparkmanager.Server.Services
             }
 
             return null;
+        }
+        public async Task<string> SaveFileMetadataAsync(Document document)
+        {
+            var response = await _container.CreateItemAsync(document);
+            return response.ToString();
         }
     }
 }

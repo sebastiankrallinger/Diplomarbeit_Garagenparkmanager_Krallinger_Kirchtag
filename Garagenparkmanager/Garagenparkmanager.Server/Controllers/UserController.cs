@@ -23,12 +23,13 @@ namespace Garagenparkmanager.Server.Controllers
         private readonly StorageController _storageController;
         private readonly DocumentController _documentController;
 
-        public UserController(IUserRepository customerRepository, IConfiguration configuration, IStorageRepository _storageRepository, IStorageTypeRepository _storageTypeRepository, IDocumentRepository _documentRepository)
+
+        public UserController(IUserRepository customerRepository, IConfiguration configuration, IStorageRepository _storageRepository, IStorageTypeRepository _storageTypeRepository, IDocumentRepository _documentRepository, BlobStorageService _blobStorageService)
         {
             _customerRepository = customerRepository;
             _configuration = configuration;
             _storageController = new StorageController(_storageRepository, _storageTypeRepository, configuration);
-            _documentController = new DocumentController(_documentRepository, configuration);
+            _documentController = new DocumentController(_documentRepository, configuration, _blobStorageService);
         }
 
         //alle Benutzer laden

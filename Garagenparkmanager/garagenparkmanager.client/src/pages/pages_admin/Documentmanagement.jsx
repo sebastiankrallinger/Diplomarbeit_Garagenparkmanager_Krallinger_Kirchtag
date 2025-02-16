@@ -39,11 +39,10 @@ function Documentmanagement() {
                 </div>
                 <div className="seperator"></div>
                 <div className="documentslist">
-                    <Documentlist refreshAdmins={fetchDocuments} handleFormChange={handleFormChange} />
+                    <Documentlist refreshAdmins={fetchDocuments} />
                 </div>
             </main>
         </div>
   );
 }
-0
 export default Documentmanagement;

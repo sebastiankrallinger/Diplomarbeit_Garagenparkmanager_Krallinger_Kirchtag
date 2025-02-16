@@ -4,13 +4,14 @@ import deleteIcon from "../../assets/deleteicon.png";
 
 function Documentslist() {
     const [documents, setDocuments] = useState([]);
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const [file, setFile] = useState(null);
     const url = "https://localhost:7186/";
+
     // GET: Dokumente aus der Datenbank laden
     useEffect(() => {
         async function fetchDocuments() {
             try {
-                const response = await fetch(url+"Document/documents", {
+                const response = await fetch(url + "Document/documents", {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
@@ -31,61 +32,36 @@ function Documentslist() {
         fetchDocuments();
     }, []);
 
-    const handleFileChange = async (event) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = async () => {
-                if (typeof reader.result === "string") {
-                    const base64String = reader.result.split(",")[1]; // Base64 ohne Präfix
-                    const newDocument = { name: file.name, base64: base64String };
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0]);
+    };
 
-                    try {
-                        const response = await fetch(url+"adddocument", {
-                            method: "POST",
-                            headers: {
-                                "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify(newDocument),
-                        });
-
-                        if (response.ok) {
-                            console.log("Dokument erfolgreich hinzugefügt!");
-                            setDocuments([...documents, newDocument]);
-                        } else {
-                            console.error("Fehler beim Hinzufügen des Dokuments.");
-                        }
-                    } catch (error) {
-                        console.error("Netzwerkfehler:", error);
-                    }
-                }
-            };
+    const handleUpload = async () => {
+        if (!file) {
+            console.error("Keine Datei ausgewählt!");
+            return;
         }
-    };
 
-    const handleButtonClick = () => {
-        document.getElementById("fileInput")?.click();
-    };
+        const formData = new FormData();
+        formData.append("file", file);
 
-    const handleDelete = async (index, docId) => {
         try {
-            const response = await fetch(url+`deleteDocument/${docId}`, {
-                method: "DELETE",
+            const response = await fetch(url + "Document/upload", {
+                method: "POST",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
                 },
+                body: formData,
             });
 
             if (response.ok) {
-                const updatedDocs = documents.filter((_, i) => i !== index);
-                setDocuments(updatedDocs);
+                const data = await response.json();
+                setDocuments([...documents, data]);
             } else {
-                console.error("Fehler beim Löschen des Dokuments.");
+                console.error("Fehler beim Speichern des Dokuments.");
             }
         } catch (error) {
-            console.error("Netzwerkfehler:", error);
+            console.error("Upload-Fehler:", error);
         }
     };
 
@@ -104,7 +80,7 @@ function Documentslist() {
                                     src={deleteIcon}
                                     className="delete-icon"
                                     alt="Delete-Icon"
-                                    onClick={() => handleDelete(index, doc.id)}
+                                    //onClick={() => handleDelete(index, doc.id)}
                                 />
                             </div>
                         </li>
@@ -118,7 +94,7 @@ function Documentslist() {
                 onChange={handleFileChange}
                 style={{ display: "none" }}
             />
-            <button className="btn-add" onClick={handleButtonClick}>
+            <button className="btn-add" onClick={handleUpload}>
                 Dokument hochladen
             </button>
         </div>

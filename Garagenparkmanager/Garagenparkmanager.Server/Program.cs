@@ -11,6 +11,7 @@ namespace Garagenparkmanager.Server
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            string storageConnectionString = builder.Configuration["Azure:DocumentStorageConnectionString"];
 
             // Add services to the container.
             builder.Services.AddControllers();
@@ -71,6 +72,8 @@ namespace Garagenparkmanager.Server
                    builder.Configuration["CosmosConfig:containerDocumentName"]
                )
             );
+            builder.Services.AddSingleton(new BlobStorageService(storageConnectionString));
+
 
             builder.Services.AddCors(options =>
             {

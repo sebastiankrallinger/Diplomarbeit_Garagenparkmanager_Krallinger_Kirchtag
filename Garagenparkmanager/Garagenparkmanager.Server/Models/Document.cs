@@ -6,7 +6,9 @@ namespace Garagenparkmanager.Server.Models
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; } = string.Empty;
-        [JsonProperty(PropertyName = "file")]
-        public string File { get; set; } = string.Empty;
+        [JsonProperty(PropertyName = "filename")]
+        public string FileName { get; set; } = string.Empty;
+        [JsonProperty(PropertyName = "fileurl")]
+        public string FileUrl { get; set; } = string.Empty;
     }
 }
