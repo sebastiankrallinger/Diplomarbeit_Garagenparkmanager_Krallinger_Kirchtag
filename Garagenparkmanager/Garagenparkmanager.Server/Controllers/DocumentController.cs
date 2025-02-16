@@ -1,4 +1,5 @@
-﻿using Azure.Storage.Blobs;
+﻿using Azure.Core;
+using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Garagenparkmanager.Server.Models;
 using Garagenparkmanager.Server.Services;
@@ -25,18 +26,25 @@ namespace Garagenparkmanager.Server.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadDocument([FromForm] IFormFile document)
+        public async Task<IActionResult> UploadFile([FromBody] FileUploadRequest file)
         {
-            if (document == null || document.Length == 0)
+            if (string.IsNullOrEmpty(file.File))
             {
-                return BadRequest("Keine Datei hochgeladen.");
+                return BadRequest("Die Datei ist leer oder fehlt.");
             }
 
-            using var stream = document.OpenReadStream();
-            var fileUrl = await _blobStorageService.UploadFileAsync(stream, document.FileName);
+            byte[] fileBytes = Convert.FromBase64String(file.File);
 
-            // Datei-URL in Cosmos DB speichern
-            await _documentRepository.SaveFileMetadataAsync(new Document { Id = Guid.NewGuid().ToString(), FileName = document.FileName, FileUrl = fileUrl });
+            var fileUrl = await _blobStorageService.UploadFileAsync(fileBytes, file.FileName);
+
+            var document = new Document
+            {
+                Id = Guid.NewGuid().ToString(),
+                FileName = file.FileName,
+                FileUrl = fileUrl
+            };
+
+            await _documentRepository.SaveFileMetadataAsync(document);
 
             return Ok(new { FileUrl = fileUrl });
         }

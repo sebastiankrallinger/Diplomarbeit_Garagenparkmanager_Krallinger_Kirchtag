@@ -13,10 +13,11 @@ namespace Garagenparkmanager.Server.Services
             _blobServiceClient = new BlobServiceClient(storageConnectionString);
         }
 
-        public async Task<string> UploadFileAsync(Stream fileStream, string fileName)
+        public async Task<string> UploadFileAsync(byte[] fileBytes, string fileName)
         {
             var blobContainer = _blobServiceClient.GetBlobContainerClient(_containerName);
             var blobClient = blobContainer.GetBlobClient(fileName);
+            var fileStream = new MemoryStream(fileBytes);
 
             await blobClient.UploadAsync(fileStream, new BlobHttpHeaders { ContentType = "application/pdf" });
 

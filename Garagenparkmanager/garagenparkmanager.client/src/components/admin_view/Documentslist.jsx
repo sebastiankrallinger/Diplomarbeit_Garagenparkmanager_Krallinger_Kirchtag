@@ -32,38 +32,37 @@ function Documentslist() {
         fetchDocuments();
     }, []);
 
-    const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-    };
-
     const handleUpload = async () => {
         if (!file) {
             console.error("Keine Datei ausgewählt!");
             return;
         }
 
-        const formData = new FormData();
-        formData.append("file", file);
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            console.log(reader.result);
+            const base64File = reader.result.split(',')[1]; // Entferne den Data-URL-Teil
 
-        try {
-            const response = await fetch(url + "Document/upload", {
-                method: "POST",
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
-                },
-                body: formData,
-            });
+            try {
+                const response = await fetch("http://localhost:5000/api/files/upload", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ file: base64File, fileName: file.name }),
+                });
 
-            if (response.ok) {
+                if (!response.ok) {
+                    throw new Error("Fehler beim Hochladen");
+                }
+
                 const data = await response.json();
-                setDocuments([...documents, data]);
-            } else {
-                console.error("Fehler beim Speichern des Dokuments.");
+                console.log("Datei URL:", data.FileUrl);
+            } catch (error) {
+                console.error("Fehler beim Hochladen:", error);
             }
-        } catch (error) {
-            console.error("Upload-Fehler:", error);
         }
-    };
+    }
 
     return (
         <div className="Documentlist">
@@ -91,8 +90,9 @@ function Documentslist() {
                 id="fileInput"
                 type="file"
                 accept="application/pdf"
-                onChange={handleFileChange}
-                style={{ display: "none" }}
+                onChange={(e) => setFile(e.target.files[0])} // Hier wird die erste ausgewählte Datei gesetzt
+                className="document"
+                placeholder="Dokument"
             />
             <button className="btn-add" onClick={handleUpload}>
                 Dokument hochladen
