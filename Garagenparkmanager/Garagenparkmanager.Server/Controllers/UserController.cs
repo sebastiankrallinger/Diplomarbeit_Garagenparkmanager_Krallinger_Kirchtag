@@ -113,7 +113,7 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Storage hinzufuegen
         [HttpPut("addStorage/{id}")]
-        public async Task<IActionResult> addStorage(string id, [FromBody] Models.Storage storage)
+        public async Task<IActionResult> AddStorage(string id, [FromBody] Models.Storage storage)
         {
             Customer customer = await _customerRepository.GetCustomer(id);
             storage.Booked = true;

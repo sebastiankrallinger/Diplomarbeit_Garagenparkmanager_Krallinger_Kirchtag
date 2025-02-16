@@ -62,7 +62,7 @@ namespace Garagenparkmanager.Server.Controllers
 
         //eine News loeschen
         [HttpDelete("deleteNews/{id}")]
-        public async Task<IActionResult> DeltetNews(string id)
+        public async Task<IActionResult> DelteteNews(string id)
         {
             var news = _newsRepository.GetNews(id);
             var result = await _newsRepository.DeleteNews(news.Result.Id);
