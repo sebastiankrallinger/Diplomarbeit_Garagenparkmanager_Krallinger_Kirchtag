@@ -23,5 +23,12 @@ namespace Garagenparkmanager.Server.Services
 
             return blobClient.Uri.ToString();
         }
+        public async Task Delete(string fileName)
+        {
+            var blobContainer = _blobServiceClient.GetBlobContainerClient(_containerName);
+            var blobClient = blobContainer.GetBlobClient(fileName);
+
+            await blobClient.DeleteIfExistsAsync();
+        }
     }
 }

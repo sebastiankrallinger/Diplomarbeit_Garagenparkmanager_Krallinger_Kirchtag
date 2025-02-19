@@ -25,48 +25,32 @@ namespace Garagenparkmanager.Server.Services
             return response.ToString();
         }
 
-        public async Task<IEnumerable<string>> GetAll()
+        public async Task<IEnumerable<Document>> GetAll()
         {
-            var query = _container.GetItemQueryIterator<dynamic>(new QueryDefinition("SELECT * FROM c"));
+            var query = _container.GetItemQueryIterator<Document>(new QueryDefinition("SELECT * FROM c"));
 
-            var results = new List<string>();
+            var results = new List<Document>();
             while (query.HasMoreResults)
             {
                 var response = await query.ReadNextAsync();
-                foreach (var item in response)
-                {
-                    results.Add(item.document.ToString());
-                }
+                results.AddRange(response.ToList());
             }
             return results;
         }
 
-        public async Task<string> Delete(string type)
+        public async Task<string> Delete(string id)
         {
-            var query = _container.GetItemQueryIterator<dynamic>(new QueryDefinition("SELECT * FROM c"));
-
-            while (query.HasMoreResults)
-            {
-                var response = await query.ReadNextAsync();
-                foreach (var item in response)
-                {
-                    if (item.document == type)
-                    {
-                        var id = item.id.ToString();
-                        await _container.DeleteItemAsync<dynamic>(id, new PartitionKey(type));
-                    }
-                }
-            }
-
+            await _container.DeleteItemAsync<dynamic>(id, new PartitionKey(id));
             return "Erfolgreich gelöscht.";
         }
 
-        public async Task<Models.Storage> GetDocument(string id)
+
+        public async Task<Models.Document> GetDocument(string id)
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
                 .WithParameter("@id", id);
 
-            var iterator = _container.GetItemQueryIterator<Models.Storage>(query);
+            var iterator = _container.GetItemQueryIterator<Models.Document>(query);
 
             if (iterator.HasMoreResults)
             {
@@ -76,6 +60,7 @@ namespace Garagenparkmanager.Server.Services
 
             return null;
         }
+
         public async Task<string> SaveFileMetadataAsync(Document document)
         {
             var response = await _container.CreateItemAsync(document);

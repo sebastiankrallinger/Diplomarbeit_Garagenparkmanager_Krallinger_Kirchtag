@@ -9,34 +9,38 @@ function Documentslist() {
 
     // GET: Dokumente aus der Datenbank laden
     useEffect(() => {
-        async function fetchDocuments() {
-            try {
-                const response = await fetch(url + "Document/documents", {
-                    method: "GET",
-                    headers: {
-                        "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
-                    },
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setDocuments(data);
-                } else {
-                    console.error("Fehler beim Abrufen der Dokumente.");
-                }
-            } catch (error) {
-                console.error("Netzwerkfehler:", error);
-            }
-        }
-
         fetchDocuments();
     }, []);
 
-    const handleUpload = async () => {
+    async function fetchDocuments() {
+        try {
+            const response = await fetch(url + "Document/documents", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setDocuments(data);
+            } else {
+                console.error("Fehler beim Abrufen der Dokumente.");
+            }
+        } catch (error) {
+            console.error("Netzwerkfehler:", error);
+        }
+    }
+
+    async function handleUpload() {
         if (!file) {
             console.error("Keine Datei ausgewählt!");
             return;
         }
+
+        const selectedFile = file;
+        setFile(null); 
+        document.getElementById("fileInput").value = "";
 
         const reader = new FileReader();
         reader.onloadend = async () => {
@@ -49,22 +53,42 @@ function Documentslist() {
                         "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ file: base64File, fileName: file.name }),
+                    body: JSON.stringify({ file: base64File, fileName: selectedFile.name }),
                 });
 
                 if (!response.ok) {
                     throw new Error("Fehler beim Hochladen");
                 }
-
-                const data = await response.json();
+                console.log(file);
+                fetchDocuments();
             } catch (error) {
                 console.error("Fehler beim Hochladen:", error);
             }
         };
 
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(selectedFile);
     };
 
+    async function handleDelete(id) {
+        try {
+            const response = await fetch(url + `Document/deleteDocument/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+
+            if (response.ok) {
+                setDocuments(documents.filter(doc => doc.id !== id));
+            } else {
+                console.error("Fehler beim Löschen.");
+            }
+
+        }catch (error) {
+            console.error("Netzwerkfehler:", error);
+        }
+        fetchDocuments();
+    };
 
     return (
         <div className="Documentlist">
@@ -74,14 +98,14 @@ function Documentslist() {
                     {documents.map((doc, index) => (
                         <li key={index}>
                             <div className="document">
-                                <p>{doc.name}</p>
+                                <p>{doc.fileName}</p>
                             </div>
                             <div className="document-action">
                                 <img
                                     src={deleteIcon}
                                     className="delete-icon"
                                     alt="Delete-Icon"
-                                    //onClick={() => handleDelete(index, doc.id)}
+                                    onClick={() => handleDelete(doc.id)}
                                 />
                             </div>
                         </li>
@@ -92,7 +116,7 @@ function Documentslist() {
                 id="fileInput"
                 type="file"
                 accept="application/pdf"
-                onChange={(e) => setFile(e.target.files[0])} // Hier wird die erste ausgewählte Datei gesetzt
+                onChange={(e) => setFile(e.target.files[0])}
                 className="document"
                 placeholder="Dokument"
             />

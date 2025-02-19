@@ -51,17 +51,23 @@ namespace Garagenparkmanager.Server.Controllers
 
         //alle Dokumente laden
         [HttpGet("documents")]
-        public async Task<IActionResult> GetAllDocuments()
+        public async Task<IActionResult> GetAll()
         {
             var results = await _documentRepository.GetAll();
             return Ok(results);
         }
 
+
         //Document loeschen
-        [HttpDelete("deleteDocument/{type}")]
-        public async Task<IActionResult> DeleteUser(string id)
+        [HttpDelete("deleteDocument/{id}")]
+        public async Task<IActionResult> Delete(string id)
         {
+            var document = await _documentRepository.GetDocument(id);
+
+            await _blobStorageService.Delete(document.FileName);
+
             var result = await _documentRepository.Delete(id);
+
             if (result != "")
             {
                 return NoContent();
