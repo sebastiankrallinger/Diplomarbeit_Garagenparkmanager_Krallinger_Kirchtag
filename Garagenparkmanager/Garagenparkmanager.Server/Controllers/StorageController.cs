@@ -81,8 +81,8 @@ namespace Garagenparkmanager.Server.Controllers
         }
 
         //aktiven Vertrag hinzufuegen
-        [HttpGet("addActiveContract/{id}")]
-        public async Task<IActionResult> addContract(string id, Contract activeContract)
+        [HttpPut("addActiveContract/{id}")]
+        public async Task<IActionResult> addContract(string id, [FromBody] Contract activeContract)
         {
             Storage storage = await _storageRepository.GetStorage(id);
             storage.activeContract = activeContract;

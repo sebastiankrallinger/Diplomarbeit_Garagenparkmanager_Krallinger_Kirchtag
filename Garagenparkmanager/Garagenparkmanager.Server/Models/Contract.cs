@@ -25,6 +25,10 @@ namespace Garagenparkmanager.Server.Models
 
         [JsonProperty(PropertyName = "duration")]
         public int? Duration { get; set; }
+        [JsonProperty(PropertyName = "filename")]
+        public string FileName { get; set; } = string.Empty;
+        [JsonProperty(PropertyName = "fileurl")]
+        public string FileUrl { get; set; } = string.Empty;
 
     }
 }

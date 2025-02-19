@@ -37,7 +37,10 @@
 .UserObjects .btn-add {
     padding: 5px 10px;
     border-radius: 10px;
-    margin-left: 5px;
     background-color: #F9A800;
     color: #ffff;
+}
+
+.UserObjects .contract{
+    margin: 20px 0px 20px 0px;
 }

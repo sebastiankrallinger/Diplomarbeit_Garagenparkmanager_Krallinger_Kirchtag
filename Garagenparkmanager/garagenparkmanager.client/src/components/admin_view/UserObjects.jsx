@@ -10,6 +10,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
     const [freeStorages, setFreeStorages] = useState([]);
     const [selectedStorage, setSelectedStorage] = useState([]);
     const [vpi, setVpi] = useState();
+    const [file, setFile] = useState(null);
 
     useEffect(() => {
         fetchFreeStorages();
@@ -186,6 +187,15 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
                         return null;
                     })}
                 </select>
+                <br/>
+                <input
+                    id="fileInput"
+                    type="file"
+                    accept="application/pdf"
+                    onChange={(e) => setFile(e.target.files[0])}
+                    className="contract"
+                />
+                <br/>
                 <button className="btn-add" onClick={() => addStorage()}>Hinzuf&uuml;gen</button>
             </div>
       </div>

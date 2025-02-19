@@ -72,6 +72,14 @@ namespace Garagenparkmanager.Server
                    builder.Configuration["CosmosConfig:containerDocumentName"]
                )
             );
+            builder.Services.AddScoped<IContractRepository, ContractRepository>(x
+               => new ContractRepository(
+                   builder.Configuration.GetConnectionString("CosmosDb"),
+                   builder.Configuration["CosmosConfig:primaryKey"],
+                   builder.Configuration["CosmosConfig:databaseName"],
+                   builder.Configuration["CosmosConfig:containerContractName"]
+               )
+            );
             builder.Services.AddSingleton(new BlobStorageService(storageConnectionString));
 
 

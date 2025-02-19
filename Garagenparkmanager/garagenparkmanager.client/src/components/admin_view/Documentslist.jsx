@@ -59,7 +59,6 @@ function Documentslist() {
                 if (!response.ok) {
                     throw new Error("Fehler beim Hochladen");
                 }
-                console.log(file);
                 fetchDocuments();
             } catch (error) {
                 console.error("Fehler beim Hochladen:", error);

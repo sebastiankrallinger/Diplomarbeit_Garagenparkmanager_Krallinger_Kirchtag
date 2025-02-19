@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ObjectActions.css'
 import objectImg from '../../assets/newsPlaceholder.jpg';
 import deleteIcon from '../../assets/deleteicon.png';
+import { v4 as uuidv4 } from 'uuid';
 
 /* ObjectActions-Component*/
 function ObjectActions() {
@@ -20,7 +21,9 @@ function ObjectActions() {
     const [type, setType] = useState('');
     const [oldvpi, setOldVpi] = useState(null);
     const [image, setImage] = useState(null);
-
+    const [contract, setContract] = useState(null);
+    const [duration, setDuration] = useState(null);
+    const [startdate, setStartDate] = useState(null);
 
     const [storageData, setStorageData] = useState({
         roomSize: '',
@@ -250,6 +253,72 @@ function ObjectActions() {
         }
     }
 
+    async function uploadContract() {
+        if (!contract) {
+            console.error("Keine Datei ausgewählt!");
+            return;
+        }
+
+        const selectedFile = contract;
+        setContract(null);
+        document.getElementById("fileInput").value = "";
+
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            const base64File = reader.result.split(',')[1];
+            try {
+                const response = await fetch(url + "Document/uploadContract", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ file: base64File, fileName: selectedFile.name }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Fehler beim Hochladen");
+                }
+                updateActiveContract(selectedStorage.id, selectedFile.name, response.url)
+            } catch (error) {
+                console.error("Fehler beim Hochladen:", error);
+            }
+        };
+
+        reader.readAsDataURL(selectedFile);
+    }
+
+    async function updateActiveContract(id, filename, fileurl) {
+        try {
+            const updateContract = {
+                id: uuidv4(),
+                extraCosts: 0,
+                VPIold: vpi,
+                status: true,
+                startDate: startdate,
+                duration: duration,
+                endDate: startdate,
+                filename: filename,
+                fileurl: fileurl,
+            };
+            console.log(JSON.stringify(updateContract));
+            const response = await fetch(url + `Storage/addActiveContract/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updateContract),
+            });
+
+            if (!response.ok) {
+                throw new Error("Fehler beim Hochladen");
+            }
+        } catch (error) {
+            console.error("Fehler beim Hochladen:", error);
+        }
+    }
+
     return (
         <div className="ObjectActions">
             <div className="rentedObjects">
@@ -301,7 +370,17 @@ function ObjectActions() {
                                             <div className="actualContract-content">
                                                 <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
                                                 <button className="btn-download">Abrufen</button>
-                                                <button className="btn-upload">neuen Vertag hochladen</button>
+                                                <input className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
+                                                <input className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
+                                                <input
+                                                    id="fileInput"
+                                                    type="file"
+                                                    accept="application/pdf"
+                                                    onChange={(e) => setContract(e.target.files[0])}
+                                                    className="document"
+                                                    placeholder="Dokument"
+                                                />
+                                                <button className="btn-upload" onClick={uploadContract}>neuen Vertag hochladen</button>
                                             </div>
                                         </div>
                                     </>
