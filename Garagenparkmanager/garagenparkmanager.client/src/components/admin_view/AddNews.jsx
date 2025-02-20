@@ -5,8 +5,8 @@ import imageCompression from 'browser-image-compression';
 
 /* AddNews-Component */
 function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEdit}) {
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    const url = "https://localhost:7186/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
 
     const [formData, setFormData] = useState({
         title: '',

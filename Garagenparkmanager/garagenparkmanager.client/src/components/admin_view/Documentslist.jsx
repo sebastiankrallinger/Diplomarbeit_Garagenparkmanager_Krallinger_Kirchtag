@@ -5,8 +5,8 @@ import deleteIcon from "../../assets/deleteicon.png";
 function Documentslist() {
     const [documents, setDocuments] = useState([]);
     const [file, setFile] = useState(null);
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    const url = "https://localhost:7186/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
 
     // GET: Dokumente aus der Datenbank laden
     useEffect(() => {
