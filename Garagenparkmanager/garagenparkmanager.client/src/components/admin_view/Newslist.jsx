@@ -5,8 +5,8 @@ import newsImg from '../../assets/newsPlaceholder.jpg';
 
 /* Newslist-Component*/
 function Newslist({ news, refreshNews, setEdit, updateNews }) {
-    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    //const url = "https://localhost:7186/";
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
 
     function editNews(oneNews) {
         updateNews(oneNews);

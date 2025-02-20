@@ -8,8 +8,8 @@ import Newslist from '../../components/admin_view/Newslist'
 import AddNews from '../../components/admin_view/AddNews'
 
 function Newsmanagement() {
-    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    //const url = "https://localhost:7186/";
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
 
     const [news, setNews] = useState([]);
     const [selectedNews, setSelectedNews] = useState(null);
