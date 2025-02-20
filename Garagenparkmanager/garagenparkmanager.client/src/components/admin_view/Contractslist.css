@@ -40,3 +40,13 @@
     background-color: #F9A800;
     color: #ffff;
 }
+
+.Contractslist .objects {
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-wrap: break-word;
+    flex: 1;
+    margin-right: 10px;
+}

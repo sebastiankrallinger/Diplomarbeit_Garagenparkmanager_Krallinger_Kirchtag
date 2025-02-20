@@ -1,7 +1,4 @@
 /* Documentmanagement-Component*/
-
-
-import { useEffect, useState } from 'react';
 import './Documentmanagement.css';
 import Header from '../../components/admin_view/Header_Admin';
 import Contractlist from '../../components/admin_view/Contractslist';
@@ -9,6 +6,8 @@ import Documentlist from '../../components/admin_view/Documentslist';
 
 
 function Documentmanagement() {
+
+
     return (
         <div className="Documentmanagement">
             <Header />
@@ -18,11 +17,10 @@ function Documentmanagement() {
                 </div>
                 <div className="seperator"></div>
                 <div className="documentslist">
-                    <Documentlist />
+                    <Documentlist/>
                 </div>
             </main>
         </div>
   );
 }
-0
 export default Documentmanagement;

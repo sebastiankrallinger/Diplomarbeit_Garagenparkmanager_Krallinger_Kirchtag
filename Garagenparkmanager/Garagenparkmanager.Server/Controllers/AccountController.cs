@@ -14,10 +14,10 @@ namespace Garagenparkmanager.Server.Controllers
     {
         private readonly JwtService _jwtService;
         private readonly UserController _userController;
-        public AccountController(JwtService jwtService, IUserRepository customerRepository, IConfiguration configuration, IStorageRepository _storageRepository, IStorageTypeRepository _storageTypeRepository)
+        public AccountController(JwtService jwtService, IUserRepository customerRepository, IConfiguration configuration, IStorageRepository _storageRepository, IStorageTypeRepository _storageTypeRepository, IDocumentRepository _documentRepository, IContractRepository _contractRepository, BlobStorageService _blobStorageService)
         {
             _jwtService = jwtService;
-            _userController = new UserController(customerRepository, configuration, _storageRepository, _storageTypeRepository);
+            _userController = new UserController(customerRepository, configuration, _storageRepository, _storageTypeRepository, _documentRepository, _contractRepository, _blobStorageService);
         }
 
         //Authentifizierung für den Login
