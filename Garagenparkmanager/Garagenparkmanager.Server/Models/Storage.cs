@@ -9,7 +9,7 @@ namespace Garagenparkmanager.Server.Models
         public string Id { get; set; } = string.Empty;
 
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty(PropertyName = "roomSize")]
         public double RoomSize { get; set; }
@@ -21,7 +21,7 @@ namespace Garagenparkmanager.Server.Models
         public bool Booked { get; set; }
 
         [JsonProperty(PropertyName = "storagetype")]
-        public string Storagetype { get; set; }
+        public string? Storagetype { get; set; }
 
         [JsonProperty(PropertyName = "activeContract")]
         public Contract? activeContract { get; set; }
