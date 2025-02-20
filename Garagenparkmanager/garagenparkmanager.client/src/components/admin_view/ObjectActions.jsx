@@ -262,6 +262,8 @@ function ObjectActions() {
         const selectedFile = contract;
         setContract(null);
         document.getElementById("fileInput").value = "";
+        document.getElementById("duration").value = "";
+        document.getElementById("date").value = "";
 
         const reader = new FileReader();
         reader.onloadend = async () => {
@@ -279,7 +281,11 @@ function ObjectActions() {
                 if (!response.ok) {
                     throw new Error("Fehler beim Hochladen");
                 }
-                updateActiveContract(selectedStorage.id, selectedFile.name, response.url)
+
+                const responseData = await response.json();
+                await updateActiveContract(selectedStorage.id, selectedFile.name, responseData.fileUrl);
+
+                fetchStorages();
             } catch (error) {
                 console.error("Fehler beim Hochladen:", error);
             }
@@ -297,11 +303,10 @@ function ObjectActions() {
                 status: true,
                 startDate: startdate,
                 duration: duration,
-                endDate: startdate,
+                endDate: new Date(new Date(startdate).setFullYear(new Date(startdate).getFullYear() + parseInt(duration))),
                 filename: filename,
                 fileurl: fileurl,
             };
-            console.log(JSON.stringify(updateContract));
             const response = await fetch(url + `Storage/addActiveContract/${id}`, {
                 method: "PUT",
                 headers: {
@@ -370,8 +375,8 @@ function ObjectActions() {
                                             <div className="actualContract-content">
                                                 <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
                                                 <button className="btn-download">Abrufen</button>
-                                                <input className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
-                                                <input className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
+                                                <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
+                                                <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
                                                 <input
                                                     id="fileInput"
                                                     type="file"
@@ -401,7 +406,6 @@ function ObjectActions() {
                                         </div>
                                     </div>
                             )}   
-                            <button className="btn-saveChanges" onClick={closePopupDetails}>&Auml;nderungen Speichern</button>
                         </div>
                     </div>
                 </div>
