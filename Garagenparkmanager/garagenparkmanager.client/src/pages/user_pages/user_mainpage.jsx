@@ -9,6 +9,8 @@ import aboutUs1 from '../../../src/assets/aboutUs1.png'
 import aboutUs2 from '../../../src/assets/aboutUs2.png'
 import aboutUs3 from '../../../src/assets/aboutUs3.png'
 import ParkPlan from '../../../src/assets/garagenparkplan.jpg'
+import Logo from '../../../src/assets/logo_Lagerage.png'
+
 
 function UserMainpage() {
     const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
@@ -207,7 +209,7 @@ function UserMainpage() {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="popupHeader">
-                            <img src="src/assets/logo_Lagerage.png" alt="Logo" />
+                            <img src={Logo} alt="Logo" />
                             <button className="closeButton" onClick={handleClosePopup}>X</button>
                         </div>
 
