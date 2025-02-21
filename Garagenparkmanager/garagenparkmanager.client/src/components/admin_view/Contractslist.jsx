@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 
 /* Contractslist-Component */
 function Contractslist() {
-    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    //const url = "https://localhost:7186/";
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
     const [storages, setStorages] = useState([]);
 
     useEffect(() => {
@@ -34,8 +34,7 @@ function Contractslist() {
             downloadIcon.parentElement.href = storage.activeContract.fileUrl;
             downloadIcon.parentElement.download = storage.activeContract.fileName;
         } else {
-            document.getElementById("contract").textContent = "Kein Vertrag verfügbar";
-        }
+            document.getElementById("contract").innerHTML = "Kein Vertrag verf&uuml;gbar";        }
 
     }
 

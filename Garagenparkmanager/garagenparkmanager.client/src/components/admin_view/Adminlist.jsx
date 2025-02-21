@@ -6,8 +6,8 @@ import deleteIcon from '../../assets/deleteicon.png';
 
 /* Adminlist-Component */
 function Adminlist({ admins, refreshAdmins, editAdmin }) {
-    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    //const url = "https://localhost:7186/";
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
 
     /* Admin löschen */
     async function deleteAdmin(id) {

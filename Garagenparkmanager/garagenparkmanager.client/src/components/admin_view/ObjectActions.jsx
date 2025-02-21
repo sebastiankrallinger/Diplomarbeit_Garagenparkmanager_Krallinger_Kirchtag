@@ -3,11 +3,13 @@ import './ObjectActions.css'
 import objectImg from '../../assets/newsPlaceholder.jpg';
 import deleteIcon from '../../assets/deleteicon.png';
 import { v4 as uuidv4 } from 'uuid';
+import imageCompression from 'browser-image-compression';
+
 
 /* ObjectActions-Component*/
 function ObjectActions() {
-    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    //const url = "https://localhost:7186/";
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
     const [vpi, setVpi] = useState(null);
@@ -58,21 +60,34 @@ function ObjectActions() {
         setStorageTypes([]);
     };
 
-    const handleInputChangeStorage = (e) => {
+    const handleInputChangeStorage = async (e) => {
         const { name, value, files } = e.target;
 
         if (name === "image" && files.length > 0) {
             const file = files[0];
-            const reader = new FileReader();
 
-            reader.onloadend = () => {
-                setStorageData(prevData => ({
-                    ...prevData,
-                    imageUrl: reader.result 
-                }));
+            const options = {
+                maxSizeMB: 1,
+                maxWidthOrHeight: 1024,
+                useWebWorker: true,
+                fileType: 'image/webp',
             };
 
-            reader.readAsDataURL(file); 
+            try {
+                const compressedFile = await imageCompression(file, options);
+                const reader = new FileReader();
+
+                reader.onloadend = () => {
+                    setStorageData(prevData => ({
+                        ...prevData,
+                        imageUrl: reader.result
+                    }));
+                };
+
+                reader.readAsDataURL(compressedFile);
+            } catch (error) {
+                console.error('Fehler bei der Bildkomprimierung:', error);
+            }
         } else {
             const updatedData = {
                 ...storageData,
