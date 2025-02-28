@@ -7,6 +7,7 @@ import imageCompression from 'browser-image-compression';
 function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEdit}) {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
+    const [showPopup, setShowPopup] = useState(false);
 
     const [formData, setFormData] = useState({
         title: '',
@@ -74,6 +75,14 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
         }
     };
 
+    const openPopup = () => {
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+
     //News erstellen
     async function addNews() {
 
@@ -103,6 +112,7 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
                 });
                 document.getElementById('image').value = "";
                 refreshNews();
+                openPopup();
             } else {
                 console.error("Fehler beim Hinzufügen der News.");
             }
@@ -135,6 +145,7 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
                 setId("");
                 document.getElementById('image').value = "";
                 refreshNews();
+                openPopup();
             } else {
                 console.error('Fehler beim Aktualisieren der News');
             }
@@ -168,6 +179,16 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
               />
               <button className="publish" onClick={handlePublish}>Ver&ouml;ffentlichen</button>
           </div>
+          {
+              showPopup && (
+                  <div className="popup">
+                      <div className="popup-content">
+                          <p>News erfolgreich hinzugef&uuml;gt!</p>
+                          <button onClick={closePopup}>OK</button>
+                      </div>
+                  </div>
+              )
+          }
       </div>
   );
 }

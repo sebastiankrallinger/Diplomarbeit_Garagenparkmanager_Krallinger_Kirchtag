@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\desktop\\sebastian\\htl_githubdocuments\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\addnews.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\components\\admin_view\\addnews.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|c:\\users\\skral\\desktop\\sebastian\\htl_githubdocuments\\diplomarbeit_garagenparkmanager_krallinger_kirchtag\\garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\addnews.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{35408BF8-25D8-4302-BA72-25CC47F96405}|garagenparkmanager.client\\garagenparkmanager.client.esproj|solutionrelative:garagenparkmanager.client\\src\\components\\admin_view\\addnews.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +27,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AddNews.css",
+              "DocumentMoniker": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.css",
+              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.css",
+              "ToolTip": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.css",
+              "RelativeToolTip": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.css",
+              "ViewState": "AQIAADoAAAAAAAAAAAAAAEcAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-02-28T10:51:04.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AddNews.jsx",
+              "DocumentMoniker": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
+              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
+              "ToolTip": "C:\\Users\\skral\\Desktop\\Sebastian\\HTL_GitHubDocuments\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
+              "RelativeToolTip": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-02-28T10:42:14.448Z",
+              "EditorCaption": ""
             }
           ]
         }
