@@ -7,11 +7,32 @@ function Documentslist() {
     const [file, setFile] = useState(null);
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
+    const [showPopup, setShowPopup] = useState(false);
+    const [showPopupDelete, setShowPopupDelete] = useState(false);
+    const [oneDoc, setOneDoc] = useState(null);
 
     // GET: Dokumente aus der Datenbank laden
     useEffect(() => {
         fetchDocuments();
     }, []);
+
+    const openPopup = () => {
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+
+    const openPopupDelete = (doc) => {
+        setOneDoc(doc);
+        setShowPopupDelete(true);
+    };
+
+    const closePopupDelete = () => {
+        setShowPopupDelete(false);
+        setOneDoc(null);
+    };
 
     async function fetchDocuments() {
         try {
@@ -61,6 +82,7 @@ function Documentslist() {
                     throw new Error("Fehler beim Hochladen");
                 }
                 fetchDocuments();
+                openPopup();
             } catch (error) {
                 console.error("Fehler beim Hochladen:", error);
             }
@@ -80,6 +102,7 @@ function Documentslist() {
 
             if (response.ok) {
                 setDocuments(documents.filter(doc => doc.id !== id));
+                closePopupDelete();
             } else {
                 console.error("Fehler beim Löschen.");
             }
@@ -105,7 +128,7 @@ function Documentslist() {
                                     src={deleteIcon}
                                     className="delete-icon"
                                     alt="Delete-Icon"
-                                    onClick={() => handleDelete(doc.id)}
+                                    onClick={() => openPopupDelete(doc)}
                                 />
                             </div>
                         </li>
@@ -123,6 +146,27 @@ function Documentslist() {
             <button className="btn-add" onClick={handleUpload}>
                 Dokument hochladen
             </button>
+            {
+                showPopup && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p>Dokument erfolgreich hochgeladen!</p>
+                            <button onClick={closePopup}>OK</button>
+                        </div>
+                    </div>
+                )
+            }
+            {
+                showPopupDelete && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p>Wollen sie {oneDoc.fileName} wirklich l&ouml;schen?</p>
+                            <button onClick={() => handleDelete(oneDoc.id)}>Best&auml;tigen</button>
+                            <button onClick={closePopupDelete}>Abbrechen</button>
+                        </div>
+                    </div>
+                )
+            }
         </div>
     );
 }
