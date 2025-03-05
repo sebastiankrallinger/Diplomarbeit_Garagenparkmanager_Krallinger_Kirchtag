@@ -12,6 +12,9 @@ function ObjectActions() {
     const url = "https://localhost:7186/";
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+    const [showPopupDeleteTyp, setShowPopupDeleteTyp] = useState(false);
+    const [deleteTyp, setDeleteTyp] = useState(null);
     const [vpi, setVpi] = useState(null);
     const [customerFirstname, setcustomerFirstname] = useState();
     const [customerLastname, setcustomerLastname] = useState();
@@ -58,6 +61,24 @@ function ObjectActions() {
     const closePopupAdd = () => {
         setShowPopupAdd(false);
         setStorageTypes([]);
+    };
+
+    const openPopup = () => {
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+
+    const openPopupDeleteTyp = (type) => {
+        setDeleteTyp(type);
+        setShowPopupDeleteTyp(true);
+    };
+
+    const closePopupDeleteTyp = () => {
+        setDeleteTyp(null);
+        setShowPopupDeleteTyp(false);
     };
 
     const handleInputChangeStorage = async (e) => {
@@ -118,7 +139,7 @@ function ObjectActions() {
             });
 
             if (response.ok) {
-                console.log("Erfolgreich hinzugefügt!");
+                //console.log("Erfolgreich hinzugefügt!");
                 setStorageData({
                     roomSize: '',
                     price: '',
@@ -127,6 +148,7 @@ function ObjectActions() {
                 });
                 fetchStorages();
                 closePopupAdd();
+                openPopup();
             } else {
                 console.error("Fehler beim Hinzufügen des Objekts.");
             }
@@ -261,7 +283,7 @@ function ObjectActions() {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
                 },
             });
-
+            closePopupDeleteTyp();
             getTypes();
         } catch (error) {
             console.error('Fehler beim Löschen des Typs:', error);
@@ -435,7 +457,7 @@ function ObjectActions() {
                                 <ul key={index}>
                                     <li key={index}> 
                                         <p>{storageType}</p>
-                                        <img src={deleteIcon} onClick={() => deleteType(storageType)} className="delete-icon-object" alt="Delete-Icon"></img>
+                                        <img src={deleteIcon} onClick={() => openPopupDeleteTyp(storageType)} className="delete-icon-object" alt="Delete-Icon"></img>
                                     </li>
                                 </ul>
                             ))}
@@ -497,6 +519,27 @@ function ObjectActions() {
                     </div>
                 </div>
             )}
+            {
+                showPopup && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p>Objekt erfolgreich hinzugef&uuml;gt!</p>
+                            <button onClick={closePopup}>OK</button>
+                        </div>
+                    </div>
+                )
+            }
+            {
+                showPopupDeleteTyp && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p>Wollen sie {deleteTyp} wirklich l&ouml;schen?</p>
+                            <button onClick={() => deleteType(deleteTyp)}>Best&auml;tigen</button>
+                            <button onClick={closePopupDeleteTyp}>Abbrechen</button>
+                        </div>
+                    </div>
+                )
+            }
         </div>
   );
 }

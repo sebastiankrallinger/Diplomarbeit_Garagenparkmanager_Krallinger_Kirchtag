@@ -9,21 +9,21 @@ function Newslist({ news, refreshNews, setEdit, updateNews }) {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
     const [showPopup, setShowPopup] = useState(false);
-    const [deleteId, setDeleteId] = useState(null);
+    const [oneNews, setOneNews] = useState(null);
 
     function editNews(oneNews) {
         updateNews(oneNews);
         setEdit(true);
     }
 
-    const openPopup = (id) => {
-        setDeleteId(id);
+    const openPopup = (news) => {
+        setOneNews(news);
         setShowPopup(true);
     };
 
     const closePopup = () => {
         setShowPopup(false);
-        setDeleteId(null);
+        setOneNews(null);
     };
 
     /* News löschen */
@@ -58,7 +58,7 @@ function Newslist({ news, refreshNews, setEdit, updateNews }) {
                         </div>
                         <div className="edit-delete-icons">
                             <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => editNews(oneNews)} />
-                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => openPopup(oneNews.id)} />
+                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => openPopup(oneNews)} />
                         </div>
                     </li>
                 </ul>
@@ -66,9 +66,9 @@ function Newslist({ news, refreshNews, setEdit, updateNews }) {
             {
                 showPopup && (
                     <div className="popup">
-                        <div className="popup-content">
-                            <p>Wollen sie die News wirklich l&ouml;schen?</p>
-                            <button onClick={() => deleteNews(deleteId)}>Best&auml;tigen</button>
+                            <div className="popup-content">
+                                <p>Wollen sie {oneNews.title} wirklich l&ouml;schen?</p>
+                                <button onClick={() => deleteNews(oneNews.id)}>Best&auml;tigen</button>
                             <button onClick={closePopup}>Abbrechen</button>
                         </div>
                     </div>
