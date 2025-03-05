@@ -111,7 +111,7 @@ namespace Garagenparkmanager.Server.Controllers
         public async Task<IActionResult> UpdateCustomer(Models.Customer customer)
         {
             var result = await _customerRepository.EditCustomer(customer);
-            return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
+            return Ok(result);
         }
 
         //Storage hinzufuegen

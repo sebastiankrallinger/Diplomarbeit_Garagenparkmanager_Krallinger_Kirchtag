@@ -14,10 +14,19 @@ function Usermanagement() {
     const [oldUserData, setoldUserData] = useState(null);
     const [bookedStorages, setBookedtorages] = useState([]);
     const [contract, setcontract] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         fetchCustomers();
     }, []);
+
+    const openPopup = () => {
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
 
     async function fetchCustomers() {
         try {
@@ -103,7 +112,7 @@ function Usermanagement() {
                     password: customerData.password,  
                     salt: oldUserData.salt,
                     storages: bookedStorages,
-                    contracts: [...updatedContracts],
+                    contracts: oldUserData.contracts,
                 }),
             });
             if (response.ok) {
@@ -112,8 +121,9 @@ function Usermanagement() {
                 setSelectedUser(null);
                 setBookedtorages(null);
                 setcontract(null);
+                openPopup();
             } else {
-                console.error('Fehler beim Aktualisieren des Benutzers');
+                console.error('Fehler beim Aktualisieren des Benutzers:', errorText);
             }
         } catch (error) {
             console.error('Fehler beim Senden der Update-Anfrage:', error);
@@ -140,6 +150,16 @@ function Usermanagement() {
                   <Userobjects selectedUser={selectedUser} bookedStorages={bookedStorages} loadStorages={fetchStorages} contract={setcontract} />
               </div>
           </main>
+          {
+              showPopup && (
+                  <div className="popup">
+                      <div className="popup-content">
+                          <p>Benutzer erfolgreich aktualisiert!</p>
+                          <button onClick={closePopup}>OK</button>
+                      </div>
+                  </div>
+              )
+          }
       </div>
   );
 }
