@@ -8,6 +8,18 @@ import deleteIcon from '../../assets/deleteicon.png';
 function Adminlist({ admins, refreshAdmins, editAdmin }) {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
+    const [showPopup, setShowPopup] = useState(false);
+    const [oneAdmin, setOneAdmin] = useState(null);
+
+    const openPopup = (admin) => {
+        setOneAdmin(admin);
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+        setOneNews(null);
+    };
 
     /* Admin löschen */
     async function deleteAdmin(id) {
@@ -19,6 +31,7 @@ function Adminlist({ admins, refreshAdmins, editAdmin }) {
                 },
             });
             refreshAdmins();
+            closePopup();
         } catch (error) {
             console.error('Fehler beim Löschen de Benutzers:', error);
         }
@@ -36,12 +49,24 @@ function Adminlist({ admins, refreshAdmins, editAdmin }) {
                         </div>
                         <div className="admin-action">
                             <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => editAdmin(admin.id)} />
-                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => deleteAdmin(admin.id)} />
+                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => openPopup(admin)} />
                         </div>
                     </li>
                 </ul>
             ))}
-        </div></>
+            </div>
+            {
+                showPopup && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p>Wollen sie {oneAdmin.email} wirklich l&ouml;schen?</p>
+                            <button onClick={() => deleteAdmin(oneAdmin.id)}>Best&auml;tigen</button>
+                            <button onClick={closePopup}>Abbrechen</button>
+                        </div>
+                    </div>
+                )
+            }
+        </>
     );
 }
 

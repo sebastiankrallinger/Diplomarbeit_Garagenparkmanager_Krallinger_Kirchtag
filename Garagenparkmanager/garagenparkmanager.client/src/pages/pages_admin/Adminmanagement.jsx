@@ -11,10 +11,19 @@ function Adminmanagement() {
     const [admins, setAdmins] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [oldUserData, setoldUserData] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         fetchAdmins();
     }, []);
+
+    const openPopup = () => {
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
 
     async function fetchAdmins() {
         try {
@@ -66,6 +75,7 @@ function Adminmanagement() {
             if (response.ok) {
                 fetchAdmins();
                 setSelectedUser(null);
+                openPopup();
             } else {
                 console.error('Fehler beim Aktualisieren des Admins');
             }
@@ -91,6 +101,16 @@ function Adminmanagement() {
                   <button className="btn-update" onClick={() => updateAdmin(selectedUser)}>Aktualisieren</button>
               </div>
           </main>
+          {
+              showPopup && (
+                  <div className="popup">
+                      <div className="popup-content">
+                          <p>Admin erfolgreich aktualisiert!</p>
+                          <button onClick={closePopup}>OK</button>
+                      </div>
+                  </div>
+              )
+          }
       </div>
   );
 }

@@ -5,6 +5,7 @@ import './InputformAdmindata.css';
 function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
+    const [showPopup, setShowPopup] = useState(false);
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
@@ -43,6 +44,14 @@ function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
         handleFormChange(updatedData);
     };
 
+    const openPopup = () => {
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+
     //Admin erstellen
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -73,6 +82,7 @@ function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
                 const errorlbl = document.getElementById('errorlbl');
                 errorlbl.innerText = '';
                 refreshAdmins();
+                openPopup();
             } 
             else 
             {
@@ -98,6 +108,16 @@ function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
             <label id="errorlbl"></label>
             <br />
             <button className="btn-addnew" onClick={handleRegister} >Erstellen</button>
+            {
+                showPopup && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p>Admin erfolgreich hinzugef&uuml;gt!</p>
+                            <button onClick={closePopup}>OK</button>
+                        </div>
+                    </div>
+                )
+            }
         </div>
   );
 }

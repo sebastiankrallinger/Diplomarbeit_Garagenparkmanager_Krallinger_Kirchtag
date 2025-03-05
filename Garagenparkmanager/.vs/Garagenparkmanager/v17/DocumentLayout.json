@@ -40,9 +40,22 @@
               "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\components\\admin_view\\Newslist.jsx",
               "ToolTip": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\Newslist.jsx",
               "RelativeToolTip": "garagenparkmanager.client\\src\\components\\admin_view\\Newslist.jsx",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAAEsAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAowEsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2025-03-05T09:49:43.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddNews.jsx",
+              "DocumentMoniker": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
+              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
+              "ToolTip": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
+              "RelativeToolTip": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2025-03-05T09:19:10.233Z",
               "EditorCaption": ""
             },
             {
@@ -56,19 +69,6 @@
               "ViewState": "AgIAACEAAAAAAAAAAAAAAFAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-03-05T09:33:15.318Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddNews.jsx",
-              "DocumentMoniker": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
-              "RelativeDocumentMoniker": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
-              "ToolTip": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
-              "RelativeToolTip": "garagenparkmanager.client\\src\\components\\admin_view\\AddNews.jsx",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAwwL4AAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2025-03-05T09:19:10.233Z",
               "EditorCaption": ""
             }
           ]
