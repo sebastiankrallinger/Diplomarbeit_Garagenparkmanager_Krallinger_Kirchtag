@@ -11,11 +11,26 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
     const [selectedStorage, setSelectedStorage] = useState([]);
     const [vpi, setVpi] = useState();
     const [file, setFile] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
+    const [object, setObject] = useState(null);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
         fetchFreeStorages();
         loadVPI();
     }, []);
+
+    const openPopup = (object, user) => {
+        setUser(user);
+        setObject(object);
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+        setObject(null);
+        setUser(null);
+    };
 
     async function fetchFreeStorages() {
         try {
@@ -130,6 +145,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
                 contract(c);
                 loadStorages(selectedUser.id);
                 fetchFreeStorages();
+                closePopup();
             }
         } catch (error) {
             console.error('Fehler beim Löschen des Storages:', error);
@@ -166,7 +182,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
                     <li key={storage.id} >
                         <p>{storage.name}</p>
                         <div className="object-action">
-                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => deleteStorage(selectedUser.id, storage)} ></img>
+                            <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => openPopup(storage, selectedUser)} ></img>
                         </div>
                     </li>
                 </ul>
@@ -198,6 +214,17 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
                 <br/>
                 <button className="btn-add" onClick={() => addStorage()}>Hinzuf&uuml;gen</button>
             </div>
+            {
+                showPopup && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p>Wollen sie {object.name} wirklich entfernen?</p>
+                            <button onClick={() => deleteStorage(user.id, object)}>Best&auml;tigen</button>
+                            <button onClick={closePopup}>Abbrechen</button>
+                        </div>
+                    </div>
+                )
+            }
       </div>
   );
 }
