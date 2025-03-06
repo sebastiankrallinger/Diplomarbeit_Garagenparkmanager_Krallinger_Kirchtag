@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ObjectActions.css'
-import objectImg from '../../assets/newsPlaceholder.jpg';
+import editIcon from '../../assets/editIcon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 import { v4 as uuidv4 } from 'uuid';
 import imageCompression from 'browser-image-compression';
@@ -370,11 +370,7 @@ function ObjectActions() {
                     <ul className={`${storage.booked === true ? 'gray-background' : ''}`} key={storage.id}>
                         <li key={storage.id}>
                             <div className="objects">
-                                <img
-                                    src={storage.imageUrl ? storage.imageUrl : objectImg }
-                                    className="objectImage"
-                                    alt="Object-Image"
-                                />
+                                <img src={storage.imageUrl ? storage.imageUrl : objectImg } className="objectImage" alt="Object-Image" />
                                 <div className="objects-content">
                                     <h2>{storage.name}</h2>
                                     <p>{storage.roomSize} m&sup2; {storage.price} &euro; {storage.storagetype} </p>
@@ -382,6 +378,12 @@ function ObjectActions() {
                                         <p>Gemietet bis: {new Date(storage.activeContract.endDate).toLocaleDateString('de-DE')}</p>
                                     ) : null}
                                     <button className="btn-details" onClick={() => handleButtonDetailsClick(storage)}>N&auml;here Infos</button>
+                                </div>
+                                <div className="object-action">
+                                    <img src={editIcon} className="edit-icon" alt="Edit-Icon" />
+                                    {storage.booked === false && (
+                                        <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" />
+                                    )}
                                 </div>
                             </div>
                         </li>

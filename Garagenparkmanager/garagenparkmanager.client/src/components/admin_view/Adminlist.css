@@ -20,13 +20,6 @@
     justify-content: flex-start;
 }
 
-.Adminlist .user-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
 .Adminlist .admin-action {
     display: flex;
     justify-content: flex-end;

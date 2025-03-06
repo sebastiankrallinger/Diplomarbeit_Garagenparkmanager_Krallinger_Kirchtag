@@ -21,13 +21,6 @@
     justify-content: flex-start;
 }
 
-.Userlist .user-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
 .Userlist .user-action {
     display: flex;
     justify-content: flex-end;
