@@ -422,7 +422,7 @@ function ObjectActions() {
                                                     className="document"
                                                     placeholder="Dokument"
                                                 />
-                                                <button className="btn-upload" onClick={uploadContract}>neuen Vertag hochladen</button>
+                                                <button className="btn-upload" onClick={uploadContract}>Vertag aktualisieren</button>
                                             </div>
                                         </div>
                                     </>
