@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './Userlist.css';
-import userIcon from '../../assets/userIconplaceholder.jpg';
 import editIcon from '../../assets/editIcon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
@@ -45,7 +44,6 @@ function Userlist({ customers, refreshCustomers, refreshStorages, editCustomer, 
               <ul key={customer.id}>
                     <li key={customer.id}>
                         <div className="user-info">
-                            <img src={userIcon} className="user-icon" alt="Benutzer-Icon"></img>
                             <p>{customer.email}</p>
                         </div>
                         <div className="user-action">

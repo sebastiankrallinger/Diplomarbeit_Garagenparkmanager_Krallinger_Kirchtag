@@ -107,7 +107,7 @@ function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
             <br />
             <label id="errorlbl"></label>
             <br />
-            <button className="btn-addnew" onClick={handleRegister} >Erstellen</button>
+            <button id="createBtn" className="btn-addnew" onClick={handleRegister} >Erstellen</button>
             {
                 showPopup && (
                     <div className="popup">

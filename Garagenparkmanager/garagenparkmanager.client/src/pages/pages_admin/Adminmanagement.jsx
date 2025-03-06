@@ -15,6 +15,7 @@ function Adminmanagement() {
 
     useEffect(() => {
         fetchAdmins();
+        document.getElementById('updateBtn').style.visibility = 'hidden';
     }, []);
 
     const openPopup = () => {
@@ -40,6 +41,8 @@ function Adminmanagement() {
     }
 
     async function editData(id) {
+        document.getElementById('updateBtn').style.visibility = 'visible';
+        document.getElementById('createBtn').style.visibility = 'hidden';
         try {
             const response = await fetch(url + `User/getAdmin/${id}`, {
                 headers: {
@@ -76,6 +79,8 @@ function Adminmanagement() {
                 fetchAdmins();
                 setSelectedUser(null);
                 openPopup();
+                document.getElementById('updateBtn').style.visibility = 'hidden';
+                document.getElementById('createBtn').style.visibility = 'visible';
             } else {
                 console.error('Fehler beim Aktualisieren des Admins');
             }
@@ -98,7 +103,7 @@ function Adminmanagement() {
               <div className="seperator"></div>
               <div className="admindata">
                   <AdmindataForm refreshAdmins={fetchAdmins} admin={selectedUser} handleFormChange={handleFormChange} />
-                  <button className="btn-update" onClick={() => updateAdmin(selectedUser)}>Aktualisieren</button>
+                  <button id="updateBtn" className="btn-update" onClick={() => updateAdmin(selectedUser)}>Aktualisieren</button>
               </div>
           </main>
           {
