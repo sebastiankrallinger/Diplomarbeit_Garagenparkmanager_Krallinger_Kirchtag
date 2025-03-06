@@ -11,7 +11,7 @@ function Footer() {
           <div className="footer-container">
               <div className="footer-logo">
                   <img src={Logo} />
-                  <a className="instagram-icon" href="https://www.instagram.com" target="_blank">
+                  <a className="instagram-icon" href="https://www.instagram.com/lagerage.at/" target="_blank">
                       <i className="fab fa-instagram"></i>
                   </a>
               </div>
@@ -19,20 +19,20 @@ function Footer() {
                   <ul>
                       <li>
                           <h3>Lagerage</h3>
-                          <a href="#">Link1</a>
-                          <a href="#">Link2</a>
+                          <a href="https://lagerage.at/home">SelfStorage</a>
+                          <a href="https://lagerage.at/home/immobilien">Immobilien</a>
                       </li>
                       <li>
                           <h3>Allgemein</h3>
-                          <a href="#">Link1</a>
-                          <a href="#">Link2</a>
-                          <a href="#">Link3</a>
+                          <a href="https://lagerage.at/home/about-us">&Uuml;ber uns</a>
+                          <a href="https://lagerage.at/home/impressum">Impressum</a>
+                          <a href="https://lagerage.at/home/faqs">FAQs</a>
                       </li>
                       <li>
                           <h3>Kontakt</h3>
-                          <a href="#">Link1</a>
-                          <a href="#">Link2</a>
-                          <a href="#">Link3</a>
+                          <a href="tel:+436542218722">+436542218722</a>
+                          <a href="mailto:office@lagerage.at">office@lagerage.at</a>
+                          <a href="https://goo.gl/maps/SoaoH8DiYMwBRde19">Seespitzstra&szlig;e 8, 5700 Zell am See</a>
                       </li>
                       <li>
                           <h3>Documents</h3>
@@ -46,7 +46,7 @@ function Footer() {
           </div>
           <div className="footer-text">
               <p className="text1">DE Support & Kontakt</p>
-              <p className="text2">SweetPopcorn.Studio&copy;2024</p>
+              <p className="text2">SweetPopcorn.Studio&copy;2025</p>
           </div>
       </footer>
   );

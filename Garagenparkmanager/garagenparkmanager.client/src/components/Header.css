@@ -1,6 +1,6 @@
 /* Styling Header&Header_Admin-Component */
-
 .header-container {
+    position: sticky;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,3 +32,11 @@
     color: #FFFFFF;
     border: none;
 }
+
+.header-navbar a.active {
+    text-decoration: underline;
+    text-decoration-color: #F9A800;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 5px;
+}
+
