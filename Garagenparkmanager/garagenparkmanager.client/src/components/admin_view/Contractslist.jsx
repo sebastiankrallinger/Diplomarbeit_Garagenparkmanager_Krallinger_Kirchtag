@@ -10,6 +10,8 @@ function Contractslist() {
 
     useEffect(() => {
         fetchStorages();
+        document.getElementById('contract').innerHTML = "Objekt ausw&auml;hlen";
+        document.getElementById('downloadIcon').style.visibility = 'hidden';
     }, []);
     async function fetchStorages() {
         try {
@@ -27,14 +29,16 @@ function Contractslist() {
     }
 
     function showContract(storage) {
-        console.log(storage);
         if (storage && storage.activeContract && storage.activeContract.fileName) {
             document.getElementById("contract").textContent = storage.activeContract.fileName;
+            document.getElementById('downloadIcon').style.visibility = 'visible';
             const downloadIcon = document.getElementById("downloadIcon");
-            downloadIcon.parentElement.href = storage.activeContract.fileUrl;
-            downloadIcon.parentElement.download = storage.activeContract.fileName;
+            downloadIcon.parentElement.href = storage.activeContract.fileUrl; 
+            downloadIcon.target = "_blank";  
         } else {
-            document.getElementById("contract").innerHTML = "Kein Vertrag verf&uuml;gbar";        }
+            document.getElementById('contract').innerHTML = "Kein Vertrag verf&uuml;gbar";
+            document.getElementById('downloadIcon').style.visibility = 'hidden';
+        }
 
     }
 
@@ -51,20 +55,19 @@ function Contractslist() {
                 ))}
             </div>
             <div className="contracts">
-                <ul>
+                <ul id="downloadUl">
                     <li>
                         <div className="contract">
                             <p id="contract"></p>
                         </div>
                         <div className="contract-action">
-                            <a id="downloadLink" href="#" download>
+                            <a id="downloadLink" href="#" target="_blank">
                                 <img id="downloadIcon" src={downloadIcon} className="download-icon" alt="Download-Icon" />
                             </a>
                         </div>
                     </li>
                 </ul>
             </div>
-            <button className="btn-add">Vertrag hochladen</button>
       </div>
   );
 }

@@ -33,14 +33,6 @@
     cursor: pointer;
 }
 
-.Contractslist .btn-add {
-    padding: 5px 10px;
-    border-radius: 10px;
-    margin-left: 5px;
-    background-color: #F9A800;
-    color: #ffff;
-}
-
 .Contractslist .objects {
     display: -webkit-box;
     -webkit-line-clamp: 8;

@@ -25,7 +25,8 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 15px;
+    position: absolute;
+    margin-top: 350px;
 }
 
 .InputformAdmindata .popup {
