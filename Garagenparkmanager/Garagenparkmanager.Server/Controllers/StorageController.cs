@@ -32,6 +32,7 @@ namespace Garagenparkmanager.Server.Controllers
 
         //einen Storage laden
         [HttpGet("storage/{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetStorage(string id)
         {
             var results = await _storageRepository.GetStorage(id);

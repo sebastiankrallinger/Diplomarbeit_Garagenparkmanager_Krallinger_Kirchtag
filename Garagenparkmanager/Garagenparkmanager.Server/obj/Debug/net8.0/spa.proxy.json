@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:5173",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\Users\\skral\\Dokumente\\GitHub\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\..\\garagenparkmanager.client",
+"WorkingDirectory": "C:\\Users\\phili\\Desktop\\github_projekte\\Diplomarbeit_Garagenparkmanager_Krallinger_Kirchtag\\Garagenparkmanager\\Garagenparkmanager.Server\\..\\garagenparkmanager.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

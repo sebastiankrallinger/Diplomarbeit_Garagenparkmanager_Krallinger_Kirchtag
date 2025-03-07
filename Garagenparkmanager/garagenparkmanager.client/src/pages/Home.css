@@ -113,3 +113,12 @@
     max-width: 50%;
     text-align: left;
 }
+
+.Home .svg {
+    display: block;
+}
+
+.Home .svg svg {
+    width: 40%; /* Ändere die Breite des SVGs */
+    height: auto; /* Höhe automatisch anpassen, um das Seitenverhältnis zu wahren */
+}
