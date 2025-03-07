@@ -14,36 +14,60 @@ import movie from '../../src/assets/video.mp4'
 function Home() {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
-    const [storage, setStorage] = useState([]);
+    const [storages, setStorages] = useState([]);
+    const [paths, setPaths] = useState([]);
+    
+    useEffect(() => {
+        const p = Array.from(document.querySelectorAll('path'));
+        setPaths(p);
+    }, []);
 
     useEffect(() => {
-        const paths = document.querySelectorAll('path');
-        paths.forEach(path => {
-            const pathId = path.id;
-            if (pathId != "") {
-                console.log(pathId);
-                getObject(pathId)
-                console.log(storage);
-            }
-        });
+        fetchStorages();
     }, []);
-    
 
-    async function getObject(id) {
+    useEffect(() => {
+        const tooltip = document.createElement('div'); 
+        tooltip.classList.add('tooltip'); 
+        document.body.appendChild(tooltip);
+
+        for (const object of storages) {
+            const e = document.getElementById(object.id);
+            if (e) {
+                if (object.booked === false) {
+                    e.style.fill = "#F9A800";
+                    e.onmouseenter = () => {
+                        const infoText = `Objekt: ${object.name} <br>Typ: ${object.storagetype} <br>Gr&ouml;&szlig;e: ${object.roomSize} m&sup2; <br>Preis: ${object.price} &euro;`;
+
+                        tooltip.innerHTML = infoText;
+
+                        tooltip.style.left = `${event.pageX + 10}px`; 
+                        tooltip.style.top = `${event.pageY + 10}px`; 
+
+                        tooltip.style.display = 'block';
+                    };
+
+                    e.onmouseleave = () => {
+                        tooltip.style.display = 'none';
+                    };
+
+                } else {
+                    e.style.fill = "grey";
+                }
+            }
+        }
+    }, [storages]);
+
+    async function fetchStorages() {
         try {
-            const response = await fetch(url + `Storage/storage/${id}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+            const response = await fetch(url + 'Storage/allobjects');
             const data = await response.json();
-            console.log(data);
-            setStorage(data);
+            setStorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen des Objekts:', error);
+            console.error('Fehler beim Abrufen der Admin-Liste:', error);
         }
     }
+
 
     return (
         <div className="Home">
