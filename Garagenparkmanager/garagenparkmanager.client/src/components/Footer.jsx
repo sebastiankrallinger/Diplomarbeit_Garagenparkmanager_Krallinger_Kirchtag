@@ -36,10 +36,10 @@ function Footer() {
                       </li>
                       <li>
                           <h3>Documents</h3>
-                          <a href="#">Link1</a>
-                          <a href="#">Link2</a>
-                          <a href="#">Link3</a>
-                          <a href="#">Link4</a>
+                          <a href="https://garagenparkmanagerdocs.blob.core.windows.net/documents/AGBs.pdf" target="_blank">Allgemeine Gesch&auml;ftsbedingungen - AGB</a>
+                          <a href="https://garagenparkmanagerdocs.blob.core.windows.net/documents/Datenschutzerklärung.pdf" target="_blank">Datenschutzerkl&aulm;rung</a>
+                          <a href="https://garagenparkmanagerdocs.blob.core.windows.net/documents/Standortbeschreibung_ZellamSee.pdf" target="_blank">Standortbeschreibung Lagerage Zell am See</a>
+                          <a href="https://garagenparkmanagerdocs.blob.core.windows.net/documents/Wiederrufsformular.pdf" target="_blank">Widerrufsformular</a>
                       </li>
                   </ul>
               </nav>
