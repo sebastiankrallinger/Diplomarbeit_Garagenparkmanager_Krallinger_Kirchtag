@@ -127,7 +127,6 @@ function ObjectActions() {
             storagetype: storageData.storagetype,
             imageUrl: storageData.imageUrl,
         };
-
         try {
             const response = await fetch(url + 'Storage/addobject', {
                 method: 'POST',

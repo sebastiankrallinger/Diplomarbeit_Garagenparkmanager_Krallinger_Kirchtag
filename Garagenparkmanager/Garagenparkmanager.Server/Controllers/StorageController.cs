@@ -58,7 +58,7 @@ namespace Garagenparkmanager.Server.Controllers
         [HttpPost("addobject")]
         public async Task<IActionResult> AddNewStorage([FromBody]Storage storage)
         {
-            if (storage.RoomSize > 1 && storage.Price > 1 && storage.Name != "" && storage.Storagetype != "")
+            if (storage.RoomSize >= 0 && storage.Price >= 0 && storage.Name != "" && storage.Storagetype != "")
             {
                 storage.Id = Guid.NewGuid().ToString();
                 var result = await _storageRepository.CreateStorage(storage);
