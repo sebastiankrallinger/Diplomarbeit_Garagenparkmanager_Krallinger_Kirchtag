@@ -24,12 +24,10 @@ function Header() {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > lastScrollY) {
-                setHidden(true);
-            } else {
-                setHidden(false);
-            }
-            setLastScrollY(window.scrollY);
+            console.log(hidden); // Sollte jetzt ausgeführt werden
+
+            setHidden((prevHidden) => window.scrollY > lastScrollY ? true : false);
+            setLastScrollY((prevY) => window.scrollY);
 
             // Aktive Sektion ermitteln
             const sections = ['content', 'plan', 'ueberUns'];
@@ -46,7 +44,8 @@ function Header() {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    }, []);
+
 
     return (
         <header className={`header ${hidden ? 'hidden' : ''}`}>
