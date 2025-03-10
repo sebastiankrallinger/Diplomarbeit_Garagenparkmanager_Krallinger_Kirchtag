@@ -33,6 +33,7 @@ function ObjectActions() {
     const [showPopupDelete, setShowPopupDelete] = useState(false);
     const [oneStorage, setOneStorage] = useState(null);
     const [showPopupEditStorage, setShowPopupEditStorage] = useState(false);
+    const [updateStorageData, setUpdateStorage] = useState();
 
     const [storageData, setStorageData] = useState({
         roomSize: '',
@@ -419,6 +420,7 @@ function ObjectActions() {
             booked: oneStorage.booked,
             activeContract: oneStorage.activeContract
         };
+        setUpdateStorage(data);
         try {
             const response = await fetch(url + 'Storage/updateStorage', {
                 method: 'PUT',
@@ -430,9 +432,8 @@ function ObjectActions() {
             });
 
             if (response.ok) {
-                //console.log("Erfolgreich hinzugefügt!");
-                const id = await getCustomerId();
-                updateCustomerStorage(id, data)
+                const customerId = await getCustomerId();
+                updateCustomerStorage(customerId);
             } else {
                 console.error("Fehler beim Hinzufügen des Objekts.");
             }
@@ -442,7 +443,7 @@ function ObjectActions() {
     }
 
     async function getCustomerId() {
-        getCustomerDetails(oneStorage);
+        await getCustomerDetails(oneStorage);
         try {
             const response = await fetch(url + `User/getCustomerId/${customerEmail}`, {
                 method: 'GET',
@@ -452,14 +453,16 @@ function ObjectActions() {
                 }
             });
             if (response.ok) {
-                return await response.text();
+                const data = await response.text();
+                return data;
             }
         } catch (error) {
             console.error('Netzwerkfehler:', error);
         }
+        return null;
     }
 
-    async function updateCustomerStorage(id, data) {
+    async function updateCustomerStorage(id) {
         try {
             const response = await fetch(url + `User/updateStorage/${id}`, {
                 method: "PUT",
@@ -467,23 +470,24 @@ function ObjectActions() {
                     "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(updateStorageData),
             });
 
             if (response.ok) {
+                fetchStorages();
+                closePopupEditStorage();
+                openPopup();
                 setcustomerFirstname(null);
                 setcustomerLastname(null);
                 setcustomerEmail(null);
-                setcustomerCompany(null)
+                setcustomerCompany(null);
+                setUpdateStorage(null);
                 setStorageData({
                     roomSize: '',
                     price: '',
                     storagetype: '',
                     imageUrl: ''
                 });
-                fetchStorages();
-                closePopupEditStorage();
-                openPopup();
             } else {
                 console.error("Fehler beim Updaten des Users.");
             }
