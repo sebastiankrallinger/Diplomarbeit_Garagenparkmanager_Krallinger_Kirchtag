@@ -41,15 +41,14 @@ function Mainpage_Admin() {
                     'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
                 }
             });
-            if (!response.ok) {
-                throw new Error('Fehler beim Abrufen des VPI');
+            if (response.ok) {
+                const data = await response.text();
+                const rows = data.trim().split("\n");
+                const lastVPI = rows[rows.length - 13];
+                const splitRow = lastVPI.split(";");
+                const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
+                setVpi(vpiValue);
             }
-            const data = await response.text();
-            const rows = data.trim().split("\n");
-            const lastVPI = rows[rows.length - 13];
-            const splitRow = lastVPI.split(";");
-            const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
-            setVpi(vpiValue);
         } catch (error) {
             console.error('Fehler beim Abrufen des VPI:', error);
         }

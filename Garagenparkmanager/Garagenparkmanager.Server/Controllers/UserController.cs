@@ -156,6 +156,28 @@ namespace Garagenparkmanager.Server.Controllers
             return BadRequest();
         }
 
+        //Storage updaten
+        [HttpPut("updateStorage/{id}")]
+        public async Task<IActionResult> UpdateStorage(string id, [FromBody] Models.Storage storage)
+        {
+            Customer customer = await _customerRepository.GetCustomer(id);
+            if (customer.Storages != null)
+            {
+                var storages = customer.Storages;
+                foreach (Storage s in storages)
+                {
+                    if (s.Id == storage.Id)
+                    {
+                        customer.Storages.Remove(s);
+                        customer.Storages.Add(storage);
+                        break;
+                    }
+                }
+            }
+            var result = await _customerRepository.EditCustomer(customer);
+            return Ok(result);
+        }
+
         //Storage loeschen
         [HttpPut("deleteStorage/{id}")]
         public async Task<IActionResult> DeleteStorage(string id, [FromBody] Models.Storage storage)

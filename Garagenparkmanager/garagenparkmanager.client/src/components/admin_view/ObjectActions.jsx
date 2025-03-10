@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ObjectActions.css'
 import editIcon from '../../assets/editIcon.png';
 import deleteIcon from '../../assets/deleteicon.png';
+import objectImg from '../../assets/houseplaceholder.jpg';
 import { v4 as uuidv4 } from 'uuid';
 import imageCompression from 'browser-image-compression';
 
@@ -29,6 +30,9 @@ function ObjectActions() {
     const [contract, setContract] = useState(null);
     const [duration, setDuration] = useState(null);
     const [startdate, setStartDate] = useState(null);
+    const [showPopupDelete, setShowPopupDelete] = useState(false);
+    const [oneStorage, setOneStorage] = useState(null);
+    const [showPopupEditStorage, setShowPopupEditStorage] = useState(false);
 
     const [storageData, setStorageData] = useState({
         roomSize: '',
@@ -38,11 +42,55 @@ function ObjectActions() {
         imageUrl: ''
     });
 
-    const handleButtonDetailsClick = (storage) => {
+    const openPopupDelete = (storage) => {
+        setOneStorage(storage);
+        setShowPopupDelete(true);
+    };
+
+    const closePopupDelete = () => {
+        setShowPopupDelete(false);
+        setOneStorage(null);
+    };
+
+    const openPopupEditStorage = async (storage) => {
+        setOneStorage(storage);
+        if (storage.activeContract != null) {
+            setOldVpi(storage.activeContract.vpIold);
+        } else {
+            setOldVpi(vpi);
+        }
+        getTypes();
+        setShowPopupEditStorage(true);
+    };
+
+    const closePopupEditStorage = () => {
+        setShowPopupEditStorage(false);
+    };
+
+    useEffect(() => {
+        if (oneStorage) {
+            setStorageData({
+                roomSize: oneStorage.roomSize,
+                price: parseFloat(oneStorage.price / oldvpi * vpi).toFixed(2),
+                storagetype: oneStorage.storagetype,
+                name: oneStorage.name,
+                imageUrl: oneStorage.imageUrl
+            });
+        } else if (!oneStorage) {
+            setStorageData({
+                roomSize: '',
+                price: '',
+                storagetype: '',
+                name: '',
+                imageUrl: ''
+            });
+        }
+    }, [oneStorage]);
+
+    const handleButtonDetailsClick = async (storage) => {
         setShowPopupDetails(true);
         getCustomerDetails(storage);
         setSelectedStorage(storage);
-        loadVPI();
     };
 
     const handleButtonAddClick = () => {
@@ -158,6 +206,7 @@ function ObjectActions() {
 
 
     useEffect(() => {
+        loadVPI();
         fetchStorages();
     }, []);
 
@@ -185,17 +234,15 @@ function ObjectActions() {
                     'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
                 }
             });
-            if (!response.ok) {
-                throw new Error('Fehler beim Abrufen des VPI');
-            }
 
-            const data = await response.text();
-            const rows = data.trim().split("\n");
-            const lastVPI = rows[rows.length - 13];
-            const splitRow = lastVPI.split(";");
-            const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
-            setVpi(vpiValue);
-            setOldVpi(vpiValue);
+            if (response.ok) {
+                const data = await response.text();
+                const rows = data.trim().split("\n");
+                const lastVPI = rows[rows.length - 13];
+                const splitRow = lastVPI.split(";");
+                const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
+                setVpi(vpiValue);
+            }
         } catch (error) {
             console.error('Fehler beim Abrufen des VPI:', error);
         }
@@ -360,6 +407,107 @@ function ObjectActions() {
         }
     }
 
+    async function updateStorage() {
+        oneStorage.activeContract.vpIold = vpi;
+        const data = {
+            id: oneStorage.id,
+            name: storageData.name,
+            roomSize: parseFloat(storageData.roomSize),
+            price: parseFloat(storageData.price),
+            storagetype: storageData.storagetype,
+            imageUrl: storageData.imageUrl,
+            booked: oneStorage.booked,
+            activeContract: oneStorage.activeContract
+        };
+        try {
+            const response = await fetch(url + 'Storage/updateStorage', {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                //console.log("Erfolgreich hinzugefügt!");
+                const id = await getCustomerId();
+                updateCustomerStorage(id, data)
+            } else {
+                console.error("Fehler beim Hinzufügen des Objekts.");
+            }
+        } catch (error) {
+            console.error('Netzwerkfehler:', error);
+        }
+    }
+
+    async function getCustomerId() {
+        getCustomerDetails(oneStorage);
+        try {
+            const response = await fetch(url + `User/getCustomerId/${customerEmail}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`,
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (response.ok) {
+                return await response.text();
+            }
+        } catch (error) {
+            console.error('Netzwerkfehler:', error);
+        }
+    }
+
+    async function updateCustomerStorage(id, data) {
+        try {
+            const response = await fetch(url + `User/updateStorage/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                setcustomerFirstname(null);
+                setcustomerLastname(null);
+                setcustomerEmail(null);
+                setcustomerCompany(null)
+                setStorageData({
+                    roomSize: '',
+                    price: '',
+                    storagetype: '',
+                    imageUrl: ''
+                });
+                fetchStorages();
+                closePopupEditStorage();
+                openPopup();
+            } else {
+                console.error("Fehler beim Updaten des Users.");
+            }
+        } catch (error) {
+            console.error('Netzwerkfehler:', error);
+        }
+    }
+
+    async function deleteStorage(id) {
+        try {
+            const response = await fetch(url + `Storage/deleteStorage/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+            });
+            fetchStorages();
+            closePopupDelete();
+        } catch (error) {
+            console.error('Fehler beim Löschen des Objekts:', error);
+        }
+    }
+
+
     return (
         <div className="ObjectActions">
             <h2>Alle Lager/Immobilien</h2>
@@ -379,9 +527,9 @@ function ObjectActions() {
                                     <button className="btn-details" onClick={() => handleButtonDetailsClick(storage)}>N&auml;here Infos</button>
                                 </div>
                                 <div className="object-action">
-                                    <img src={editIcon} className="edit-icon" alt="Edit-Icon" />
+                                    <img src={editIcon} className="edit-icon" alt="Edit-Icon" onClick={() => openPopupEditStorage(storage)} />
                                     {storage.booked === false && (
-                                        <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" />
+                                        <img src={deleteIcon} className="delete-icon" alt="Delete-Icon" onClick={() => openPopupDelete(storage)} />
                                     )}
                                 </div>
                             </div>
@@ -541,6 +689,78 @@ function ObjectActions() {
                     </div>
                 )
             }
+            {
+                showPopupDelete && (
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p>Wollen sie {oneStorage.name} wirklich l&ouml;schen?</p>
+                            <button onClick={() => deleteStorage(oneStorage.id)}>Best&auml;tigen</button>
+                            <button onClick={closePopupDelete}>Abbrechen</button>
+                        </div>
+                    </div>
+                )
+            }
+            {showPopupEditStorage && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <img src={deleteIcon} className="delete-icon-edit" alt="Delete-Icon" onClick={closePopupEditStorage}></img>
+                        <div className="popup-add-textcontent">
+                            <h2>Objekt &auml;ndern</h2>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Name"
+                                value={storageData.name}
+                                onChange={handleInputChangeStorage}
+                            />
+                            <input
+                                type="number"
+                                id="roomSize"
+                                name="roomSize"
+                                placeholder="Größe in m²"
+                                value={storageData.roomSize}
+                                onChange={handleInputChangeStorage}
+                            />
+                            <input
+                                type="number"
+                                id="price"
+                                name="price"
+                                placeholder="Mietpreis"
+                                value={storageData.price}
+                                onChange={handleInputChangeStorage}
+                            />
+                            <div className="dropdown">
+                                <select value={storageData.storagetype || ''} onChange={handleInputChangeStorage} name="storagetype">
+                                    <option value="">Objekttyp auswählen</option>
+                                    {storageTypes.map((storageType) => (
+                                        <option key={storageType} value={storageType}>{storageType}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <input
+                                type="file"
+                                id="image"
+                                name="image"
+                                accept="image/*"
+                                onChange={handleInputChangeStorage}
+                            />
+                            <button className="btn-addObject" onClick={updateStorage}>Objekt Aktualisieren</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showPopupDelete && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <p>Wollen Sie {oneStorage.name} wirklich löschen?</p>
+                        <button onClick={() => deleteStorage(oneStorage.id)}>Bestätigen</button>
+                        <button onClick={closePopupDelete}>Abbrechen</button>
+                    </div>
+                </div>
+            )}
+
         </div>
   );
 }

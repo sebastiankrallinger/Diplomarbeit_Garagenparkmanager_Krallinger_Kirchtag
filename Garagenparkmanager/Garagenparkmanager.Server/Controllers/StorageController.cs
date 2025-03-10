@@ -108,7 +108,7 @@ namespace Garagenparkmanager.Server.Controllers
 
         //Objekttyp loeschen
         [HttpDelete("deleteStorageType/{type}")]
-        public async Task<IActionResult> DeleteUser(string type)
+        public async Task<IActionResult> DeleteType(string type)
         {
             var result = await _storageTypeRepository.Delete(type);
             if (result != "")
@@ -117,5 +117,24 @@ namespace Garagenparkmanager.Server.Controllers
             }
             return BadRequest();
         }
+
+        [HttpPut("updateStorage")]
+        public async Task<IActionResult> UpdateStorage([FromBody] Storage storage)
+        {
+            var results = await _storageRepository.UpdateStorage(storage);
+            return Ok(results);
+        }
+
+        [HttpDelete("deleteStorage/{id}")]
+        public async Task<IActionResult> DeleteStorage(string id)
+        {
+            var result = await _storageRepository.DeleteStorage(id);
+            if (result != false)
+            {
+                return NoContent();
+            }
+            return BadRequest();
+        }
+
     }
 }

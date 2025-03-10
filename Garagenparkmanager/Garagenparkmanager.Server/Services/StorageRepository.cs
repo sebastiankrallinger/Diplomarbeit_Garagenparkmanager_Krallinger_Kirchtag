@@ -63,5 +63,21 @@ namespace Garagenparkmanager.Server.Services
             var response = await _container.ReplaceItemAsync(storage, storage.Id, new PartitionKey(storage.Id));
             return response.Resource;
         }
+
+        public async Task<Storage> EditStorage(Storage storage)
+        {
+            var response = await _container.ReplaceItemAsync(storage, storage.Id, new PartitionKey(storage.Id));
+            return response.Resource;
+        }
+
+        public async Task<bool> DeleteStorage(string id)
+        {
+            var response = await _container.DeleteItemAsync<Storage>(id, new PartitionKey(id));
+            if (response != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
