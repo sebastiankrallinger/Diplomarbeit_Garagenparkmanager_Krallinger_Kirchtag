@@ -104,6 +104,7 @@ function Home() {
                 <section className="garageparkPlan" id="plan">
                     <div className="plan">
                         <h1>Garagenpark - &Uuml;bersicht</h1>
+                        <h1>Zell am See</h1>
                         <div className="svg">
                             <svg id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 383.61 643.95">
                                 <defs>
