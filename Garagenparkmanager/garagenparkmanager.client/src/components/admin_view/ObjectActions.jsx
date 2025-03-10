@@ -33,7 +33,6 @@ function ObjectActions() {
     const [showPopupDelete, setShowPopupDelete] = useState(false);
     const [oneStorage, setOneStorage] = useState(null);
     const [showPopupEditStorage, setShowPopupEditStorage] = useState(false);
-    const [updateStorageData, setUpdateStorage] = useState();
 
     const [storageData, setStorageData] = useState({
         roomSize: '',
@@ -55,12 +54,12 @@ function ObjectActions() {
 
     const openPopupEditStorage = async (storage) => {
         setOneStorage(storage);
+        getTypes();
         if (storage.activeContract != null) {
             setOldVpi(storage.activeContract.vpIold);
         } else {
             setOldVpi(vpi);
         }
-        getTypes();
         setShowPopupEditStorage(true);
     };
 
@@ -409,7 +408,9 @@ function ObjectActions() {
     }
 
     async function updateStorage() {
-        oneStorage.activeContract.vpIold = vpi;
+        if (oneStorage.activeContract != null) {
+            oneStorage.activeContract.vpIold = vpi;
+        }
         const data = {
             id: oneStorage.id,
             name: storageData.name,
@@ -420,7 +421,6 @@ function ObjectActions() {
             booked: oneStorage.booked,
             activeContract: oneStorage.activeContract
         };
-        setUpdateStorage(data);
         try {
             const response = await fetch(url + 'Storage/updateStorage', {
                 method: 'PUT',
@@ -433,7 +433,19 @@ function ObjectActions() {
 
             if (response.ok) {
                 const customerId = await getCustomerId();
-                updateCustomerStorage(customerId);
+                if (oneStorage.booked == true) {
+                    updateCustomerStorage(customerId, data);
+                } else {
+                    fetchStorages();
+                    closePopupEditStorage();
+                    openPopup();
+                    setStorageData({
+                        roomSize: '',
+                        price: '',
+                        storagetype: '',
+                        imageUrl: ''
+                    });
+                }
             } else {
                 console.error("Fehler beim Hinzufügen des Objekts.");
             }
@@ -443,26 +455,50 @@ function ObjectActions() {
     }
 
     async function getCustomerId() {
-        await getCustomerDetails(oneStorage);
         try {
-            const response = await fetch(url + `User/getCustomerId/${customerEmail}`, {
+            const response = await fetch(url + 'User/customers', {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`,
-                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`
                 }
             });
-            if (response.ok) {
-                const data = await response.text();
-                return data;
+
+            if (!response.ok) {
+                throw new Error('Fehler beim Abrufen des VPI');
+            }
+
+            const data = await response.json();
+
+            const customer = data.find(customer =>
+                customer.storages.some(storageObj => storageObj.id === oneStorage.id)
+            );
+
+            if (customer) {
+                try {
+                    const response = await fetch(url + `User/getCustomerId/${customer.email}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('accesstoken')}`,
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    if (response.ok) {
+                        const data = await response.text();
+                        return data;
+                    }
+                } catch (error) {
+                    console.error('Netzwerkfehler:', error);
+                }
+            } else {
+                //console.log('Kein Kunde gefunden, der diese Storage-ID hat.');
             }
         } catch (error) {
-            console.error('Netzwerkfehler:', error);
+            console.error('Fehler beim Abrufen der Kunden:', error);
         }
         return null;
     }
 
-    async function updateCustomerStorage(id) {
+    async function updateCustomerStorage(id, data) {
         try {
             const response = await fetch(url + `User/updateStorage/${id}`, {
                 method: "PUT",
@@ -470,18 +506,13 @@ function ObjectActions() {
                     "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(updateStorageData),
+                body: JSON.stringify(data),
             });
 
             if (response.ok) {
                 fetchStorages();
                 closePopupEditStorage();
                 openPopup();
-                setcustomerFirstname(null);
-                setcustomerLastname(null);
-                setcustomerEmail(null);
-                setcustomerCompany(null);
-                setUpdateStorage(null);
                 setStorageData({
                     roomSize: '',
                     price: '',
