@@ -147,7 +147,7 @@ function Usermanagement() {
                   <button className="btn-update" onClick={() => updateCustomer(selectedUser)}>Aktualisieren</button>
               </div>
               <div className="object">
-                  <Userobjects selectedUser={selectedUser} bookedStorages={bookedStorages} loadStorages={fetchStorages} contract={setcontract} />
+                  <Userobjects selectedUser={selectedUser} setSelectedUser={setSelectedUser} bookedStorages={bookedStorages} loadStorages={fetchStorages} contract={setcontract} />
               </div>
           </main>
           {

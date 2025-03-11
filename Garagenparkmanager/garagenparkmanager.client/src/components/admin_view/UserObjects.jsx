@@ -4,7 +4,7 @@ import './UserObjects.css';
 import deleteIcon from '../../assets/deleteicon.png';
 
 /* UserObjects-Component*/
-function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
+function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorages, contract }) {
     //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
     const url = "https://localhost:7186/";
     const [freeStorages, setFreeStorages] = useState([]);
