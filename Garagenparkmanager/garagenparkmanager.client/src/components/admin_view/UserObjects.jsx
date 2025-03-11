@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './UserObjects.css';
+import downloadIcon from '../../assets/downloadicon.png';
 import deleteIcon from '../../assets/deleteicon.png';
 
 /* UserObjects-Component*/
@@ -284,6 +285,27 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 />
                 <br/>
                 <button className="btn-add" onClick={() => uploadNewContract()}>Hinzuf&uuml;gen</button>
+                <br />
+                <br />
+                <h3>Vertragshistorie</h3>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <select onChange={(e) => {
+                        const selectedContract = selectedUser?.contracts?.find(contract => contract.id === e.target.value);
+                        setSelectedStorage(selectedContract);
+                    }}>
+                        <option>Vertrag ausw&auml;hlen</option>
+                        {selectedUser?.contracts && selectedUser.contracts.map((contract) => (
+                            <option key={contract.id} value={contract.id}>
+                                {contract.fileName}
+                            </option>
+                        ))}
+                    </select>
+                    {selectedStorage && (
+                        <a href={selectedStorage.fileUrl} target="_blank" className="btn-add">
+                            Vertrag öffnen
+                        </a>
+                    )}
+                </div>
             </div>
             {
                 showPopup && (
