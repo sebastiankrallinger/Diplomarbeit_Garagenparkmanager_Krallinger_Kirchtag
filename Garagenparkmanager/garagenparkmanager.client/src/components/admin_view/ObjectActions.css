@@ -111,7 +111,7 @@
     border-radius: 10px;
 }
 
-.ObjectActions .actualContract-content button{
+.ObjectActions .actualContract-content a{
     background-color: #F9A800;
     color: #ffff;
     padding: 5px 10px;
@@ -119,6 +119,7 @@
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 5px;
+    text-decoration: none
 }
 
 .ObjectActions .btn-upload {

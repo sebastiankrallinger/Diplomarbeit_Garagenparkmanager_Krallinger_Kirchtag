@@ -392,8 +392,11 @@ function ObjectActions() {
     }
 
     async function updateCustomer() {
-        const storages = selectedUser.storages;
-        //storages mit selectedStorage ersetzen und unten einfügen
+        const index = selectedUser.storages.findIndex(s => s.id === selectedStorage.id);
+        if (index !== -1) {
+            selectedUser.storages[index] = { ...selectedUser.storages[index], ...selectedStorage };
+        }
+
         try {
             const response = await fetch(url + `User/updateCustomer`, {
                 method: 'PUT',
@@ -479,8 +482,9 @@ function ObjectActions() {
                                         <div className="actualContract">
                                             <div className="actualContract-content">
                                                 <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
-                                                <button className="btn-download">Abrufen</button>
-                                                <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
+                                                <a href={selectedStorage.activeContract.fileUrl} target="_blank" className="btn-download">
+                                                    Vertrag &ouml;ffnen
+                                                </a>                                                <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
                                                 <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
                                                 <input id="extraCosts" className="extraCosts" type="number" onChange={(e) => setExtraCosts(e.target.value)} />
                                                 <input

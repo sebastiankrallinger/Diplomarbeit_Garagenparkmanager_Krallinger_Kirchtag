@@ -302,7 +302,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                     </select>
                     {selectedStorage && (
                         <a href={selectedStorage.fileUrl} target="_blank" className="btn-add">
-                            Vertrag öffnen
+                            Vertrag &ouml;ffnen
                         </a>
                     )}
                 </div>
