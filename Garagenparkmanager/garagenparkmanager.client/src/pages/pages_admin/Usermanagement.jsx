@@ -112,7 +112,7 @@ function Usermanagement() {
                     password: customerData.password,  
                     salt: oldUserData.salt,
                     storages: bookedStorages,
-                    contracts: oldUserData.contracts,
+                    contracts: customerData.contracts,
                 }),
             });
             if (response.ok) {

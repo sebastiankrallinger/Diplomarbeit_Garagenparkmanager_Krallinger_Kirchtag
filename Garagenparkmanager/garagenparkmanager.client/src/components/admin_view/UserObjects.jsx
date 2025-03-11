@@ -10,10 +10,13 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
     const [freeStorages, setFreeStorages] = useState([]);
     const [selectedStorage, setSelectedStorage] = useState([]);
     const [vpi, setVpi] = useState();
-    const [file, setFile] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
     const [object, setObject] = useState(null);
     const [user, setUser] = useState(null);
+    const [uploadContract, setUploadContract] = useState(null);
+    const [duration, setDuration] = useState(null);
+    const [startDate, setStartDate] = useState(null);
+    const [extraCosts, setExtraCosts] = useState(null);
 
     useEffect(() => {
         fetchFreeStorages();
@@ -47,16 +50,18 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
         }
     }
 
-    async function addStorage() {
+    async function addStorage(filename, fileurl) {
         try {
             const updateContract = {
                 id: uuidv4(),
-                extraCosts: 0,
+                extraCosts: extraCosts,
                 VPIold: vpi,
                 status: true,
-                startDate: new Date().toISOString(),
-                duration: 3,
-                endDate: new Date(new Date().setFullYear(new Date().getFullYear() + 3)).toISOString(),
+                startDate: startDate,
+                duration: duration,
+                endDate: new Date(new Date().setFullYear(new Date().getFullYear() + Number(duration))).toISOString(),
+                filename: filename,
+                fileurl: fileurl,
             };
             var id = selectedUser.id;
             const response = await fetch(`https://localhost:7186/User/addStorage/${id}`, {
@@ -78,6 +83,7 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
             });
             const data = await response.json();
             if (response.ok) {
+                addToHistory(id, updateContract);
                 contract(updateContract);
                 loadStorage();
                 loadStorages(selectedUser.id);
@@ -86,6 +92,68 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
         } catch (error) {
             console.error('Fehler beim Hinzufügen des Storages:', error);
         }
+    }
+
+    async function addToHistory(id, updateContract) {
+        try {
+            const response = await fetch(url + `User/updateContractHistory/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updateContract),
+            });
+
+            if (!response.ok) {
+                throw new Error("Fehler beim Hochladen");
+            }
+            const data = await response.json();
+            setSelectedUser(data);
+
+        } catch (error) {
+            console.error("Fehler beim Hochladen:", error);
+        }
+    }
+
+    async function uploadNewContract() {
+        if (!uploadContract) {
+            console.error("Keine Datei ausgewählt!");
+            return;
+        }
+
+        const selectedFile = uploadContract;
+        setUploadContract(null);
+        document.getElementById("fileInput").value = "";
+        document.getElementById("duration").value = "";
+        document.getElementById("date").value = "";
+        document.getElementById("extraCosts").value = "";
+
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            const base64File = reader.result.split(',')[1];
+            try {
+                const response = await fetch(url + "Document/uploadContract", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ file: base64File, fileName: selectedFile.name }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Fehler beim Hochladen");
+                }
+
+                const responseData = await response.json();
+                await addStorage(selectedFile.name, responseData.fileUrl);
+            } catch (error) {
+                console.error("Fehler beim Hochladen:", error);
+            }
+        };
+
+        reader.readAsDataURL(selectedFile);
     }
 
     async function loadStorage() {
@@ -203,16 +271,19 @@ function UserObjects({ selectedUser, bookedStorages, loadStorages, contract }) {
                         return null;
                     })}
                 </select>
-                <br/>
+                <br />
+                <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
+                <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
+                <input id="extraCosts" className="extraCosts" type="number" onChange={(e) => setExtraCosts(e.target.value)} />
                 <input
                     id="fileInput"
                     type="file"
                     accept="application/pdf"
-                    onChange={(e) => setFile(e.target.files[0])}
+                    onChange={(e) => setUploadContract(e.target.files[0])}
                     className="contract"
                 />
                 <br/>
-                <button className="btn-add" onClick={() => addStorage()}>Hinzuf&uuml;gen</button>
+                <button className="btn-add" onClick={() => uploadNewContract()}>Hinzuf&uuml;gen</button>
             </div>
             {
                 showPopup && (

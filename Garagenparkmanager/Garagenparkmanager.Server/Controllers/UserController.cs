@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Serialization.HybridRow;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -121,7 +122,6 @@ namespace Garagenparkmanager.Server.Controllers
             Customer customer = await _customerRepository.GetCustomer(id);
             storage.Booked = true;
             customer.Storages.Add(storage);
-            customer.Contracts.Add(storage.activeContract);
             await _storageController.addContract(storage.Id, storage.activeContract);
             var result = await _customerRepository.EditCustomer(customer);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
@@ -133,6 +133,15 @@ namespace Garagenparkmanager.Server.Controllers
         {
             var result = await _customerRepository.EditAdmin(admin);
             return CreatedAtAction(nameof(GetAllUser), new { id = result.Id }, result);
+        }
+
+        //Vertrag zur Historie hinzufügen
+        [HttpPut("updateContractHistory/{id}")]
+        public async Task<IActionResult> UpdateContractHistory(string id, [FromBody] Contract contract)
+        {
+            var customer = await _customerRepository.GetCustomer(id);
+            customer.Contracts.Add(contract);
+            return Ok(customer);
         }
 
         //User loeschen
