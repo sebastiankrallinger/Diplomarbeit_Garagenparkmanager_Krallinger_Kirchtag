@@ -6,6 +6,26 @@ import './Header.css';
 function Header() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState('');
+    const [isScrollingUp, setIsScrollingUp] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(window.scrollY);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > lastScrollY) {
+                setIsScrollingUp(false); 
+            } else {
+                setIsScrollingUp(true); 
+            }
+            setLastScrollY(window.scrollY);
+            const currentSection = getCurrentSection();
+            if (currentSection) {
+                setActiveSection(currentSection);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
 
     const handleNavigation = (id) => {
         const section = document.getElementById(id);
@@ -15,13 +35,28 @@ function Header() {
         }
     };
 
+    const getCurrentSection = () => {
+        const sections = ['content', 'plan', 'ueberUns'];
+        for (let id of sections) {
+            const section = document.getElementById(id);
+            if (section) {
+                const rect = section.getBoundingClientRect();
+                if (rect.top >= 0 && rect.top < window.innerHeight / 3) {
+                    return id;
+                }
+            }
+        }
+        return '';
+    };
+
+
     const handleLogin = (e) => {
         e.preventDefault();
         navigate('/login');
     };
 
     return (
-        <header>
+        <header className={isScrollingUp ? 'visible' : 'hidden'}>
             <div className="header-container">
                 <div className="header-logo">
                     <img src={logo} alt="logo_Lagerage" />

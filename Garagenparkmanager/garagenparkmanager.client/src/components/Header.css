@@ -10,6 +10,15 @@ header {
     z-index: 1000;
 }
 
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+header.visible {
+    transform: translateY(0);
+}
+
 .header-container {
     display: flex;
     align-items: center;
