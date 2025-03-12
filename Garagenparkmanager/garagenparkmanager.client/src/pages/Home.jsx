@@ -12,8 +12,8 @@ import img2 from '../../src/assets/img2.jpg'
 import movie from '../../src/assets/video.mp4'
 
 function Home() {
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    const url = "https://localhost:7186/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [storages, setStorages] = useState([]);
     const [paths, setPaths] = useState([]);
     
@@ -64,7 +64,7 @@ function Home() {
             const data = await response.json();
             setStorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Admin-Liste:', error);
+            console.error('Fehler beim Abrufen der Objekte:', error);
         }
     }
 

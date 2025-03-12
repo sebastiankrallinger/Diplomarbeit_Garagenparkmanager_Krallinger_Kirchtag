@@ -46,8 +46,8 @@ export default defineConfig({
         https: httpsOptions,
         proxy: {
             '^/home': {
-                target: 'https://localhost:7186',
-                secure: false
+                target: 'https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net',
+                secure: true
             },
             '/data': {
                 target: 'https://data.statistik.gv.at',

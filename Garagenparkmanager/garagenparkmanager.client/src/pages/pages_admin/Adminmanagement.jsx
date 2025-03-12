@@ -6,8 +6,8 @@ import AdminList from '../../components/admin_view/Adminlist';
 import AdmindataForm from '../../components/admin_view/InputformAdmindata';
 
 function Adminmanagement() {
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    const url = "https://localhost:7186/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [admins, setAdmins] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [oldUserData, setoldUserData] = useState(null);

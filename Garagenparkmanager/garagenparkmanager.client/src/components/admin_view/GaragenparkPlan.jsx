@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 /* GaragenparkPlan-Component */
 function GaragenparkPlan() {
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    const url = "https://localhost:7186/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [storages, setStorages] = useState([]);
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [vpi, setVpi] = useState(null);

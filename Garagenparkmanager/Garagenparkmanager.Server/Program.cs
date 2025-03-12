@@ -99,7 +99,7 @@ namespace Garagenparkmanager.Server
                 options.AddPolicy("AllowFrontend",
                     policy =>
                     {
-                        policy.WithOrigins("https://localhost:5173") 
+                        policy.WithOrigins("https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net") 
                               .AllowAnyMethod()
                               .AllowAnyHeader();
                     });

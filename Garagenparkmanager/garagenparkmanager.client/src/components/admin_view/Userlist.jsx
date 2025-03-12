@@ -5,8 +5,8 @@ import deleteIcon from '../../assets/deleteicon.png';
 
 /* Userlist-Component*/
 function Userlist({ customers, refreshCustomers, refreshStorages, editCustomer, loadStorages }) {
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    const url = "https://localhost:7186/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [showPopup, setShowPopup] = useState(false);
     const [oneUser, setOneUser] = useState(null);
 

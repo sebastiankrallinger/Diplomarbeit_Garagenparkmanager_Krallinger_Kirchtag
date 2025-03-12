@@ -9,8 +9,8 @@ import imageCompression from 'browser-image-compression';
 
 /* ObjectActions-Component*/
 function ObjectActions() {
-    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    const url = "https://localhost:7186/";
+    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    //const url = "https://localhost:7186/";
     const [showPopupDetails, setShowPopupDetails] = useState(false);
     const [showPopupAdd, setShowPopupAdd] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
