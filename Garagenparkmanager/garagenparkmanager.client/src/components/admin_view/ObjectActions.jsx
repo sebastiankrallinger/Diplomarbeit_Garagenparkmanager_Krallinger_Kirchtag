@@ -17,6 +17,7 @@ function ObjectActions() {
     const [showPopupDeleteTyp, setShowPopupDeleteTyp] = useState(false);
     const [deleteTyp, setDeleteTyp] = useState(null);
     const [vpi, setVpi] = useState(null);
+    const [selectedUser, setSelectedUser] = useState();
     const [customerFirstname, setcustomerFirstname] = useState();
     const [customerLastname, setcustomerLastname] = useState();
     const [customerEmail, setcustomerEmail] = useState();
@@ -33,6 +34,7 @@ function ObjectActions() {
     const [showPopupDelete, setShowPopupDelete] = useState(false);
     const [oneStorage, setOneStorage] = useState(null);
     const [showPopupEditStorage, setShowPopupEditStorage] = useState(false);
+    const [extraCosts, setExtraCosts] = useState(null);
 
     const [storageData, setStorageData] = useState({
         roomSize: '',
@@ -269,6 +271,7 @@ function ObjectActions() {
             );
 
             if (customer) {
+                setSelectedUser(customer);
                 setcustomerFirstname(customer.firstname);
                 setcustomerLastname(customer.lastname);
                 setcustomerEmail(customer.email);
@@ -347,6 +350,7 @@ function ObjectActions() {
         document.getElementById("fileInput").value = "";
         document.getElementById("duration").value = "";
         document.getElementById("date").value = "";
+        document.getElementById("extraCosts").value = "";
 
         const reader = new FileReader();
         reader.onloadend = async () => {
@@ -381,12 +385,12 @@ function ObjectActions() {
         try {
             const updateContract = {
                 id: uuidv4(),
-                extraCosts: 0,
+                extraCosts: extraCosts,
                 VPIold: vpi,
                 status: true,
                 startDate: startdate,
                 duration: duration,
-                endDate: new Date(new Date(startdate).setFullYear(new Date(startdate).getFullYear() + parseInt(duration))),
+                endDate: new Date(new Date().setFullYear(new Date().getFullYear() + Number(duration))).toISOString(),
                 filename: filename,
                 fileurl: fileurl,
             };
@@ -402,8 +406,75 @@ function ObjectActions() {
             if (!response.ok) {
                 throw new Error("Fehler beim Hochladen");
             }
+            if (response.ok) {
+                const data = await response.json();
+                setSelectedStorage(data)
+                addToHistory(selectedUser.id, updateContract);
+            }
         } catch (error) {
             console.error("Fehler beim Hochladen:", error);
+        }
+    }
+    async function addToHistory(id, updateContract) {
+        try {
+            const response = await fetch(url + `User/updateContractHistory/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("accesstoken")}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updateContract),
+            });
+            if (!response.ok) {
+                throw new Error("Fehler beim Hochladen");
+            }
+            const data = await response.json();
+            setSelectedUser(data);
+            updateCustomer();
+
+        } catch (error) {
+            console.error("Fehler beim Hochladen:", error);
+        }
+    }
+
+    async function updateCustomer() {
+        const index = selectedUser.storages.findIndex(s => s.id === selectedStorage.id);
+        if (index !== -1) {
+            selectedUser.storages[index] = { ...selectedUser.storages[index], ...selectedStorage };
+        }
+
+        try {
+            const response = await fetch(url + `User/updateCustomer`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
+                },
+                body: JSON.stringify({
+                    id: selectedUser.id,
+                    role: selectedUser.role,
+                    firstname: selectedUser.firstname,
+                    lastname: selectedUser.lastname,
+                    birthdate: selectedUser.birthdate,
+                    plz: selectedUser.plz,
+                    location: selectedUser.location,
+                    street: selectedUser.street,
+                    housenumber: selectedUser.housenumber,
+                    housenumberAddition: selectedUser.housenumberAddition,
+                    email: selectedUser.email,
+                    companyName: selectedUser.companyName,
+                    atuNumber: selectedUser.atuNumber,
+                    password: selectedUser.password,
+                    salt: selectedUser.salt,
+                    storages: selectedUser.storages,
+                    contracts: selectedUser.contracts,
+                }),
+            });
+            if (!response.ok) {
+                console.error('Fehler beim Aktualisieren des Benutzers');
+            }
+        } catch (error) {
+            console.error('Fehler beim Senden der Update-Anfrage:', error);
         }
     }
 
@@ -598,6 +669,7 @@ function ObjectActions() {
                                                 <a className="btn-download" id="downloadLink" href={selectedStorage.activeContract.fileUrl} target="_blank" rel="noopener noreferrer">Abrufen</a>
                                                 <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
                                                 <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
+                                                <input id="extraCosts" className="extraCosts" type="number" onChange={(e) => setExtraCosts(e.target.value)} />
                                                 <input
                                                     id="fileInput"
                                                     type="file"

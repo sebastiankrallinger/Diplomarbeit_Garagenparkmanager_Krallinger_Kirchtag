@@ -24,6 +24,7 @@ namespace Garagenparkmanager.Server.Controllers
         }
         //alle Lager laden
         [HttpGet("allobjects")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllStorages()
         {
             var results = await _storageRepository.GetAll();
@@ -87,7 +88,7 @@ namespace Garagenparkmanager.Server.Controllers
             Storage storage = await _storageRepository.GetStorage(id);
             storage.activeContract = activeContract;
             var result = await _storageRepository.UpdateStorage(storage);
-            return CreatedAtAction(nameof(GetAllStorages), new { id = result.Id }, result);
+            return Ok(storage);
         }
 
         //Objekttypen laden
