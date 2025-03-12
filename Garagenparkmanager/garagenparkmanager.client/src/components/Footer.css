@@ -5,9 +5,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 95%;
     height: 15%;
-    margin: 0;
+    margin: 0 auto;
     border-top: solid;
     border-color: #F9A800;
 }
@@ -24,6 +24,7 @@
 .footer-logo img {
     margin-top: 10px;
     height: 120px;
+    margin-left: 2em;
 }
 
 .footer-navbar ul {
@@ -42,6 +43,7 @@
     display: inline-block;
     margin-top: 10px;
     font-size: 50px;
+    margin-left: 1.5em;
 }
 
 .footer-navbar li {
@@ -71,7 +73,7 @@
 }
 
 .footer-text p {
-    margin: 5px 0;
+    margin: 5px 3em 0 5em;
 }
 
 .text1 {

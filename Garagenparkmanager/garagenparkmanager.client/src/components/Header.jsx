@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo_Lagerage.png';
 import './Header.css';
 
 function Header() {
     const navigate = useNavigate();
-    const [hidden, setHidden] = useState(false);
     const [activeSection, setActiveSection] = useState('');
 
     const handleNavigation = (id) => {
@@ -22,7 +21,7 @@ function Header() {
     };
 
     return (
-        <header className={`header ${hidden ? 'hidden' : ''}`}>
+        <header>
             <div className="header-container">
                 <div className="header-logo">
                     <img src={logo} alt="logo_Lagerage" />
