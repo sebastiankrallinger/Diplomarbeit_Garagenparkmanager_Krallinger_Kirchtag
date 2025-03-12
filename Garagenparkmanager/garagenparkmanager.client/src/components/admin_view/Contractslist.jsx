@@ -34,8 +34,8 @@ function Contractslist() {
             downloadIcon.parentElement.href = storage.activeContract.fileUrl;
             downloadIcon.parentElement.download = storage.activeContract.fileName;
         } else {
-            document.getElementById("contract").innerHTML = "Kein Vertrag verf&uuml;gbar";        }
-
+            document.getElementById("contract").innerHTML = "Kein Vertrag verf&uuml;gbar";        
+        }
     }
 
     return (

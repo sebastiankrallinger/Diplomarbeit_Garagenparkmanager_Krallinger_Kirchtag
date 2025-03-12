@@ -9,11 +9,12 @@ import aboutUs1 from '../../../src/assets/aboutUs1.png'
 import aboutUs2 from '../../../src/assets/aboutUs2.png'
 import aboutUs3 from '../../../src/assets/aboutUs3.png'
 import Logo from '../../../src/assets/logo_Lagerage.png'
+import downloadIcon from '../../assets/downloadicon.png';
 
 
 function UserMainpage() {
-    const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
-    //const url = "https://localhost:7186/";
+    //const url = "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net/";
+    const url = "https://localhost:7186/";
     const [id, setId] = useState(null);
     const [isPopupOpen, setPopupOpen] = useState(false);
     const [selectedObject, setSelectedObject] = useState(null);
@@ -44,6 +45,7 @@ function UserMainpage() {
     const handleOpenPopup = (object) => {
         setSelectedObject(object);
         setPopupOpen(true);
+        showContract(object);
     };
 
     const handleClosePopup = () => {
@@ -154,6 +156,27 @@ function UserMainpage() {
             console.error('Fehler beim Abrufen der News:', error);
         }
     }
+    function showContract(storage) {
+        const contractElement = document.getElementById("contract");
+        const downloadIcon = document.getElementById("downloadIcon");
+        if (!contractElement || !downloadIcon) return;
+
+        if (storage && storage.activeContract && storage.activeContract.fileName) {
+            contractElement.textContent = storage.activeContract.fileName;
+            downloadIcon.style.visibility = 'visible';
+            downloadIcon.parentElement.href = storage.activeContract.fileUrl;
+            downloadIcon.target = "_blank";
+        } else {
+            document.getElementById('contract').innerHTML = "Kein Vertrag verf&uuml;gbar";
+            document.getElementById('downloadIcon').style.visibility = 'hidden';
+        }
+    }
+
+    useEffect(() => {
+        if (isPopupOpen && selectedObject) {
+            showContract(selectedObject);
+        }
+    }, [isPopupOpen, selectedObject]);
 
     return (
         <div className="user_mainpage">
@@ -392,11 +415,21 @@ function UserMainpage() {
                                 <p>Gr&ouml;&szlig;e: {selectedObject.roomSize} m&sup2; </p>
                                 <p>Preis: {selectedObject.price} &euro;</p>
                                 <p>Zusatzkosten: {selectedObject.activeContract.extraCosts} &euro;</p>
-                                <h3>Meine Dokumente:</h3>
-                                <ul>
-                                    <li>Vertrag</li>
-                                    <li>Preisberechnung</li>
-                                </ul>
+                                <h3>Mietvertrag:</h3>
+                                <div className="contracts">
+                                    <ul id="downloadUl">
+                                        <li>
+                                            <div className="contract">
+                                                <p id="contract"></p>
+                                            </div>
+                                            <div className="contract-action">
+                                                <a id="downloadLink" href="#" target="_blank">
+                                                    <img id="downloadIcon" src={downloadIcon} className="downloadIcon" alt="Download-Icon" />
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

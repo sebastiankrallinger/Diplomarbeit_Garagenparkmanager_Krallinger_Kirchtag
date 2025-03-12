@@ -152,3 +152,31 @@
     pointer-events: none;
     z-index: 1000;
 }
+
+.user_mainpage .contracts ul {
+    width: 80%;
+    background-color: #ffff;
+    color: #000f;
+    list-style-type: none;
+    padding: 5px 10px;
+    margin-top: 20%;
+    border-radius: 10px;
+}
+
+.user_mainpage .contracts li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.user_mainpage .downloadIcon {
+    width: 20px;
+    height: 20px;
+    max-height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    display: inline-block; /* Verhindert, dass es sich an die Höhe des Elternelements anpasst */
+    vertical-align: middle; /* Optional, sorgt für zentrierte Ausrichtung im Feld */
+}

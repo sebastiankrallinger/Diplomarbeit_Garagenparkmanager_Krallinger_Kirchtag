@@ -484,7 +484,8 @@ function ObjectActions() {
                                                 <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
                                                 <a href={selectedStorage.activeContract.fileUrl} target="_blank" className="btn-download">
                                                     Vertrag &ouml;ffnen
-                                                </a>                                                <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
+                                                </a>
+                                                <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
                                                 <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
                                                 <input id="extraCosts" className="extraCosts" type="number" onChange={(e) => setExtraCosts(e.target.value)} />
                                                 <input
