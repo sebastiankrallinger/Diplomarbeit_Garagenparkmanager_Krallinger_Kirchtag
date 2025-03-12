@@ -58,9 +58,11 @@ function UserMainpage() {
         const tooltip = document.createElement('div');
         tooltip.classList.add('tooltip');
         document.body.appendChild(tooltip);
+        console.log("svg");
 
         for (const object of storages) {
             const e = document.getElementById(object.id);
+            console.log(e);
             if (e) {
                 if (object.booked === false) {
                     e.style.fill = "#F9A800";
@@ -90,7 +92,7 @@ function UserMainpage() {
                 }
             }
         }
-    }, []);
+    }, [storages, bookedStorages]);
 
     useEffect(() => {
         if (id) {

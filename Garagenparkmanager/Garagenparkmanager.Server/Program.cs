@@ -97,12 +97,12 @@ namespace Garagenparkmanager.Server
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowFrontend",
-                    policy =>
-                    {
-                        policy.WithOrigins("https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net") 
-                              .AllowAnyMethod()
-                              .AllowAnyHeader();
-                    });
+                     policy =>
+                     {
+                         policy.AllowAnyOrigin() 
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                     });
             });
 
             //Authentifiziereung registrieren
