@@ -17,7 +17,7 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '8.x' 
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -39,26 +39,22 @@ jobs:
           dotnet restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
 
       - name: Build Server
-        run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
+        run: dotnet build -c Release --no-restore Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
 
       - name: Publish ASP.NET app
-        run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj
+        run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
 
       - name: Copy React build to out folder
         run: |
           cp -r Garagenparkmanager/garagenparkmanager.client/dist/* ./out
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build 
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+          
       - name: Deploy to Azure Web Apps (Frontend and Backend)
-        run: |
-          set -x  # Detaillierte Ausgabe der ausgeführten Befehle
-          azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: Garagenparkmanager-Webapp
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: ./out
         env:
           ACTIONS_RUNNER_DEBUG: true 
+          AZURE_HTTP_USER_AGENT: 'actions/azure-webapps-deploy'
+
