@@ -63,7 +63,7 @@ margin-right: 50px;
     border-radius: 10px;
 }
 
-.GaragenparkPlan .actualContract-content button {
+.GaragenparkPlan .actualContract-content a {
     background-color: #F9A800;
     color: #ffff;
     padding: 5px 10px;
@@ -71,6 +71,7 @@ margin-right: 50px;
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 5px;
+    text-decoration: none;
 }
 
 .GaragenparkPlan .btn-upload {
@@ -114,12 +115,12 @@ margin-right: 50px;
 }
 
 .svg {
-    width: 100%; /* Oder spezifische Breite */
-    height: 100%; /* Oder spezifische Höhe */
+    width: 100%; 
+    height: 100%;
 }
 
 .svg svg {
-    width: 100%; /* Beispielgröße */
+    width: 100%; 
     height: auto;
 }
 

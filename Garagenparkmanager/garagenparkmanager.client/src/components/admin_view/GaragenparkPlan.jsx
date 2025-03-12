@@ -355,8 +355,8 @@ function GaragenparkPlan() {
                                 <p>{selectedStorage.price} / {`${selectedStorage.activeContract.vpIold.toFixed(2)}`} * {`${vpi}`} = {(selectedStorage.price / parseFloat(selectedStorage.activeContract.vpIold) * parseFloat(vpi)).toFixed(2)} &euro;</p>
                                 <div className="actualContract">
                                     <div className="actualContract-content">
-                                        <h3>Aktueller Vertrag bis XX.XX.XXXX</h3>
-                                        <button className="btn-download">Abrufen</button>
+                                        <h3>Aktueller Vertrag bis {new Date(selectedStorage.activeContract.endDate).toLocaleDateString('de-DE')}</h3>
+                                        <a className="btn-download" id="downloadLink" href={selectedStorage.activeContract.fileUrl} target="_blank" rel="noopener noreferrer">Abrufen</a>
                                         <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
                                         <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
                                         <input
