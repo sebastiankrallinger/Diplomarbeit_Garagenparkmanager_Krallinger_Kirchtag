@@ -43,11 +43,17 @@ jobs:
 
       - name: Publish ASP.NET app
         run: dotnet publish -c Release -o ./out Garagenparkmanager/Garagenparkmanager.Server/Garagenparkmanager.Server.csproj 
-      
+
       - name: Copy React build to out folder
         run: |
           cp -r Garagenparkmanager/garagenparkmanager.client/dist/* ./out
 
+      - name: Get Azure Logs (optional for debugging)
+        run: |
+          az webapp log tail --name Garagenparkmanager-Webapp --resource-group <your-resource-group-name>
+        env:
+          AZURE_HTTP_USER_AGENT: 'actions/azure-webapps-deploy'
+          
       - name: Deploy to Azure Web Apps (Frontend and Backend)
         uses: azure/webapps-deploy@v2
         with:
@@ -56,4 +62,5 @@ jobs:
           package: ./out
         env:
           ACTIONS_RUNNER_DEBUG: true
+          AZURE_HTTP_USER_AGENT: 'actions/azure-webapps-deploy'
 
