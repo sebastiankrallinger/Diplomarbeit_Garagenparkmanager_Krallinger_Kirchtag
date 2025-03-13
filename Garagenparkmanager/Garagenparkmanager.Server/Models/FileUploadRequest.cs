@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+//Datenmodell Upload File Blob Storage
 namespace Garagenparkmanager.Server.Models
 {
     public class FileUploadRequest

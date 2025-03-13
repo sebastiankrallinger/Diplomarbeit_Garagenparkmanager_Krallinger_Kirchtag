@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Garagenparkmanager.Server.Controllers
 {
-    //Verwaltung Storage
+    //Mietobjekte verwalten
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -22,7 +22,8 @@ namespace Garagenparkmanager.Server.Controllers
             _storageTypeRepository = storageTypeRepository;
             _configuration = configuration;
         }
-        //alle Lager laden
+
+        //alle Objekte laden
         [HttpGet("allobjects")]
         [AllowAnonymous]
         public async Task<IActionResult> GetAllStorages()
@@ -31,7 +32,7 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
-        //einen Storage laden
+        //ein Objekt laden
         [HttpGet("storage/{id}")]
         public async Task<IActionResult> GetStorage(string id)
         {
@@ -55,7 +56,7 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
-        //Lager erstellen
+        //Objekt erstellen
         [HttpPost("addobject")]
         public async Task<IActionResult> AddNewStorage([FromBody]Storage storage)
         {
@@ -119,6 +120,7 @@ namespace Garagenparkmanager.Server.Controllers
             return BadRequest();
         }
 
+        //Objekt updaten
         [HttpPut("updateStorage")]
         public async Task<IActionResult> UpdateStorage([FromBody] Storage storage)
         {
@@ -126,6 +128,7 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(results);
         }
 
+        //Objekt löschen
         [HttpDelete("deleteStorage/{id}")]
         public async Task<IActionResult> DeleteStorage(string id)
         {

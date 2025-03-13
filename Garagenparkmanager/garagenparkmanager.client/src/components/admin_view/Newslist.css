@@ -1,7 +1,3 @@
-.Newslist html, body {
-    overflow: hidden;
-}
-
 .Newslist {
     max-height: 50em;
     overflow-y: scroll;

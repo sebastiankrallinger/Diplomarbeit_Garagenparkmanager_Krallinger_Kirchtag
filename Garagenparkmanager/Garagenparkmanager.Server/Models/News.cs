@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-//Datenmodell der News 
+//Datenmodell News 
 namespace Garagenparkmanager.Server.Models
 {
     public class News

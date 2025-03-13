@@ -10,7 +10,6 @@ namespace Garagenparkmanager.Server.Models
         user
     }
 
-    //Kunden-Modell
     public class Customer
     {
         [JsonProperty(PropertyName = "id")]

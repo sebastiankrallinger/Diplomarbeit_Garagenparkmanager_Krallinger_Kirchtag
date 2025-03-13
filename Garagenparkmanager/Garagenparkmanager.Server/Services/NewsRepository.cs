@@ -1,7 +1,6 @@
 ﻿using Garagenparkmanager.Server.Models;
 using Microsoft.Azure.Cosmos;
 
-//News-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public class NewsRepository : INewsRepository

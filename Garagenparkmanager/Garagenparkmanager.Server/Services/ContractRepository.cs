@@ -18,6 +18,7 @@ namespace Garagenparkmanager.Server.Services
             _container = cosmosClient.GetContainer(databaseName, containerContractName);
         }
 
+        //Vertrag hinzufügen
         public async Task<string> CreateContract(string contract)
         {
             var item = new { id = Guid.NewGuid().ToString(), contract };
@@ -25,6 +26,7 @@ namespace Garagenparkmanager.Server.Services
             return response.ToString();
         }
 
+        //alle Verträge laden
         public async Task<IEnumerable<Contract>> GetAll()
         {
             var query = _container.GetItemQueryIterator<Contract>(new QueryDefinition("SELECT * FROM c"));
@@ -38,13 +40,14 @@ namespace Garagenparkmanager.Server.Services
             return results;
         }
 
+        //Vertrag löschen
         public async Task<string> Delete(string id)
         {
             await _container.DeleteItemAsync<dynamic>(id, new PartitionKey(id));
             return "Erfolgreich gelöscht.";
         }
 
-
+        //einen Vertrag laden
         public async Task<Models.Contract> GetContract(string id)
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.id = @id")
@@ -61,6 +64,7 @@ namespace Garagenparkmanager.Server.Services
             return null;
         }
 
+        //URL und Filename in DB speichern
         public async Task<string> SaveFileMetadataAsync(Document contract)
         {
             var response = await _container.CreateItemAsync(contract);

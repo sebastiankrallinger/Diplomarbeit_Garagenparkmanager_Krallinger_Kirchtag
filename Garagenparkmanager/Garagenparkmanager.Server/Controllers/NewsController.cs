@@ -3,7 +3,7 @@ using Garagenparkmanager.Server.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-//Verwaltung News
+//News verwalten
 namespace Garagenparkmanager.Server.Controllers
 {
     [Authorize]

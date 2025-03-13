@@ -41,4 +41,7 @@
     word-wrap: break-word;
     flex: 1;
     margin-right: 10px;
+    max-height: 20em;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }

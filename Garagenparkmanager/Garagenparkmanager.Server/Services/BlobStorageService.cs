@@ -1,6 +1,7 @@
 ﻿using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs;
 
+//Blob Storage Service
 namespace Garagenparkmanager.Server.Services
 {
     public class BlobStorageService
@@ -13,6 +14,7 @@ namespace Garagenparkmanager.Server.Services
             _blobServiceClient = new BlobServiceClient(storageConnectionString);
         }
 
+        //Dokument auf den Blob Storage hochladen
         public async Task<string> UploadFileAsync(byte[] fileBytes, string fileName)
         {
             var blobContainer = _blobServiceClient.GetBlobContainerClient(_containerName);
@@ -23,6 +25,8 @@ namespace Garagenparkmanager.Server.Services
 
             return blobClient.Uri.ToString();
         }
+
+        //Dokument aus dem Blob Storage entfernen
         public async Task Delete(string fileName)
         {
             var blobContainer = _blobServiceClient.GetBlobContainerClient(_containerName);

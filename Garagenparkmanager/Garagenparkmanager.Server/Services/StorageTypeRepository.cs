@@ -3,7 +3,6 @@ using Microsoft.Azure.Cosmos;
 using System.ComponentModel;
 using System.Data;
 
-//StorageType-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public class StorageTypeRepository : IStorageTypeRepository

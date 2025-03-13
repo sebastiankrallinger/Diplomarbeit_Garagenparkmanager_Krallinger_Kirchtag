@@ -1,7 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Garagenparkmanager.Server.Models;
 
-//Storage-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public class StorageRepository : IStorageRepository
@@ -64,12 +63,7 @@ namespace Garagenparkmanager.Server.Services
             return response.Resource;
         }
 
-        public async Task<Storage> EditStorage(Storage storage)
-        {
-            var response = await _container.ReplaceItemAsync(storage, storage.Id, new PartitionKey(storage.Id));
-            return response.Resource;
-        }
-
+        //ein Objekt entfernen
         public async Task<bool> DeleteStorage(string id)
         {
             var response = await _container.DeleteItemAsync<Storage>(id, new PartitionKey(id));

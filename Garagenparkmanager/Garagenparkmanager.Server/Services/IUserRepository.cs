@@ -1,8 +1,6 @@
 ﻿using Garagenparkmanager.Server.Models;
 using Microsoft.AspNetCore.Mvc;
 
-//Interface des User-Repository
-
 namespace Garagenparkmanager.Server.Services
 {
     public interface IUserRepository

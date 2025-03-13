@@ -1,6 +1,5 @@
 ﻿using Garagenparkmanager.Server.Models;
 
-//Interface des News-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public interface INewsRepository

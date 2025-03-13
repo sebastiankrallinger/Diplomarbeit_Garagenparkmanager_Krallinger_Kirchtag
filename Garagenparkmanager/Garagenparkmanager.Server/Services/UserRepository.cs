@@ -3,7 +3,6 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.VisualBasic;
 using System.ComponentModel;
 
-//User-Repository
 namespace Garagenparkmanager.Server.Services
 {
     public class UserRepository : IUserRepository

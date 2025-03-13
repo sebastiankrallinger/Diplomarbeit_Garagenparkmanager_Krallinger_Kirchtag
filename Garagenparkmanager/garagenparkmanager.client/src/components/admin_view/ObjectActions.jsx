@@ -62,6 +62,7 @@ function ObjectActions() {
         } else {
             setOldVpi(vpi);
         }
+        storageData.price = parseFloat(oneStorage.price / oldvpi * vpi).toFixed(2);
         setShowPopupEditStorage(true);
     };
 
@@ -837,6 +838,7 @@ function ObjectActions() {
                                 value={storageData.price}
                                 onChange={handleInputChangeStorage}
                             />
+
                             <div className="dropdown">
                                 <select value={storageData.storagetype || ''} onChange={handleInputChangeStorage} name="storagetype">
                                     <option value="">Objekttyp auswählen</option>

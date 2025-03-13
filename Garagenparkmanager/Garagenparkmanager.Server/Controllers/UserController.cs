@@ -11,7 +11,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-//Verwaltung User
+//User verwaltung
 namespace Garagenparkmanager.Server.Controllers
 {
     [Authorize]
@@ -165,7 +165,7 @@ namespace Garagenparkmanager.Server.Controllers
             return BadRequest();
         }
 
-        //Storage updaten
+        //Objekt vom Benutzer aktualisieren
         [HttpPut("updateStorage/{id}")]
         public async Task<IActionResult> UpdateStorage(string id, [FromBody] Models.Storage storage)
         {
@@ -187,7 +187,7 @@ namespace Garagenparkmanager.Server.Controllers
             return Ok(result);
         }
 
-        //Storage loeschen
+        //Objekt vom Benutzer entfernen
         [HttpPut("deleteStorage/{id}")]
         public async Task<IActionResult> DeleteStorage(string id, [FromBody] Models.Storage storage)
         {

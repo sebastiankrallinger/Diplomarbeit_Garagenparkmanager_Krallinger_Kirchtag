@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+//Datenmodell Dokument
 namespace Garagenparkmanager.Server.Models
 {
     public class Document

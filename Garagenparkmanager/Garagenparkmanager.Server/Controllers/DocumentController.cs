@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Garagenparkmanager.Server.Controllers
 {
-    //Verwaltung Dokumente
+    //Dokumente verwalten
     [Authorize]
     [ApiController]
     [Route("[controller]")]
@@ -27,7 +27,7 @@ namespace Garagenparkmanager.Server.Controllers
             _blobStorageService = blobStorageService;
         }
 
-        //Dokument Endpoints
+        //Dokument auf Blob Storage hochladen
         [HttpPost("upload")]
         public async Task<IActionResult> UploadFile([FromBody] FileUploadRequest file)
         {
@@ -61,7 +61,7 @@ namespace Garagenparkmanager.Server.Controllers
         }
 
 
-        //Document loeschen
+        //Dokument loeschen
         [HttpDelete("deleteDocument/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -78,7 +78,7 @@ namespace Garagenparkmanager.Server.Controllers
             return BadRequest();
         }
 
-        //Vertrag Endpoints
+        //Vertrag auf Blob Storage hochladen
         [HttpPost("uploadContract")]
         public async Task<IActionResult> UploadContract([FromBody] FileUploadRequest file)
         {
