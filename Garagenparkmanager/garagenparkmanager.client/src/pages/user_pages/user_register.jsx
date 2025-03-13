@@ -103,6 +103,7 @@ function User_Register() {
                             id="firstname"
                             name="firstname"
                             placeholder="Vorname*"
+                            autocomplete="given-name"
                             value={formData.firstname}
                             onChange={handleInputChange}
                         />
@@ -116,6 +117,7 @@ function User_Register() {
                             id="lastname"
                             name="lastname"
                             placeholder="Nachname*"
+                            autocomplete="family-name"
                             value={formData.lastname}
                             onChange={handleInputChange}
                         />
@@ -128,6 +130,7 @@ function User_Register() {
                             type="date"
                             id="birthdate"
                             name="birthdate"
+                            autocomplete="bday"
                             value={formData.birthdate}
                             onChange={handleInputChange}
                         />
@@ -142,6 +145,7 @@ function User_Register() {
                                 id="zipcode"
                                 name="zipcode"
                                 placeholder="PLZ*"
+                                autoComplete="postal-code"
                                 value={formData.zipcode}
                                 onChange={handleInputChange}
                             />
@@ -155,6 +159,7 @@ function User_Register() {
                                 id="city"
                                 name="city"
                                 placeholder="Ort*"
+                                autoComplete="address-level2"
                                 value={formData.city}
                                 onChange={handleInputChange}
                             />
@@ -170,6 +175,7 @@ function User_Register() {
                                 id="street"
                                 name="street"
                                 placeholder="Stra&szlig;e*"
+                                autoComplete="street-address"
                                 value={formData.street}
                                 onChange={handleInputChange}
                             />
@@ -183,6 +189,7 @@ function User_Register() {
                                 id="housenumber"
                                 name="housenumber"
                                 placeholder="HNr.*"
+                                autoComplete="address-line2"
                                 value={formData.housenumber}
                                 onChange={handleInputChange}
                             />
@@ -196,6 +203,7 @@ function User_Register() {
                                 id="co"
                                 name="co"
                                 placeholder="c/o"
+                                autoComplete="address-line3"
                                 value={formData.co}
                                 onChange={handleInputChange}
                             />
@@ -251,6 +259,7 @@ function User_Register() {
                             id="password"
                             name="password"
                             placeholder="Passwort*"
+                            autocomplete="new-password"
                             value={formData.password}
                             onChange={handleInputChange}
                         />

@@ -97,6 +97,7 @@ function UserLogin() {
                             id="email"
                             name="email"
                             placeholder="E-Mail eingeben"
+                            autocomplete="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -111,6 +112,7 @@ function UserLogin() {
                             id="password"
                             name="password"
                             placeholder="Passwort eingeben"
+                            autocomplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
