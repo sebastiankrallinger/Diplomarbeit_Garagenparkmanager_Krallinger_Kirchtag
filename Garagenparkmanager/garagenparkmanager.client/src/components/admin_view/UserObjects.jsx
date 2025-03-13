@@ -65,7 +65,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 fileurl: fileurl,
             };
             var id = selectedUser.id;
-            const response = await fetch(`https://localhost:7186/User/addStorage/${id}`, {
+            const response = await fetch(url + `User/addStorage/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),

@@ -135,3 +135,7 @@
     z-index: 1000;
 }
 
+.Home .legende {
+    display: inline-flex;
+    gap: 80px;
+}

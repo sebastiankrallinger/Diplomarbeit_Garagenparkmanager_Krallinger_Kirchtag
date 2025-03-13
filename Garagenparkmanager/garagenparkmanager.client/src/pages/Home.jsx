@@ -221,6 +221,37 @@ function Home() {
                                 <path id="016b48fe-77dc-49eb-a29f-327555ebb829" className="b" d="M255.64,236.74v30.99h-66.95v-30.99h66.95Z" />
                             </svg>
                         </div>
+                        <br/>
+                        <div className="legende">
+                            <p style={{ margin: 0, display: 'inline-flex', alignItems: 'center' }}>
+                                <span
+                                    style={{
+                                        display: 'inline-block',
+                                        width: '10px',
+                                        height: '10px',
+                                        backgroundColor: '#F9A800',
+                                        borderRadius: '50%',
+                                        marginRight: '8px',
+                                        verticalAlign: 'middle'
+                                    }}
+                                ></span>
+                                Verf&uuml;gbar
+                            </p>
+                            <p style={{ margin: 0, display: 'inline-flex', alignItems: 'center' }}>
+                                <span
+                                    style={{
+                                        display: 'inline-block',
+                                        width: '10px',
+                                        height: '10px',
+                                        backgroundColor: 'grey',
+                                        borderRadius: '50%',
+                                        marginRight: '8px',
+                                        verticalAlign: 'middle'
+                                    }}
+                                ></span>
+                                Vermietet
+                            </p>
+                        </div>
                     </div>
                 </section>
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext';
 import logo from '../../assets/logo_Lagerage.png';
@@ -9,17 +9,33 @@ function Header() {
     const navigate = useNavigate(); 
     const { user, logout } = useContext(AuthContext);
     const [activeLink, setActiveLink] = useState('');
+    const [isScrollingUp, setIsScrollingUp] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
     const handleNavigation = (route) => {
         navigate(route);
     };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > lastScrollY) {
+                setIsScrollingUp(false);
+            } else {
+                setIsScrollingUp(true);
+            }
+            setLastScrollY(window.scrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [lastScrollY]);
 
     const getActiveClass = (route) => {
         return location.pathname === route ? 'active' : '';
     };
 
     return (  
-        <header>
+        <header className={isScrollingUp ? 'visible' : 'hidden'}>
             <div className="header-container">
                 <div className="header-logo">
                     <img src={logo} alt="logo_Lagerage" />

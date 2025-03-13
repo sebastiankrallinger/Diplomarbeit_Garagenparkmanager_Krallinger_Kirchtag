@@ -206,6 +206,8 @@ function UserMainpage() {
                                             <p>{new Date(news[currentNewsIndex].timestamp).toLocaleDateString('de-DE')}</p>
                                         </div>
                                     </motion.div>
+                                )}: (
+                                    <p>Keine News verf&uuml;gbar.</p>
                                 )}
                             </AnimatePresence>
                         </div>
@@ -243,6 +245,7 @@ function UserMainpage() {
                 <section className="garageparkPlan">
                     <div className="plan">
                         <h1>Garagenpark - &Uuml;bersicht</h1>
+                        <h1>Zell am See</h1>
                         <div className="svg">
                             <svg id="a" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 383.61 643.95">
                                 <defs>
@@ -358,6 +361,50 @@ function UserMainpage() {
                                 <path id="c6e0fff1-3e9b-4988-a6cb-7096534086b2" className="b" d="M255.65,270.52v31.75h-66.9v-31.75h66.9Z" />
                                 <path id="016b48fe-77dc-49eb-a29f-327555ebb829" className="b" d="M255.64,236.74v30.99h-66.95v-30.99h66.95Z" />
                             </svg>
+                        </div>
+                        <div className="legende">
+                            <p style={{ margin: 0, display: 'inline-flex', alignItems: 'center' }}>
+                                <span
+                                    style={{
+                                        display: 'inline-block',
+                                        width: '10px',
+                                        height: '10px',
+                                        backgroundColor: '#F9A800',
+                                        borderRadius: '50%',
+                                        marginRight: '8px',
+                                        verticalAlign: 'middle'
+                                    }}
+                                ></span>
+                                Verf&uuml;gbar
+                            </p>
+                            <p style={{ margin: 0, display: 'inline-flex', alignItems: 'center' }}>
+                                <span
+                                    style={{
+                                        display: 'inline-block',
+                                        width: '10px',
+                                        height: '10px',
+                                        backgroundColor: 'grey',
+                                        borderRadius: '50%',
+                                        marginRight: '8px',
+                                        verticalAlign: 'middle'
+                                    }}
+                                ></span>
+                                Verbucht
+                            </p>
+                            <p style={{ margin: 0, display: 'inline-flex', alignItems: 'center' }}>
+                                <span
+                                    style={{
+                                        display: 'inline-block',
+                                        width: '10px',
+                                        height: '10px',
+                                        backgroundColor: 'white',
+                                        borderRadius: '50%',
+                                        marginRight: '8px',
+                                        verticalAlign: 'middle'
+                                    }}
+                                ></span>
+                                Dein Objekt
+                            </p>
                         </div>
                     </div>
                 </section>

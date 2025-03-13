@@ -178,6 +178,12 @@
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
-    display: inline-block; /* Verhindert, dass es sich an die Höhe des Elternelements anpasst */
-    vertical-align: middle; /* Optional, sorgt für zentrierte Ausrichtung im Feld */
+    display: inline-block; 
+    vertical-align: middle; 
+}
+
+
+.user_mainpage .legende {
+    display: inline-flex;
+    gap: 80px;
 }

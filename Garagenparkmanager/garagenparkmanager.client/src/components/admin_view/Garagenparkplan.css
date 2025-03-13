@@ -2,7 +2,9 @@
 
 .GaragenparkPlan {
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
 }
 
 .GaragenparkPlan .popup-details {
@@ -134,4 +136,9 @@ margin-right: 50px;
     display: none;
     pointer-events: none;
     z-index: 1000;
+}
+
+.GaragenparkPlan .legende {
+    display: inline-flex;
+    gap: 80px;
 }
