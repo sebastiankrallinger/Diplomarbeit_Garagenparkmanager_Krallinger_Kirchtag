@@ -822,6 +822,7 @@ function ObjectActions() {
                                 value={storageData.name}
                                 onChange={handleInputChangeStorage}
                             />
+                            <label>Gr&ouml;&szlig;e</label>
                             <input
                                 type="number"
                                 id="roomSize"
@@ -830,6 +831,7 @@ function ObjectActions() {
                                 value={storageData.roomSize}
                                 onChange={handleInputChangeStorage}
                             />
+                            <label>Preis</label>
                             <input
                                 type="number"
                                 id="price"
@@ -838,7 +840,7 @@ function ObjectActions() {
                                 value={storageData.price}
                                 onChange={handleInputChangeStorage}
                             />
-
+                            <label>Objekttyp</label>
                             <div className="dropdown">
                                 <select value={storageData.storagetype || ''} onChange={handleInputChangeStorage} name="storagetype">
                                     <option value="">Objekttyp auswählen</option>

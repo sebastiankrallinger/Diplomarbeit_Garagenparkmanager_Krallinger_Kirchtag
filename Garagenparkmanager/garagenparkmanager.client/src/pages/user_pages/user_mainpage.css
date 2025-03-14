@@ -193,7 +193,7 @@
     text-decoration: underline;
 }
 
-.user_mainpage .popup {
+.user_mainpage .popupNews {
     position: fixed;
     top: 0;
     left: 0;
@@ -206,7 +206,7 @@
     z-index: 1000;
 }
 
-.user_mainpage .popup-content {
+.user_mainpage .popupNews-content {
     background-color: #383E42;
     border-radius: 8px;
     display: flex;
@@ -220,13 +220,13 @@
     overflow-y: auto;
 }
 
-.user_mainpage .popup-content img {
+.user_mainpage .popupNews-content img {
     height: 20em;
     width: 20em;
     object-fit: contain;
 }
 
-.user_mainpage .popup-content .delete-icon-edit {
+.user_mainpage .popupNews-content .delete-icon-edit {
     width: 20px;
     height: 20px;
     border-radius: 50%;

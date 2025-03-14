@@ -92,17 +92,13 @@ namespace Garagenparkmanager.Server
             );
             builder.Services.AddSingleton(new BlobStorageService(storageConnectionString));
 
-
-            //Ressourcen fuer Domain freigeben
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowFrontend",
-                     policy =>
-                     {
-                         policy.AllowAnyOrigin() 
-                               .AllowAnyMethod()
-                               .AllowAnyHeader();
-                     });
+                options.AddPolicy("AllowSpecificOrigin",
+                    policy => policy.WithOrigins("https://localhost:5173", "https://garagenparkmanager-webapp-dqgge2apcpethvfs.swedencentral-01.azurewebsites.net")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials());
             });
 
             //Authentifiziereung registrieren
@@ -131,7 +127,7 @@ namespace Garagenparkmanager.Server
 
             var app = builder.Build();
 
-            app.UseCors("AllowFrontend");
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

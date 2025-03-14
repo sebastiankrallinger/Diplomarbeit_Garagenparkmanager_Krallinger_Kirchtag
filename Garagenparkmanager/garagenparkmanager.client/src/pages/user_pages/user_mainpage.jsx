@@ -505,8 +505,8 @@ function UserMainpage() {
             )}
 
             {isPopupReadMoreOpen && (
-                <div className="popup">
-                    <div className="popup-content">
+                <div className="popupNews">
+                    <div className="popupNews-content">
                         <img src={deleteIcon} className="delete-icon-edit" alt="Delete-Icon" onClick={handleClosePopupNews}></img>
                         <div className="newsContent">
                             <img src={news[readMoreNews].imageUrl} className="newsImage" alt="News" />

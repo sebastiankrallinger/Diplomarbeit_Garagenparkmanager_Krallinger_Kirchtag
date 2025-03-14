@@ -129,7 +129,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
         document.getElementById("duration").value = "";
         document.getElementById("date").value = "";
         document.getElementById("extraCosts").value = "";
-
+        setSelectedStorage(null);
         const reader = new FileReader();
         reader.onloadend = async () => {
             const base64File = reader.result.split(',')[1];
@@ -159,7 +159,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
 
     async function loadStorage() {
         try {
-            const response = await fetch(`https://localhost:7186/Storage/storage/${selectedStorage.id}`, {
+            const response = await fetch(url + `Storage/storage/${selectedStorage.id}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
@@ -274,7 +274,9 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 </select>
                 <br />
                 <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
+                <label>Vertragsdauer</label>
                 <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
+                <label>Extrakosten</label>
                 <input id="extraCosts" className="extraCosts" type="number" onChange={(e) => setExtraCosts(e.target.value)} />
                 <input
                     id="fileInput"
