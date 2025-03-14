@@ -176,7 +176,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
 
     async function updateStorageStatus(data) {
         try {
-            const response = await fetch(`https://localhost:7186/Storage/updateStatus`, {
+            const response = await fetch(url + `Storage/updateStatus`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('accesstoken'),
