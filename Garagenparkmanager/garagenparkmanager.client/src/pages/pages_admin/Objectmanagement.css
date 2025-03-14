@@ -3,10 +3,11 @@
 .Objectmanagement {
     display: flex;
     flex-direction: column;
-    height: calc(100% - 50px);
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: none;
+    min-height: 100vh;
+    margin-top: 3em;
 }
 
 .Objectmanagement main {

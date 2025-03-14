@@ -10,6 +10,7 @@ import aboutUs2 from '../../../src/assets/aboutUs2.png'
 import aboutUs3 from '../../../src/assets/aboutUs3.png'
 import Logo from '../../../src/assets/logo_Lagerage.png'
 import downloadIcon from '../../assets/downloadicon.png';
+import deleteIcon from '../../assets/deleteicon.png';
 
 
 function UserMainpage() {
@@ -17,10 +18,12 @@ function UserMainpage() {
     //const url = "https://localhost:7186/";
     const [id, setId] = useState(null);
     const [isPopupOpen, setPopupOpen] = useState(false);
+    const [isPopupReadMoreOpen, setPopupReadMoreOpen] = useState(false);
     const [selectedObject, setSelectedObject] = useState(null);
     const [bookedStorages, setBookedStorages] = useState([]);
     const [news, setNews] = useState([]);
     const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
+    const [readMoreNews, setReadMoreNews] = useState([]);
     const [storages, setStorages] = useState([]);
 
 
@@ -51,6 +54,17 @@ function UserMainpage() {
     const handleClosePopup = () => {
         setPopupOpen(false);
         setSelectedObject(null);
+    };
+
+    const handleOpenPopupNews = () => {
+        setReadMoreNews(currentNewsIndex);
+        document.body.classList.add('popup-open');
+        setPopupReadMoreOpen(true);
+    };
+
+    const handleClosePopupNews = () => {
+         document.body.classList.remove('popup-open');
+        setPopupReadMoreOpen(false);
     };
 
     useEffect(() => {
@@ -189,7 +203,7 @@ function UserMainpage() {
                     <div className="newsContainer">
                         <button className="navBtn" onClick={handlePrevNews}>&#10094;</button>
                         <div className="newsWrapper">
-                            <AnimatePresence mode="wait">
+                            <AnimatePresence mode="popLayout">
                                 {news.length > 0 && (
                                     <motion.div
                                         key={news[currentNewsIndex]?.id || currentNewsIndex}
@@ -202,12 +216,18 @@ function UserMainpage() {
                                         <img src={news[currentNewsIndex].imageUrl} className="newsImage" alt="News" />
                                         <div>
                                             <h2>{news[currentNewsIndex].title}</h2>
-                                            <p>{news[currentNewsIndex].content}</p>
+                                            <p>
+                                                {news[currentNewsIndex].content.split(' ').length > 100
+                                                    ? news[currentNewsIndex].content.split(' ').slice(0, 100).join(' ') + '... '
+                                                    : news[currentNewsIndex].content}
+                                                {news[currentNewsIndex].content.split(' ').length > 100 && (
+                                                    <a onClick={handleOpenPopupNews}>mehr lesen</a>                                                )}
+                                            </p>
                                             <p>{new Date(news[currentNewsIndex].timestamp).toLocaleDateString('de-DE')}</p>
                                         </div>
                                     </motion.div>
                                 )}: (
-                                    <p>Keine News verf&uuml;gbar.</p>
+                                    <p className="newsContent">Keine News verf&uuml;gbar.</p>
                                 )}
                             </AnimatePresence>
                         </div>
@@ -478,6 +498,22 @@ function UserMainpage() {
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {isPopupReadMoreOpen && (
+                <div className="popup">
+                    <div className="popup-content">
+                        <img src={deleteIcon} className="delete-icon-edit" alt="Delete-Icon" onClick={handleClosePopupNews}></img>
+                        <div className="newsContent">
+                            <img src={news[readMoreNews].imageUrl} className="newsImage" alt="News" />
+                            <div>
+                                <h2>{news[readMoreNews].title}</h2>
+                                <p>{news[readMoreNews].content}</p>
+                                <p>{new Date(news[readMoreNews].timestamp).toLocaleDateString('de-DE')}</p>
                             </div>
                         </div>
                     </div>
