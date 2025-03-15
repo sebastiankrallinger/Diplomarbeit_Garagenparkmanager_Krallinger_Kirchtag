@@ -65,7 +65,7 @@ function ObjectActions() {
         } else {
             setOldVpi(vpi);
         }
-        storageData.price = parseFloat(oneStorage.price / oldvpi * vpi).toFixed(2);
+        storageData.price = parseFloat(storage.price / oldvpi * vpi).toFixed(2);
         setShowPopupEditStorage(true);
     };
 
@@ -858,6 +858,7 @@ function ObjectActions() {
                                 onChange={handleInputChangeStorage}
                             />
                             <label>Preis</label>
+                            <p>{parseFloat(oneStorage.price).toFixed(2)} / {parseFloat(oldvpi).toFixed(2)} * {parseFloat(vpi).toFixed(2)} = {parseFloat(oneStorage.price / oldvpi * vpi).toFixed(2)}</p>
                             <input
                                 type="number"
                                 id="price"

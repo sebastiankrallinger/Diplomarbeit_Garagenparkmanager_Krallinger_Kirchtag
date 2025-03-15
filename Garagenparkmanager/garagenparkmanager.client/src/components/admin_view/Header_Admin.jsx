@@ -37,6 +37,12 @@ function Header() {
         return location.pathname === route ? 'active' : '';
     };
 
+    //Token entfernen
+    const handleLogout = () => {
+        logout();
+        navigate('/home');
+    };
+
     return (  
         <header className={isScrollingUp ? 'visible' : 'hidden'}>
             <div className="header-container">
@@ -49,7 +55,7 @@ function Header() {
                         <a onClick={() => handleNavigation('/admin/newsmanagement')} className={getActiveClass('/admin/newsmanagement')}>News</a>
                         <a onClick={() => handleNavigation('/admin/objectmanagement')} className={getActiveClass('/admin/objectmanagement')}>Objektverwaltung</a>
                         {/* {console.log(user)} */}
-                        {user.role === 0 && (
+                        {user?.role === '0' && (
                             <a onClick={() => handleNavigation('/admin/adminmanagement')} className={getActiveClass('/admin/adminmanagement')}>Adminverwaltung</a>
                         )}
                         <a onClick={() => handleNavigation('/admin/usermanagement')} className={getActiveClass('/admin/usermanagement')}>Benutzerverwaltung</a>
@@ -57,7 +63,7 @@ function Header() {
                         {user && (
                             <a>{user.email}</a>
                         )}
-                        <button onClick={() => handleNavigation('/Home')}>Abmelden</button>
+                        <button onClick={handleLogout}>Abmelden</button>
                     </ul>
                 </nav>
             </div>
