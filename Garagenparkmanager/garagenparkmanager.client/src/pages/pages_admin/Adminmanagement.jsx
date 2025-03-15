@@ -13,19 +13,23 @@ function Adminmanagement() {
     const [oldUserData, setoldUserData] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
 
+    //Admins laden
     useEffect(() => {
         fetchAdmins();
         document.getElementById('updateBtn').style.visibility = 'hidden';
     }, []);
 
+    //PopUp öffnen
     const openPopup = () => {
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
     };
 
+    //Admins laden
     async function fetchAdmins() {
         try {
             const response = await fetch(url + 'User/admins', {
@@ -40,6 +44,7 @@ function Adminmanagement() {
         }
     }
 
+    //alte Admindaten laden
     async function editData(id) {
         document.getElementById('updateBtn').style.visibility = 'visible';
         document.getElementById('createBtn').style.visibility = 'hidden';
@@ -57,6 +62,7 @@ function Adminmanagement() {
         }
     }
 
+    //Admindaten aktualisieren
     async function updateAdmin(adminData) {
         try {
             const response = await fetch(url + `User/updateAdmin`, {
@@ -89,6 +95,7 @@ function Adminmanagement() {
         }
     }
 
+    //Admindaten zwischenspeichern
     const handleFormChange = (updatedUserData) => {
         setSelectedUser(updatedUserData);
     };

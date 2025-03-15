@@ -73,11 +73,11 @@ function UserLogin() {
         }
     };
 
+    //zur Registrierungsseite leiten
     const handleRegister = () => {
         navigate('/register');
     };
 
-    //Frontend
     return (
         <div className="loginPage">
 

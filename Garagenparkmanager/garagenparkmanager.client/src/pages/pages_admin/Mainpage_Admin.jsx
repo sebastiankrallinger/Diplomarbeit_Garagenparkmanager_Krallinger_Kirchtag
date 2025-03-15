@@ -15,24 +15,28 @@ function Mainpage_Admin() {
     const [possibleEarnings, setPossibleEarnings] = useState(0);
     const [user, setUser] = useState(); 
 
+    //VPI, Objekte und Benutzer laden
     useEffect(() => {
         loadVPI();
         loadObjects();
         loadUser();
     }, []);
 
+    //voraussichtlichen Umsatz berechnen
     useEffect(() => {
         if (bookedObjects.length > 0) {
             loadEarnings();
         }
     }, [bookedObjects]);
 
+    //möglichen Umsatz berechnen
     useEffect(() => {
         if (freeObjects.length > 0) {
             loadPossibleEarnings();
         }
     }, [freeObjects]);
 
+    //VPI laden
     async function loadVPI() {
         try {
             const response = await fetch(url + 'Storage/vpi', {
@@ -54,6 +58,7 @@ function Mainpage_Admin() {
         }
     }
 
+    //Objekte laden
     async function loadObjects() {
         try {
             const response = await fetch(url + 'Storage/allobjects', {
@@ -74,6 +79,7 @@ function Mainpage_Admin() {
         }
     }
 
+    //voraussichtlichen Umsatz berechnen
     async function loadEarnings() {
         try {
             const earnings = bookedObjects.reduce((sum, obj) => {
@@ -86,6 +92,7 @@ function Mainpage_Admin() {
         }
     }
 
+    //möglichen Umsatz berechnen
     async function loadPossibleEarnings() {
         try {
             const possibleEarnings = freeObjects.reduce((sum, obj) => {
@@ -99,6 +106,7 @@ function Mainpage_Admin() {
         }
     }
 
+    //Kunden laden
     async function loadUser() {
         try {
             const response = await fetch(url + 'User/users', {

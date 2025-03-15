@@ -18,7 +18,7 @@ function InputformUserdata({ user, handleFormChange }) {
         password: '',
     });
 
-    //Input erfassen
+    //User Daten zwischenspeichern
     useEffect(() => {
         if (user) {
             setFormData({

@@ -26,15 +26,17 @@ function UserMainpage() {
     const [readMoreNews, setReadMoreNews] = useState([]);
     const [storages, setStorages] = useState([]);
 
-
+    //News Navigation
     const handlePrevNews = () => {
         setCurrentNewsIndex((prevIndex) => (prevIndex === 0 ? news.length - 1 : prevIndex - 1));
     };
 
+    //News Navigation
     const handleNextNews = () => {
         setCurrentNewsIndex((prevIndex) => (prevIndex === news.length - 1 ? 0 : prevIndex + 1));
     };
 
+    //News automatisch swipen lassen
     useEffect(() => {
         if (news.length > 1) {
             const interval = setInterval(() => {
@@ -45,28 +47,33 @@ function UserMainpage() {
         }
     }, [news]);
 
+    //PopUp öffnen
     const handleOpenPopup = (object) => {
         setSelectedObject(object);
         setPopupOpen(true);
         showContract(object);
     };
 
+    //PopUp schließen
     const handleClosePopup = () => {
         setPopupOpen(false);
         setSelectedObject(null);
     };
 
+    //PopUpNews öffnen
     const handleOpenPopupNews = () => {
         setReadMoreNews(currentNewsIndex);
         document.body.classList.add('popup-open');
         setPopupReadMoreOpen(true);
     };
 
+    //PopUpNews schließen
     const handleClosePopupNews = () => {
          document.body.classList.remove('popup-open');
         setPopupReadMoreOpen(false);
     };
 
+    //Detailfenster beim Hover für SVG-Plan
     useEffect(() => {
         fetchId();
         const tooltip = document.createElement('div');
@@ -107,6 +114,7 @@ function UserMainpage() {
         }
     }, [storages, bookedStorages]);
 
+    //Objekte und News laden
     useEffect(() => {
         if (id) {
             fetchStorages();
@@ -115,6 +123,7 @@ function UserMainpage() {
         }
     }, [id]);
 
+    //Kunden ID laden
     async function fetchId() {
         try {
             const email = localStorage.getItem('email');
@@ -131,6 +140,7 @@ function UserMainpage() {
         }
     }
 
+    //verbuchte Objekte laden
     async function fetchStorages() {
         try {
             const response = await fetch(url + `User/getStorages/${id}`, {
@@ -144,6 +154,8 @@ function UserMainpage() {
             console.error('Fehler beim Abrufen der Storages:', error);
         }
     }
+
+    //alle Objekte laden
     async function fetchAllStorages() {
         try {
             const response = await fetch(url + 'Storage/allobjects', {
@@ -158,6 +170,8 @@ function UserMainpage() {
             console.error('Fehler beim Abrufen der Storages:', error);
         }
     }
+
+    //alle News laden
     async function fetchNews() {
         try {
             const response = await fetch(url + `News/allNews`, {
@@ -171,6 +185,8 @@ function UserMainpage() {
             console.error('Fehler beim Abrufen der News:', error);
         }
     }
+
+    //Vertrag anzeigen
     function showContract(storage) {
         const contractElement = document.getElementById("contract");
         const downloadIcon = document.getElementById("downloadIcon");
@@ -187,6 +203,7 @@ function UserMainpage() {
         }
     }
 
+    //Vertrag anzeigen
     useEffect(() => {
         if (isPopupOpen && selectedObject) {
             showContract(selectedObject);

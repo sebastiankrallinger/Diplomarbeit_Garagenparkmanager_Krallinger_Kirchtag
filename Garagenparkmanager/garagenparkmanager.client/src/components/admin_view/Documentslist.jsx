@@ -11,29 +11,34 @@ function Documentslist() {
     const [showPopupDelete, setShowPopupDelete] = useState(false);
     const [oneDoc, setOneDoc] = useState(null);
 
-    // GET: Dokumente aus der Datenbank laden
+    //Dokumente laden
     useEffect(() => {
         fetchDocuments();
     }, []);
 
+    //PopUp öffnen
     const openPopup = () => {
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
     };
 
+    //PopUpDelete öffnen
     const openPopupDelete = (doc) => {
         setOneDoc(doc);
         setShowPopupDelete(true);
     };
 
+    //PopUpDelete schließen
     const closePopupDelete = () => {
         setShowPopupDelete(false);
         setOneDoc(null);
     };
 
+    //Dokumente laden
     async function fetchDocuments() {
         try {
             const response = await fetch(url + "Document/documents", {
@@ -54,6 +59,7 @@ function Documentslist() {
         }
     }
 
+    //neues Dokument zum Blob Storage hochladen
     async function handleUpload() {
         if (!file) {
             console.error("Keine Datei ausgewählt!");
@@ -91,6 +97,7 @@ function Documentslist() {
         reader.readAsDataURL(selectedFile);
     };
 
+    //Dokument löschen
     async function handleDelete(id) {
         try {
             const response = await fetch(url + `Document/deleteDocument/${id}`, {

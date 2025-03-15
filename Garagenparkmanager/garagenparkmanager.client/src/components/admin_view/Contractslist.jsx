@@ -8,11 +8,14 @@ function Contractslist() {
     //const url = "https://localhost:7186/";
     const [storages, setStorages] = useState([]);
 
+    //Objekte laden
     useEffect(() => {
         fetchStorages();
         document.getElementById('contract').innerHTML = "Objekt ausw&auml;hlen";
         document.getElementById('downloadIcon').style.visibility = 'hidden';
     }, []);
+
+    //Objekte laden
     async function fetchStorages() {
         try {
             const response = await fetch(url + 'Storage/allobjects', {
@@ -28,6 +31,7 @@ function Contractslist() {
         }
     }
 
+    //aktiven Vertrag des Objekts anzeigen
     function showContract(storage) {
         if (storage && storage.activeContract && storage.activeContract.fileName) {
             document.getElementById("contract").textContent = storage.activeContract.fileName;

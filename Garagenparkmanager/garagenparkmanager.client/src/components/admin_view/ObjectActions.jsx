@@ -44,16 +44,19 @@ function ObjectActions() {
         imageUrl: ''
     });
 
+    //PopUpDelete öffnen
     const openPopupDelete = (storage) => {
         setOneStorage(storage);
         setShowPopupDelete(true);
     };
 
+    //PopUpDelete schließen
     const closePopupDelete = () => {
         setShowPopupDelete(false);
         setOneStorage(null);
     };
 
+    //PopUpEdit öffnen
     const openPopupEditStorage = async (storage) => {
         setOneStorage(storage);
         getTypes();
@@ -66,10 +69,12 @@ function ObjectActions() {
         setShowPopupEditStorage(true);
     };
 
+    //PopUpEdit schließen
     const closePopupEditStorage = () => {
         setShowPopupEditStorage(false);
     };
 
+    //Objektdaten zwischenspeichern
     useEffect(() => {
         if (oneStorage) {
             setStorageData({
@@ -90,17 +95,20 @@ function ObjectActions() {
         }
     }, [oneStorage]);
 
+    //PopUpDetails öffnen
     const handleButtonDetailsClick = async (storage) => {
         setShowPopupDetails(true);
         getCustomerDetails(storage);
         setSelectedStorage(storage);
     };
 
+    //Objekttyp hinzufügen
     const handleButtonAddClick = () => {
         getTypes();
         setShowPopupAdd(true);
     };
 
+    //PopUpDetails schließen
     const closePopupDetails = () => {
         setShowPopupDetails(false);
         setcustomerFirstname();
@@ -109,29 +117,35 @@ function ObjectActions() {
         setcustomerCompany();
     };
 
+    //PopUpAdd schließen
     const closePopupAdd = () => {
         setShowPopupAdd(false);
         setStorageTypes([]);
     };
 
+    //PopUp öffnen
     const openPopup = () => {
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
     };
 
+    //PopUpDeleteTyp öffnen
     const openPopupDeleteTyp = (type) => {
         setDeleteTyp(type);
         setShowPopupDeleteTyp(true);
     };
 
+    //PopUpDeleteTyp schließen
     const closePopupDeleteTyp = () => {
         setDeleteTyp(null);
         setShowPopupDeleteTyp(false);
     };
 
+    //Objektdaten aktualisieren
     const handleInputChangeStorage = async (e) => {
         const { name, value, files } = e.target;
 
@@ -169,7 +183,7 @@ function ObjectActions() {
         }
     };
 
-
+    //Objekt hinzufügen
     async function addobject() {
         const data = {
             name: storageData.name,
@@ -207,7 +221,7 @@ function ObjectActions() {
         }
     }
 
-
+    //VPI und Objekte laden
     useEffect(() => {
         loadVPI();
         fetchStorages();
@@ -228,7 +242,7 @@ function ObjectActions() {
         }
     }
 
-    //aktuellen VPI laden
+    //VPI laden
     async function loadVPI() {
         try {
             const response = await fetch(url + 'Storage/vpi', {
@@ -285,6 +299,7 @@ function ObjectActions() {
         }
     }
 
+    //Objekttypen laden
     async function getTypes() {
         try {
             const response = await fetch(url + 'Storage/alltypes', {
@@ -306,6 +321,7 @@ function ObjectActions() {
         }
     }
 
+    //Objekttyp hinzufügen
     async function addType(type) {
         try {
             const response = await fetch(url + 'Storage/addType', {
@@ -325,6 +341,7 @@ function ObjectActions() {
         }
     }
 
+    //Objekttyp löschen
     async function deleteType(type) {
         try {
             const response = await fetch(url + `Storage/deleteStorageType/${type}`, {
@@ -340,6 +357,7 @@ function ObjectActions() {
         }
     }
 
+    //neuen Vertrag zum Blob Storage hinzufügen
     async function uploadContract() {
         if (!contract) {
             console.error("Keine Datei ausgewählt!");
@@ -382,6 +400,7 @@ function ObjectActions() {
         reader.readAsDataURL(selectedFile);
     }
 
+    //neuen Vertrag zum Objekt hinzufügen
     async function updateActiveContract(id, filename, fileurl) {
         try {
             const updateContract = {
@@ -416,6 +435,8 @@ function ObjectActions() {
             console.error("Fehler beim Hochladen:", error);
         }
     }
+
+    //Vertrag zur Historie des Kunden hinzufügen
     async function addToHistory(id, updateContract) {
         try {
             const response = await fetch(url + `User/updateContractHistory/${id}`, {
@@ -438,6 +459,7 @@ function ObjectActions() {
         }
     }
 
+    //Kunden aktualisieren
     async function updateCustomer() {
         const index = selectedUser.storages.findIndex(s => s.id === selectedStorage.id);
         if (index !== -1) {
@@ -479,6 +501,7 @@ function ObjectActions() {
         }
     }
 
+    //Objekt aktualisieren
     async function updateStorage() {
         if (oneStorage.activeContract != null) {
             oneStorage.activeContract.vpIold = vpi;
@@ -526,6 +549,7 @@ function ObjectActions() {
         }
     }
 
+    //Kunden ID laden
     async function getCustomerId() {
         try {
             const response = await fetch(url + 'User/customers', {
@@ -570,6 +594,7 @@ function ObjectActions() {
         return null;
     }
 
+    //Objekte des Kunden aktualisieren
     async function updateCustomerStorage(id, data) {
         try {
             const response = await fetch(url + `User/updateStorage/${id}`, {
@@ -599,6 +624,7 @@ function ObjectActions() {
         }
     }
 
+    //Objekt löschen
     async function deleteStorage(id) {
         try {
             const response = await fetch(url + `Storage/deleteStorage/${id}`, {

@@ -16,18 +16,22 @@ function Usermanagement() {
     const [contract, setcontract] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
 
+    //Kunden laden
     useEffect(() => {
         fetchCustomers();
     }, []);
 
+    //PopUp öffnen
     const openPopup = () => {
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
     };
 
+    //Kunden laden
     async function fetchCustomers() {
         try {
             const response = await fetch(url + 'User/customers', {
@@ -42,6 +46,7 @@ function Usermanagement() {
         }
     }
 
+    //Objekte des Kunden laden
     async function fetchStorages(id) {
         try {
             const response = await fetch(url + `User/getStorages/${id}`, {
@@ -56,6 +61,7 @@ function Usermanagement() {
         }
     }
 
+    //Userdaten laden
     async function editData(id) {
         try {
             const response = await fetch(url + `User/getCustomer/${id}`, {
@@ -71,6 +77,7 @@ function Usermanagement() {
         }
     }
 
+    //Kunden aktualisieren
     async function updateCustomer(customerData) {
         try {
             let foundContract = false;
@@ -130,6 +137,7 @@ function Usermanagement() {
         }
     }
 
+    //Userdaten zwischenspeichern
     const handleFormChange = (updatedUserData) => {
         setSelectedUser(updatedUserData);
     };

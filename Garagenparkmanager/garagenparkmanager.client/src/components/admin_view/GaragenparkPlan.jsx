@@ -21,6 +21,7 @@ function GaragenparkPlan() {
     const [duration, setDuration] = useState(null);
     const [startdate, setStartDate] = useState(null);
 
+    //PopUpDetails öffnen
     const handleButtonDetailsClick = (storage) => {
         setShowPopupDetails(true);
         getCustomerDetails(storage);
@@ -28,6 +29,7 @@ function GaragenparkPlan() {
         loadVPI();
     };
 
+    //PopUpDetails schließen
     const closePopupDetails = () => {
         setShowPopupDetails(false);
         setcustomerFirstname();
@@ -36,10 +38,12 @@ function GaragenparkPlan() {
         setcustomerCompany();
     };
 
+    //Objekte laden
     useEffect(() => {
         fetchStorages();
     }, []);
 
+    //Detailfenster beim Hover für SVG-Plan
     useEffect(() => {
         const tooltip = document.createElement('div');
         tooltip.classList.add('tooltip');
@@ -73,6 +77,7 @@ function GaragenparkPlan() {
         }
     }, [storages]);
 
+    //alle Objekte laden
     async function fetchStorages() {
         try {
             const response = await fetch(url + 'Storage/allobjects', {
@@ -120,6 +125,7 @@ function GaragenparkPlan() {
         }
     }
 
+    //VPI laden
     async function loadVPI() {
         try {
             const response = await fetch(url + 'Storage/vpi', {
@@ -144,6 +150,7 @@ function GaragenparkPlan() {
         }
     }
 
+    //Vertrag zum Blob Storage hochladen
     async function uploadContract() {
         if (!contract) {
             console.error("Keine Datei ausgewählt!");
@@ -184,6 +191,8 @@ function GaragenparkPlan() {
 
         reader.readAsDataURL(selectedFile);
     }
+
+    //aktiven Vertrag aktualisieren
     async function updateActiveContract(id, filename, fileurl) {
         try {
             const updateContract = {

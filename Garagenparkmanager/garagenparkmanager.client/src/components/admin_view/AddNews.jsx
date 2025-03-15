@@ -18,7 +18,7 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
     const [id, setId] = useState("");
     const [error, setError] = useState(null);
 
-    //Input erfassen
+    //Newsdate zwischenspeichern
     useEffect(() => {
         if (news) {
             setId(news.id);
@@ -38,6 +38,7 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
         }
     }, [news]);
 
+    //Input erfassen
     const handleInputChange = async (e) => {
         const { name, value, files } = e.target;
 
@@ -75,10 +76,12 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
         }
     };
 
+    //PopUp öffnen
     const openPopup = () => {
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
     };
@@ -121,6 +124,7 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
         }
     };
 
+    //News aktualisieren
     async function updateNews() {
         const data = {
             id: id,
@@ -154,6 +158,7 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
         }
     }
 
+    //News hinzufügen/aktualisieren
     async function handlePublish() {
         if (edit == false) {
             addNews();

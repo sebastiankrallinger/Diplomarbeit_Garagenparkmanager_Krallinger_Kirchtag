@@ -14,7 +14,7 @@ function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
     });
     const [error, setError] = useState(null);
 
-    //Input erfassen
+    //Admindaten zwischenspeichern
     useEffect(() => {
         if (admin) {
             setFormData({
@@ -44,10 +44,12 @@ function InputformAdmindata({ refreshAdmins, admin, handleFormChange }) {
         handleFormChange(updatedData);
     };
 
+    //PopUp öffnen
     const openPopup = () => {
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
     };

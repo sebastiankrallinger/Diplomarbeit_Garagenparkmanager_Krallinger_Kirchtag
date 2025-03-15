@@ -1,4 +1,5 @@
 ﻿/* Header-Component*/
+
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext';
@@ -13,6 +14,7 @@ function Header() {
     const [isScrollingUp, setIsScrollingUp] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
+    //Header ein-/ausklappen
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > lastScrollY) {
@@ -31,6 +33,7 @@ function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [lastScrollY]);
 
+    //Header navbar Navigation
     const handleNavigation = (id) => {
         const section = document.getElementById(id);
         if (section) {
@@ -39,6 +42,7 @@ function Header() {
         }
     };
 
+    //aktuelle Sektion abrufen
     const getCurrentSection = () => {
         const sections = ['news', 'storages', 'ueberUns'];
         for (let id of sections) {

@@ -11,22 +11,25 @@ function Newslist({ news, refreshNews, setEdit, updateNews }) {
     const [showPopup, setShowPopup] = useState(false);
     const [oneNews, setOneNews] = useState(null);
 
+    //News aktualisieren
     function editNews(oneNews) {
         updateNews(oneNews);
         setEdit(true);
     }
 
+    //PopUp öffnen
     const openPopup = (news) => {
         setOneNews(news);
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
         setOneNews(null);
     };
 
-    /* News löschen */
+    //News löschen
     async function deleteNews(id) {
         try {
             const response = await fetch(url + `News/deleteNews/${id}`, {

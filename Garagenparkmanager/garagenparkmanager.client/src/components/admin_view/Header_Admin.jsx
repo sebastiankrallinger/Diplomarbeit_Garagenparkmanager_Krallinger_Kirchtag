@@ -12,10 +12,12 @@ function Header() {
     const [isScrollingUp, setIsScrollingUp] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(window.scrollY);
 
+    //Header navbar Navigation
     const handleNavigation = (route) => {
         navigate(route);
     };
 
+    //Header ein-/ausklappen
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > lastScrollY) {
@@ -30,6 +32,7 @@ function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [lastScrollY]);
 
+    //aktive Sektion ermitteln
     const getActiveClass = (route) => {
         return location.pathname === route ? 'active' : '';
     };

@@ -16,16 +16,19 @@ function Home() {
     //const url = "https://localhost:7186/";
     const [storages, setStorages] = useState([]);
     const [paths, setPaths] = useState([]);
-    
+
+    //alle SVG Elemente laden
     useEffect(() => {
         const p = Array.from(document.querySelectorAll('path'));
         setPaths(p);
     }, []);
 
+    //alle Objekte laden
     useEffect(() => {
         fetchStorages();
     }, []);
 
+    //Detailfenster beim Hover für SVG-Plan
     useEffect(() => {
         const tooltip = document.createElement('div'); 
         tooltip.classList.add('tooltip'); 
@@ -58,6 +61,7 @@ function Home() {
         }
     }, [storages]);
 
+    //alle Objekte laden
     async function fetchStorages() {
         try {
             const response = await fetch(url + 'Storage/allobjects');
@@ -67,7 +71,6 @@ function Home() {
             console.error('Fehler beim Abrufen der Objekte:', error);
         }
     }
-
 
     return (
         <div className="Home">

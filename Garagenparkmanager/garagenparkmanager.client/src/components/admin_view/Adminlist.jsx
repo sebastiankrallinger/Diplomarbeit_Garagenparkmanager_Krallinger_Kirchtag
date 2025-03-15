@@ -10,17 +10,19 @@ function Adminlist({ admins, refreshAdmins, editAdmin }) {
     const [showPopup, setShowPopup] = useState(false);
     const [oneAdmin, setOneAdmin] = useState(null);
 
+    //PopUp öffnen
     const openPopup = (admin) => {
         setOneAdmin(admin);
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
         setOneNews(null);
     };
 
-    /* Admin löschen */
+    //Admin löschen
     async function deleteAdmin(id) {
         try {
             const response = await fetch(url + `User/deleteUser/${id}`, {

@@ -15,10 +15,12 @@ function Newsmanagement() {
     const [selectedNews, setSelectedNews] = useState(null);
     const [edit, setEdit] = useState(false);
 
+    //News laden
     useEffect(() => {
         fetchNews();
     }, []);
 
+    //News laden
     async function fetchNews() {
         try {
             const response = await fetch(url + 'News/allNews', {
@@ -33,6 +35,7 @@ function Newsmanagement() {
         }
     }
 
+    //Newsdaten zwischenspeichern
     const handleFormChange = (updatedNews) => {
         setSelectedNews(updatedNews);
     };

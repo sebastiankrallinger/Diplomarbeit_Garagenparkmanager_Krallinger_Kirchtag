@@ -10,17 +10,19 @@ function Userlist({ customers, refreshCustomers, refreshStorages, editCustomer, 
     const [showPopup, setShowPopup] = useState(false);
     const [oneUser, setOneUser] = useState(null);
 
+    //PopUp öffnen
     const openPopup = (user) => {
         setOneUser(user);
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
         setOneUser(null);
     };
 
-    //Kunden löschen
+    //Kunde löschen
     async function deleteCustomer(id) {
         try {
             const response = await fetch(url + `User/deleteUser/${id}`, {

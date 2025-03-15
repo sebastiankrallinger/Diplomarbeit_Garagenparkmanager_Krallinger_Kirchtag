@@ -85,7 +85,6 @@ function User_Register() {
         }
     };
 
-    //Frontend
     return (
         <div className="user_register">
             <div className="backgroundImage"></div>

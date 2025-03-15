@@ -19,23 +19,27 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
     const [startDate, setStartDate] = useState(null);
     const [extraCosts, setExtraCosts] = useState(null);
 
+    //VPI und freie Objekte laden
     useEffect(() => {
         fetchFreeStorages();
         loadVPI();
     }, []);
 
+    //PopUp öffnen
     const openPopup = (object, user) => {
         setUser(user);
         setObject(object);
         setShowPopup(true);
     };
 
+    //PopUp schließen
     const closePopup = () => {
         setShowPopup(false);
         setObject(null);
         setUser(null);
     };
 
+    //freie Objekte herausfiltern
     async function fetchFreeStorages() {
         try {
             const response = await fetch(url + 'Storage/allobjects', {
@@ -51,6 +55,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
         }
     }
 
+    //Objekt hinzufügen
     async function addStorage(filename, fileurl) {
         try {
             const updateContract = {
@@ -95,6 +100,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
         }
     }
 
+    //Kunden Vertragshistorie aktualisieren
     async function addToHistory(id, updateContract) {
         try {
             const response = await fetch(url + `User/updateContractHistory/${id}`, {
@@ -117,6 +123,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
         }
     }
 
+    //Vertrag auf Blob Storage hochladen
     async function uploadNewContract() {
         if (!uploadContract) {
             console.error("Keine Datei ausgewählt!");
@@ -157,6 +164,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
         reader.readAsDataURL(selectedFile);
     }
 
+    //ein Objekt laden
     async function loadStorage() {
         try {
             const response = await fetch(url + `Storage/storage/${selectedStorage.id}`, {
@@ -174,6 +182,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
         }
     }
 
+    //Objektstatus ändern
     async function updateStorageStatus(data) {
         try {
             const response = await fetch(url + `Storage/updateStatus`, {
@@ -198,6 +207,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
         }
     }
 
+    //Objekt löschen
     async function deleteStorage(id, storage) {
         try {
             const c = storage.activeContract;
@@ -221,6 +231,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
         }
     }
 
+    //VPI laden
     async function loadVPI() {
         try {
             const response = await fetch(url + 'Storage/vpi', {
