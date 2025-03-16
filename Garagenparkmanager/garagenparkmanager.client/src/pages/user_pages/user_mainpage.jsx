@@ -221,7 +221,7 @@ function UserMainpage() {
                         <button className="navBtn" onClick={handlePrevNews}>&#10094;</button>
                         <div className="newsWrapper">
                             <AnimatePresence mode="popLayout">
-                                {news.length > 0 && (
+                                {news.length > 0 ? (
                                     <motion.div
                                         key={news[currentNewsIndex]?.id || currentNewsIndex}
                                         initial={{ opacity: 0, x: 100 }}
@@ -238,12 +238,12 @@ function UserMainpage() {
                                                     ? news[currentNewsIndex].content.split(' ').slice(0, 100).join(' ') + '... '
                                                     : news[currentNewsIndex].content}
                                                 {news[currentNewsIndex].content.split(' ').length > 100 && (
-                                                    <a onClick={handleOpenPopupNews}>mehr lesen</a>                                                )}
+                                                    <a onClick={handleOpenPopupNews}>mehr lesen</a>)}
                                             </p>
                                             <p>{new Date(news[currentNewsIndex].timestamp).toLocaleDateString('de-DE')}</p>
                                         </div>
                                     </motion.div>
-                                )}: (
+                                ) : (
                                     <p className="newsContent">Keine News verf&uuml;gbar.</p>
                                 )}
                             </AnimatePresence>

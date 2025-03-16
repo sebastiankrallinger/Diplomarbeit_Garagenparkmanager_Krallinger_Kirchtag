@@ -68,11 +68,10 @@ function User_Register() {
 
             if (response.ok) {
                 const data = await response.json();
-                const userData = { email: formData.email };
                 if (staySignedIn) {
                     Cookies.set('auth_token', data.accesstoken, { expires: 7, secure: true, sameSite: 'Strict' });
                 }
-                login(userData, data.email);
+                login(data.accesstoken, data.email, data.role);
                 {/*console.log('Login erfolgreich:', data);*/ }
                 navigate('/user');
             } else {

@@ -20,6 +20,7 @@ function GaragenparkPlan() {
     const [contract, setContract] = useState(null);
     const [duration, setDuration] = useState(null);
     const [startdate, setStartDate] = useState(null);
+    const [extraCosts, setExtraCosts] = useState(null);
 
     //PopUpDetails öffnen
     const handleButtonDetailsClick = (storage) => {
@@ -118,7 +119,7 @@ function GaragenparkPlan() {
                 setcustomerEmail(customer.email);
                 setcustomerCompany(customer.companyName)
             } else {
-                console.log('Kein Kunde mit der Storage-ID gefunden');
+                //console.log('Kein Kunde mit der Storage-ID gefunden');
             }
         } catch (error) {
             console.error('Fehler beim Laden:', error);
@@ -162,6 +163,7 @@ function GaragenparkPlan() {
         document.getElementById("fileInput").value = "";
         document.getElementById("duration").value = "";
         document.getElementById("date").value = "";
+        document.getElementById("extraCosts").value = "";
 
         const reader = new FileReader();
         reader.onloadend = async () => {
@@ -197,7 +199,7 @@ function GaragenparkPlan() {
         try {
             const updateContract = {
                 id: uuidv4(),
-                extraCosts: 0,
+                extraCosts: extraCosts,
                 VPIold: vpi,
                 status: true,
                 startDate: startdate,
@@ -398,7 +400,10 @@ function GaragenparkPlan() {
                                         <h3>Aktueller Vertrag bis {new Date(selectedStorage.activeContract.endDate).toLocaleDateString('de-DE')}</h3>
                                         <a className="btn-download" id="downloadLink" href={selectedStorage.activeContract.fileUrl} target="_blank" rel="noopener noreferrer">Abrufen</a>
                                         <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
+                                        <label>Vertragsdauer</label>
                                         <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
+                                        <label>Extrakosten</label>
+                                        <input id="extraCosts" className="extraCosts" type="number" onChange={(e) => setExtraCosts(e.target.value)} />
                                         <input
                                             id="fileInput"
                                             type="file"

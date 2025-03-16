@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
 
     // Logindaten speichern & Authentifizieren
     const login = (accesstoken, email, role) => {
+        console.log(accesstoken);
         localStorage.setItem('accesstoken', accesstoken);
         localStorage.setItem('email', email);
         localStorage.setItem('role', role);

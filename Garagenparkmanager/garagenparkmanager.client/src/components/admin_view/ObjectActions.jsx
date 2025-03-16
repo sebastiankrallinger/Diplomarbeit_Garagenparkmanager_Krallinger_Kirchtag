@@ -586,7 +586,7 @@ function ObjectActions() {
                     console.error('Fehler beim Laden:', error);
                 }
             } else {
-                console.log('Kein Kunde für diese Storage ID gefunden');
+                //console.log('Kein Kunde für diese Storage ID gefunden');
             }
         } catch (error) {
             console.error('Fehler beim Laden:', error);
@@ -695,7 +695,9 @@ function ObjectActions() {
                                                 <h3>Aktueller Vertrag bis {new Date(selectedStorage.activeContract.endDate).toLocaleDateString('de-DE')}</h3>
                                                 <a className="btn-download" id="downloadLink" href={selectedStorage.activeContract.fileUrl} target="_blank" rel="noopener noreferrer">Abrufen</a>
                                                 <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
+                                                <label>Vertragsdauer</label>
                                                 <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
+                                                <label>Extrakosten</label>
                                                 <input id="extraCosts" className="extraCosts" type="number" onChange={(e) => setExtraCosts(e.target.value)} />
                                                 <input
                                                     id="fileInput"
