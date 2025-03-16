@@ -214,10 +214,10 @@ function ObjectActions() {
                 closePopupAdd();
                 openPopup();
             } else {
-                console.error("Fehler beim Hinzufügen des Objekts.");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error('Netzwerkfehler:', error);
+            console.error('Fehler beim Hinzufügen:', error);
         }
     }
 
@@ -238,7 +238,7 @@ function ObjectActions() {
             const data = await response.json();
             setStorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Admin-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -261,7 +261,7 @@ function ObjectActions() {
                 setVpi(vpiValue);
             }
         } catch (error) {
-            console.error('Fehler beim Abrufen des VPI:', error);
+            console.error('Fehler beim Laden des VPI:', error);
         }
     }
 
@@ -276,7 +276,7 @@ function ObjectActions() {
             });
 
             if (!response.ok) {
-                throw new Error('Fehler beim Abrufen des VPI');
+                throw new Error(`${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
@@ -295,7 +295,7 @@ function ObjectActions() {
                 //console.log('Kein Kunde gefunden, der diese Storage-ID hat.');
             }
         } catch (error) {
-            console.error('Fehler beim Abrufen der Kunden:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -310,14 +310,14 @@ function ObjectActions() {
             });
 
             if (!response.ok) {
-                throw new Error('Fehler beim Abrufen des VPI');
+                throw new Error(`${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
             setStorageTypes(data);
 
         } catch (error) {
-            console.error('Fehler beim Abrufen der Typen:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -337,7 +337,7 @@ function ObjectActions() {
             getTypes();
 
         } catch (error) {
-            console.error('Fehler beim Erstellen des Typs:', error);
+            console.error('Fehler beim Erstellen:', error);
         }
     }
 
@@ -353,7 +353,7 @@ function ObjectActions() {
             closePopupDeleteTyp();
             getTypes();
         } catch (error) {
-            console.error('Fehler beim Löschen des Typs:', error);
+            console.error('Fehler beim Löschen:', error);
         }
     }
 
@@ -385,7 +385,7 @@ function ObjectActions() {
                 });
 
                 if (!response.ok) {
-                    throw new Error("Fehler beim Hochladen");
+                    throw new Error(`${response.status} ${response.statusText}`);
                 }
 
                 const responseData = await response.json();
@@ -424,7 +424,7 @@ function ObjectActions() {
             });
 
             if (!response.ok) {
-                throw new Error("Fehler beim Hochladen");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
             if (response.ok) {
                 const data = await response.json();
@@ -432,7 +432,7 @@ function ObjectActions() {
                 addToHistory(selectedUser.id, updateContract);
             }
         } catch (error) {
-            console.error("Fehler beim Hochladen:", error);
+            console.error("Fehler beim Hinzufügen:", error);
         }
     }
 
@@ -448,14 +448,14 @@ function ObjectActions() {
                 body: JSON.stringify(updateContract),
             });
             if (!response.ok) {
-                throw new Error("Fehler beim Hochladen");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
             const data = await response.json();
             setSelectedUser(data);
             updateCustomer();
 
         } catch (error) {
-            console.error("Fehler beim Hochladen:", error);
+            console.error("Fehler beim Hinzufügen:", error);
         }
     }
 
@@ -494,10 +494,10 @@ function ObjectActions() {
                 }),
             });
             if (!response.ok) {
-                console.error('Fehler beim Aktualisieren des Benutzers');
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error('Fehler beim Senden der Update-Anfrage:', error);
+            console.error('Fehler beim Aktualisieren:', error);
         }
     }
 
@@ -542,10 +542,10 @@ function ObjectActions() {
                     });
                 }
             } else {
-                console.error("Fehler beim Hinzufügen des Objekts.");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error('Netzwerkfehler:', error);
+            console.error('Fehler beim Aktualisieren:', error);
         }
     }
 
@@ -560,7 +560,7 @@ function ObjectActions() {
             });
 
             if (!response.ok) {
-                throw new Error('Fehler beim Abrufen des VPI');
+                throw new Error(`${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
@@ -583,13 +583,13 @@ function ObjectActions() {
                         return data;
                     }
                 } catch (error) {
-                    console.error('Netzwerkfehler:', error);
+                    console.error('Fehler beim Laden:', error);
                 }
             } else {
-                //console.log('Kein Kunde gefunden, der diese Storage-ID hat.');
+                console.log('Kein Kunde für diese Storage ID gefunden');
             }
         } catch (error) {
-            console.error('Fehler beim Abrufen der Kunden:', error);
+            console.error('Fehler beim Laden:', error);
         }
         return null;
     }
@@ -617,10 +617,10 @@ function ObjectActions() {
                     imageUrl: ''
                 });
             } else {
-                console.error("Fehler beim Updaten des Users.");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error('Netzwerkfehler:', error);
+            console.error('Fehler beim Aktualisieren:', error);
         }
     }
 
@@ -636,7 +636,7 @@ function ObjectActions() {
             fetchStorages();
             closePopupDelete();
         } catch (error) {
-            console.error('Fehler beim Löschen des Objekts:', error);
+            console.error('Fehler beim Löschen:', error);
         }
     }
 

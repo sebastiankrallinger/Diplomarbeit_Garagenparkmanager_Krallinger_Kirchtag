@@ -41,7 +41,7 @@ function Newslist({ news, refreshNews, setEdit, updateNews }) {
             closePopup();
             refreshNews();
         } catch (error) {
-            console.error('Fehler beim Löschen de Benutzers:', error);
+            console.error('Fehler beim Löschen: ', error);
         }
     }
 

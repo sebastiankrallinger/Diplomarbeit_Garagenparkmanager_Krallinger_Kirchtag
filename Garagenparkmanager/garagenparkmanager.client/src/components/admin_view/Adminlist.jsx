@@ -34,7 +34,7 @@ function Adminlist({ admins, refreshAdmins, editAdmin }) {
             refreshAdmins();
             closePopup();
         } catch (error) {
-            console.error('Fehler beim Löschen de Benutzers:', error);
+            console.error('Fehler beim Löschen:', error);
         }
     }
 

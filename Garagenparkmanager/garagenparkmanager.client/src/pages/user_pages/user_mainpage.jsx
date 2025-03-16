@@ -136,7 +136,7 @@ function UserMainpage() {
             const data = await response.text();
             setId(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Kunden-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -151,7 +151,7 @@ function UserMainpage() {
             const data = await response.json();
             setBookedStorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Storages:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -167,7 +167,7 @@ function UserMainpage() {
             const data = await response.json();
             setStorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Storages:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -182,7 +182,7 @@ function UserMainpage() {
             const data = await response.json();
             setNews(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der News:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 

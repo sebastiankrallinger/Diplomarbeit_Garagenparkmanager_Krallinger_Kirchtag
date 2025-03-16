@@ -68,7 +68,7 @@ namespace Garagenparkmanager.Server.Controllers
             }
             else
             {
-                return BadRequest("Fehler bei Objekterstellung");
+                return BadRequest("Fehler bei der Objekterstellung");
             }
         }
 
@@ -117,7 +117,7 @@ namespace Garagenparkmanager.Server.Controllers
             {
                 return NoContent();
             }
-            return BadRequest();
+            return BadRequest("Fehler beim Löschen des Objekttyps");
         }
 
         //Objekt updaten
@@ -137,7 +137,7 @@ namespace Garagenparkmanager.Server.Controllers
             {
                 return NoContent();
             }
-            return BadRequest();
+            return BadRequest("Fehler beim Löschen des Objekts");
         }
 
     }

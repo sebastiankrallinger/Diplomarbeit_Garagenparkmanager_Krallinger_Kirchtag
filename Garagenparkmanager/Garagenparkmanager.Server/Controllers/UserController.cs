@@ -120,6 +120,12 @@ namespace Garagenparkmanager.Server.Controllers
         public async Task<IActionResult> AddStorage(string id, [FromBody] Models.Storage storage)
         {
             Customer customer = await _customerRepository.GetCustomer(id);
+
+            if (customer == null)
+            {
+                return NotFound("Kunde mit der Id: " + id + " konnte nicht gefunden werden");
+            }
+
             storage.Booked = true;
             customer.Storages.Add(storage);
             await _storageController.addContract(storage.Id, storage.activeContract);
@@ -140,6 +146,12 @@ namespace Garagenparkmanager.Server.Controllers
         public async Task<IActionResult> UpdateContractHistory(string id, [FromBody] Contract contract)
         {
             var customer = await _customerRepository.GetCustomer(id);
+
+            if (customer == null)
+            {
+                return NotFound("Kunde mit der Id: " + id + " konnte nicht gefunden werden");
+            }
+
             customer.Contracts.Add(contract);
             return Ok(customer);
         }
@@ -149,6 +161,12 @@ namespace Garagenparkmanager.Server.Controllers
         public async Task<IActionResult> DeleteUser(string id)
         {
             var user = _customerRepository.GetCustomer(id);
+
+            if (user == null)
+            {
+                return NotFound("User mit der Id: " + id + " konnte nicht gelöscht werden");
+            }
+
             if (user.Result.Storages != null)
             {
                 var storages = user.Result.Storages;
@@ -162,7 +180,7 @@ namespace Garagenparkmanager.Server.Controllers
             {
                 return NoContent();
             }
-            return BadRequest();
+            return BadRequest("Fehler beim Löschen des Users");
         }
 
         //Objekt vom Benutzer aktualisieren
@@ -170,6 +188,12 @@ namespace Garagenparkmanager.Server.Controllers
         public async Task<IActionResult> UpdateStorage(string id, [FromBody] Models.Storage storage)
         {
             Customer customer = await _customerRepository.GetCustomer(id);
+
+            if (customer == null)
+            {
+                return NotFound("Kunde mit der Id: " + id + " konnte nicht gefunden werden");
+            }
+
             if (customer.Storages != null)
             {
                 var storages = customer.Storages;
@@ -192,6 +216,12 @@ namespace Garagenparkmanager.Server.Controllers
         public async Task<IActionResult> DeleteStorage(string id, [FromBody] Models.Storage storage)
         {
             Customer customer = await _customerRepository.GetCustomer(id);
+
+            if (customer == null)
+            {
+                return NotFound("Kunde mit der Id: " + id + " konnte nicht gefunden werden");
+            }
+
             if (customer.Storages != null)
             {
                 var storages = customer.Storages;

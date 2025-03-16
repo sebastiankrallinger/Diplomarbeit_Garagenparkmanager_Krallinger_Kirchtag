@@ -33,7 +33,7 @@ namespace Garagenparkmanager.Server.Controllers
         {
             if (string.IsNullOrEmpty(file.File))
             {
-                return BadRequest("Die Datei ist leer oder fehlt.");
+                return BadRequest("Keine Datei ausgewählt");
             }
 
             byte[] fileBytes = Convert.FromBase64String(file.File);
@@ -67,6 +67,11 @@ namespace Garagenparkmanager.Server.Controllers
         {
             var document = await _documentRepository.GetDocument(id);
 
+            if (document == null)
+            {
+                return NotFound("Dokument mit der Id: " + id + " konnte nicht gelöscht werden");
+            }
+
             await _blobStorageService.Delete(document.FileName);
 
             var result = await _documentRepository.Delete(id);
@@ -75,7 +80,7 @@ namespace Garagenparkmanager.Server.Controllers
             {
                 return NoContent();
             }
-            return BadRequest();
+            return BadRequest("Fehler beim Löschen des Dokuments");
         }
 
         //Vertrag auf Blob Storage hochladen
@@ -84,7 +89,7 @@ namespace Garagenparkmanager.Server.Controllers
         {
             if (string.IsNullOrEmpty(file.File))
             {
-                return BadRequest("Die Datei ist leer oder fehlt.");
+                return BadRequest("Keine Datei ausgewählt");
             }
 
             byte[] fileBytes = Convert.FromBase64String(file.File);
@@ -116,6 +121,11 @@ namespace Garagenparkmanager.Server.Controllers
         {
             var contract = await _contractRepository.GetContract(id);
 
+            if (contract == null)
+            {
+                return NotFound("Vertrag mit der Id: " + id + " konnte nicht gelöscht werden");
+            }
+
             await _blobStorageService.Delete(contract.FileName);
 
             var result = await _contractRepository.Delete(id);
@@ -124,7 +134,7 @@ namespace Garagenparkmanager.Server.Controllers
             {
                 return NoContent();
             }
-            return BadRequest();
+            return BadRequest("Fehler beim Löschen des Vertrags");
         }
     }
 }

@@ -65,12 +65,18 @@ namespace Garagenparkmanager.Server.Controllers
         public async Task<IActionResult> DelteteNews(string id)
         {
             var news = _newsRepository.GetNews(id);
+
+            if (news == null)
+            {
+                return NotFound("Vertrag mit der Id: " + id + " konnte nicht gelöscht werden");
+            }
+
             var result = await _newsRepository.DeleteNews(news.Result.Id);
             if (result)
             {
                 return NoContent();
             }
-            return BadRequest();
+            return BadRequest("Fehler beim Löschen der News");
         }
     }
 }

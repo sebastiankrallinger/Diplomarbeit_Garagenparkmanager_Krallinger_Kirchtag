@@ -68,7 +68,7 @@ function Home() {
             const data = await response.json();
             setStorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Objekte:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 

@@ -88,7 +88,7 @@ function GaragenparkPlan() {
             const data = await response.json();
             setStorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Admin-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -103,7 +103,7 @@ function GaragenparkPlan() {
             });
 
             if (!response.ok) {
-                throw new Error('Fehler beim Abrufen des VPI');
+                throw new Error(`${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
@@ -118,10 +118,10 @@ function GaragenparkPlan() {
                 setcustomerEmail(customer.email);
                 setcustomerCompany(customer.companyName)
             } else {
-                //console.log('Kein Kunde gefunden, der diese Storage-ID hat.');
+                console.log('Kein Kunde mit der Storage-ID gefunden');
             }
         } catch (error) {
-            console.error('Fehler beim Abrufen der Kunden:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -135,7 +135,7 @@ function GaragenparkPlan() {
                 }
             });
             if (!response.ok) {
-                throw new Error('Fehler beim Abrufen des VPI');
+                throw new Error(`${response.status} ${response.statusText}`);
             }
 
             const data = await response.text();
@@ -146,7 +146,7 @@ function GaragenparkPlan() {
             setVpi(vpiValue);
             setOldVpi(vpiValue);
         } catch (error) {
-            console.error('Fehler beim Abrufen des VPI:', error);
+            console.error('Fehler beim Laden des VPI:', error);
         }
     }
 
@@ -177,7 +177,7 @@ function GaragenparkPlan() {
                 });
 
                 if (!response.ok) {
-                    throw new Error("Fehler beim Hochladen");
+                    throw new Error(`${response.status} ${response.statusText}`);
                 }
 
                 const responseData = await response.json();
@@ -216,10 +216,10 @@ function GaragenparkPlan() {
             });
 
             if (!response.ok) {
-                throw new Error("Fehler beim Hochladen");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error("Fehler beim Hochladen:", error);
+            console.error("Fehler beim Aktualisieren:", error);
         }
     }
 

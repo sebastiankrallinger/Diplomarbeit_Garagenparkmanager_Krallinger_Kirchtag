@@ -40,7 +40,7 @@ function Adminmanagement() {
             const data = await response.json();
             setAdmins(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Admin-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -58,7 +58,7 @@ function Adminmanagement() {
             setoldUserData(data);
             setSelectedUser(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Admin-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -88,10 +88,10 @@ function Adminmanagement() {
                 document.getElementById('updateBtn').style.visibility = 'hidden';
                 document.getElementById('createBtn').style.visibility = 'visible';
             } else {
-                console.error('Fehler beim Aktualisieren des Admins');
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error('Fehler beim Senden der Update-Anfrage:', error);
+            console.error('Fehler beim Aktualisieren:', error);
         }
     }
 

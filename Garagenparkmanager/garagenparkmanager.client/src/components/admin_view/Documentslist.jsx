@@ -52,17 +52,17 @@ function Documentslist() {
                 const data = await response.json();
                 setDocuments(data);
             } else {
-                console.error("Fehler beim Abrufen der Dokumente.");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error("Netzwerkfehler:", error);
+            console.error("Fehler beim Laden:", error);
         }
     }
 
     //neues Dokument zum Blob Storage hochladen
     async function handleUpload() {
         if (!file) {
-            console.error("Keine Datei ausgewählt!");
+            console.error("Keine Datei ausgewählt");
             return;
         }
 
@@ -85,7 +85,7 @@ function Documentslist() {
                 });
 
                 if (!response.ok) {
-                    throw new Error("Fehler beim Hochladen");
+                    throw new Error(`${response.status} ${response.statusText}`);
                 }
                 fetchDocuments();
                 openPopup();
@@ -111,11 +111,11 @@ function Documentslist() {
                 setDocuments(documents.filter(doc => doc.id !== id));
                 closePopupDelete();
             } else {
-                console.error("Fehler beim Löschen.");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
 
         }catch (error) {
-            console.error("Netzwerkfehler:", error);
+            console.error("Fehler beim Löschen:", error);
         }
         fetchDocuments();
     };

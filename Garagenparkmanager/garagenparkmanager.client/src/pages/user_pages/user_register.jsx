@@ -81,7 +81,7 @@ function User_Register() {
                 errorlbl.innerText = 'Registrierung fehlgeschlagen: ' + error;
             }
         } catch (error) {
-            console.error('Netzwerkfehler:', error);
+            console.error('Fehler beim Registrieren:', error);
         }
     };
 

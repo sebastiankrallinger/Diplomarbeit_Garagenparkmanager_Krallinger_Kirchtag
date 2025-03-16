@@ -54,7 +54,7 @@ function Mainpage_Admin() {
                 setVpi(vpiValue);
             }
         } catch (error) {
-            console.error('Fehler beim Abrufen des VPI:', error);
+            console.error('Fehler beim Laden des VPI:', error);
         }
     }
 
@@ -75,7 +75,7 @@ function Mainpage_Admin() {
             setFreeObjects(freeObjects);
             
         } catch (error) {
-            console.error('Fehler beim Abrufen der Lagerraeume:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -88,7 +88,7 @@ function Mainpage_Admin() {
             setEarnings(earnings);
 
         } catch (error) {
-            console.error('Fehler beim Abrufen des Umsatzes:', error);
+            console.error('Fehler beim Laden des Umsatzes:', error);
         }
     }
 
@@ -102,7 +102,7 @@ function Mainpage_Admin() {
             setPossibleEarnings(sum);
 
         } catch (error) {
-            console.error('Fehler beim Abrufen des möglichen Umsatzes:', error);
+            console.error('Fehler beim Laden des möglichen Umsatzes:', error);
         }
     }
 
@@ -118,7 +118,7 @@ function Mainpage_Admin() {
             const user = data.filter(u => u.role === 2).length;
             setUser(user);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Benutzer:', error);
+            console.error('Fehler beim Laden der Benutzer:', error);
         }
     }
 

@@ -51,7 +51,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
             const data = await response.json();
             setFreeStorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Admin-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -96,7 +96,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 setFreeStorages(prevState => prevState.filter(storage => storage.id !== selectedStorage.id));
             }
         } catch (error) {
-            console.error('Fehler beim Hinzufügen des Storages:', error);
+            console.error('Fehler beim Hinzufügen:', error);
         }
     }
 
@@ -113,13 +113,13 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
             });
 
             if (!response.ok) {
-                throw new Error("Fehler beim Hochladen");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
             const data = await response.json();
             setSelectedUser(data);
 
         } catch (error) {
-            console.error("Fehler beim Hochladen:", error);
+            console.error("Fehler beim Hinzufügen:", error);
         }
     }
 
@@ -151,7 +151,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 });
 
                 if (!response.ok) {
-                    throw new Error("Fehler beim Hochladen");
+                    throw new Error(`${response.status} ${response.statusText}`);
                 }
 
                 const responseData = await response.json();
@@ -178,7 +178,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 updateStorageStatus(data);
             }
         } catch (error) {
-            console.error('Fehler beim Hinzufügen des Storages:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -203,7 +203,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 }),
             });
         } catch (error) {
-            console.error('Fehler beim Hinzufügen des Storages:', error);
+            console.error('Fehler beim Aktualisieren:', error);
         }
     }
 
@@ -227,7 +227,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 closePopup();
             }
         } catch (error) {
-            console.error('Fehler beim Löschen des Storages:', error);
+            console.error('Fehler beim Löschen:', error);
         }
     }
 
@@ -241,7 +241,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 }
             });
             if (!response.ok) {
-                throw new Error('Fehler beim Abrufen des VPI');
+                throw new Error(`${response.status} ${response.statusText}`);
             }
             const data = await response.text();
             const rows = data.trim().split("\n");
@@ -250,7 +250,7 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
             const vpiValue = parseFloat(splitRow[2].replace(",", ".")).toFixed(2);
             setVpi(vpiValue);
         } catch (error) {
-            console.error('Fehler beim Abrufen des VPI:', error);
+            console.error('Fehler beim Laden des VPI:', error);
         }
     }
 

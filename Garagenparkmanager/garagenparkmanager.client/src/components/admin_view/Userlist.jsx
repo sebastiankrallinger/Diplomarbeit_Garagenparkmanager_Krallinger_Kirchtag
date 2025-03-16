@@ -35,7 +35,7 @@ function Userlist({ customers, refreshCustomers, refreshStorages, editCustomer, 
             refreshStorages();
             closePopup();
         } catch (error) {
-            console.error('Fehler beim Löschen de Benutzers:', error);
+            console.error('Fehler beim Löschen:', error);
         }
     }
 

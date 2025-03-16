@@ -27,7 +27,7 @@ function Contractslist() {
             const data = await response.json();
             setStorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Admin-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 

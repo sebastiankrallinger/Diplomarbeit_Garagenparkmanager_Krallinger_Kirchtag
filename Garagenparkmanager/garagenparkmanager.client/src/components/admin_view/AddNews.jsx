@@ -117,10 +117,10 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
                 refreshNews();
                 openPopup();
             } else {
-                console.error("Fehler beim Hinzufügen der News.");
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error('Netzwerkfehler:', error);
+            console.error('Fehler beim Hinzufügen:', error);
         }
     };
 
@@ -151,10 +151,10 @@ function AddNews({ refreshNews, news, updatedNews, handleFormChange, edit, setEd
                 refreshNews();
                 openPopup();
             } else {
-                console.error('Fehler beim Aktualisieren der News');
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error('Fehler beim Senden der Update-Anfrage:', error);
+            console.error('Fehler beim Aktualisieren:', error);
         }
     }
 

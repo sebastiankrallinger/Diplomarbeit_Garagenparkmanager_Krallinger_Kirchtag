@@ -61,7 +61,7 @@ function UserLogin() {
                         navigate('/user');
                     }
                 } else {
-                    alert('Login fehlgeschlagen: Kein gültiges Token erhalten');
+                    throw new Error(`${response.status} ${response.statusText}`);
                 }
             } else {
                 const error = await response.text();
@@ -69,7 +69,7 @@ function UserLogin() {
                 errorlbl.innerText = 'Login fehlgeschlagen: ' + error;
             }
         } catch (error) {
-            console.error('Netzwerkfehler:', error);
+            console.error('Fehler beim Login:', error);
         }
     };
 

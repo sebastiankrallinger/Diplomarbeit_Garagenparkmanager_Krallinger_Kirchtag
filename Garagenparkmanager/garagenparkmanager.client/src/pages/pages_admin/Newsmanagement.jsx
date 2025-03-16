@@ -31,7 +31,7 @@ function Newsmanagement() {
             const data = await response.json();
             setNews(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der News-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 

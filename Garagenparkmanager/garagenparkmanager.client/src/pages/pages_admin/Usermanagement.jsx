@@ -42,7 +42,7 @@ function Usermanagement() {
             const data = await response.json();
             setCustomers(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Kunden-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -57,7 +57,7 @@ function Usermanagement() {
             const data = await response.json();
             setBookedtorages(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Kunden-Liste:', error);
+            console.error('Fehler beim Laden:', error);
         }
     }
 
@@ -73,7 +73,7 @@ function Usermanagement() {
             setoldUserData(data);
             setSelectedUser(data);
         } catch (error) {
-            console.error('Fehler beim Abrufen der Kunden-Liste:', error);
+            console.error('Fehler beim Laden', error);
         }
     }
 
@@ -130,10 +130,10 @@ function Usermanagement() {
                 setcontract(null);
                 openPopup();
             } else {
-                console.error('Fehler beim Aktualisieren des Benutzers:', errorText);
+                throw new Error(`${response.status} ${response.statusText}`);
             }
         } catch (error) {
-            console.error('Fehler beim Senden der Update-Anfrage:', error);
+            console.error('Fehler beim Aktualisieren:', error);
         }
     }
 
