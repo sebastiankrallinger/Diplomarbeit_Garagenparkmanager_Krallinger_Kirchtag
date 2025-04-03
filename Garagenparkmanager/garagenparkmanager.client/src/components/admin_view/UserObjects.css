@@ -77,3 +77,14 @@
     padding: 5px 10px;
     color: white;
 }
+
+.option,
+.date,
+.duration,
+.extraCosts,
+.contract,
+label,
+br {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

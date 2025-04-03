@@ -285,10 +285,15 @@ function UserObjects({ selectedUser, setSelectedUser, bookedStorages, loadStorag
                 </select>
                 <br />
                 <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
+                <br />
                 <label>Vertragsdauer</label>
+                <br />
                 <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
+                <br />
                 <label>Extrakosten</label>
+                <br />
                 <input id="extraCosts" className="extraCosts" type="number" onChange={(e) => setExtraCosts(e.target.value)} />
+                <br />
                 <input
                     id="fileInput"
                     type="file"
