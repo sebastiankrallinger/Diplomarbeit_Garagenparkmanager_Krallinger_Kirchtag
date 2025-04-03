@@ -55,7 +55,7 @@ function Header() {
                         <a onClick={() => handleNavigation('/admin/newsmanagement')} className={getActiveClass('/admin/newsmanagement')}>News</a>
                         <a onClick={() => handleNavigation('/admin/objectmanagement')} className={getActiveClass('/admin/objectmanagement')}>Objektverwaltung</a>
                         {/* {console.log(user)} */}
-                        {user?.role === '0' && (
+                        {localStorage.getItem('role') === '0' && (
                             <a onClick={() => handleNavigation('/admin/adminmanagement')} className={getActiveClass('/admin/adminmanagement')}>Adminverwaltung</a>
                         )}
                         <a onClick={() => handleNavigation('/admin/usermanagement')} className={getActiveClass('/admin/usermanagement')}>Benutzerverwaltung</a>

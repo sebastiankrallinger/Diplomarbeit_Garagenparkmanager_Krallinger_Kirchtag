@@ -1,15 +1,16 @@
 html, body {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     padding: 0;
     margin: 0;
-    background-color: #383E42;
+    background-color: #1A1C1F;
     color: #FFFFFF;
+    font-family: Arial, sans-serif;
     overflow: visible;
     scrollbar-width: none;
 }
 
 #root {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 }

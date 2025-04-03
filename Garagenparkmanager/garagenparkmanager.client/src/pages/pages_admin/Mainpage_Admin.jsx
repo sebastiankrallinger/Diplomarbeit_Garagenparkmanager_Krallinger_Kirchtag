@@ -144,7 +144,7 @@ function Mainpage_Admin() {
                         <p>{freeObjects ? freeObjects.length : '0'}</p>
                     </div>
                     <div className="card">
-                        <h3>Umsatz letztes Monat</h3>
+                        <h3>Voraussichtlicher Umsatz des Monats</h3>
                         <p>{earnings ? `${earnings} \u20AC` : `0 \u20AC`}</p>
                     </div>
                     <div className="card">

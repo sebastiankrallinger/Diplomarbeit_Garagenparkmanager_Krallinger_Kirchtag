@@ -9,6 +9,5 @@ namespace Garagenparkmanager.Server.Services
         Task<Models.Storage> GetStorage(string id);
         Task<Models.Storage> UpdateStorage(Storage storage);
         Task<bool> DeleteStorage(string id);
-
     }
 }

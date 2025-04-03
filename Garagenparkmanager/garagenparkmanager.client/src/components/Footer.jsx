@@ -37,7 +37,7 @@ function Footer() {
                       <li>
                           <h3>Documents</h3>
                           <a href="https://garagenparkmanagerdocs.blob.core.windows.net/documents/AGBs.pdf" target="_blank">Allgemeine Gesch&auml;ftsbedingungen - AGB</a>
-                          <a href="https://garagenparkmanagerdocs.blob.core.windows.net/documents/Datenschutzerklärung.pdf" target="_blank">Datenschutzerkl&aulm;rung</a>
+                          <a href="https://garagenparkmanagerdocs.blob.core.windows.net/documents/Datenschutzerklärung.pdf" target="_blank">Datenschutzerkl&auml;rung</a>
                           <a href="https://garagenparkmanagerdocs.blob.core.windows.net/documents/Standortbeschreibung_ZellamSee.pdf" target="_blank">Standortbeschreibung Lagerage Zell am See</a>
                           <a href="https://garagenparkmanagerdocs.blob.core.windows.net/documents/Wiederrufsformular.pdf" target="_blank">Widerrufsformular</a>
                       </li>
@@ -46,7 +46,7 @@ function Footer() {
           </div>
           <div className="footer-text">
               <p className="text1">DE Support & Kontakt</p>
-              <p className="text2">SweetPopcorn.Studio&copy;2025</p>
+              <p className="text2">&copy;2025</p>
           </div>
       </footer>
   );
