@@ -13,6 +13,7 @@ function Header() {
     const [activeSection, setActiveSection] = useState('');
     const [isScrollingUp, setIsScrollingUp] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(window.scrollY);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     //Header ein-/ausklappen
     useEffect(() => {
@@ -64,13 +65,22 @@ function Header() {
         navigate('/home'); 
     };
 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
     return (  
         <header className={isScrollingUp ? 'visible' : 'hidden'}>
             <div className="header-container">
                 <div className="header-logo">
                     <img src={logo} alt="logo_Lagerage" />
                 </div>
-                <nav className="header-navbar">
+
+                <button className="menu-toggle" onClick={toggleMenu}>
+                    ☰
+                </button>
+
+                <nav className={`header-navbar ${menuOpen ? 'open' : ''}`}>
                     <ul>
                         <a
                             onClick={() => handleNavigation('news')}

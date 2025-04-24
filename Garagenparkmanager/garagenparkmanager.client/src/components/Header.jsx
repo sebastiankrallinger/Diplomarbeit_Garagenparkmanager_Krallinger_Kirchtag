@@ -8,14 +8,14 @@ function Header() {
     const [activeSection, setActiveSection] = useState('');
     const [isScrollingUp, setIsScrollingUp] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(window.scrollY);
+    const [menuOpen, setMenuOpen] = useState(false);
 
-    //Header ein-/ausklappen
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > lastScrollY) {
-                setIsScrollingUp(false); 
+                setIsScrollingUp(false);
             } else {
-                setIsScrollingUp(true); 
+                setIsScrollingUp(true);
             }
             setLastScrollY(window.scrollY);
             const currentSection = getCurrentSection();
@@ -28,17 +28,15 @@ function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [lastScrollY]);
 
-
-    //Header navbar Navigation
     const handleNavigation = (id) => {
         const section = document.getElementById(id);
         if (section) {
-            section.scrollIntoView({ behavior: 'smooth'});
+            section.scrollIntoView({ behavior: 'smooth' });
             setActiveSection(id);
+            setMenuOpen(false); // Menü nach Auswahl schließen
         }
     };
 
-    //aktuelle Sektion abrufen
     const getCurrentSection = () => {
         const sections = ['content', 'plan', 'ueberUns'];
         for (let id of sections) {
@@ -53,10 +51,14 @@ function Header() {
         return '';
     };
 
-    //auf Login-Seite leiten
     const handleLogin = (e) => {
         e.preventDefault();
         navigate('/login');
+        setMenuOpen(false);
+    };
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
     };
 
     return (
@@ -65,7 +67,12 @@ function Header() {
                 <div className="header-logo">
                     <img src={logo} alt="logo_Lagerage" />
                 </div>
-                <nav className="header-navbar">
+
+                <button className="menu-toggle" onClick={toggleMenu}>
+                    ☰
+                </button>
+
+                <nav className={`header-navbar ${menuOpen ? 'open' : ''}`}>
                     <ul>
                         <a
                             onClick={() => handleNavigation('content')}

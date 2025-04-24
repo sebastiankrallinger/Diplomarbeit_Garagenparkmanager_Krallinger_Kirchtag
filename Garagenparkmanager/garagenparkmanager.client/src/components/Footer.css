@@ -86,3 +86,50 @@
     align-items: center; 
     flex: 1;
 }
+
+@media (max-width: 900px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .footer-logo {
+        align-items: center;
+        justify-content: center;
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .footer-logo img {
+        margin-left: 0;
+    }
+
+    .instagram-icon {
+        margin-left: 0;
+    }
+
+    .footer-navbar ul {
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .footer-navbar li {
+        margin: 20px 0;
+    }
+
+    /*.footer-navbar h3 {
+        text-align: center;
+    */
+
+    .footer-text {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .footer-text p {
+        margin: 5px 0;
+        text-align:center;
+    }
+}
+
