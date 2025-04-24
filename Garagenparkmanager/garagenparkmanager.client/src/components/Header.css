@@ -1,7 +1,7 @@
 /* Styling Header&Header_Admin-Component */
 
 body {
-    padding-top: 1000px; /* Passt sich der Höhe des Headers an */
+    padding-top: 1000px;
 }
 
 
@@ -45,7 +45,7 @@ header.visible {
 
 .header-navbar ul {
     display: flex;
-    flex-direction: row; /* Standard: nebeneinander */
+    flex-direction: row; 
     align-items: center;
     gap: 20px;
 }
@@ -99,33 +99,33 @@ header.visible {
         background-color: #1A1C1F;
     }
 
-        .header-navbar.open {
-            display: block;
-        }
+    .header-navbar.open {
+        display: block;
+    }
 
-        .header-navbar ul {
-            flex-direction: column;
-            gap: 10px;
-            text-align: center;
-            padding: 10px 0;
-        }
+    .header-navbar ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 10px 0;
+    }
 
-        .header-navbar a,
-        .header-navbar button {
-            margin: 0;
-            width: 100%;
-            padding: 10px;
-            padding-left: 10px;
-            color: white;
-            width: 100%;
-            text-align: center;
-            border: none;
-            color: inherit;
-            font: inherit;
-            cursor: pointer;
-            overflow-wrap: break-word;
-            word-break: break-word;
-        }
+    .header-navbar a,
+    .header-navbar button {
+        margin: 0;
+        width: 100%;
+        padding: 10px;
+        padding-left: 10px;
+        color: white;
+        width: 100%;
+        text-align: center;
+        border: none;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
 
     .header-container {
         position: relative;

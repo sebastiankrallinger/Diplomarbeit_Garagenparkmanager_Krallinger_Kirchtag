@@ -23,24 +23,25 @@
 
 .Home .personImages {
     display: flex;
-    flex-wrap: wrap; /* Erlaubt Zeilenumbruch */
+    flex-wrap: wrap; 
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 20px; /* Mehr Abstand zwischen den Bildern */
+    gap: 20px; 
 }
 
 .Home .personImage {
-    flex: 1 1 300px; /* Flexibles Verhalten mit Mindestbreite */
-    max-width: 22%; /* Begrenzung für größere Bildschirme */
+    flex: 1 1 300px; 
+    max-width: 22%; 
     height: auto;
     text-align: center;
 }
 
 .Home .personImage img {
     width: 100%;
-    height: auto; /* Höhe bleibt proportional */
-    max-height: 400px; /* Optional: Verhindert zu hohe Bilder */
+    height: auto;
+    max-height: 400px;
+    max-width: 400px;
     border-radius: 10px;
 }
 
@@ -61,7 +62,7 @@
 
 @media (max-width: 1200px) {
     .Home .personImage {
-        max-width: 30%; /* Lässt Bilder größer werden */
+        max-width: 30%; 
     }
 }
 
@@ -71,12 +72,12 @@
     }
 
     .Home .firstline, .Home .secondline, .Home .thirdline {
-        height: auto; /* Dynamische Höhe */
-        max-height: none; /* Begrenzung aufheben */
+        height: auto; 
+        max-height: none; 
     }
 
     .Home .personImage {
-        max-width: 80%; /* Bilder nehmen mehr Platz ein */
+        max-width: 80%; 
     }
 }
 
@@ -85,8 +86,8 @@
         max-width: 100%; 
     }
     .Home .firstline, .Home .secondline, .Home .thirdline {
-        height: auto; /* Dynamische Höhe */
-        max-height: none; /* Begrenzung aufheben */
+        height: auto; 
+        max-height: none; 
     }
 }
 
@@ -231,8 +232,8 @@
         max-width: 100%;
     }
     .Home .firstline, .Home .secondline, .Home .thirdline {
-        height: auto; /* Dynamische Höhe */
-        max-height: none; /* Begrenzung aufheben */
+        height: auto;
+        max-height: none; 
     }
 }
 

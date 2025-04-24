@@ -11,7 +11,7 @@
     flex-direction: column;
     width: 100%;
     margin: 20vh auto 0 auto;
-    padding: 0 10px; /* optionaler Puffer links/rechts */
+    padding: 0 10px;
 }
 .user_mainpage .storageImages {
     display: flex;
@@ -129,16 +129,16 @@
 }
 
 .user_mainpage .personImage {
-    flex: 1 1 250px; /* Mindestbreite von 250px, wächst flexibel */
+    flex: 1 1 250px; 
     max-width: 300px;
     text-align: center;
 }
 
-    .user_mainpage .personImage img {
-        width: 100%;
-        height: auto; /* Verhindert Verzerrung */
-        border-radius: 10px;
-    }
+.user_mainpage .personImage img {
+    width: 100%;
+    height: auto; 
+    border-radius: 10px;
+}
 
 .user_mainpage .ueberUns {
     text-align: center;
@@ -291,10 +291,10 @@
         width: 100%;
     }
 
-        .user_mainpage .popupHeader img {
-            max-width: 120px;
-            height: auto;
-        }
+    .user_mainpage .popupHeader img {
+        max-width: 120px;
+        height: auto;
+    }
 
     .user_mainpage .popupContent {
         flex-direction: column;
@@ -302,20 +302,20 @@
         text-align: center;
     }
 
-        .user_mainpage .popupContent img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 15px;
-        }
+    .user_mainpage .popupContent img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
 
-        .user_mainpage .popupContent .verticalLine {
-            display: none;
-        }
+    .user_mainpage .popupContent .verticalLine {
+        display: none;
+    }
 
-        .user_mainpage .popupContent .details {
-            width: 100%;
-            text-align: left;
-        }
+    .user_mainpage .popupContent .details {
+        width: 100%;
+        text-align: left;
+    }
 
     .user_mainpage .contracts ul {
         width: 100%;

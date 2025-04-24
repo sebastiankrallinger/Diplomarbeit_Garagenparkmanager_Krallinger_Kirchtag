@@ -141,8 +141,6 @@
     color: #f9a800;
 }
 
-
-
 @media (max-width: 768px) {
     .loginPage .loginFormContainer {
         position: fixed;
@@ -170,7 +168,7 @@
     .loginPage .loginForm {
         width: 100%;
         margin-right: 30px;
-        padding: 0 15px; /* Innenabstand links/rechts */
+        padding: 0 15px;
         box-sizing: border-box;
     }
 

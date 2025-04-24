@@ -164,11 +164,11 @@
     gap: 10px;
 }
 
-    .ObjectActions .contractHeader h3 {
-        margin: 0;
-        color: #333;
-        font-size: 1.2rem;
-    }
+.ObjectActions .contractHeader h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2rem;
+}
 
 .ObjectActions .btn-download {
     background-color: #007BFF;
@@ -189,11 +189,11 @@
     flex-wrap: wrap;
 }
 
-    .ObjectActions .formRow > div {
-        display: flex;
-        flex-direction: column;
-        min-width: 150px;
-    }
+.ObjectActions .formRow > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+}
 
 .ObjectActions input[type="date"],
 .ObjectActions input[type="number"],
