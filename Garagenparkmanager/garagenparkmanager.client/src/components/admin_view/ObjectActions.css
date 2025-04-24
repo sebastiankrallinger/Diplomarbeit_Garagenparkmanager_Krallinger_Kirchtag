@@ -138,6 +138,79 @@
     padding: 5px 10px;
     border-radius: 10px;
 }
+.ObjectActions .actualContract {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.ObjectActions .actualContract-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.ObjectActions .contractHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+    .ObjectActions .contractHeader h3 {
+        margin: 0;
+        color: #333;
+        font-size: 1.2rem;
+    }
+
+.ObjectActions .btn-download {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ObjectActions .formRow {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+    .ObjectActions .formRow > div {
+        display: flex;
+        flex-direction: column;
+        min-width: 150px;
+    }
+
+.ObjectActions input[type="date"],
+.ObjectActions input[type="number"],
+.ObjectActions input[type="file"] {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.ObjectActions .btn-upload {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 .ObjectActions .renter-content button {
     background-color: #F9A800;
@@ -342,3 +415,4 @@
     right: 10px;
     cursor: pointer;
 }
+

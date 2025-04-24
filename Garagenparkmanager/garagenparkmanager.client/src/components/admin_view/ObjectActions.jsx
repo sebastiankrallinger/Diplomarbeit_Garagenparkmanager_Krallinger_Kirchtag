@@ -691,24 +691,38 @@ function ObjectActions() {
                                     <>
                                         <p>{selectedStorage.price} / {`${selectedStorage.activeContract.vpIold.toFixed(2)}`} * {`${vpi}`} = {(selectedStorage.price / parseFloat(selectedStorage.activeContract.vpIold) * parseFloat(vpi)).toFixed(2)} &euro;</p>
                                         <div className="actualContract">
-                                            <div className="actualContract-content">
-                                                <h3>Aktueller Vertrag bis {new Date(selectedStorage.activeContract.endDate).toLocaleDateString('de-DE')}</h3>
-                                                <a className="btn-download" id="downloadLink" href={selectedStorage.activeContract.fileUrl} target="_blank" rel="noopener noreferrer">Abrufen</a>
-                                                <input id="date" className="date" type="date" onChange={(e) => setStartDate(e.target.value)} />
-                                                <label>Vertragsdauer</label>
-                                                <input id="duration" className="duration" type="number" onChange={(e) => setDuration(e.target.value)} />
-                                                <label>Extrakosten</label>
-                                                <input id="extraCosts" className="extraCosts" type="number" onChange={(e) => setExtraCosts(e.target.value)} />
-                                                <input
-                                                    id="fileInput"
-                                                    type="file"
-                                                    accept="application/pdf"
-                                                    onChange={(e) => setContract(e.target.files[0])}
-                                                    className="document"
-                                                    placeholder="Dokument"
-                                                />
-                                                <button className="btn-upload" onClick={uploadContract}>Vertag aktualisieren</button>
+                                            <div className="ObjectActions">
+                                                <div className="actualContract">
+                                                    <div className="actualContract-content">
+                                                        <div className="contractHeader">
+                                                            <h3>Aktueller Vertrag bis {new Date(selectedStorage.activeContract.endDate).toLocaleDateString('de-DE')}</h3>
+                                                            <a className="btn-download" href={selectedStorage.activeContract.fileUrl} target="_blank" rel="noopener noreferrer">Abrufen</a>
+                                                        </div>
+
+                                                        <div className="formRow">
+                                                            <div>
+                                                                <label>Startdatum</label>
+                                                                <input type="date" onChange={(e) => setStartDate(e.target.value)} />
+                                                            </div>
+                                                            <div>
+                                                                <label>Vertragsdauer (Monate)</label>
+                                                                <input type="number" onChange={(e) => setDuration(e.target.value)} />
+                                                            </div>
+                                                            <div>
+                                                                <label>Extrakosten (€)</label>
+                                                                <input type="number" onChange={(e) => setExtraCosts(e.target.value)} />
+                                                            </div>
+                                                            <div>
+                                                                <label>PDF hochladen</label>
+                                                                <input type="file" accept="application/pdf" onChange={(e) => setContract(e.target.files[0])} />
+                                                            </div>
+                                                        </div>
+
+                                                        <button className="btn-upload" onClick={uploadContract}>Vertrag aktualisieren</button>
+                                                    </div>
+                                                </div>
                                             </div>
+
                                         </div>
                                     </>
                             )}
